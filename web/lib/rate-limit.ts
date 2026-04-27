@@ -43,15 +43,15 @@ export interface RateLimitAdapter {
 // For Node.js server routes that need Redis, use lib/rate-limit-server.ts instead.
 import { MemoryRateLimitAdapter } from './rate-limit-memory'
 
-const _memoryAdapter = new MemoryRateLimitAdapter()
+let _memoryAdapter = new MemoryRateLimitAdapter()
 
 export function getRateLimitAdapter(): RateLimitAdapter {
   return _memoryAdapter
 }
 
-/** Reset the cached adapter (used in tests — no-op since memory adapter is a singleton). */
+/** Reset the cached adapter (used in tests). */
 export function resetAdapterCache(): void {
-  _memoryAdapter._clear()
+  _memoryAdapter = new MemoryRateLimitAdapter()
 }
 
 // ---------------------------------------------------------------------------
