@@ -2,6 +2,10 @@ import type { NextConfig } from "next";
 import { withSentryConfig } from "@sentry/nextjs";
 
 const nextConfig: NextConfig = {
+  // ioredis is an optional server-side dep used only when REDIS_URL is set.
+  // Mark it as external so webpack doesn't try to bundle it (avoids build
+  // errors when the package isn't installed in the Vercel environment).
+  serverExternalPackages: ['ioredis'],
   async headers() {
     return [
       {
