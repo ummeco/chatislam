@@ -149,7 +149,7 @@ export default function TermsPage() {
 
           <div className="mt-8 border-t border-white/10 pt-6 text-sm opacity-50">
             <Link href="/privacy" className="mr-4 hover:opacity-80 transition-opacity">Privacy Policy</Link>
-            <Link href="/cookies" className="hover:opacity-80 transition-opacity">Cookie Policy</Link>
+            <Link href="/cookie-policy" className="hover:opacity-80 transition-opacity">Cookie Policy</Link>
           </div>
         </div>
       </div>
