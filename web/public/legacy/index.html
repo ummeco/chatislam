@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChatIslam — Ask Anything About Islam</title>
+<meta name="description" content="AI-powered Islamic guidance — accurate, sourced, always available. Ask questions about Islam, get answers grounded in authentic scholarship.">
+<style>
+  :root {
+    --light: #C9F27A;
+    --mid: #79C24C;
+    --dark: #1E5E2F;
+    --deep: #0D2F17;
+    --text: #f0fce8;
+    --muted: rgba(201, 242, 122, 0.6);
+    --card-bg: rgba(30, 94, 47, 0.2);
+    --border: rgba(121, 194, 76, 0.2);
+    --bg: #07180d;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  a { color: var(--light); text-decoration: none; }
+  a:hover { color: var(--mid); }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5%;
+    height: 64px;
+    background: rgba(7, 24, 13, 0.85);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--light);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nav-logo-icon {
+    width: 28px;
+    height: 28px;
+    background: linear-gradient(135deg, var(--mid), var(--dark));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.9rem;
+    color: var(--muted);
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--light); }
+
+  .nav-cta {
+    background: linear-gradient(135deg, var(--mid), var(--dark));
+    color: var(--text) !important;
+    padding: 0.45rem 1.1rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: opacity 0.2s;
+  }
+
+  .nav-cta:hover { opacity: 0.85; color: var(--text) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 100px 5% 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(30, 94, 47, 0.35) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -100px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(121, 194, 76, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(121, 194, 76, 0.12);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 0.3rem 0.8rem;
+    font-size: 0.78rem;
+    color: var(--mid);
+    margin-bottom: 1.5rem;
+  }
+
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--mid);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 1.2rem;
+    color: var(--text);
+  }
+
+  h1 span {
+    background: linear-gradient(135deg, var(--light), var(--mid));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    max-width: 480px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--mid), var(--dark));
+    color: var(--text);
+    padding: 0.75rem 1.75rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 20px rgba(121, 194, 76, 0.2);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(121, 194, 76, 0.3);
+    color: var(--text);
+  }
+
+  .btn-secondary {
+    background: var(--card-bg);
+    color: var(--text);
+    padding: 0.75rem 1.75rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 500;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(30, 94, 47, 0.35);
+    border-color: rgba(121, 194, 76, 0.4);
+    color: var(--text);
+  }
+
+  /* CHAT MOCKUP */
+  .chat-mockup {
+    background: rgba(13, 47, 23, 0.7);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  }
+
+  .chat-header {
+    background: rgba(30, 94, 47, 0.4);
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .chat-avatar {
+    width: 32px;
+    height: 32px;
+    background: linear-gradient(135deg, var(--mid), var(--dark));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text);
+    flex-shrink: 0;
+  }
+
+  .chat-header-info .name { font-weight: 600; font-size: 0.9rem; }
+  .chat-header-info .status { font-size: 0.75rem; color: var(--mid); }
+
+  .chat-body { padding: 1.25rem; display: flex; flex-direction: column; gap: 1rem; }
+
+  .msg { display: flex; flex-direction: column; max-width: 85%; }
+  .msg.user { align-self: flex-end; align-items: flex-end; }
+  .msg.ai { align-self: flex-start; }
+
+  .msg-bubble {
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .msg.user .msg-bubble {
+    background: linear-gradient(135deg, rgba(121, 194, 76, 0.25), rgba(30, 94, 47, 0.3));
+    border: 1px solid rgba(121, 194, 76, 0.2);
+    border-bottom-right-radius: 4px;
+  }
+
+  .msg.ai .msg-bubble {
+    background: rgba(30, 94, 47, 0.3);
+    border: 1px solid var(--border);
+    border-bottom-left-radius: 4px;
+  }
+
+  .msg-source {
+    font-size: 0.72rem;
+    color: var(--mid);
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .chat-input {
+    padding: 1rem 1.25rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .chat-input-field {
+    flex: 1;
+    background: rgba(7, 24, 13, 0.6);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.6rem 1rem;
+    color: var(--muted);
+    font-size: 0.875rem;
+  }
+
+  .chat-send {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, var(--mid), var(--dark));
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 80px 5%;
+  }
+
+  .section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--mid);
+    margin-bottom: 0.75rem;
+  }
+
+  h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+
+  h2 span {
+    background: linear-gradient(135deg, var(--light), var(--mid));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .section-sub {
+    color: var(--muted);
+    font-size: 1.05rem;
+    max-width: 580px;
+    margin-bottom: 3rem;
+  }
+
+  /* FEATURES GRID */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .feature-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .feature-card:hover {
+    border-color: rgba(121, 194, 76, 0.4);
+    transform: translateY(-3px);
+  }
+
+  .feature-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(121, 194, 76, 0.1);
+    border: 1px solid rgba(121, 194, 76, 0.15);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    color: var(--mid);
+  }
+
+  .feature-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+
+  .feature-card p {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* DEMO SECTION */
+  #demo { background: rgba(13, 47, 23, 0.3); }
+
+  .demo-chat {
+    background: rgba(13, 47, 23, 0.8);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    max-width: 720px;
+    margin: 0 auto;
+    box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6);
+  }
+
+  .demo-chat-header {
+    background: rgba(30, 94, 47, 0.5);
+    padding: 1.1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .demo-chat-header .title { font-weight: 700; font-size: 0.95rem; }
+  .demo-chat-header .subtitle { font-size: 0.75rem; color: var(--muted); }
+
+  .demo-body { padding: 1.5rem; display: flex; flex-direction: column; gap: 1.25rem; }
+
+  .demo-msg { display: flex; flex-direction: column; }
+  .demo-msg.user { align-items: flex-end; }
+  .demo-msg.ai { align-items: flex-start; }
+
+  .demo-label {
+    font-size: 0.7rem;
+    color: rgba(201, 242, 122, 0.4);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .demo-bubble {
+    max-width: 88%;
+    padding: 0.9rem 1.1rem;
+    border-radius: 14px;
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .demo-msg.user .demo-bubble {
+    background: rgba(121, 194, 76, 0.18);
+    border: 1px solid rgba(121, 194, 76, 0.25);
+    border-bottom-right-radius: 4px;
+    color: var(--text);
+  }
+
+  .demo-msg.ai .demo-bubble {
+    background: rgba(30, 94, 47, 0.4);
+    border: 1px solid var(--border);
+    border-bottom-left-radius: 4px;
+    color: var(--text);
+  }
+
+  .source-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(121, 194, 76, 0.1);
+    border: 1px solid rgba(121, 194, 76, 0.2);
+    border-radius: 6px;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.7rem;
+    color: var(--mid);
+    margin-top: 0.5rem;
+  }
+
+  .human-option {
+    margin-top: 0.5rem;
+    font-size: 0.78rem;
+    color: rgba(201, 242, 122, 0.5);
+    cursor: pointer;
+  }
+
+  .human-option:hover { color: var(--light); }
+
+  /* EMBED SECTION */
+  .embed-section { background: rgba(7, 24, 13, 0.5); }
+
+  .embed-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .code-block {
+    background: rgba(7, 24, 13, 0.9);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.85rem;
+    color: var(--mid);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .code-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--mid), var(--dark));
+  }
+
+  .code-comment { color: rgba(201, 242, 122, 0.35); }
+  .code-tag { color: var(--light); }
+  .code-attr { color: rgba(201, 242, 122, 0.7); }
+  .code-val { color: var(--mid); }
+
+  .embed-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .embed-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  .check-icon {
+    width: 18px;
+    height: 18px;
+    background: rgba(121, 194, 76, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--mid);
+  }
+
+  /* ABOUT SECTION */
+  .about-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 3rem;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .about-card p {
+    font-size: 1.1rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  .arabic-text {
+    font-size: 2rem;
+    color: var(--light);
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+    direction: rtl;
+  }
+
+  /* EMAIL SIGNUP */
+  .signup-section {
+    background: linear-gradient(135deg, rgba(30, 94, 47, 0.3), rgba(13, 47, 23, 0.5));
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .signup-inner {
+    max-width: 520px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .signup-form {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  .signup-input {
+    flex: 1;
+    background: rgba(7, 24, 13, 0.7);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.75rem 1.1rem;
+    color: var(--text);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .signup-input:focus { border-color: rgba(121, 194, 76, 0.5); }
+  .signup-input::placeholder { color: rgba(240, 252, 232, 0.3); }
+
+  .signup-btn {
+    background: linear-gradient(135deg, var(--mid), var(--dark));
+    color: var(--text);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.2s;
+  }
+
+  .signup-btn:hover { opacity: 0.85; }
+
+  /* FOOTER */
+  footer {
+    padding: 2.5rem 5%;
+    border-top: 1px solid var(--border);
+    background: rgba(7, 24, 13, 0.8);
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-logo { font-size: 1rem; font-weight: 700; color: var(--light); }
+  .footer-copy { font-size: 0.8rem; color: rgba(201, 242, 122, 0.35); }
+
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    font-size: 0.8rem;
+    color: rgba(201, 242, 122, 0.45);
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--light); }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0;
+  }
+
+  /* FADE-UP ANIMATION */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .fade-up:nth-child(2) { transition-delay: 0.1s; }
+  .fade-up:nth-child(3) { transition-delay: 0.2s; }
+  .fade-up:nth-child(4) { transition-delay: 0.3s; }
+  .fade-up:nth-child(5) { transition-delay: 0.4s; }
+  .fade-up:nth-child(6) { transition-delay: 0.5s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .chat-mockup { display: none; }
+    .embed-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+
+  @media (max-width: 600px) {
+    .signup-form { flex-direction: column; }
+    .hero-actions { flex-direction: column; }
+    .features-grid { grid-template-columns: 1fr; }
+    section { padding: 60px 5%; }
+  }
+
+  /* ── Utility classes ── */
+  .code-label { margin-bottom: 0.75rem; font-size: 0.75rem; color: rgba(201,242,122,0.4); text-transform: uppercase; letter-spacing: 0.08em; }
+  .code-body { line-height: 2.2; }
+  .code-footer { margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.78rem; color: rgba(201,242,122,0.4); }
+  .text-center { text-align: center; }
+  .section-center { text-align: center; margin-bottom: 2.5rem; }
+  .signup-subtitle { text-align: center; color: var(--muted); margin-top: 0.5rem; }
+  .footer-copy-spaced { margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M8 2C5.8 2 4 3.8 4 6c0 1.4.7 2.7 1.8 3.4L5 13h6l-.8-3.6C11.3 8.7 12 7.4 12 6c0-2.2-1.8-4-4-4z" fill="#C9F27A"/>
+        <circle cx="6" cy="13.5" r="0.6" fill="#79C24C"/>
+        <circle cx="8" cy="14" r="0.6" fill="#79C24C"/>
+        <circle cx="10" cy="13.5" r="0.6" fill="#79C24C"/>
+      </svg>
+    </div>
+    ChatIslam
+  </div>
+  <ul class="nav-links">
+    <li><a href="#demo">Demo</a></li>
+    <li><a href="#embed">Embed</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#signup" class="nav-cta">Get Early Access</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Powered by Claude AI — Islamic guidelines enforced
+      </div>
+      <h1>Ask anything<br>about <span>Islam.</span></h1>
+      <p class="hero-sub">AI-powered Islamic guidance — accurate, sourced, always available. For seekers, for Muslims, for everyone.</p>
+      <div class="hero-actions">
+        <a href="#demo" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8a5 5 0 1010 0A5 5 0 003 8zm5-2v4m-2-2h4" stroke="#f0fce8" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          Start Chatting
+        </a>
+        <a href="#embed" class="btn-secondary">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M5 4l-3 4 3 4M11 4l3 4-3 4M9 2l-2 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Add to Your Site
+        </a>
+      </div>
+    </div>
+    <div class="chat-mockup">
+      <div class="chat-header">
+        <div class="chat-avatar">CI</div>
+        <div class="chat-header-info">
+          <div class="name">ChatIslam</div>
+          <div class="status">● Online — responds instantly</div>
+        </div>
+      </div>
+      <div class="chat-body">
+        <div class="msg user">
+          <div class="msg-bubble">What are the Five Pillars of Islam?</div>
+        </div>
+        <div class="msg ai">
+          <div class="msg-bubble">The Five Pillars of Islam are the core acts of worship that every Muslim is obligated to perform. They are: (1) the Shahada — declaration of faith that there is no god but Allah and Muhammad is His messenger; (2) Salah — five daily prayers at prescribed times; (3) Zakat — obligatory charity given annually; (4) Sawm — fasting during the month of Ramadan; and (5) Hajj — pilgrimage to Mecca at least once in a lifetime for those who are able.</div>
+          <div class="msg-source">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="#79C24C" stroke-width="1"/><path d="M5 3v2.5L6.5 7" stroke="#79C24C" stroke-width="1" stroke-linecap="round"/></svg>
+            Quran 2:177 · Sahih al-Bukhari 8
+          </div>
+        </div>
+        <div class="msg user">
+          <div class="msg-bubble">Can non-Muslims visit a mosque?</div>
+        </div>
+        <div class="msg ai">
+          <div class="msg-bubble">Yes — non-Muslims are generally welcome to visit mosques in most parts of the world, particularly for educational and interfaith purposes. The Prophet Muhammad ﷺ received delegations from non-Muslim tribes in the mosque of Madinah.</div>
+          <div class="msg-source">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="#79C24C" stroke-width="1"/><path d="M5 3v2.5L6.5 7" stroke="#79C24C" stroke-width="1" stroke-linecap="round"/></svg>
+            Sahih Muslim 1764 · IslamQA.info
+          </div>
+        </div>
+      </div>
+      <div class="chat-input">
+        <div class="chat-input-field">Type your question about Islam...</div>
+        <div class="chat-send">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M14 8L2 2l3 6-3 6 12-6z" fill="#f0fce8"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-inner">
+    <div class="section-label">Why ChatIslam</div>
+    <h2>Islamic AI done <span>right.</span></h2>
+    <p class="section-sub">Built from the ground up for dawah — every design decision prioritizes accuracy, authenticity, and respect for Islamic scholarship.</p>
+    <div class="features-grid">
+      <div class="feature-card fade-up">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M11 3a8 8 0 100 16A8 8 0 0011 3zm-1 11.5L6.5 11l1.5-1.5 2 2 4.5-4.5L16 8.5l-6 6z" fill="currentColor"/>
+          </svg>
+        </div>
+        <h3>Verified Islamic Sources</h3>
+        <p>Answers draw only from vetted references — the Quran, Sahih Hadith collections, and established scholarly databases like IslamQA.info and Islamweb.net.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M5 6h12M5 10h8M5 14h10M17 17l2 2 3-3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Always Cites Sources</h3>
+        <p>Every answer includes references to the primary Islamic source — chapter and verse for Quran, hadith number and book for Sunnah, fatwa ID for scholarly opinions.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M11 7v4l2.5 2.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Available 24/7</h3>
+        <p>Instant responses any time of day, in multiple languages. No waiting, no appointment. Questions answered at Fajr or at midnight — ChatIslam is always there.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <circle cx="8" cy="8" r="4" stroke="currentColor" stroke-width="1.6"/>
+            <circle cx="16" cy="14" r="3" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M12 10l2 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Human Escalation</h3>
+        <p>When a human Islamic scholar is available online, users can request a live chat handoff. AI answers first; real scholars available for deeper personal guidance.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <rect x="3" y="5" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M7 9h8M7 13h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M18 9l3-2v8l-3-2" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Embeddable Widget</h3>
+        <p>One line of code adds ChatIslam to any Islamic website. Masjids, dawah organizations, and Islamic schools can offer AI-powered guidance directly from their site.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <path d="M11 3c-1.7 3-5 5-5 8a5 5 0 0010 0c0-3-3.3-5-5-8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M9 14a2 2 0 004 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Dawah Focused</h3>
+        <p>Designed to give clear, kind answers to non-Muslims exploring Islam. Patient, welcoming tone for newcomers. Every interaction is an opportunity for understanding.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DEMO -->
+<section id="demo">
+  <div class="section-inner">
+    <div class="section-label">Live Demo</div>
+    <h2>See it in <span>action.</span></h2>
+    <p class="section-sub">Real examples of how ChatIslam handles common questions — with sources cited in every response.</p>
+
+    <div class="demo-chat fade-up">
+      <div class="demo-chat-header">
+        <div class="chat-avatar">CI</div>
+        <div>
+          <div class="title">ChatIslam</div>
+          <div class="subtitle">chatislam.org — AI Islamic guidance</div>
+        </div>
+      </div>
+      <div class="demo-body">
+
+        <div class="demo-msg user">
+          <div class="demo-label">You</div>
+          <div class="demo-bubble">Is Islam a religion of peace?</div>
+        </div>
+        <div class="demo-msg ai">
+          <div class="demo-label">ChatIslam</div>
+          <div class="demo-bubble">
+            Islam — from the Arabic root "salm" meaning peace — teaches that peace is central to the faith. The Quran states: "O you who believe, enter into peace wholeheartedly" (2:208). Islam emphasizes peaceful coexistence and prohibits aggression. The Prophet Muhammad ﷺ said: "The Muslim is the one from whose tongue and hand the people are safe" (Sahih al-Bukhari 10). Like any major religion, the nuances of its history and theology are rich and scholarly — but the foundational texts are consistent in upholding peace, justice, and mercy.
+            <div class="source-tag">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="#79C24C" stroke-width="1"/></svg>
+              Quran 2:208 · Sahih al-Bukhari 10
+            </div>
+          </div>
+          <div class="human-option">↗ Chat with a human scholar instead</div>
+        </div>
+
+        <div class="demo-msg user">
+          <div class="demo-label">You</div>
+          <div class="demo-bubble">What do Muslims believe about Jesus (Isa)?</div>
+        </div>
+        <div class="demo-msg ai">
+          <div class="demo-label">ChatIslam</div>
+          <div class="demo-bubble">
+            Muslims hold Jesus (known as Isa in Arabic) in very high regard — he is one of the five greatest prophets in Islam (the Ulul Azm). Muslims believe he was born of a virgin (Maryam), performed miracles by God's permission, and was raised to the heavens without dying on the cross. The Quran dedicates an entire chapter (Surah Maryam, Chapter 19) to his mother and his birth. Muslims do not believe Jesus is the Son of God or part of a Trinity — they affirm he was a human prophet and the Messiah, but not divine.
+            <div class="source-tag">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="#79C24C" stroke-width="1"/></svg>
+              Quran 3:45-55 · Surah Maryam 19:16-35
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-msg user">
+          <div class="demo-label">You</div>
+          <div class="demo-bubble">What is Ramadan and why do Muslims fast?</div>
+        </div>
+        <div class="demo-msg ai">
+          <div class="demo-label">ChatIslam</div>
+          <div class="demo-bubble">
+            Ramadan is the ninth month of the Islamic lunar calendar, during which Muslims fast from dawn (Fajr) until sunset (Maghrib) — abstaining from food, drink, and other physical needs. Fasting is the fourth Pillar of Islam and is obligatory for every adult Muslim who is physically able. Allah says in the Quran: "O you who believe, fasting is prescribed for you as it was prescribed for those before you, that you may attain taqwa (God-consciousness)" (2:183). Beyond hunger, Ramadan is a month of heightened worship, Quran recitation, charity, and community.
+            <div class="source-tag">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="#79C24C" stroke-width="1"/></svg>
+              Quran 2:183-185 · Sahih al-Bukhari 1901
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EMBED -->
+<section id="embed" class="embed-section">
+  <div class="section-inner">
+    <div class="embed-grid">
+      <div>
+        <div class="section-label fade-up">For Islamic Organizations</div>
+        <h2 class="fade-up">Add ChatIslam to<br><span>your website.</span></h2>
+        <p class="section-sub fade-up">One line of code gives your visitors instant access to AI-powered Islamic guidance. Perfect for masjids, dawah groups, Islamic schools, and Muslim community sites.</p>
+        <ul class="embed-features fade-up">
+          <li>
+            <div class="check-icon">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#79C24C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            Free for qualifying Islamic organizations and masjids
+          </li>
+          <li>
+            <div class="check-icon">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#79C24C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            Customizable colors and branding to match your site
+          </li>
+          <li>
+            <div class="check-icon">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#79C24C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            Moderated responses — always within Islamic guidelines
+          </li>
+          <li>
+            <div class="check-icon">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#79C24C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            Analytics dashboard — see what your visitors ask about
+          </li>
+          <li>
+            <div class="check-icon">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#79C24C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            Mobile-first, accessible, no performance overhead
+          </li>
+        </ul>
+      </div>
+      <div class="code-block fade-up">
+        <div class="code-label">Installation</div>
+        <div class="code-body">
+          <span class="code-comment">&lt;!-- Add ChatIslam to your site --&gt;</span><br>
+          <span class="code-tag">&lt;script</span><br>
+          &nbsp;&nbsp;<span class="code-attr">src</span>=<span class="code-val">"https://chatislam.org/widget.js"</span><br>
+          &nbsp;&nbsp;<span class="code-attr">data-site-id</span>=<span class="code-val">"your-masjid-id"</span><br>
+          &nbsp;&nbsp;<span class="code-attr">data-theme</span>=<span class="code-val">"dark"</span><br>
+          &nbsp;&nbsp;<span class="code-attr">data-lang</span>=<span class="code-val">"en,ar,ur"</span><br>
+          &nbsp;&nbsp;<span class="code-attr">async</span><br>
+          <span class="code-tag">&gt;&lt;/script&gt;</span>
+        </div>
+        <div class="code-footer">That's it. The widget appears as a floating button on your site.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-center">
+      <div class="section-label">Our Commitment</div>
+      <h2>Built on Islamic <span>principles.</span></h2>
+    </div>
+    <div class="about-card fade-up">
+      <div class="arabic-text">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+      <p>ChatIslam is built on Islamic principles. Every answer is grounded in authentic sources — the Quran, the Sunnah, and the consensus of recognized Islamic scholars. We never give personal opinions, never fabricate rulings, and never go beyond what the scholarly tradition has established.</p>
+      <br>
+      <p>For complex personal matters or formal fatwas, we always guide users toward a qualified local scholar. AI is a tool for education and dawah — not a replacement for human scholarship and community.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SIGNUP -->
+<section id="signup" class="signup-section">
+  <div class="signup-inner">
+    <div class="section-label text-center">Early Access</div>
+    <h2 class="text-center">Be first to <span>launch.</span></h2>
+    <p class="signup-subtitle">Get notified when ChatIslam launches. Early access for Islamic organizations who want to embed it first.</p>
+    <form class="signup-form" onsubmit="return false;">
+      <input type="email" class="signup-input" placeholder="your@email.com">
+      <button class="signup-btn" type="submit">Notify Me</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">ChatIslam</div>
+      <div class="footer-copy footer-copy-spaced">Part of the Ummat platform ecosystem</div>
+    </div>
+    <div class="footer-links">
+      <a href="https://ummat.app">ummat.app</a>
+      <a href="https://islam.wiki">islam.wiki</a>
+      <a href="https://praycalc.com">praycalc.com</a>
+      <a href="https://ummat.dev">ummat.dev</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
