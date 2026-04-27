@@ -41,6 +41,5 @@ export default withSentryConfig(nextConfig, {
   project: process.env.SENTRY_PROJECT ?? "chatislam-web",
   silent: !process.env.CI,
   widenClientFileUpload: true,
-  hideSourceMaps: true,
   disableLogger: true,
 });

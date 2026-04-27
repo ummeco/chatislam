@@ -31,12 +31,9 @@ import Anthropic from '@anthropic-ai/sdk'
 import crypto from 'crypto'
 import { checkQueryGate } from '../../../lib/chatislam-query-gate'
 
-// Re-export types used in tests
-export type { ChatRequestBody, ChatResponseBody }
-
 // ─── Spend guard (inlined from ummat/backend to avoid cross-repo imports) ─────
 
-export class AnthropicSpendCapExceeded extends Error {
+class AnthropicSpendCapExceeded extends Error {
   constructor(
     public readonly currentUsd: number,
     public readonly capUsd: number,
@@ -48,11 +45,13 @@ export class AnthropicSpendCapExceeded extends Error {
   }
 }
 
-/** Minimal Redis-compatible interface for the spend guard (avoids ioredis dependency at type level). */
+/** Minimal Redis-compatible interface for spend guard + query gate (avoids ioredis dependency at type level). */
 interface RedisLike {
   incrbyfloat(key: string, increment: number): Promise<string | number>
+  incr(key: string): Promise<number>
   expire(key: string, seconds: number): Promise<number>
   get(key: string): Promise<string | null>
+  set(key: string, value: string, ...args: unknown[]): Promise<unknown>
 }
 
 class SpendGuard {
@@ -435,8 +434,9 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   // 11. Compute cost
   const inputTokens  = response.usage.input_tokens
   const outputTokens = response.usage.output_tokens
-  const cacheHit     = (response.usage as Record<string, unknown>)['cache_read_input_tokens']
-    ? Number((response.usage as Record<string, unknown>)['cache_read_input_tokens']) > 0
+  const usageExt     = response.usage as unknown as Record<string, unknown>
+  const cacheHit     = usageExt['cache_read_input_tokens']
+    ? Number(usageExt['cache_read_input_tokens']) > 0
     : false
   const inputCostRate = cacheHit ? PRICE_INPUT_CACHE_HIT : PRICE_INPUT_PER_MTK
   const costUsd = (inputTokens / 1_000_000) * inputCostRate
