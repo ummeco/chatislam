@@ -39,35 +39,19 @@ export interface RateLimitAdapter {
 // Factory — picks adapter based on environment
 // ---------------------------------------------------------------------------
 
-// Static import of memory adapter (always available, no optional deps)
+// Memory adapter only — safe for Edge runtime (no Node.js modules).
+// For Node.js server routes that need Redis, use lib/rate-limit-server.ts instead.
 import { MemoryRateLimitAdapter } from './rate-limit-memory'
 
-let _adapter: RateLimitAdapter | null = null
+const _memoryAdapter = new MemoryRateLimitAdapter()
 
 export function getRateLimitAdapter(): RateLimitAdapter {
-  if (_adapter) return _adapter
-
-  if (process.env.REDIS_URL) {
-    // Lazy require of Redis adapter so ioredis is only loaded when REDIS_URL is set.
-    // Falls back to memory if ioredis is not installed.
-    try {
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const { RedisRateLimitAdapter } = require('./rate-limit-redis')
-      _adapter = new RedisRateLimitAdapter(process.env.REDIS_URL)
-    } catch {
-      console.warn('[rate-limit] REDIS_URL set but ioredis unavailable — falling back to in-memory adapter')
-      _adapter = new MemoryRateLimitAdapter()
-    }
-  } else {
-    _adapter = new MemoryRateLimitAdapter()
-  }
-
-  return _adapter!
+  return _memoryAdapter
 }
 
-/** Reset the cached adapter (used in tests). */
+/** Reset the cached adapter (used in tests — no-op since memory adapter is a singleton). */
 export function resetAdapterCache(): void {
-  _adapter = null
+  _memoryAdapter._clear()
 }
 
 // ---------------------------------------------------------------------------
