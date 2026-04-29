@@ -86,7 +86,7 @@ export default function DonateForm() {
                 const v = Math.round(parseFloat(e.target.value) * 100)
                 if (v > 0) setAmountCents(v)
               }}
-              className="mt-2 w-full rounded-lg border border-white/20 bg-transparent px-3 py-2 text-sm outline-none focus:border-white/60"
+              className="mt-2 w-full rounded-lg border border-white/20 bg-transparent px-3 py-2 text-sm outline-none focus:border-white/60 focus-visible:ring-2 focus-visible:ring-white/40"
             />
           </div>
 
@@ -117,7 +117,7 @@ export default function DonateForm() {
               placeholder="Your name (optional)"
               value={displayName}
               onChange={(e) => setDisplayName(e.target.value)}
-              className="w-full rounded-lg border border-white/20 bg-transparent px-3 py-2 text-sm outline-none focus:border-white/60"
+              className="w-full rounded-lg border border-white/20 bg-transparent px-3 py-2 text-sm outline-none focus:border-white/60 focus-visible:ring-2 focus-visible:ring-white/40"
             />
           )}
 

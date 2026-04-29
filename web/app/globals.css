@@ -35,3 +35,64 @@ a {
 a:hover {
   color: var(--color-mid);
 }
+
+/* B2-07: Global focus-visible ring */
+:focus-visible {
+  outline: 2px solid var(--color-mid);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* B6-03: Page transition — subtle fade + lift */
+@keyframes ci-page-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.ci-page {
+  animation: ci-page-in 250ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ci-page {
+    animation: none;
+  }
+}
+
+/* B6-04: Drawer / bottom-sheet slide-in */
+@keyframes ci-drawer-in {
+  from { opacity: 0; transform: translateY(100%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.ci-drawer {
+  animation: ci-drawer-in 250ms ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ci-drawer {
+    animation: none;
+  }
+}
+
+/* B4-02: Light-mode override (prefers-color-scheme) */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-bg: #f5faf2;
+    --color-text: #0D2F17;
+    --color-muted: rgba(30, 94, 47, 0.6);
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-text);
+  }
+}
+
+/* B3-01: RTL font stack */
+[dir="rtl"] {
+  font-family: 'Noto Naskh Arabic', 'Traditional Arabic', system-ui, sans-serif;
+}

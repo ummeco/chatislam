@@ -1,0 +1,36 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/spend-alert",
+      "schedule": "0 23 * * *"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/widget(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "frame-ancestors https://ummat.app https://*.ummat.app"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "ALLOW-FROM https://ummat.app"
+        }
+      ]
+    },
+    {
+      "source": "/api/widget/(.*)",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://ummat.app"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "POST, OPTIONS"
+        }
+      ]
+    }
+  ]
+}

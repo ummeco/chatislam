@@ -84,7 +84,7 @@ describe('POST /api/graphql — Remote Schema secret validation', () => {
   })
 })
 
-describe('OPTIONS /api/graphql — CORS preflight', () => {
+describe('OPTIONS /api/graphql — CORS preflight (T0-08-04)', () => {
   it('returns 204 with allowed origin for Hasura prod', async () => {
     const { OPTIONS } = await import('../app/api/graphql/route')
     const req = new NextRequest('http://localhost/api/graphql', {
@@ -97,6 +97,19 @@ describe('OPTIONS /api/graphql — CORS preflight', () => {
     expect(res.headers.get('Access-Control-Allow-Headers')).toContain('x-remote-schema-secret')
   })
 
+  it('returns 204 with allowed origin for local dev (api.chatislam.local.nself.org:8543)', async () => {
+    const { OPTIONS } = await import('../app/api/graphql/route')
+    const req = new NextRequest('http://localhost/api/graphql', {
+      method: 'OPTIONS',
+      headers: { Origin: 'https://api.chatislam.local.nself.org:8543' },
+    })
+    const res = await OPTIONS(req)
+    expect(res.status).toBe(204)
+    expect(res.headers.get('Access-Control-Allow-Origin')).toBe(
+      'https://api.chatislam.local.nself.org:8543'
+    )
+  })
+
   it('returns 204 with no ACAO header for unknown origin', async () => {
     const { OPTIONS } = await import('../app/api/graphql/route')
     const req = new NextRequest('http://localhost/api/graphql', {
@@ -106,5 +119,42 @@ describe('OPTIONS /api/graphql — CORS preflight', () => {
     const res = await OPTIONS(req)
     expect(res.status).toBe(204)
     expect(res.headers.get('Access-Control-Allow-Origin')).toBeNull()
+  })
+
+  it('returns no ACAO header for browser origin (chatislam.org)', async () => {
+    // RS endpoint is Hasura-to-Next — not called from the browser directly
+    const { OPTIONS } = await import('../app/api/graphql/route')
+    const req = new NextRequest('http://localhost/api/graphql', {
+      method: 'OPTIONS',
+      headers: { Origin: 'https://chatislam.org' },
+    })
+    const res = await OPTIONS(req)
+    expect(res.status).toBe(204)
+    expect(res.headers.get('Access-Control-Allow-Origin')).toBeNull()
+  })
+
+  it('allowed headers do NOT include x-hasura-admin-secret', async () => {
+    const { OPTIONS } = await import('../app/api/graphql/route')
+    const req = new NextRequest('http://localhost/api/graphql', {
+      method: 'OPTIONS',
+      headers: { Origin: 'https://api.ummat.dev' },
+    })
+    const res = await OPTIONS(req)
+    const headers = res.headers.get('Access-Control-Allow-Headers') ?? ''
+    expect(headers.toLowerCase()).not.toContain('admin-secret')
+  })
+
+  it('allowed methods are POST and OPTIONS only', async () => {
+    const { OPTIONS } = await import('../app/api/graphql/route')
+    const req = new NextRequest('http://localhost/api/graphql', {
+      method: 'OPTIONS',
+      headers: { Origin: 'https://api.ummat.dev' },
+    })
+    const res = await OPTIONS(req)
+    const methods = res.headers.get('Access-Control-Allow-Methods') ?? ''
+    expect(methods).toContain('POST')
+    expect(methods).toContain('OPTIONS')
+    expect(methods.toUpperCase()).not.toContain('DELETE')
+    expect(methods.toUpperCase()).not.toContain('PUT')
   })
 })

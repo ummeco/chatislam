@@ -43,7 +43,32 @@ vi.mock('ioredis', () => ({
     async get()           { return null }
     async incrbyfloat()   { return '0' }
     async expire()        { return 1 }
+    async incr()          { return 1 }
+    pipeline()            {
+      const cmds: (() => Promise<unknown>)[] = []
+      const p = {
+        zremrangebyscore: () => p, zcard: () => p, zrange: () => p,
+        zadd: () => p, pexpire: () => p,
+        exec: async () => [[null,1],[null,0],[null,[]]],
+      }
+      return p
+    }
   },
+}))
+
+// ─── Mock: rate-limit-server — allow all by default (route tests focus on other paths)
+
+vi.mock('../../../lib/rate-limit-server', () => ({
+  checkServerRateLimit: vi.fn(async () => ({
+    allowed:           true,
+    remaining:         9,
+    resetAt:           Date.now() + 60_000,
+    retryAfterSeconds: 0,
+  })),
+  getUserPerMinLimit:    vi.fn(() => 10),
+  getAnonIpPerMinLimit:  vi.fn(() => 5),
+  userRateLimitKey:      vi.fn((id: string) => `ci:rl:user:${id}:min`),
+  anonIpRateLimitKey:    vi.fn((hash: string) => `ci:rl:anon:${hash}:min`),
 }))
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
@@ -74,7 +99,7 @@ function gateAllow(overrides: Partial<{
   mockedGate.mockResolvedValueOnce({
     allowed:      true,
     queriesUsed:  overrides.queriesUsed  ?? 1,
-    queriesLimit: 'queriesLimit' in overrides ? overrides.queriesLimit : 3,
+    queriesLimit: 'queriesLimit' in overrides ? (overrides.queriesLimit ?? null) : 3,
     planTier:     overrides.planTier     ?? 'free',
   })
 }

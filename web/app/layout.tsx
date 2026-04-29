@@ -35,7 +35,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" dir="auto">
-      <body>{children}</body>
+      <body>
+        {/* WCAG 2.4.1 — skip navigation (B2-06) */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-lg focus:bg-brand-dark focus:px-4 focus:py-2 focus:text-white focus:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
+        >
+          Skip to main content
+        </a>
+        {children}
+      </body>
     </html>
   );
 }

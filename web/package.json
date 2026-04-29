@@ -1,6 +1,6 @@
 {
   "name": "chatislam-web",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "scripts": {
     "dev": "next dev --port 3042",
@@ -14,14 +14,18 @@
     "@sentry/nextjs": "^9.0.0",
     "ioredis": "^5.6.1",
     "next": "15.3.8",
+    "next-intl": "^4.9.2",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.59.1",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^10.2.1",
+    "eslint-config-next": "^16.2.4",
     "typescript": "^5.7.0",
     "vitest": "^3.1.2"
   }

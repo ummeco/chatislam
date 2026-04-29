@@ -1,0 +1,75 @@
+# B2-01: axe-core WCAG 2.2 AA CI for ChatIslam (chatislam.org)
+# Fails on CRITICAL + SERIOUS violations (rule: wcag2a, wcag2aa, wcag21aa, wcag22aa)
+# Runs on every PR and push to main targeting chatislam/web.
+
+name: a11y — axe WCAG 2.2 AA (chatislam/web)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'web/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'web/**'
+
+jobs:
+  axe:
+    name: axe-core WCAG 2.2 AA
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+          cache-dependency-path: web/pnpm-lock.yaml
+
+      - name: Install dependencies
+        working-directory: web
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        working-directory: web
+        run: pnpm build
+        env:
+          NEXT_PUBLIC_SENTRY_DSN: ''
+          NEXT_PUBLIC_HASURA_URL: 'https://api.chatislam.org/v1/graphql'
+          NEXT_PUBLIC_AUTH_URL: 'https://auth.ummat.dev'
+          ANTHROPIC_API_KEY: 'dummy-for-build'
+
+      - name: Start production server
+        working-directory: web
+        run: pnpm start --port 3042 &
+
+      - name: Wait for server
+        run: npx wait-on http://localhost:3042 --timeout 30000
+
+      - name: Install axe-cli
+        run: npm install -g @axe-core/cli
+
+      - name: Run axe-core (critical + serious)
+        # Tags: wcag2a, wcag2aa, wcag21a, wcag21aa, wcag22aa
+        # --exit: exit non-zero on violation
+        # --tags: enforce up to WCAG 2.2 AA
+        run: |
+          axe http://localhost:3042 \
+            --tags wcag2a,wcag2aa,wcag21a,wcag21aa,wcag22aa \
+            --exit \
+            --reporter cli \
+            --include "main, nav, [role='main']"
+          axe http://localhost:3042/chat \
+            --tags wcag2a,wcag2aa,wcag21a,wcag21aa,wcag22aa \
+            --exit \
+            --reporter cli
