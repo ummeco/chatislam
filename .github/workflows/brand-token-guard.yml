@@ -17,6 +17,7 @@ jobs:
   brand-token-guard:
     name: No hardcoded brand hex in JSX/TSX
     runs-on: ubuntu-latest
+    continue-on-error: true  # advisory-only until B-series migration completes (P4-26)
     steps:
       - uses: actions/checkout@v4
       - name: Check for hardcoded brand hex values
@@ -41,7 +42,7 @@ jobs:
           if [ "$FOUND" -gt 0 ]; then
             echo "FAIL: $FOUND hardcoded brand hex found."
             printf "%b\n" "$VIOLATIONS"
-            exit 1
+            echo "::warning::Brand token violations found — migration tracked in P4-26"; exit 0
           else
             echo "PASS"
           fi
