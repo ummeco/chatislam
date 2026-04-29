@@ -18,6 +18,7 @@ jobs:
   axe:
     name: axe-core WCAG 2.2 AA
     runs-on: ubuntu-latest
+    continue-on-error: true  # advisory until baselines established (P4)
     timeout-minutes: 15
 
     steps:
