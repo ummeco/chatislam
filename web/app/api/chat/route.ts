@@ -32,7 +32,8 @@ import * as Sentry from '@sentry/nextjs'
 import { NextRequest, NextResponse } from 'next/server'
 import crypto from 'crypto'
 import { checkQueryGate }                                    from '../../../lib/chatislam-query-gate'
-import { sanitizeUserInput, containsEscalationTokens }      from '../../../lib/sanitize-input'
+import { sanitizeUserInput, containsEscalationTokens,
+         containsBase64InjectionAttempt }                    from '../../../lib/sanitize-input'
 import { detectInjectionAttempt, logModerationEvent,
          hashMessage }                                       from '../../../lib/moderation'
 import { detectAqeedahBoundaryProbe, SHIA_SOFT_FLAG_ADDENDUM } from '../../../lib/aqeedah-guard'
@@ -436,13 +437,15 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     }
   }
 
-  // 6. Injection detection (SCI-09) — check BEFORE sanitization
+  // 6. Injection detection (SCI-09, SCI-23-FIX-1) — check BEFORE sanitization
   const injectionResult = detectInjectionAttempt(rawMessage)
-  if (injectionResult.detected) {
+  // SCI-23-FIX-1: also detect base64-encoded injection (AV-3 SIEGE finding)
+  const base64InjectionDetected = !injectionResult.detected && containsBase64InjectionAttempt(rawMessage)
+  if (injectionResult.detected || base64InjectionDetected) {
     void logModerationEvent({
       sessionId,
       eventType:      'injection_attempt',
-      patternMatched: injectionResult.patternMatched,
+      patternMatched: injectionResult.patternMatched ?? 'base64_encoded_injection',
       messageHash:    hashMessage(rawMessage),
     })
     await persistMessage({ conversationId: body.conversationId ?? crypto.randomUUID(), role: 'user', content: '[INJECTION_ATTEMPT_BLOCKED]', flagged: true })

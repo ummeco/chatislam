@@ -1,5 +1,5 @@
 /**
- * ChatIslam — Input Sanitization (SCI-08, T0-04-02)
+ * ChatIslam — Input Sanitization (SCI-08, T0-04-02, SCI-23-FIX-1)
  *
  * Strips escalation tokens ([ESCALATE_SONNET], [ESCALATE_HUMAN]) from API payloads
  * before they reach the AI. The display copy in the UI is never mutated here —
@@ -10,6 +10,12 @@
  *   - stripControlChars(): removes null bytes, C0/C1 control chars, BOM, zero-width chars
  *     that can be used to smuggle hidden instructions or confuse tokenizers
  *   - Enhanced INJECTION_STRIP_PATTERNS: added LLM-instruction delimiters
+ *
+ * SCI-23-FIX-1 (AV-3 SIEGE finding — MEDIUM):
+ *   - decodeAndScanBase64(): detect base64-encoded injection by decoding unprefixed
+ *     base64 strings and re-scanning decoded content against injection patterns.
+ *     Addresses AV-3 finding where `aWdub3JlIHByZXZpb3VzIGluc3RydWN0aW9ucw==`
+ *     (="ignore previous instructions") was not caught without a `base64:` prefix.
  *
  * Pure function — no side-effects, fully unit-testable.
  */
@@ -95,6 +101,46 @@ export function stripControlChars(input: string): string {
     .replace(/[‪-‮⁦-⁩]/g, '')
 }
 
+// ─── Base64 decode-and-scan (SCI-23-FIX-1) ────────────────────────────────────
+
+/**
+ * Base64 pattern: matches typical base64-encoded strings (≥8 chars, padding optional).
+ * We only scan chunks that look like actual base64 (printable base64 alphabet only).
+ *
+ * AV-3 SIEGE finding: attackers omit the `base64:` prefix to bypass the labeled pattern.
+ * This scanner decodes candidate chunks and re-runs injection patterns on the decoded text.
+ */
+const BASE64_CHUNK_PATTERN = /[A-Za-z0-9+/]{8,}={0,2}/g
+
+/**
+ * Decode base64 chunks in the input and check if any decoded content contains
+ * injection patterns. Returns the input unchanged — detection is separate from stripping.
+ *
+ * If decoded content would be flagged by detectInjectionAttempt, callers should
+ * treat the original input as a potential injection attempt.
+ *
+ * @returns true if any decoded chunk contains injection patterns
+ */
+export function containsBase64InjectionAttempt(input: string): boolean {
+  const chunks = input.match(BASE64_CHUNK_PATTERN)
+  if (!chunks) return false
+
+  for (const chunk of chunks) {
+    try {
+      const decoded = Buffer.from(chunk, 'base64').toString('utf8')
+      // Re-run injection strip patterns on decoded content
+      for (const pattern of INJECTION_STRIP_PATTERNS) {
+        // Reset lastIndex for global patterns before testing
+        pattern.lastIndex = 0
+        if (pattern.test(decoded)) return true
+      }
+    } catch {
+      // Not valid base64 — skip
+    }
+  }
+  return false
+}
+
 // ─── Public API ────────────────────────────────────────────────────────────────
 
 /**
@@ -106,6 +152,11 @@ export function stripControlChars(input: string): string {
  *   3. Strip escalation tokens
  *   4. Strip injection-style patterns
  *   5. Trim whitespace
+ *
+ * Note: base64-encoded injection detection (SCI-23-FIX-1) is handled by
+ * containsBase64InjectionAttempt() — call it in the route handler to detect
+ * and block before stripping. Stripping encoded payloads is not attempted
+ * because decoding + re-encoding would corrupt legitimate base64 content.
  *
  * @param raw  The raw user message string
  * @returns    A sanitized copy safe to send to the model

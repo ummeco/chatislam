@@ -61,6 +61,27 @@ const JAILBREAK_PATTERNS: Array<{ pattern: RegExp; label: string }> = [
   // Token-splitting / encoding tricks (OWASP LLM01)
   { pattern: /base64[:\s]+/i,                                         label: 'base64_encoding_attempt' },
   { pattern: /translate\s+(the\s+following|this)\s+(to|into)\s+(english|arabic|code)/i, label: 'translate_extraction' },
+
+  // ─── Arabic-language injection patterns (SCI-23-FIX-2) ───────────────────
+  // AV-7 SIEGE finding: Arabic injection bypassed all English-only patterns.
+  // Coverage: "ignore instructions", "disregard system prompt", "forget instructions",
+  // "new instructions", "act without restrictions", restriction bypass phrasing.
+  // Arabic is the primary language of ChatIslam's Muslim user base — coverage is critical.
+  { pattern: /تجاهل\s+(جميع\s+)?التعليمات\s+(السابقة|قبل)/u,         label: 'ar_ignore_previous_instructions' },
+  { pattern: /تجاهل\s+(أي\s+)?(تعليمات|قيود|قواعد)/u,                label: 'ar_ignore_instructions_generic' },
+  { pattern: /تجاهل\s+(نظام|موجه)\s+(الأوامر|النظام)/u,               label: 'ar_disregard_system_prompt' },
+  { pattern: /انسَ\s+(تعليماتك|أوامرك|قواعدك)/u,                      label: 'ar_forget_instructions' },
+  { pattern: /تعليمات\s+جديدة\s*:/u,                                   label: 'ar_new_instructions' },
+  { pattern: /تصرف\s+(كأنك|وكأنه)\s+(لا\s+)?(قيود|حدود)/u,            label: 'ar_act_without_restrictions' },
+  { pattern: /أنت\s+(الآن|حر)\s+(بدون|من\s+دون)\s+قيود/u,             label: 'ar_restriction_bypass' },
+  { pattern: /تجاوز\s+(القيود|الحدود|القواعد|النظام)/u,                label: 'ar_override_restrictions' },
+  { pattern: /ما\s+هو\s+(موجه|نص)\s+النظام/u,                          label: 'ar_system_prompt_leak' },
+  { pattern: /أعد\s+(كتابة|طباعة)\s+(موجه|تعليمات)\s+النظام/u,        label: 'ar_repeat_system_prompt' },
+  { pattern: /اكشف\s+(عن\s+)?(موجه|تعليمات)\s+النظام/u,               label: 'ar_reveal_system_prompt' },
+  // Farsi/Persian — secondary coverage (used by some Shia-background users)
+  { pattern: /دستورالعمل‌های\s+قبلی\s+را\s+نادیده/u,                   label: 'fa_ignore_previous_instructions' },
+  { pattern: /بدون\s+محدودیت\s+پاسخ\s+بده/u,                           label: 'fa_answer_without_restrictions' },
+  { pattern: /دستورالعمل‌های\s+جدید\s*:/u,                              label: 'fa_new_instructions' },
 ]
 
 /**
