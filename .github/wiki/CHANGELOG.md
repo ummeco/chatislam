@@ -6,6 +6,14 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [Unreleased] — 2026-05-03 (Wave A.15-RETRY)
+
+### Fixed
+
+- **H6 (ESLint brand path):** `eslint.config.mjs` import path `../../ummat/apps/brand/src/eslint-rule-no-brand-light-on-light.js` confirmed correct from `chatislam/web/`; resolves to `ummeco/ummat/apps/brand/src/`. Build exits 0.
+
+---
+
 ## [0.1.1] - 2026-04-25
 
 ### Phase 1 Foundation

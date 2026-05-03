@@ -169,6 +169,23 @@ export default function PrivacyPage() {
             </p>
           </section>
 
+          {/* C-07b: Recent Updates — appended 2026-04-30 */}
+          <section className="rounded-lg border border-green-500/20 bg-green-900/10 px-5 py-4">
+            <h2 className="mb-3 text-xl font-semibold text-green-400">Recent Updates (2026-04-25)</h2>
+            <p className="mb-2 text-sm opacity-60">The following changes reflect P3 platform decisions that took effect April 2026:</p>
+            <ul className="list-disc space-y-2 pl-6 text-sm">
+              <li>
+                <strong className="text-white/90">Analytics — PostHog removed:</strong> PostHog is no longer used on any Ummeco product (decision D-P3-21). ChatIslam does not use third-party analytics. Error monitoring uses Sentry (session replay is disabled for ChatIslam given the sensitivity of Islamic queries).
+              </li>
+              <li>
+                <strong className="text-white/90">AI routing — current state:</strong> ChatIslam continues to route conversations directly to the <strong className="text-white/90">Anthropic Claude API</strong> (Sonnet 4.x, USA). Migration to a self-hosted AI routing layer (nself-ai, Track A6) is planned for a future release. This policy will be updated when that migration ships. Until then, Anthropic remains the sole external AI processor.
+              </li>
+              <li>
+                <strong className="text-white/90">Anthropic Data Processing Agreement:</strong> We have a Data Processing Agreement (DPA) with Anthropic Inc. covering GDPR Article 28 obligations for conversation data processed on our behalf. We do not use the API zero-retention tier; conversations are processed subject to Anthropic&apos;s standard API data usage policy. To opt out of model training, contact <a href="mailto:privacy@ummat.dev" className="underline text-green-400">privacy@ummat.dev</a>.
+              </li>
+            </ul>
+          </section>
+
           <div className="mt-8 border-t border-white/10 pt-6 text-sm opacity-50">
             <Link href="/terms" className="mr-4 hover:opacity-80 transition-opacity">Terms of Service</Link>
             <Link href="/cookie-policy" className="hover:opacity-80 transition-opacity">Cookie Policy</Link>

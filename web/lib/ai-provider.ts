@@ -85,21 +85,61 @@ export class AnthropicDirectProvider implements AIProvider {
 // ─── nSelf AI Provider stub (Track A6) ────────────────────────────────────────
 
 /**
- * PCI filed to nSelf for Track A6 status:
- * ~/Sites/nself/.claude/inbox/msg-2026-04-27-nself-ai-sdk-integration.md
+ * NselfAINotReadyError — thrown by NselfAIProvider until nself-ai SDK ships.
  *
- * This stub exists so the factory compiles and the migration path is clear.
- * Replace the throw() with the nself-ai SDK call when available.
+ * Callers can catch specifically to trigger graceful degradation:
+ *   catch (err) { if (err instanceof NselfAINotReadyError) fallback() }
+ */
+export class NselfAINotReadyError extends Error {
+  readonly code = 'NSELF_AI_NOT_READY' as const
+  /** Track A6 ticket that will replace this stub */
+  readonly trackTicket = 'A6-03' as const
+
+  constructor() {
+    super(
+      'NselfAIProvider is not implemented in P3 (D-P3-44). ' +
+      'Migration deferred to Track A6. ' +
+      'PCI filed: msg-2026-04-27-nself-ai-sdk-integration.md. ' +
+      'Expected interface: chatislam/.github/docs/nself-ai-sdk-interface.md',
+    )
+    this.name = 'NselfAINotReadyError'
+  }
+}
+
+/**
+ * NselfAIProvider — stub for Track A6 nself-ai SDK migration.
+ *
+ * PCI filed to nSelf: ~/Sites/nself/.claude/inbox/msg-2026-04-27-nself-ai-sdk-integration.md
+ * Integration spec:   chatislam/.github/docs/nself-ai-sdk-interface.md
+ *
+ * A6-03 will replace this stub with the real @nself/ai SDK call.
+ * A6-04 will move rate-limit config into nself-ai plugin layer.
+ * A6-05 will evaluate prompt-injection defense handoff to plugin layer.
+ *
+ * Expected nself-ai client config (from env vars — see .env.example):
+ *   NSELF_AI_API_KEY            — plugin API key (replaces ANTHROPIC_API_KEY)
+ *   NSELF_AI_BASE_URL           — optional gateway override (local dev)
+ *   NSELF_AI_MODEL_POOL         — comma-list: "local,anthropic" (default)
+ *   NSELF_AI_FALLBACK_TO_DIRECT — "true" to fall back to anthropic_direct on error
  */
 export class NselfAIProvider implements AIProvider {
   readonly name = 'nself_ai'
 
+  /** Config snapshot — populated from env at instantiation so tests can inspect. */
+  readonly config = {
+    apiKey:        process.env.NSELF_AI_API_KEY,
+    baseURL:       process.env.NSELF_AI_BASE_URL,
+    modelPool:     (process.env.NSELF_AI_MODEL_POOL ?? 'local,anthropic').split(','),
+    fallbackDirect: process.env.NSELF_AI_FALLBACK_TO_DIRECT === 'true',
+  }
+
   async chat(_messages: AIMessage[], _opts?: AIChatOptions): Promise<AIChatResult> {
-    throw new Error(
-      'NselfAIProvider is not implemented in P3. ' +
-      'Migration deferred to Track A6 (D-P3-44). ' +
-      'PCI filed: msg-2026-04-27-nself-ai-sdk-integration.md',
-    )
+    // A6-03: replace this body with `@nself/ai` SDK call.
+    // Shape reference: chatislam/.github/docs/nself-ai-sdk-interface.md
+    //
+    // When fallbackDirect is true, callers should catch NselfAINotReadyError
+    // and retry via AnthropicDirectProvider. The factory handles this (see below).
+    throw new NselfAINotReadyError()
   }
 }
 
@@ -116,9 +156,31 @@ export function getAIProvider(): AIProvider {
     case 'anthropic_direct':
       _provider = new AnthropicDirectProvider()
       break
-    case 'nself_ai':
-      _provider = new NselfAIProvider()
+    case 'nself_ai': {
+      const nselfProvider = new NselfAIProvider()
+      if (nselfProvider.config.fallbackDirect) {
+        // Wrap with fallback: if nself-ai is not ready, silently degrade to direct.
+        // Remove this wrapper once A6-03 ships the real SDK call.
+        const direct = new AnthropicDirectProvider()
+        _provider = {
+          name: 'nself_ai_with_fallback',
+          async chat(messages, opts) {
+            try {
+              return await nselfProvider.chat(messages, opts)
+            } catch (err) {
+              if (err instanceof NselfAINotReadyError) {
+                console.warn('[ai-provider] nself-ai not ready (A6-03 pending); using anthropic_direct fallback')
+                return direct.chat(messages, opts)
+              }
+              throw err
+            }
+          },
+        }
+      } else {
+        _provider = nselfProvider
+      }
       break
+    }
     default:
       console.warn(`[ai-provider] Unknown AI_PROVIDER "${name}", falling back to anthropic_direct`)
       _provider = new AnthropicDirectProvider()

@@ -33,6 +33,7 @@ export default function AudienceModeSelector({ value, onChange, compact = false 
             key={opt.value}
             onClick={() => onChange(opt.value)}
             aria-pressed={value === opt.value}
+            aria-label={`${opt.label} — ${opt.description}`}
             title={opt.description}
             style={{
               padding:         '0.25rem 0.625rem',

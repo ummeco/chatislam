@@ -107,6 +107,7 @@ export function EmptyChat({ onStartChat }: EmptyChatProps) {
       {onStartChat && (
         <button
           onClick={onStartChat}
+          aria-label="Start a conversation with ChatIslam"
           style={{
             padding: '0.625rem 1.25rem',
             borderRadius: 'var(--radius-lg, 0.5rem)',
@@ -167,6 +168,7 @@ export function ChatError({
       {onRetry && (
         <button
           onClick={onRetry}
+          aria-label="Retry after error"
           style={{
             padding: '0.5rem 1rem',
             borderRadius: 'var(--radius-md, 0.375rem)',

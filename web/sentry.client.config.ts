@@ -12,12 +12,13 @@ Sentry.init({
   // 10% of transactions for performance monitoring.
   tracesSampleRate: 0.1,
 
-  // Capture all replays at error time; 1% for general session sampling.
+  // C-08a-FIX-P0: No session replays without explicit consent. Errors always captured.
   replaysOnErrorSampleRate: 1.0,
-  replaysSessionSampleRate: 0.01,
+  replaysSessionSampleRate: 0.0,
 
   integrations: [
-    Sentry.replayIntegration({ maskAllText: true, blockAllMedia: false }),
+    // C-08a-FIX-P0: maskAllText + blockAllMedia required for privacy compliance.
+    Sentry.replayIntegration({ maskAllText: true, blockAllMedia: true }),
   ],
 
   // PII scrubbing — strip sensitive fields before sending to Sentry.
