@@ -1,6 +1,7 @@
 /**
  * ChatIslam — /api/chat POST handler
  * Sprint CI — SCI-04, SCI-08, SCI-09, SCI-10, SCI-13, SCI-14, SCI-15, SCI-19, SCI-20
+ * P4 CB-02 T13 — Multi-Madhhab tagging after stream completion
  *
  * Flow:
  *   1. Middleware rate limit (middleware.ts — 5 req/min anon, 30 auth)
@@ -19,6 +20,7 @@
  *  13. Moderation + spend tracking
  *  14. Token budget increment (SCI-04)
  *  15. Persist messages
+ *  16. Madhhab tagging — FF_MADHHAB (CB-02 T13): detectFiqhQuestion → extractMadhabStances → persist
  *
  * Error codes:
  *   400 — invalid body / injection blocked
@@ -42,6 +44,8 @@ import { detectAudienceMode, AUDIENCE_MODE_PROMPTS,
 import { getAIProvider }                                     from '../../../lib/ai-provider'
 import { getBYOApiKey }                                      from '../../../lib/byo-key'
 import { buildSystemPrompt, wrapUserQuery }                  from '../../../lib/ai'
+import { detectFiqhQuestion, extractMadhabStances,
+         type MadhabStance }                                 from '../../../lib/madhhab'
 import {
   checkServerRateLimit,
   getUserPerMinLimit,
@@ -303,6 +307,38 @@ async function persistMessage(args: {
   } catch {
     // non-blocking
   }
+}
+
+// ─── Madhhab tag persistence (CB-02 T13) ─────────────────────────────────────
+
+/**
+ * Save extracted madhhab stances to ci_message_madhhab_tags.
+ * Called async after the response — never blocks the main response.
+ */
+async function persistMadhabTags(
+  conversationId: string,
+  stances:        MadhabStance[],
+): Promise<void> {
+  if (!stances.length) return
+  const objects = stances.map((s) => ({
+    conversation_id: conversationId,
+    madhhab:         s.madhhab,
+    stance:          s.stance,
+    is_majority:     s.is_majority,
+  }))
+  try {
+    await fetch(HASURA_ENDPOINT, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json', 'x-hasura-admin-secret': HASURA_ADMIN_SECRET },
+      body: JSON.stringify({
+        query: `
+          mutation InsertMadhabTags($objects: [ci_message_madhhab_tags_insert_input!]!) {
+            insert_ci_message_madhhab_tags(objects: $objects) { affected_rows }
+          }`,
+        variables: { objects },
+      }),
+    })
+  } catch { /* non-blocking */ }
 }
 
 // ─── Pricing ──────────────────────────────────────────────────────────────────
@@ -581,6 +617,22 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     flagged:     moderationFlagged,
   })
 
+  // 19. Multi-Madhhab tagging (CB-02 T13) — FF_MADHHAB gated, async (non-blocking)
+  // detectFiqhQuestion calls Haiku with Redis cache at ci:fiqh:{hash}
+  // extractMadhabStances is deterministic regex — no AI cost
+  let madhabStances: MadhabStance[] = []
+  if (process.env.FF_MADHHAB !== 'false' && !moderationFlagged) {
+    try {
+      const isFiqh = await detectFiqhQuestion(sanitizedMessage)
+      if (isFiqh) {
+        madhabStances = extractMadhabStances(aiResult.content)
+        if (madhabStances.length > 0) {
+          void persistMadhabTags(conversationId, madhabStances)
+        }
+      }
+    } catch { /* non-blocking — madhhab tagging is enrichment only */ }
+  }
+
   return NextResponse.json(
     {
       content:           moderationFlagged ? MODERATION_REFUSAL : aiResult.content,
@@ -594,6 +646,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       outputTokens:      aiResult.outputTokens,
       audienceMode,
       byoKeyActive:      !!byoApiKey,
+      madhhab_stances:   madhabStances,
     },
     {
       headers: {

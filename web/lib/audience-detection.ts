@@ -1,9 +1,12 @@
 /**
- * ChatIslam — Audience Detection (SCI-15)
+ * ChatIslam — Audience Detection (SCI-15, P4 CB-04 T28)
  *
  * Detects audience mode from first message content.
  * Three modes: Muslim | NewMuslim | NonMuslim
  * Default: Muslim (per ai-architecture.md)
+ *
+ * P4 extensions (T28): additional dawah-oriented NonMuslim signals,
+ * isDawahContext() helper, and DAWAH_AUDIENCE_SIGNALS export.
  */
 
 export type AudienceMode = 'Muslim' | 'NewMuslim' | 'NonMuslim'
@@ -45,6 +48,40 @@ export function detectAudienceMode(message: string): AudienceMode {
   if (MUSLIM_SIGNALS.some((r) => r.test(message)))     return 'Muslim'
   // Default: Muslim (most users are Muslim — ai-architecture.md)
   return 'Muslim'
+}
+
+// ─── P4: Extended dawah signals (CB-04 T28) ─────────────────────────────────
+
+/**
+ * Additional non-Muslim / dawah-oriented signals beyond the base NON_MUSLIM_SIGNALS.
+ * These are subtler expressions of interest, skepticism, or seeking.
+ */
+export const DAWAH_AUDIENCE_SIGNALS: RegExp[] = [
+  /does islam (teach|believe|say) that/i,
+  /what (is|are) the (five|5) pillars/i,
+  /who (is|was) (the )?prophet muhammad/i,
+  /difference between (islam|muslims) and/i,
+  /is (allah|god) the same in islam/i,
+  /why do (muslims|women in islam) wear/i,
+  /is it true that (islam|muslims)/i,
+  /i (want|would like) to (know|understand|learn) (more )?about islam/i,
+  /what does (the )?quran say about/i,
+  /does god exist (according to islam)?/i,
+  /why should i (become|consider becoming) (a )?muslim/i,
+  /can (a )?non-?muslim (ask|learn about)/i,
+  /my (friend|family member|spouse) is muslim/i,
+  /i'?m (doing )?research (on|about) islam/i,
+]
+
+/**
+ * Returns true if the message is likely from a non-Muslim seeking to learn about Islam.
+ * Used to activate Dawah mode features in the UI.
+ */
+export function isDawahContext(message: string): boolean {
+  return (
+    NON_MUSLIM_SIGNALS.some((r) => r.test(message)) ||
+    DAWAH_AUDIENCE_SIGNALS.some((r) => r.test(message))
+  )
 }
 
 /**

@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -43,7 +44,10 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        {children}
+        {/* B4-02: next-themes ThemeProvider — persists to localStorage, respects prefers-color-scheme */}
+        <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

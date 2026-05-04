@@ -39,12 +39,13 @@ const nextConfig: NextConfig = {
   },
 };
 
-// withSentryConfig wraps Next.js config to upload source maps and enable tunnel route.
-// Requires SENTRY_AUTH_TOKEN, SENTRY_ORG, SENTRY_PROJECT in Vercel env vars.
-// B5-09: Source maps uploaded to Sentry on Vercel deploy, deleted from bundle after.
+// withSentryConfig wraps Next.js config to upload source maps to GlitchTip on build.
+// T25.07: url points to self-hosted GlitchTip at errors.ummat.dev (not Sentry SaaS).
+// Requires SENTRY_AUTH_TOKEN (=GLITCHTIP_AUTH_TOKEN), SENTRY_ORG, SENTRY_PROJECT in Vercel env vars.
 export default withSentryConfig(nextConfig, {
   org: process.env.SENTRY_ORG ?? "ummeco",
   project: process.env.SENTRY_PROJECT ?? "chatislam-web",
+  url: 'https://errors.ummat.dev',
   silent: !process.env.CI,
   widenClientFileUpload: true,
   sourcemaps: {

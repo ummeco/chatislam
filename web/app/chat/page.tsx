@@ -22,6 +22,8 @@
  */
 
 import { useState, useRef, useEffect, useCallback } from 'react'
+import { MessageBubble }                             from '../../components/chat/MessageBubble'
+import type { MadhabStance }                         from '../../lib/madhhab'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -29,12 +31,14 @@ type AudienceMode = 'dawah' | 'qa' | 'tutoring'
 type MessageRole  = 'user' | 'assistant' | 'system'
 
 interface Message {
-  id:       string
-  role:     MessageRole
-  content:  string
-  flagged?: boolean
+  id:              string
+  role:            MessageRole
+  content:         string
+  flagged?:        boolean
   /** 'ar' for Arabic responses, 'en' otherwise */
-  lang?:    'ar' | 'en'
+  lang?:           'ar' | 'en'
+  /** Madhhab stances from CB-02 T13 */
+  madhabStances?:  MadhabStance[]
 }
 
 interface ConversationState {
@@ -162,15 +166,16 @@ export default function ChatPage() {
       }
 
       const data = await res.json() as {
-        content:           string
-        conversationId:    string
-        queriesUsed?:      number
-        queriesLimit?:     number | null
-        planTier:          'free' | 'plus'
-        moderationFlagged: boolean
+        content:            string
+        conversationId:     string
+        queriesUsed?:       number
+        queriesLimit?:      number | null
+        planTier:           'free' | 'plus'
+        moderationFlagged:  boolean
+        madhhab_stances?:   MadhabStance[]
       }
 
-      const assistantLang = isArabicContent(data.content) ? 'ar' : 'en'
+      const assistantLang  = isArabicContent(data.content) ? 'ar' : 'en'
       const assistantMsgId = generateId()
 
       setState((prev) => ({
@@ -181,11 +186,12 @@ export default function ChatPage() {
         messages: [
           ...prev.messages,
           {
-            id:      assistantMsgId,
-            role:    'assistant',
-            content: data.content,
-            flagged: data.moderationFlagged,
-            lang:    assistantLang,
+            id:             assistantMsgId,
+            role:           'assistant',
+            content:        data.content,
+            flagged:        data.moderationFlagged,
+            lang:           assistantLang,
+            madhabStances:  data.madhhab_stances ?? [],
           },
         ],
       }))
@@ -386,54 +392,15 @@ export default function ChatPage() {
         )}
 
         {state.messages.map((msg) => (
-          <article
+          <MessageBubble
             key={msg.id}
-            lang={msg.role === 'assistant' && msg.lang === 'ar' ? 'ar' : undefined}
-            dir={msg.role === 'assistant' && msg.lang === 'ar' ? 'rtl' : 'ltr'}
-            style={{
-              marginBottom:    '1rem',
-              padding:         '0.75rem 1rem',
-              borderRadius:    '8px',
-              backgroundColor: msg.role === 'user' ? '#1E5E2F' : 'transparent',
-              border:          msg.role === 'assistant' ? '1px solid #1E5E2F' : 'none',
-              maxWidth:        '100%',
-            }}
-            aria-label={`${msg.role === 'user' ? 'You' : 'ChatIslam'}: ${msg.content.slice(0, 50)}...`}
-          >
-            <p
-              style={{
-                margin:     0,
-                fontSize:   '0.875rem',
-                fontWeight: 600,
-                color:      msg.role === 'user' ? '#C9F27A' : '#79C24C',
-                marginBottom: '0.25rem',
-              }}
-            >
-              {msg.role === 'user' ? 'You' : 'ChatIslam'}
-            </p>
-            <p
-              style={{
-                margin:     0,
-                lineHeight: 1.6,
-                whiteSpace: 'pre-wrap',
-                fontSize:   '0.9rem',
-              }}
-            >
-              {msg.content}
-            </p>
-            {msg.role === 'assistant' && (
-              <p
-                style={{
-                  margin:    '0.5rem 0 0',
-                  fontSize:  '0.7rem',
-                  color:     '#79C24C',
-                  opacity:   0.7,
-                }}
-              >
-                {SCHOLAR_DISCLAIMER}
-              </p>
-            )}
-          </article>
+            id={msg.id}
+            role={msg.role}
+            content={msg.content}
+            flagged={msg.flagged}
+            lang={msg.lang}
+            madhabStances={msg.madhabStances}
+          />
         ))}
 
         {loading && (

@@ -5,10 +5,140 @@
  * P3: AnthropicDirectProvider is the only implementation (D-P3-44).
  * Track A6: NselfAIProvider stub will be filled when nSelf ships SDK integration.
  *
+ * P4 additions (CB-08 T47):
+ *   - Stream interruption recovery via AbortController + 30s inactivity timeout
+ *   - Partial content stored in Redis: ci:partial:{session_id}:{message_id} TTL 300s
+ *   - Resume protocol: client sends { session_id, resume: true, partial_content_hash }
+ *   - Max 3 resume attempts (STREAM_MAX_RESUME_ATTEMPTS env var)
+ *   - Hash verified server-side — never trust client-sent partial content
+ *
  * Select provider via AI_PROVIDER env var (default: anthropic_direct).
  */
 
 import Anthropic from '@anthropic-ai/sdk'
+import crypto from 'crypto'
+
+// ─── Stream interruption types (P4 CB-08) ─────────────────────────────────────
+
+export interface StreamResumeOpts {
+  session_id:           string
+  message_id:           string
+  partial_content_hash: string  // sha256 of partial content — verified server-side
+}
+
+export interface StreamChunk {
+  type:    'text_delta' | 'error' | 'final'
+  content: string
+  /** Only on 'final' */
+  progress_delta?:     string
+  mastery_score_delta?: number
+  next_lesson_hint?:   string
+}
+
+export type StreamInterruptState =
+  | { interrupted: false }
+  | { interrupted: true; error: 'partial_expired' | 'hash_mismatch' | 'max_attempts' }
+
+// Redis helper for partial storage
+interface RedisStreamLike {
+  get(key: string): Promise<string | null>
+  setex(key: string, seconds: number, value: string): Promise<unknown>
+  incr(key: string): Promise<number>
+  expire(key: string, seconds: number): Promise<number>
+  del(key: string): Promise<number>
+}
+
+let _streamRedis: RedisStreamLike | null = null
+
+function getStreamRedis(): RedisStreamLike | null {
+  if (_streamRedis) return _streamRedis
+  const url = process.env.REDIS_URL
+  if (!url) return null
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { Redis } = require('ioredis') as { Redis: new (url: string) => RedisStreamLike }
+    _streamRedis = new Redis(url)
+    return _streamRedis
+  } catch {
+    return null
+  }
+}
+
+function getPartialTtl(): number {
+  return Number(process.env.STREAM_PARTIAL_TTL_SECONDS ?? '300')
+}
+
+function getMaxResumeAttempts(): number {
+  return Number(process.env.STREAM_MAX_RESUME_ATTEMPTS ?? '3')
+}
+
+function partialKey(sessionId: string, messageId: string): string {
+  return `ci:partial:${sessionId}:${messageId}`
+}
+
+function partialAttemptsKey(sessionId: string, messageId: string): string {
+  return `ci:partial:attempts:${sessionId}:${messageId}`
+}
+
+/**
+ * Store partial content for stream resume.
+ * Key: ci:partial:{session_id}:{message_id}
+ * TTL: STREAM_PARTIAL_TTL_SECONDS (default 300s)
+ */
+export async function storePartialContent(
+  sessionId:  string,
+  messageId:  string,
+  partial:    string,
+): Promise<void> {
+  const redis = getStreamRedis()
+  if (!redis) return
+  try {
+    const hash = crypto.createHash('sha256').update(partial).digest('hex')
+    const data = JSON.stringify({ content: partial, hash })
+    await redis.setex(partialKey(sessionId, messageId), getPartialTtl(), data)
+  } catch { /* non-blocking */ }
+}
+
+/**
+ * Verify partial content hash and return the stored partial.
+ * Returns null if expired, hash mismatches, or max attempts exceeded.
+ */
+export async function verifyAndRetrievePartial(
+  sessionId:  string,
+  messageId:  string,
+  clientHash: string,
+): Promise<{ content: string } | StreamInterruptState> {
+  const redis = getStreamRedis()
+  if (!redis) return { interrupted: true, error: 'partial_expired' }
+
+  const maxAttempts = getMaxResumeAttempts()
+
+  try {
+    // Check attempt count
+    const attKey  = partialAttemptsKey(sessionId, messageId)
+    const attempts = await redis.incr(attKey)
+    if (attempts === 1) await redis.expire(attKey, getPartialTtl())
+
+    if (attempts > maxAttempts) {
+      return { interrupted: true, error: 'max_attempts' }
+    }
+
+    // Retrieve stored partial
+    const stored = await redis.get(partialKey(sessionId, messageId))
+    if (!stored) return { interrupted: true, error: 'partial_expired' }
+
+    const { content, hash } = JSON.parse(stored) as { content: string; hash: string }
+
+    // Verify hash (server-side — never trust client-sent partial content directly)
+    if (hash !== clientHash) {
+      return { interrupted: true, error: 'hash_mismatch' }
+    }
+
+    return { content }
+  } catch {
+    return { interrupted: true, error: 'partial_expired' }
+  }
+}
 
 // ─── Interface ────────────────────────────────────────────────────────────────
 
@@ -44,6 +174,82 @@ export class AnthropicDirectProvider implements AIProvider {
 
   private getClient(apiKey?: string): Anthropic {
     return new Anthropic({ apiKey: apiKey ?? process.env.ANTHROPIC_API_KEY })
+  }
+
+  /**
+   * Streaming chat with interruption detection (CB-08 T47).
+   *
+   * On 30s inactivity: aborts stream, stores partial in Redis, returns INTERRUPTED event.
+   * Client can resume by sending resume: true + partial_content_hash.
+   */
+  async chatStream(
+    messages:    AIMessage[],
+    opts:        AIChatOptions & { session_id?: string; message_id?: string } = {},
+  ): Promise<ReadableStream<string>> {
+    const client    = this.getClient(opts.apiKey)
+    const modelId   = opts.model ?? process.env.ANTHROPIC_MODEL ?? 'claude-sonnet-4-5'
+    const maxTokens = opts.maxTokens ?? 2048
+
+    const systemBlocks: Anthropic.TextBlockParam[] = opts.system
+      ? [{ type: 'text', text: opts.system, cache_control: { type: 'ephemeral' } }]
+      : []
+
+    const inactivityTimeoutMs = 30_000
+    let partialContent = ''
+
+    const stream = await client.messages.stream({
+      model:      modelId,
+      max_tokens: maxTokens,
+      system:     systemBlocks.length > 0 ? systemBlocks : undefined,
+      messages:   messages.map((m) => ({ role: m.role, content: m.content })),
+    })
+
+    const sessionId  = opts.session_id
+    const messageId  = opts.message_id ?? crypto.randomUUID()
+
+    return new ReadableStream<string>({
+      async start(controller) {
+        let inactivityTimer: ReturnType<typeof setTimeout> | null = null
+
+        function resetTimer() {
+          if (inactivityTimer) clearTimeout(inactivityTimer)
+          inactivityTimer = setTimeout(async () => {
+            // Store partial and emit INTERRUPTED
+            if (sessionId) {
+              await storePartialContent(sessionId, messageId, partialContent)
+            }
+            controller.enqueue(
+              JSON.stringify({ type: 'interrupted', partial: partialContent, message_id: messageId }),
+            )
+            controller.close()
+            stream.controller.abort()
+          }, inactivityTimeoutMs)
+        }
+
+        resetTimer()
+
+        try {
+          for await (const event of stream) {
+            if (event.type === 'content_block_delta' && event.delta.type === 'text_delta') {
+              const text = event.delta.text
+              partialContent += text
+              resetTimer()
+              controller.enqueue(JSON.stringify({ type: 'text_delta', content: text }))
+            }
+          }
+
+          if (inactivityTimer) clearTimeout(inactivityTimer)
+          controller.enqueue(JSON.stringify({ type: 'final', content: '' }))
+          controller.close()
+        } catch (err) {
+          if (inactivityTimer) clearTimeout(inactivityTimer)
+          // If aborted by inactivity timer, stream is already closed above
+          if (!controller.desiredSize !== undefined) {
+            controller.error(err)
+          }
+        }
+      },
+    })
   }
 
   async chat(messages: AIMessage[], opts: AIChatOptions = {}): Promise<AIChatResult> {

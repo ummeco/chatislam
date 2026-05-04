@@ -6,6 +6,21 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [Unreleased — P4]
+
+### Added
+
+- ChatIslam beta: Tutor mode, Feynman method learning mode (CB-03)
+- Dawah mode — audience-adaptive responses for non-Muslim conversations (CB-04)
+- Seasonal mode theming — Ramadan, Eid al-Fitr, Eid al-Adha, Dhul Hijjah (CB-05)
+- Conversation history persistence with session continuity (CB-07)
+- Stream interruption recovery with partial stream cache (CB-08)
+- Citation deep-link URL schema (P4-C07) — `islam.wiki/{corpus}/{collection}/...`
+- Spend guard — server-side Claude API cost cap per user/session
+- nSentry observability wiring (GlitchTip DSN + OTel instrumentation)
+
+---
+
 ## [Unreleased] — 2026-05-03 (Wave A.15-RETRY)
 
 ### Fixed

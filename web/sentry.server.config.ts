@@ -1,4 +1,5 @@
 import * as Sentry from '@sentry/nextjs'
+import { scrubPII } from './lib/sentry-scrub'
 
 // Server-side Sentry initialization for ChatIslam (Node.js runtime).
 // Uses SENTRY_DSN (server-only; not prefixed with NEXT_PUBLIC_).
@@ -10,20 +11,6 @@ Sentry.init({
 
   tracesSampleRate: 0.1,
 
-  // PII scrubbing — strip sensitive fields before sending to Sentry.
-  beforeSend(event) {
-    // Scrub request data containing PII.
-    if (event.request) {
-      if (event.request.headers) {
-        delete (event.request.headers as Record<string, unknown>)['authorization']
-      }
-      // Do not capture full request body — may contain user messages.
-      delete event.request.data
-    }
-    if (event.user) {
-      delete event.user.email
-      delete event.user.ip_address
-    }
-    return event
-  },
+  // SEC-M6 / T25.15: Full PII scrub — headers, body, user fields, extras, contexts.
+  beforeSend: scrubPII,
 })

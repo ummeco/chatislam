@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "home": "Home",
+    "newChat": "New Chat",
+    "history": "History",
+    "settings": "Settings"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Try again",
+    "cancel": "Cancel",
+    "close": "Close",
+    "back": "Back",
+    "send": "Send",
+    "submit": "Submit"
+  },
+  "chat": {
+    "placeholder": "Ask a question about Islam...",
+    "empty": "Ask anything about Islam",
+    "emptySubtitle": "Get answers grounded in authentic scholarship",
+    "streaming": "Responding...",
+    "errorMessage": "Could not get a response. Please try again.",
+    "incompleteResponse": "Response was interrupted. Please try again.",
+    "offlineBanner": "You are offline. Messages will send when you reconnect.",
+    "newConversation": "Start a new conversation"
+  },
+  "modes": {
+    "muslim": "Muslim",
+    "newMuslim": "New Muslim",
+    "nonMuslim": "Non-Muslim / Dawah",
+    "selectMode": "Select your mode"
+  },
+  "errors": {
+    "rateLimit": "Too many requests. Please wait a moment.",
+    "serverError": "Server error. Please try again.",
+    "networkError": "Network error. Check your connection."
+  }
+}

@@ -1,4 +1,5 @@
 import * as Sentry from '@sentry/nextjs'
+import { scrubPII } from './lib/sentry-scrub'
 
 // Client-side Sentry initialization for ChatIslam.
 // DSN is read from NEXT_PUBLIC_SENTRY_DSN (set in Vercel project: ummat-chatislam).
@@ -21,15 +22,6 @@ Sentry.init({
     Sentry.replayIntegration({ maskAllText: true, blockAllMedia: true }),
   ],
 
-  // PII scrubbing — strip sensitive fields before sending to Sentry.
-  beforeSend(event) {
-    if (event.user) {
-      delete event.user.email
-      delete event.user.ip_address
-    }
-    return event
-  },
-  beforeSendTransaction(event) {
-    return event
-  },
+  // SEC-M6 / T25.15: Full PII scrub — headers, body, user fields, extras, contexts.
+  beforeSend: scrubPII,
 })
