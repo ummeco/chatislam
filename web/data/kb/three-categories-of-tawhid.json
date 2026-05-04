@@ -1,0 +1,23 @@
+{
+  "slug": "three-categories-of-tawhid",
+  "question": "What are the three categories of Tawhid?",
+  "category": "aqeedah",
+  "summary": "Scholars identified three dimensions of Tawhid: Rububiyyah (Lordship), Uluhiyyah (worship), and Asma' was-Sifat (names and attributes).",
+  "answer": "Muslim scholars — primarily from the Athari school — systematized Tawhid into three interrelated categories drawn from the Quran and Sunnah. Understanding each category helps a Muslim know what Tawhid demands in belief and practice.\n\n**1. Tawhid ar-Rububiyyah (Oneness of Lordship)**\nAllah alone is the Creator, Sustainer, and Controller of the universe. 'Your Lord is Allah who created the heavens and the earth in six days, then established Himself above the Throne — He directs all affairs.' (Quran 10:3). Even the Quraysh mushrikeen who rejected the Prophet ﷺ acknowledged this level (Quran 43:87). Thus, affirming Rububiyyah alone is insufficient for salvation.\n\n**2. Tawhid al-Uluhiyyah / al-Ibadah (Oneness of Worship)**\nThis is the core issue of the prophetic call. All acts of worship — du'a (supplication), salah, sacrifice, vows, fear, love, hope — are directed exclusively to Allah. 'And your Lord has decreed that you not worship except Him.' (Quran 17:23). The Quran repeatedly emphasizes that the mushrikeen fell into shirk precisely on this level, directing worship to idols while acknowledging Allah as Creator.\n\n**3. Tawhid al-Asma' was-Sifat (Oneness of Names and Attributes)**\nAllah has the most perfect names and attributes as He described Himself in the Quran and as the Prophet ﷺ described Him. 'And to Allah belong the best names, so invoke Him by them.' (Quran 7:180). The Athari position: affirm these attributes without asking 'how' and without comparing them to creation. The Ash'ari and Maturidi positions engage in rational interpretation of some attributes (e.g., the 'Hand' of Allah as power/grace). Both positions are within Ahl us-Sunnah.\n\nThese three categories were not artificially invented — scholars derived them by organizing Quranic content. Ibn Taymiyyah (d. 728 AH) and Ibn al-Qayyim (d. 751 AH) wrote extensively on this framework, which became standard in Athari scholarship. Ash'ari and Maturidi scholars use somewhat different organizational schemes but affirm the same essential content.",
+  "evidence_quran": ["10:3", "17:23", "7:180", "43:87", "112:1-4"],
+  "evidence_hadith": [
+    "Sahih Muslim 30 — 'The right of Allah upon His servants is that they worship Him and do not associate anything with Him'",
+    "Sahih Bukhari 6410 — 'Allah has ninety-nine names; whoever memorizes them (or encompasses their meanings) will enter Paradise'"
+  ],
+  "scholar_consensus": "The three-category framework is widely used in Athari/Hanbali scholarship. Ash'ari and Maturidi scholars present similar content through different organizational frameworks. The substance — affirming Allah's absolute uniqueness in creation, worship, and attributes — is consensus.",
+  "madhab_positions": {
+    "hanafi": "Maturidi scholars accept the substance of all three categories, framing Asma' was-Sifat with rational theological grounding (ta'wil in select cases).",
+    "maliki": "Ash'ari scholars in the Maliki school accept all three dimensions, with rational interpretation of some attributes.",
+    "shafii": "Ash'ari framework is standard in classical Shafi'i aqeedah texts. The three-category naming is used in contemporary teaching.",
+    "hanbali": "The three-category framework is the standard Athari framework. Attributes are affirmed literally (without ta'wil), following the Salaf."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings and deeper study, consult a qualified imam or Islamic scholar in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

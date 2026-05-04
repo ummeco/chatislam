@@ -1,0 +1,24 @@
+{
+  "slug": "what-is-tawhid",
+  "question": "What is Tawhid?",
+  "category": "aqeedah",
+  "summary": "Tawhid is the Islamic doctrine of the absolute oneness and uniqueness of Allah, the foundation of all belief in Islam.",
+  "answer": "Tawhid (التوحيد) is the central pillar of Islamic belief: the declaration that Allah alone is God, without partners, equals, or rivals. It is the meaning of the shahada — 'La ilaha illallah' (there is no god except Allah).\n\nAllah states in the Quran: 'Say: He is Allah, the One. Allah, the Eternal Refuge. He neither begets nor is born. Nor is there to Him any equivalent.' (Quran 112:1-4) This surah is considered equivalent to one-third of the Quran in its comprehensive declaration of Tawhid.\n\nThe Prophet ﷺ said: 'Whoever dies knowing that there is no god except Allah will enter Paradise.' (Sahih Muslim 26)\n\nTawhid encompasses three dimensions that scholars have identified (based on the totality of Quranic and hadith evidence):\n\n1. **Tawhid ar-Rububiyyah** — Affirming that Allah alone is the Creator, Sustainer, and Lord of all that exists. He alone controls birth, death, provision, and the affairs of creation.\n\n2. **Tawhid al-Uluhiyyah (al-Ibadah)** — Affirming that all acts of worship — prayer, supplication, sacrifice, fear, hope, reliance — belong to Allah alone. This is the aspect most emphasized in the Quran.\n\n3. **Tawhid al-Asma' was-Sifat** — Affirming Allah's names and attributes as He described Himself and as His Messenger ﷺ described Him, without distortion, denial, asking 'how,' or comparing to creation.\n\nThe Athari position is to affirm these attributes as stated. The Ash'ari and Maturidi schools engage in rational interpretation (ta'wil) of some attributes. All three positions are within Ahl us-Sunnah wal-Jama'ah.\n\nShirk (associating partners with Allah) is the opposite of Tawhid and the one sin Allah declares He will not forgive if a person dies upon it (Quran 4:48). This makes Tawhid the first obligation upon every person who enters Islam.",
+  "evidence_quran": ["112:1-4", "4:48", "2:163", "3:18"],
+  "evidence_hadith": [
+    "Sahih Muslim 26 — Abu Dharr: 'Whoever dies knowing that there is no god except Allah will enter Paradise'",
+    "Sahih Bukhari 4497 — Abdullah ibn Mas'ud: 'Say: He is Allah, the One' is equal to one-third of the Quran'",
+    "Sahih Muslim 30 — The Prophet ﷺ said: 'The right of Allah upon His servants is that they worship Him and do not associate anything with Him'"
+  ],
+  "scholar_consensus": "Tawhid as the absolute oneness of Allah is the cornerstone of Islam by ijma' (consensus) of all scholars across all schools and generations.",
+  "madhab_positions": {
+    "hanafi": "Tawhid is the foundational creed. Maturidi aqeedah (rational theology in defense of Tawhid) is characteristic of the Hanafi school.",
+    "maliki": "Tawhid is obligatory knowledge for every Muslim. Ash'ari aqeedah is widespread among classical Maliki scholars.",
+    "shafii": "Tawhid is the first obligation. Many great Shafi'i scholars followed Ash'ari aqeedah (e.g., Imam al-Nawawi).",
+    "hanbali": "Tawhid is affirmed by accepting the apparent meaning of texts. The Athari creed — affirming attributes without ta'wil — is the Hanbali position, championed by Imam Ahmad ibn Hanbal."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings and deeper study, consult a qualified imam or Islamic scholar in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

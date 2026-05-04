@@ -1,0 +1,23 @@
+{
+  "slug": "intention-for-recommended-fasting",
+  "question": "Do I need to make intention (niyyah) the night before for voluntary fasts?",
+  "category": "fiqh-fasting",
+  "summary": "For voluntary (nafl) fasts, the Hanafi and Shafi'i schools permit making intention during the day, while Maliki and Hanbali require it before Fajr.",
+  "answer": "The intention (niyyah) for fasting is an internal act of the heart — verbally stating it is not required. The question concerns *when* the intention must be formed, particularly for voluntary fasts such as Mondays and Thursdays, the three white days, Ashura, or Arafah.\n\n**For obligatory fasts (Ramadan, qada', kaffarah):** All four schools agree the intention must be formed before Fajr (dawn). This is established by the hadith of Hafsah (may Allah be pleased with her): 'There is no fast for the one who did not intend it from the night.' (Abu Dawud 2454, Tirmidhi 730 — graded sahih by Ibn Khuzaymah).\n\n**For voluntary fasts:** This is where the schools differ.\n\nThe **Hanafi** school permits forming the intention for a voluntary fast up until before midday (Zawal), provided nothing nullifying has occurred since Fajr. This is based on the hadith of Aisha (may Allah be pleased with her) that the Prophet ﷺ once asked what food was available, and when told there was nothing, said: 'Then I am fasting.' (Sahih Muslim 1154). This is the Hanafi and Shafi'i position in one opinion.\n\nThe **Shafi'i** school has two positions: the relied-upon opinion (the majority of later Shafi'i scholars) is that voluntary fasts, like obligatory ones, require the intention before Fajr. The other opinion — that an intra-day intention suffices — is present in the school but not the primary ruling.\n\nThe **Maliki** school requires the intention before Fajr for all fasts, obligatory and voluntary alike.\n\nThe **Hanbali** school also requires the intention before Fajr for all fasts.\n\nFor someone who wakes up without having intended a fast but has not eaten or done anything to break a potential fast since Fajr, the Hanafi school allows them to form the intention and count the day as a complete voluntary fast.\n\n**Practical note:** Forming the intention the night before, even for voluntary fasts, is agreed to be valid and avoids any difference of opinion. This is always the safest approach.",
+  "evidence_quran": [],
+  "evidence_hadith": [
+    "Abu Dawud 2454 / Tirmidhi 730 — Hafsah (RA): 'There is no fast for the one who did not intend it from the night before.' (graded sahih by Ibn Khuzaymah and Ibn Hibban)",
+    "Sahih Muslim 1154 — Aisha (RA): The Prophet ﷺ asked for food, was told there was nothing, and said 'Then I am fasting.' (basis for Hanafi intra-day intention in voluntary fasts)"
+  ],
+  "scholar_consensus": "All four schools agree obligatory fasts require intention before Fajr. For voluntary fasts: Hanafi permits intra-day intention (before midday, nothing nullifying done); Maliki and Hanbali require before Fajr; Shafi'i primary position requires before Fajr.",
+  "madhab_positions": {
+    "hanafi": "Voluntary fast: intention valid up to before midday (Zawal), provided nothing nullifying the fast occurred since Fajr. Obligatory fast: intention must be before Fajr.",
+    "maliki": "All fasts — obligatory and voluntary — require intention formed before Fajr. No intra-day intention is valid.",
+    "shafii": "Relied-upon position: intention before Fajr required for all fasts. A minority opinion within the school accepts intra-day intention for voluntary fasts but this is not the primary ruling.",
+    "hanbali": "All fasts require intention before Fajr. Forming intention after Fajr does not constitute a valid fast, even for nafl."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings in your specific situation, consult a qualified scholar of your local tradition.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}
