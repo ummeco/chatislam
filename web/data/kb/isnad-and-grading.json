@@ -1,0 +1,25 @@
+{
+  "slug": "isnad-and-grading",
+  "question": "What is the isnad (chain of narrators) and how is hadith graded?",
+  "category": "hadith",
+  "summary": "The isnad is the chain of narrators transmitting a hadith back to the Prophet ﷺ. Hadith grading is a rigorous science evaluating each narrator's reliability and the chain's continuity.",
+  "answer": "The isnad (إسناد) is the chain of narrators connecting the collector to the Prophet ﷺ. It is the foundation of hadith authentication. 'The isnad is part of the religion; were it not for the isnad, anyone could say anything they wished.' (quoted in the introduction to Sahih Muslim)\n\n**Structure of an isnad:**\nExample: Imam al-Bukhari says → 'Abd Allah ibn Yusuf told us → Malik told us → Ibn Shihab → 'Urwa ibn al-Zubayr → A'isha → the Prophet ﷺ said: '...'\n\nEach link must be verified: did these two people actually meet? Was each narrator reliable?\n\n**The science of narrator evaluation (Rijal al-Hadith):**\nScholars developed an entire discipline evaluating thousands of narrators:\n- **Tawthiq (authentication):** Scholars like Ibn Hajar classified narrators as: thiqa (trustworthy), saduq (truthful), layyina (slightly weak), da'if (weak), matruk (abandoned), kadhdhab (liar/fabricator)\n- **Jarh wa ta'dil (criticism and commendation):** The systematic discipline of rating narrators, preserved in biographical dictionaries (e.g., Tahdhib al-Kamal by al-Mizzi)\n\n**Hadith grade classifications:**\n\n| Grade | Arabic | Criteria | Usage |\n|---|---|---|---|\n| Sahih | صحيح | Meets all 5 conditions | Full legal use |\n| Hasan | حسن | Near-sahih, slight weakness in dabt | Full legal use |\n| Da'if | ضعيف | One or more deficiencies | Very limited (see weak-hadith article) |\n| Da'if jiddan | ضعيف جداً | Severely weak | Not used |\n| Mawdu' | موضوع | Fabricated | Never used |\n\n**Chain types:**\n- **Mutawatir:** Narrated by so many chains at each level that fabrication is impossible. Provides certain knowledge.\n- **Ahad:** Narrated by fewer chains. Provides probable knowledge; binding for practice but not for certain creed in Athari/Hanbali position.\n- **Mursal:** A chain missing the Companion link; the Tabi'i narrates directly from the Prophet ﷺ. Accepted by Malikis and Abu Hanifa under conditions; not accepted by Shafi'i as independent evidence.\n\nModern grading resources: Al-Albani's Silsilat al-Ahadith al-Sahiha and al-Da'ifa provide contemporary grading analysis.",
+  "evidence_quran": [
+    "49:6"
+  ],
+  "evidence_hadith": [
+    "Introduction to Sahih Muslim — Ibn al-Mubarak and others: 'The isnad is part of the religion; were it not for the isnad, anyone could say anything they wished'",
+    "Sahih Bukhari 110 — Warning against attributing false hadith to the Prophet ﷺ"
+  ],
+  "scholar_consensus": "The isnad system and hadith grading are the agreed-upon methodology for evaluating prophetic traditions. The general grade levels (sahih/hasan/da'if/mawdu') are accepted across all schools.",
+  "madhab_positions": {
+    "hanafi": "Hanafi usul accepts sahih and hasan ahad hadiths. Mursal hadith from trustworthy sources is accepted under conditions. Mashhur (well-known) hadiths in some contexts rise to the level of mutawatir.",
+    "maliki": "Imam Malik accepted mursal hadiths (those missing the Companion link) if the person missing is trustworthy. The practice of Madinah supplements the hadith chain.",
+    "shafii": "Imam al-Shafi'i was strict: mursal hadiths are not accepted as independent evidence. The chain must be connected. His al-Risalah systematized hadith methodology.",
+    "hanbali": "Imam Ahmad prioritized even weak hadiths over qiyas. The Hanbali school accepts mursal hadiths from major Companions and early authorities as secondary evidence."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings and deeper study, consult a qualified imam or Islamic scholar in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}
