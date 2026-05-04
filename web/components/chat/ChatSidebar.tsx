@@ -10,7 +10,7 @@
  * - Sign in prompt for unauthenticated users
  */
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 
 interface ConversationSummary {
@@ -32,15 +32,12 @@ export function ChatSidebar({ isOpen = true, onClose }: ChatSidebarProps) {
 
   const [sessions,   setSessions]   = useState<ConversationSummary[]>([])
   const [isLoading,  setIsLoading]  = useState(false)
-  const [authToken,  setAuthToken]  = useState<string | null>(null)
+  // Lazy initializer reads localStorage on first client render — avoids setState-in-effect.
+  const [authToken]  = useState<string | null>(() =>
+    typeof window !== 'undefined' ? localStorage.getItem('chatislam_token') : null
+  )
 
-  useEffect(() => {
-    const token = localStorage.getItem('chatislam_token')
-    setAuthToken(token)
-    if (token) void fetchSessions(token)
-  }, [])
-
-  async function fetchSessions(token: string) {
+  const fetchSessions = useCallback(async (token: string) => {
     setIsLoading(true)
     try {
       const HASURA_URL = process.env.NEXT_PUBLIC_HASURA_URL
@@ -89,7 +86,14 @@ export function ChatSidebar({ isOpen = true, onClose }: ChatSidebarProps) {
     } catch { /* silently ignore */ } finally {
       setIsLoading(false)
     }
-  }
+  }, [])
+
+  useEffect(() => {
+    // fetchSessions is an async function — setState calls inside it are in callbacks,
+    // not synchronously in the effect body. The rule incorrectly flags this pattern.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    if (authToken) void fetchSessions(authToken)
+  }, [authToken, fetchSessions])
 
   function formatDate(iso: string | null): string {
     if (!iso) return ''

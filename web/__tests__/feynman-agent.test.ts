@@ -7,6 +7,7 @@
 
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { normalizeQuery, researchCacheKey } from '../lib/feynman-agent'
+import type { ResearchResponse } from '../lib/feynman-agent'
 
 // ─── normalizeQuery ───────────────────────────────────────────────────────────
 
@@ -99,10 +100,10 @@ describe('ResearchResponse type guard', () => {
   })
 
   it('optional fields are optional', () => {
-    const minimalResponse = {
+    const minimalResponse: ResearchResponse = {
       result:      'Result.',
       citations:   [],
-      depth_used:  'summary' as const,
+      depth_used:  'summary',
       cached:      true,
       research_id: 'xyz',
     }

@@ -13,13 +13,14 @@ import { useRouter } from 'next/navigation'
 export function TutorPageClient() {
   const router   = useRouter()
   const { progress, isLoadingProgress, startSession, isStarting, sessionError, fetchProgress, activeSession } = useTutor()
-  const [authToken, setAuthToken] = useState<string | null>(null)
+  // Lazy initializer reads from localStorage on first render (client-only).
+  const [authToken] = useState<string | null>(() =>
+    typeof window !== 'undefined' ? localStorage.getItem('chatislam_token') : null
+  )
 
   useEffect(() => {
-    const token = localStorage.getItem('chatislam_token')
-    setAuthToken(token)
-    if (token) void fetchProgress(token)
-  }, [fetchProgress])
+    if (authToken) void fetchProgress(authToken)
+  }, [authToken, fetchProgress])
 
   async function handlePathSelect(path: { id: string; slug: string }) {
     if (!authToken) {

@@ -44,7 +44,7 @@ export function FeynmanProgressBar({ phase, depth }: FeynmanProgressBarProps) {
 
   const config = PHASE_CONFIG[phase]
   const label  = (depth === 'scholarly' && SCHOLARLY_LABELS[phase]) ? SCHOLARLY_LABELS[phase]! : config.label
-  const isActive = phase !== 'complete' && phase !== 'error' && phase !== 'idle'
+  const isActive = phase !== 'complete' && phase !== 'error'
 
   return (
     <div className="w-full" aria-label={`Research progress: ${label}`} aria-live="polite">

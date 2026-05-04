@@ -14,7 +14,7 @@
  * BYO key is sent to /api/settings/byo-key (POST to store, DELETE to remove).
  */
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -71,15 +71,12 @@ function saveToLocalStorage(key: string, value: string) {
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export default function SettingsClient() {
-  const [settings,    setSettings]    = useState<Settings>({ madhhab: 'hanbali', audienceDefault: 'Muslim', conversationHistory: true, byoKeySet: false })
+  // Lazy initializer calls loadSettings() once on first render — avoids setState-in-effect.
+  const [settings,    setSettings]    = useState<Settings>(loadSettings)
   const [byoKeyInput, setByoKeyInput] = useState('')
   const [byoKeyMsg,   setByoKeyMsg]   = useState<string | null>(null)
   const [byoKeyBusy,  setByoKeyBusy]  = useState(false)
   const [saved,       setSaved]       = useState(false)
-
-  useEffect(() => {
-    setSettings(loadSettings())
-  }, [])
 
   function updateMadhhab(value: MadhabPreference) {
     setSettings((s) => ({ ...s, madhhab: value }))
@@ -173,7 +170,7 @@ export default function SettingsClient() {
           Madhhab preference
         </h2>
         <p className="mb-3 text-sm text-gray-600 dark:text-gray-400">
-          Preferred legal school for fiqh questions. The AI will present this school's position first.
+          Preferred legal school for fiqh questions. The AI will present this school&apos;s position first.
         </p>
         <fieldset>
           <legend className="sr-only">Select madhhab preference</legend>

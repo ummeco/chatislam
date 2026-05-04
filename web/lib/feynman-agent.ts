@@ -202,14 +202,16 @@ async function generateResponse(
     : `[Language: ${language}] ${query}`
 
   if (depth === 'scholarly') {
-    // Scholarly: Sonnet with extended thinking beta
+    // Scholarly: Sonnet with extended thinking beta (non-streaming).
+    // Cast to Message explicitly: betas widen the overload to Stream|Message,
+    // but we never pass stream:true so the resolved value is always Message.
     const response = await client.messages.create({
       model:      'claude-sonnet-4-5',
       max_tokens: maxTokens,
       betas:      ['interleaved-thinking-2025-05-14'],
       system:     systemText,
       messages:   [{ role: 'user', content: userContent }],
-    } as Parameters<typeof client.messages.create>[0])
+    } as Parameters<typeof client.messages.create>[0]) as Anthropic.Message
     return response.content
       .filter((b): b is Anthropic.TextBlock => b.type === 'text')
       .map((b) => b.text)

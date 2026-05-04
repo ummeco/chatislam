@@ -2,10 +2,18 @@ import type { NextConfig } from "next";
 import { withSentryConfig } from "@sentry/nextjs";
 
 const nextConfig: NextConfig = {
-  // ioredis is an optional server-side dep used only when REDIS_URL is set.
-  // Mark it as external so webpack doesn't try to bundle it (avoids build
-  // errors when the package isn't installed in the Vercel environment).
-  serverExternalPackages: ['ioredis'],
+  // Server-side packages that must not be bundled by webpack.
+  // - ioredis: optional dep, used only when REDIS_URL is set
+  // - @opentelemetry/*: sdk-node and auto-instrumentations pull in optional
+  //   peer deps (exporter-jaeger, winston-transport) that may not be installed;
+  //   externalising them lets Node.js require() them at runtime and avoids
+  //   webpack bundling errors on missing optional peers.
+  serverExternalPackages: [
+    'ioredis',
+    '@opentelemetry/sdk-node',
+    '@opentelemetry/auto-instrumentations-node',
+    '@opentelemetry/exporter-trace-otlp-http',
+  ],
   async headers() {
     return [
       {
@@ -45,7 +53,7 @@ const nextConfig: NextConfig = {
 export default withSentryConfig(nextConfig, {
   org: process.env.SENTRY_ORG ?? "ummeco",
   project: process.env.SENTRY_PROJECT ?? "chatislam-web",
-  url: 'https://errors.ummat.dev',
+  sentryUrl: 'https://errors.ummat.dev',
   silent: !process.env.CI,
   widenClientFileUpload: true,
   sourcemaps: {

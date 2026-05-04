@@ -9,7 +9,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { getCurrentSeasonalMode, computeDaysRemaining, type SeasonalMode } from '../../../../../lib/seasonal'
+import { getCurrentSeasonalMode, computeDaysRemaining, type SeasonalMode } from '../../../../lib/seasonal'
 
 // ─── Redis ────────────────────────────────────────────────────────────────────
 

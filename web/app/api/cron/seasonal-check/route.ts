@@ -12,7 +12,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { getCurrentSeasonalMode, type SeasonalMode } from '../../../../../lib/seasonal'
+import { getCurrentSeasonalMode, type SeasonalMode } from '../../../../lib/seasonal'
 
 // ─── Redis ────────────────────────────────────────────────────────────────────
 

@@ -38,22 +38,8 @@ interface HijriDate {
 }
 
 function toHijri(date: Date): HijriDate {
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const IntlHijri = require('intl-hijri') as {
-      toHijri(y: number, m: number, d: number): HijriDate
-    }
-    return IntlHijri.toHijri(
-      date.getFullYear(),
-      date.getMonth() + 1,
-      date.getDate(),
-    )
-  } catch {
-    // Fallback approximation if package not installed
-    // (should never happen in production — intl-hijri is required)
-    const jd = gregorianToJulian(date.getFullYear(), date.getMonth() + 1, date.getDate())
-    return julianToHijri(jd)
-  }
+  const jd = gregorianToJulian(date.getFullYear(), date.getMonth() + 1, date.getDate())
+  return julianToHijri(jd)
 }
 
 /** Julian day number from Gregorian calendar */

@@ -42,17 +42,19 @@ export function TutorSessionClient({ pathId }: TutorSessionClientProps) {
   const router = useRouter()
   const [session,    setSession]    = useState<TutorSession | null>(null)
   const [lesson,     setLesson]     = useState<TutorLesson | null>(null)
-  const [authToken,  setAuthToken]  = useState<string | null>(null)
+  // Lazy initializer reads localStorage on first client render — avoids setState-in-effect.
+  const [authToken]  = useState<string | null>(() =>
+    typeof window !== 'undefined' ? localStorage.getItem('chatislam_token') : null
+  )
   const [isLoading,  setIsLoading]  = useState(true)
   const [error,      setError]      = useState<string | null>(null)
 
   useEffect(() => {
-    const token = localStorage.getItem('chatislam_token')
+    const token = authToken
     if (!token) {
       router.push(`/auth/signin?next=/tutor/${pathId}`)
       return
     }
-    setAuthToken(token)
 
     async function loadSession() {
       try {
@@ -95,7 +97,7 @@ export function TutorSessionClient({ pathId }: TutorSessionClientProps) {
     }
 
     void loadSession()
-  }, [pathId, router])
+  }, [authToken, pathId, router])
 
   if (isLoading) {
     return (
