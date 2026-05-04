@@ -1,0 +1,53 @@
+name: AI Response Quality
+description: Report a problematic or inaccurate AI response on ChatIslam
+labels: ["ai-response", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Help us improve ChatIslam's accuracy. If the AI gave you an incorrect, misleading, or concerning answer, please report it here.
+
+  - type: textarea
+    id: question_asked
+    attributes:
+      label: What did you ask?
+      description: Paste the exact question or prompt you submitted
+      placeholder: e.g. "What is the ruling on fasting while traveling?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: ai_response
+    attributes:
+      label: What did the AI return?
+      description: Paste the full AI response (or the problematic part)
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_response
+    attributes:
+      label: What did you expect?
+      description: Describe what a correct or appropriate response would look like
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How serious is this issue?
+      options:
+        - minor — slightly off, small inaccuracy
+        - major — meaningfully wrong, could mislead someone
+        - breaks-trust — dangerous, offensive, or directly contradicts authentic Islamic sources
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Any sources, citations, or context that support the correct answer
+    validations:
+      required: false

@@ -1,22 +1,35 @@
-# Contributing
+# Contributing to ChatIslam
 
-ChatIslam is in early development. We welcome contributions.
+Thanks for considering a contribution.
 
-## How to Contribute
+## Dev environment
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
+- Node 20+, pnpm 9+
+- Clone the repo
+- `cd web && pnpm install` (sub-project root)
+- See `README.md` for app-specific setup
 
-## Content Guidelines
+## Running tests
 
-ChatIslam follows strict Ahl us-Sunnah wal-Jamaah methodology. See the Islam.wiki [Theological Guidelines](https://github.com/ummeco/islamwiki/wiki/Theological-Guidelines) for details.
+- `pnpm test` — unit tests
+- `pnpm test:e2e` — end-to-end tests
+- `pnpm lint` and `pnpm typecheck` before opening a PR
 
-## Madhab Preference Order
+## Submitting changes
 
-When presenting fiqh positions: Hanbali, Shafi'i, Maliki, Hanafi, Dhahiri.
+1. Fork the repo and create a feature branch (`feature/{description}`)
+2. Run lint + tests locally before opening a PR
+3. Open a PR; fill out the template at `.github/PULL_REQUEST_TEMPLATE.md`
+4. Maintainer review: best-effort, expect days to weeks (solo-maintained currently)
+
+## Code style
+
+Match existing style. TypeScript strict, ESLint passing, Prettier formatted. No AI attribution in commits.
+
+## Scope
+
+AI prompt and grounding changes need careful review. No fatwa output without explicit disclaimer. Theological guidelines apply to all canned responses. New knowledge base entries must be reviewed_by_human=true before they enter RAG retrieval.
 
 ## License
 
-By contributing, you agree that your contributions will be licensed under the MIT License.
+By contributing you agree your work is licensed under the project's LICENSE.

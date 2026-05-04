@@ -1,10 +1,18 @@
 # ChatIslam
 
-AI-powered Islamic knowledge chat and dawah platform. Authentic answers sourced from Quran, Hadith, and classical scholarship.
+Islamic AI: ask questions, get scholar-cited answers. Not a fatwa engine; a study companion.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Build](https://img.shields.io/github/actions/workflow/status/ummeco/chatislam/ci.yml?branch=main)](https://github.com/ummeco/chatislam/actions)
+[![Version](https://img.shields.io/github/package-json/v/ummeco/chatislam?filename=web%2Fpackage.json)](https://github.com/ummeco/chatislam/releases)
 
 **Live:** [chatislam.org](https://chatislam.org)
 
 > IslamQA (islamqa.us) has merged into ChatIslam. All Q&A functionality is available here.
+
+## What is this
+
+ChatIslam is a free AI chat app for Islamic knowledge and dawah, built on Claude with strict Ahl us-Sunnah wal-Jama'ah guidelines. It adapts its tone to the audience (practicing Muslim, new Muslim, or non-Muslim) and cites sources from Quran, Hadith, and classical scholarship. It is not a fatwa service; complex fiqh questions are escalated to vetted human scholars.
 
 ## Features
 
@@ -38,9 +46,7 @@ chatislam/
     └── app/    pages and API routes
 ```
 
-## Getting Started
-
-### Prerequisites
+## Quick Start
 
 Start the shared Ummat backend first:
 
@@ -48,7 +54,7 @@ Start the shared Ummat backend first:
 cd ~/Sites/ummeco/ummat/backend && nself start
 ```
 
-### Web App
+**Web app:**
 
 ```bash
 cd web
@@ -57,7 +63,7 @@ pnpm install
 pnpm dev --port 3042   # https://www.chatislam.local.nself.org:8543 (port 8543)
 ```
 
-`ANTHROPIC_API_KEY` is required for all Claude API routes. The key must never be set in any `NEXT_PUBLIC_*` variable or exposed to the browser.
+`ANTHROPIC_API_KEY` is required for all Claude API routes. Never set it in any `NEXT_PUBLIC_*` variable or expose it to the browser.
 
 ## Backend
 
@@ -66,14 +72,10 @@ All data access goes through Hasura GraphQL. The Anthropic API key is server-sid
 **Local API:** `https://api.chatislam.local.nself.org:8543/v1/graphql`
 **Production API:** `https://api.chatislam.org/v1/graphql`
 
-## Contributing
+## Contribute
 
-See the [wiki](https://github.com/ummeco/chatislam/wiki) for architecture docs, theological guidelines, and contribution guidelines.
+See [`.github/wiki/Contributing.md`](https://github.com/ummeco/chatislam/wiki/Contributing) for architecture docs, theological guidelines, and contribution guidelines.
 
 ## License
 
 [MIT](LICENSE)
-
----
-
-*Last updated: 2026-04-28*
