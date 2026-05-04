@@ -71,6 +71,26 @@ vi.mock('../../../lib/rate-limit-server', () => ({
   anonIpRateLimitKey:    vi.fn((hash: string) => `ci:rl:anon:${hash}:min`),
 }))
 
+// ─── Mock: spend-guard — return null if not configured
+
+vi.mock('../../../lib/spend-guard', () => ({
+  AnthropicSpendCapExceeded: class extends Error {},
+  getSpendGuard: vi.fn(() => null),
+  _resetSpendGuard: vi.fn(),
+}))
+
+// ─── Mock: feynman-agent and madhhab to prevent Redis initialization
+
+vi.mock('../../../lib/feynman-agent', () => ({
+  researchCacheKey: vi.fn(() => 'ci:research:test'),
+  getFeynmanResearch: vi.fn(async () => null),
+}))
+
+vi.mock('../../../lib/madhhab', () => ({
+  detectFiqhQuestion: vi.fn(async () => false),
+  extractMadhabStances: vi.fn(() => []),
+}))
+
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 import { checkQueryGate } from '../../../lib/chatislam-query-gate'
@@ -150,6 +170,7 @@ function makeJwt(role: string = 'user'): string {
 beforeEach(() => {
   vi.clearAllMocks()
   mockCreate.mockClear()
+  vi.unstubAllEnvs()
   vi.stubEnv('REDIS_URL',                                'redis://localhost:6379')
   vi.stubEnv('ANTHROPIC_MODEL',                         'claude-sonnet-4-6')
   vi.stubEnv('HASURA_ENDPOINT',                         'http://localhost/noop')
