@@ -28,5 +28,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: pnpm audit
+        run: pnpm audit --audit-level=high
+
       - name: Run tests
         run: pnpm test
