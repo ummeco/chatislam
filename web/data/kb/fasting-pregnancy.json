@@ -1,0 +1,23 @@
+{
+  "slug": "fasting-pregnancy",
+  "question": "Does a pregnant or breastfeeding woman have to fast in Ramadan?",
+  "category": "fiqh-fasting",
+  "summary": "A pregnant or breastfeeding woman who fears harm to herself or her child may break the fast; scholars differ on what she must do to make up missed days.",
+  "answer": "The Quran groups the ill and the traveler as having permission to break the Ramadan fast and make up the days later (Quran 2:185). Scholars extend this to pregnant and breastfeeding women who experience difficulty.\n\n**The permission to break the fast:**\nAll four schools agree that a pregnant or breastfeeding woman who genuinely fears harm — to herself or her child — from fasting may break the fast. This is not controversial.\n\n**What she must do: qada, fidyah, or both?**\nThis is where the major dispute lies.\n\n**Position 1 (Hanafi):** The pregnant or nursing woman is treated like the ill person. She must make up the missed days (qada) but pays no fidyah (redemption feeding). The Hanafi reasoning: she is in a temporary state, like illness, and will be able to fast again.\n\n**Position 2 (Shafi'i and one Hanbali view):** If she feared only for her child (not herself), she owes both qada AND fidyah — paying one feeding for each missed day. If she feared for herself or both herself and child, she owes only qada, like the ill person. This distinction is based on narrations from Ibn Abbas and Ibn Umar (RA).\n\n**Position 3 (Maliki):** The Maliki school holds that a pregnant woman who fears harm to herself or child owes only qada, not fidyah. A nursing mother who fears only for her child also owes only qada.\n\n**The Ibn Abbas narration basis:**\nIbn Abbas (RA) reportedly said that a pregnant or nursing woman who fears for her child should break the fast, feed one poor person per missed day, and not make up the days. (Abu Dawud 2317, graded hasan by some scholars). Some scholars applied this as a permanent exemption, making them like the elderly. This minority view is not the dominant position in any of the four schools but is worth noting for its basis in a Companion's opinion.\n\n**Breastfeeding women:** Same rulings apply as pregnant women. The concern for the child is the operative factor.\n\n**Medical consultation:** Women should consult their healthcare provider about whether fasting poses real health risks in their specific situation before making a fiqh decision.",
+  "evidence_quran": ["2:185", "2:184"],
+  "evidence_hadith": [
+    "Abu Dawud 2317 — Ibn Abbas: pregnant and nursing women who fear for their child should feed one poor person per day and not make up (minority position, used as basis for fidyah discussion)",
+    "General principle from Sahih Bukhari 2973 — Anas ibn Malik al-Ka'bi: the hadith on concession for traveler and rider also mentioning nursing woman (basis for exemption)"
+  ],
+  "scholar_consensus": "Agreed: pregnant and nursing women may break the fast if they fear harm to themselves or child. Disputed: whether they owe qada only (Hanafi, Maliki), or qada plus fidyah if fearing for child only (Shafi'i, some Hanbali).",
+  "madhab_positions": {
+    "hanafi": "Pregnant or nursing woman: qada only, no fidyah. She is like the ill person and will be able to make up the days later. No distinction between fearing for self or child.",
+    "maliki": "Qada only for both pregnant and nursing women. No fidyah required. Maliki scholars consider her situation analogous to illness.",
+    "shafii": "Distinction drawn: if she fears only for her child (not herself), she owes qada AND fidyah (one feeding per missed day). If she fears for herself or both, qada only. This is the operative ruling in Shafi'i fiqh.",
+    "hanbali": "Similar to Shafi'i with some variation. One position within the school: qada and fidyah when the concern is solely for the child. Another position: qada only. The Shafi'i-aligned view is more common in the school."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

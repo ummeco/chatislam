@@ -1,0 +1,24 @@
+{
+  "slug": "can-women-lead-prayer",
+  "question": "Can a woman lead prayer?",
+  "category": "fiqh-prayer",
+  "summary": "A woman may lead a congregation of women in prayer; she may not lead a congregation that includes men according to all four classical schools.",
+  "answer": "The question of women leading prayer has two distinct scenarios with different rulings.\n\n**Leading a congregation of women only:**\nAll four schools permit a woman to lead other women in prayer, though they differ on its status and the imam's position. This is supported by the hadith of Umm Waraqah (RA), whom the Prophet ﷺ reportedly permitted to lead the people of her household in prayer (Abu Dawud 591). Aisha (RA) and Umm Salamah (RA) are also narrated to have led women in prayer (Bayhaqi, Sunan al-Kubra).\n\nThe Shafi'i school explicitly affirms this as valid and recommended. The Maliki school permits it as valid though not recommended (some later Maliki scholars called it makruh). The Hanafi school allows it but with dislike (makruh) — their position is that it is valid but the woman should stand in the middle of the row rather than in front. The Hanbali school permits it without dislike in women-only congregations.\n\n**Leading a mixed congregation (men and women):**\nAll four classical schools hold that a woman may not lead a congregation that includes adult men in obligatory prayers. This is the established position based on: the general practice of the Prophet ﷺ (who never appointed a woman to lead men), the hadith about men following those behind them in prayer, and the principle that women are not required to pray in congregation as men are.\n\n**Contemporary minority views:**\nA small minority of modern scholars, including some associated with progressive Muslim movements, have argued that women may lead mixed congregations, citing a broad reading of the Umm Waraqah hadith. This position is not within the four classical schools and departs from the scholarly consensus (ijma') of classical fiqh. We present this as an existing contemporary dispute without endorsing it.\n\n**Woman leading her household:**\nIf a woman is the most knowledgeable in Islamic matters in her household, the majority position permits her to lead family members (including sons, in the Shafi'i and some Hanbali views) in voluntary prayers, though not in obligatory congregational prayers in the place of the jama'ah requirement.",
+  "evidence_quran": [],
+  "evidence_hadith": [
+    "Abu Dawud 591 — Umm Waraqah was permitted by the Prophet ﷺ to lead the people of her household (scholars dispute the scope of 'household' in this narration)",
+    "Sunan al-Bayhaqi — Aisha (RA) led women in prayer and stood in the middle of the row",
+    "Sunan al-Bayhaqi — Umm Salamah (RA) similarly led women in prayer"
+  ],
+  "scholar_consensus": "Agreed (all four schools): a woman may lead a congregation of women; a woman may not lead a congregation that includes adult men in obligatory prayers. Minor dispute on whether leading women is recommended or merely valid.",
+  "madhab_positions": {
+    "hanafi": "A woman leading women is valid but makruh. She should stand in the middle of the row, not in front. A woman may not lead men. The man's prayer behind a female imam would be invalid.",
+    "maliki": "A woman leading women is technically valid though some scholars called it makruh. Stronger position within the school: it is permitted. A woman may not lead men.",
+    "shafii": "A woman leading women is valid and not makruh — she may stand in front of the row. This is rewarded. A woman may not lead men in obligatory prayers.",
+    "hanbali": "A woman leading women is valid and permissible without dislike. She stands in the middle of the row per the sunnah practice. A woman may not lead men."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

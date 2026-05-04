@@ -1,0 +1,23 @@
+{
+  "slug": "missed-prayer-makeup",
+  "question": "How do you make up missed prayers (qada)?",
+  "category": "fiqh-prayer",
+  "summary": "Missed obligatory prayers must be made up as soon as possible; the exact approach and priority differ by school.",
+  "answer": "Missing a prayer without valid excuse is a major sin. However, the obligation to pray does not expire — prayers missed due to sleep, forgetfulness, or even deliberate abandonment (though the latter adds sin) must be made up (qada).\n\n**Basis in Quran and Sunnah:**\nThe Prophet ﷺ said: 'Whoever forgets a prayer or sleeps through it, let him pray it when he remembers it. There is no expiation for it except that.' (Sahih Bukhari 597, Sahih Muslim 684). This is the core proof for qada prayer.\n\n**When to perform qada:**\nImmediate performance is required for prayers missed through forgetfulness or sleep — the hadith above says 'when he remembers it.' For intentionally missed prayers, scholars discuss whether immediacy (fawriyyah) applies.\n\n**Can qada be prayed at prohibited times?**\nAll four schools agree that a qada prayer may be prayed during the generally prohibited times (sunrise, zenith, sunset) if it is a prayer with a reason (dhat al-sabab). The stronger position in all schools is that qada prayers bypass time restrictions.\n\n**Order of missed prayers:**\nThe Hanafi school requires prayers to be made up in order (tartib) if the total missed is fewer than five; if five or more are owed (sahibu tartib expires), order is no longer obligatory. The Maliki, Shafi'i, and Hanbali schools consider order recommended but not obligatory for qada.\n\n**Person with many years of missed prayers:**\nSchools do not limit the number that must be made up. The person should estimate the total, be consistent, and pray as many qada as feasible each day alongside their current prayers. There is no kaffarah (expiation) other than the makeup prayer itself.\n\n**Deliberate abandonment:**\nThe Maliki and Hanbali schools hold that someone who abandons prayer deliberately and refuses to pray may be considered to have left Islam or should be compelled by the authority. However, if they repent and wish to make up prayers, the majority position is that they must still perform qada. The Shafi'i school holds qada is required with repentance.\n\n**Non-Muslim who converts:**\nBy scholarly consensus, a new Muslim is not required to make up prayers from before their conversion. Islam wipes what came before it.",
+  "evidence_quran": ["20:14"],
+  "evidence_hadith": [
+    "Sahih Bukhari 597 / Sahih Muslim 684 — 'Whoever forgets a prayer or sleeps through it, let him pray it when he remembers it. There is no expiation except that.'",
+    "Sahih Muslim 681 — The Prophet ﷺ missed Fajr during the expedition of Khaybar due to sleep and made it up after sunrise, establishing the practice"
+  ],
+  "scholar_consensus": "Agreed: missed prayers must be made up; forgetfulness and sleep are excuses. Disputed: whether deliberate abandonment creates a valid qada obligation (majority yes; minority Hanbali opinion says no qada for deliberate abandoner who did not repent); order requirement (Hanafi requires it under threshold; others recommend it).",
+  "madhab_positions": {
+    "hanafi": "Qada is obligatory. Tartib (order) is required if fewer than 5 prayers are owed. Beyond 5 owed, tartib lapses. Current prayer is invalidated if qada of fewer-than-5 prayers is recalled during it. Immediate makeup is obligatory for forgetfulness/sleep.",
+    "maliki": "Qada is obligatory for all missed prayers. Order is sunnah, not fard. Deliberate abandoner must repent and make up. No expiry on the obligation regardless of how many years have passed.",
+    "shafii": "Qada is obligatory. No tartib required — one may pray them in any order. Repentance and qada are both required for deliberate abandonment. The missed prayer's form (length of recitation, etc.) should match the original.",
+    "hanbali": "Qada is obligatory. A minority opinion within the school (attributed to Ibn Taymiyyah) holds that deliberate abandonment, if repented from, does not require qada because qada was not established by the Sunnah for willful omission. The majority Hanbali position requires qada with repentance."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

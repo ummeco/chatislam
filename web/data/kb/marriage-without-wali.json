@@ -1,0 +1,23 @@
+{
+  "slug": "marriage-without-wali",
+  "question": "Is a marriage valid without a wali (guardian)?",
+  "category": "fiqh-family",
+  "summary": "Most classical schools require a wali for a valid marriage; the Hanafi school permits a woman to contract her own marriage under certain conditions.",
+  "answer": "The wali (marriage guardian) in Islamic fiqh is typically the woman's father, then grandfather, then other male relatives in order. The question of whether a marriage is valid without a wali is one of the most practically important fiqh disputes.\n\n**The main hadith:**\n'There is no marriage except with a guardian (wali).' (Abu Dawud 2085, Tirmidhi 1101 — graded sahih by Tirmidhi and others)\n\n'Any woman who marries without the permission of her guardian, her marriage is invalid, invalid, invalid.' (Abu Dawud 2083, Ibn Majah 1879 — Aisha narration, graded sahih by many hadith scholars)\n\n**Majority position (Maliki, Shafi'i, Hanbali):**\nA wali is a condition (shart) for the validity of marriage. Without it, the marriage is null. These schools interpret the hadith literally. A qadi (judge) can act as wali if the natural guardians are absent, preventing remarriage, or refusing without valid reason (adhl).\n\n**Hanafi position:**\nA legally adult (baligh) woman of sound mind may contract her own marriage without a wali, provided she chooses a suitable (kuf') husband. The wali's permission is not a condition of validity in the Hanafi school — though it is recommended. If she marries someone unsuitable (not kafa'ah), the wali can have the marriage dissolved. The basis: Quran 2:232 ('Do not prevent them from marrying their husbands') addresses the woman's own agency.\n\n**Practical contemporary implications:**\nIn many Muslim-majority countries, the law requires a wali. In countries without Islamic family law, a wali is not legally required by civil law but is strongly recommended as a religious practice even where not legally mandated. For Muslim women converting to Islam with no Muslim family, many scholars permit the imam or a Muslim community leader to act as wali.",
+  "evidence_quran": ["2:232", "4:25"],
+  "evidence_hadith": [
+    "Abu Dawud 2085 / Tirmidhi 1101 — 'There is no marriage except with a guardian'",
+    "Abu Dawud 2083 — 'Any woman who marries without the permission of her guardian, her marriage is invalid, invalid, invalid'"
+  ],
+  "scholar_consensus": "Majority (Maliki/Shafi'i/Hanbali): wali is a condition for valid marriage; without it, marriage is null. Hanafi: wali is recommended but not a condition for an adult woman of sound mind. All agree: a judge can serve as wali when natural guardians are unjustly preventing marriage.",
+  "madhab_positions": {
+    "hanafi": "Adult woman of sound mind may contract her own marriage; wali is not a validity condition. However, if she marries below her social equivalent (kafa'ah), the wali may seek dissolution. Marriage without wali is valid but against the preferred practice.",
+    "maliki": "Wali is required for validity. A woman cannot contract her own marriage. The wali must be Muslim, sane, and not unjustly preventing the marriage. If the wali refuses without valid reason, the judge acts as wali.",
+    "shafii": "Wali is required. No marriage without guardian. An-Nawawi: this is from the conditions of marriage, not merely a recommendation. Judge acts as wali for converts with no Muslim guardians.",
+    "hanbali": "Wali is required for validity. Same as Maliki and Shafi'i. Ibn Qudamah: the wali requirement is based on multiple hadith and consensus of the Companions."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

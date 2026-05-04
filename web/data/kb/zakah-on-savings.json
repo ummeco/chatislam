@@ -1,0 +1,23 @@
+{
+  "slug": "zakah-on-savings",
+  "question": "Is zakah due on savings (cash in a bank account)?",
+  "category": "fiqh-zakah",
+  "summary": "Zakah is due on savings that meet the nisab threshold and have been held for one lunar year, at a rate of 2.5%.",
+  "answer": "Zakah on savings (cash, bank deposits) is one of the clearest applications of zakah. Cash is analogous to gold and silver (thaman) in classical fiqh — monetary wealth that circulates and grows.\n\n**Nisab (minimum threshold):**\nThe nisab for cash is equivalent to 85 grams of gold or 595 grams of silver. In contemporary practice, most scholars recommend using the silver nisab (lower value) to ensure more zakah is paid and more poor people benefit, though using the gold nisab is also a valid scholarly position.\n\n**Hawl (one lunar year):**\nAll four schools require that the wealth reach the nisab and remain at or above it for a complete lunar year (approximately 354 days). If the wealth dips below nisab at any point during the year, the year resets.\n\n**Rate:**\n2.5% of the total savings amount (not the growth/profit alone — the entire amount is zakatable). This rate applies to gold, silver, and monetary equivalents.\n\n**Quran 9:34-35** describes those who hoard gold and silver without paying zakah and warns of severe punishment. While not a direct fiqh ruling, it establishes the gravity of zakah on monetary wealth.\n\n**Bank interest (riba):**\nA separate issue: many scholars hold that bank interest is haram (riba). The principle that applies for zakah: if a person has earned haram income, they should rid themselves of it by giving it to the poor (not as zakah, but as general charity) — they receive no reward for it but are cleared of the sin of holding it. Some scholars hold that money held in conventional savings accounts is zakatable on the full balance; others say only the principal (not the riba component). Consulting a scholar on this specific situation is recommended.\n\n**Gold and silver jewelry:**\nThe zakah on jewelry is a separate dispute. See the note in each school's position below.",
+  "evidence_quran": ["9:34", "9:60"],
+  "evidence_hadith": [
+    "Abu Dawud 1573 — 'There is no zakah on wealth until a year passes over it' (hawl requirement)",
+    "Abu Dawud 1558 — nisab for silver: 200 dirhams (approximately 595g of silver); nisab for gold: 20 dinars (approximately 85g)"
+  ],
+  "scholar_consensus": "Agreed across all four schools: zakah is due on cash savings at 2.5% after hawl and reaching nisab. Minor differences on whether the gold or silver nisab threshold applies and on gold jewelry.",
+  "madhab_positions": {
+    "hanafi": "Zakah is due on cash savings (treated as equivalent to silver currency). Nisab: silver standard (595g silver equivalent). Cash kept for any purpose (savings, business capital, debts owed to you above debts you owe) is zakatable. Gold jewelry worn by women is zakatable (unique Hanafi position).",
+    "maliki": "Zakah due on cash savings. Nisab: either gold or silver standard may be used. Gold jewelry for personal use is NOT zakatable (Maliki school). Hawl required.",
+    "shafii": "Zakah due on cash. Nisab: gold standard (85g gold) or silver standard (595g silver) — scholars differ; gold standard is more commonly used in Shafi'i fiqh. Gold/silver jewelry for personal use: not zakatable per the more common Shafi'i position (though there is a valid minority view within the school).",
+    "hanbali": "Zakah due on cash. Nisab: same as above. Gold/silver jewelry for personal use: not zakatable per the dominant Hanbali position. Some Hanbali scholars require zakah on jewelry."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

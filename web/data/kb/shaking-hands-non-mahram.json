@@ -1,0 +1,23 @@
+{
+  "slug": "shaking-hands-non-mahram",
+  "question": "Is it permissible to shake hands with a member of the opposite gender who is not a mahram?",
+  "category": "fiqh-family",
+  "summary": "This is a disputed question; the majority of classical scholars prohibit skin contact with non-mahram of opposite gender; a minority permit a handshake for necessity.",
+  "answer": "The question of physical contact between non-mahram members of opposite genders — specifically the common social handshake — is genuinely debated among classical and contemporary scholars.\n\n**The prohibition position (majority):**\nBased on the hadith of Aisha (RA): 'The Prophet ﷺ never shook hands with a non-mahram woman. He would accept the pledge of allegiance from women verbally.' (Sahih Muslim 1866 [some scholars classify this as mursal], Ibn Majah 2874).\n\nAlso: The Prophet ﷺ said: 'It is better for one of you to be struck in the head with an iron needle than to touch a woman who is not permissible to him.' (Tabarani — scholars debate its grading; some consider it acceptable; others weak)\n\nThe Hanafi, Maliki, Shafi'i, and Hanbali schools generally prohibit physical contact (including handshaking) between non-mahram of opposite genders.\n\n**The permissibility position (minority):**\nSome scholars, particularly those dealing with realities of non-Muslim-majority societies and contemporary workplace norms, have argued that a handshake without desire, in a formal context (business meeting, official ceremony), with no other physical contact, is permissible as a social necessity (darura or hajah). This position is not the classical dominant view but is held by some contemporary scholars.\n\n**Practical advice from many scholars:**\nWhere refusing a handshake causes significant professional harm or social offense, a Muslim may acknowledge the situation politely: placing the hand on one's chest and smiling, or briefly explaining that religious practice does not permit physical contact. Many employers in Western countries respect this.\n\n**The wudu question:**\nIf one follows the Shafi'i school, touching a non-mahram of the opposite gender also breaks wudu (see the wudu entry). For other schools, the handshake question is separate from wudu.",
+  "evidence_quran": ["33:35"],
+  "evidence_hadith": [
+    "Ibn Majah 2874 / reported also in context of Sahih Muslim 1866 — Aisha: the Prophet ﷺ accepted women's pledges of allegiance verbally without shaking their hands",
+    "Tabarani — 'Better to be struck with an iron needle than to touch a non-permissible woman' (grading debated)"
+  ],
+  "scholar_consensus": "Majority classical position: physical contact with non-mahram of opposite gender is prohibited, including handshaking. Minority contemporary position: a formal handshake in professional settings may be permissible as a social necessity. No consensus on the necessity exception.",
+  "madhab_positions": {
+    "hanafi": "Touching non-mahram skin is prohibited. A handshake with a non-mahram woman is not permissible. Some contemporary Hanafi scholars in Western contexts have discussed the necessity exception without a final ruling.",
+    "maliki": "Touching non-mahram skin of the opposite gender is generally prohibited. No exception for a formal handshake in the dominant Maliki position.",
+    "shafii": "Touching non-mahram skin of the opposite gender is prohibited AND breaks wudu. A handshake is doubly problematic in the Shafi'i school — both a sin and a wudu nullifier.",
+    "hanbali": "Physical contact with non-mahram of opposite gender is prohibited. The Hanbali position is consistent with the other schools. Contemporary Hanbali scholars note that politely declining with explanation is the proper approach."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

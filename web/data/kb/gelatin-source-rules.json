@@ -1,0 +1,23 @@
+{
+  "slug": "gelatin-source-rules",
+  "question": "Is gelatin halal? Does the source of gelatin matter?",
+  "category": "fiqh-halal-haram",
+  "summary": "The source of gelatin determines its permissibility; porcine gelatin is haram; bovine gelatin from halal-slaughtered animals is halal; the debate centers on whether transformation (istihalah) purifies haram-source gelatin.",
+  "answer": "Gelatin is a protein derived by boiling the bones, skin, and connective tissue of animals. Its permissibility depends entirely on its source.\n\n**Plant-based gelatin:** Fully halal. No animal products involved.\n\n**Gelatin from halal-slaughtered animals (beef, lamb):** Halal. All four schools agree that a product derived from a halal-slaughtered animal is permissible.\n\n**Porcine gelatin (from pigs):** This is the primary area of debate. Two positions:\n\n**Position 1 — Haram (majority):** Gelatin from pigs is haram because pork is prohibited (Quran 5:3: 'forbidden to you is the flesh of swine'). This prohibition extends to all parts of the pig, not just muscle meat. The Hanafi, Maliki, and Hanbali schools, and many Shafi'i scholars, hold this position. The physical form of the gelatin (dry powder, dissolved) does not change its origin.\n\n**Position 2 — Halal via istihalah (minority contemporary view):** Some contemporary scholars (notably some in the Egyptian Dar al-Ifta and a minority in European Muslim fatwa bodies) argue that porcine gelatin has undergone istihalah — a complete physical and chemical transformation — such that it is no longer the same substance as pork. Under this reasoning, it becomes permissible. This position is held by a minority and is not the mainstream view.\n\n**Gelatin from non-halal-slaughtered bovine (conventional beef):**\nHere the schools also differ. Hanafi: the bones, which are impure in this context, become permissible for gelatin because the transformation removes the impurity (istihalah — their position accepts this for bones specifically). Maliki/Shafi'i/Hanbali: non-halal bovine gelatin is also problematic. The majority view in most fatwa bodies is to label such gelatin as 'haram' or 'doubtful.'\n\n**Fish gelatin:** Fully halal. Fish are halal without formal slaughter.\n\n**Practical guidance:** Products marked 'halal certified gelatin' have been verified from halal sources. Products marked simply 'gelatin' in non-Muslim-majority countries are often bovine or porcine and require checking.",
+  "evidence_quran": ["5:3", "2:173"],
+  "evidence_hadith": [
+    "Sahih Bukhari 5498 — prohibition of pig in multiple contexts",
+    "Classical fiqh principle: istihalah (complete transformation) can change the ruling on impure substances — applied differently by each school"
+  ],
+  "scholar_consensus": "Agreed: porcine gelatin is haram per the majority. Disputed: whether istihalah (complete transformation) purifies porcine gelatin (mainstream: no; minority contemporary: yes). Agreed: gelatin from halal-slaughtered animals is halal.",
+  "madhab_positions": {
+    "hanafi": "Accepts istihalah as a purifying principle for impure substances (like alcohol transforming into vinegar). Some contemporary Hanafi scholars extend this to gelatin — if fully transformed, it may be permissible. However, many Hanafi-influenced fatwa bodies (IFANCA, HMC) rule porcine gelatin haram to be safe. Bone-derived gelatin from non-halal bovine: permitted by some Hanafi scholars via istihalah.",
+    "maliki": "Does not accept istihalah for pig-derived products. Porcine gelatin is haram. Bovine gelatin from non-halal slaughter is also problematic. Fish gelatin and halal-slaughtered animal gelatin are halal.",
+    "shafii": "Porcine gelatin is haram — the transformation argument is not accepted in the dominant Shafi'i position. Non-halal bovine gelatin is haram. Halal-slaughtered bovine, fish, or plant gelatin is halal.",
+    "hanbali": "Porcine gelatin is haram. Does not accept istihalah for pig derivatives in this context. Same ruling as Maliki on non-halal bovine gelatin."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

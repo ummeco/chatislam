@@ -1,0 +1,25 @@
+{
+  "slug": "parenting-discipline",
+  "question": "What does Islam say about disciplining children?",
+  "category": "fiqh-family",
+  "summary": "Islamic teachings emphasize kind, patient parenting; physical discipline is permitted only in very limited, specific circumstances and is strongly conditioned by prohibition of harm.",
+  "answer": "The Islamic approach to parenting centers on mercy, education, and gradual moral formation. The Prophet ﷺ said: 'Be gentle, for gentleness does not enter anything except it beautifies it, and it is not removed from anything except it makes it ugly.' (Sahih Muslim 2594)\n\n**Positive parenting foundations:**\nThe Prophet ﷺ modeled warmth toward children. He let al-Hasan and al-Husayn (RA) climb on his back during sujud without stopping (Abu Dawud 920). He said: 'He is not from us who does not have mercy on our young.' (Tirmidhi 1919, graded hasan sahih)\n\n**Prayer instruction:**\nThe hadith most discussed in the discipline context: 'Command your children to pray at seven, and discipline (idribuhum) them for it at ten, and separate them in their beds.' (Abu Dawud 495). Scholars interpret 'idribuhum' at ten for prayer as light physical prompting, not harsh punishment, given the overall prophetic norm of gentleness. This refers specifically to prayer at the age of ten — not a general permission for physical punishment.\n\n**Conditions any physical discipline must meet (if used at all):**\nAll scholars who discuss physical discipline set strict conditions:\n1. Must not cause injury\n2. Must not be on the face\n3. Must not be from anger\n4. Must be clearly last resort after verbal instruction, example, and withdrawal of privileges\n5. Must not leave marks\n\nThe Prophet ﷺ explicitly forbade striking the face: 'If one of you fights, let him avoid the face.' (Sahih Bukhari 2559)\n\n**Contemporary scholars' guidance:**\nMany contemporary Islamic scholars encourage Muslim parents to explore evidence-based non-physical discipline methods. The objectives of maqasid al-shariah include protection of offspring (hifdh al-nasl) — and methods that cause psychological harm to children violate this objective. Corporal punishment as a parenting norm is not endorsed by any of the four schools; the prayer hadith is the only specific text, and it is narrowly applied.",
+  "evidence_quran": ["66:6", "2:233"],
+  "evidence_hadith": [
+    "Abu Dawud 495 — 'Command your children to pray at seven, discipline them for it at ten, and separate them in beds'",
+    "Sahih Muslim 2594 — 'Gentleness does not enter anything except it beautifies it'",
+    "Tirmidhi 1919 — 'He is not from us who does not have mercy on our young'",
+    "Sahih Bukhari 2559 — prohibition of striking the face"
+  ],
+  "scholar_consensus": "Agreed: mercy and gentleness are the default approach to parenting. Agreed: striking the face is prohibited. Agreed: the prayer hadith permits light physical prompting at age 10 for prayer only, under strict conditions. No scholarly endorsement of harsh physical punishment as a parenting approach.",
+  "madhab_positions": {
+    "hanafi": "The prayer hadith permits very light, non-injurious physical discipline at age 10 in the specific context of prayer. General parenting: kindness and education. Physical harm is never permitted.",
+    "maliki": "Same framework. Maliki scholars emphasize that the discipline mentioned is ta'dib (character formation) — primarily through guidance, not physical means.",
+    "shafii": "An-Nawawi and other Shafi'i scholars interpret the prayer hadith's 'idrib' as the lightest form of physical prompting — not striking in the traditional sense. Kindness is the default.",
+    "hanbali": "Ibn Qudamah discusses parental responsibilities in al-Mughni with emphasis on education and character formation. The prayer hadith applies narrowly. Strict no-harm conditions on any physical discipline."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

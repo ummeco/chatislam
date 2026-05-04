@@ -1,0 +1,23 @@
+{
+  "slug": "divorce-three-talaqs",
+  "question": "If a husband says 'I divorce you' three times at once, does it count as one or three divorces?",
+  "category": "fiqh-family",
+  "summary": "This is one of the most debated fiqh questions: the majority of classical scholars count it as three final divorces; a significant scholarly tradition counts it as one revocable divorce.",
+  "answer": "The scenario of pronouncing talaq (divorce) three times in one sitting — whether as 'talaq, talaq, talaq,' or 'you are divorced three times' — is one of the most debated issues in classical fiqh with enormous practical consequences.\n\n**What is at stake:**\nIf three divorces are counted: the marriage is irrevocably dissolved; the couple cannot remarry unless the woman marries and divorces a different man (tahleel marriage, the 'muhallil' practice). The Prophet ﷺ cursed the muhallil and the one for whom he performs it (Tirmidhi 1120).\n\nIf it counts as one: the husband may take her back (raj'ah) within the iddah period.\n\n**The majority classical view — counts as three:**\nThe Hanafi, Maliki, and Shafi'i schools, following the reported practice from the time of Umar ibn al-Khattab (RA), count three talaqs in one sitting as three. Umar reportedly enforced this, saying that when people rushed into divorce that was previously given space to reconsider, he would make them face the consequences.\n\n**The minority classical view — counts as one:**\nIbn Taymiyyah (Hanbali) and Ibn al-Qayyim compiled extensive evidence that three talaqs in one sitting counted as only one during the time of the Prophet ﷺ and Abu Bakr (RA) and in the first two years of Umar's caliphate. The evidence includes:\n- Hadith from Ibn Abbas: 'The triple divorce was one divorce during the time of the Prophet ﷺ, Abu Bakr, and two years of Umar's caliphate. Then Umar said: People have rushed into what they were given deliberation in, so let us enforce it against them.' (Sahih Muslim 1472)\n\n**Contemporary scholars:**\nMany contemporary scholars (and some Muslim-majority countries' family law) adopt the 'counts as one' view based on Ibn Abbas's hadith and the reasoning that rushing a triple talaq contradicts the Quranic principle of two separate revocable divorces (Quran 2:229-230).",
+  "evidence_quran": ["2:229", "2:230", "65:1"],
+  "evidence_hadith": [
+    "Sahih Muslim 1472 — Ibn Abbas: triple talaq was one divorce during the Prophet's ﷺ time and Abu Bakr's time and early Umar caliphate",
+    "Tirmidhi 1120 — Prophet ﷺ cursed the muhallil and the one for whom tahleel is done"
+  ],
+  "scholar_consensus": "Genuinely disputed and historically debated. Majority classical schools (Hanafi/Maliki/Shafi'i): counts as three. Ibn Taymiyyah, Ibn al-Qayyim, and others based on Sahih Muslim 1472: counts as one. Contemporary scholarly and legal trend in several Muslim countries: counts as one revocable divorce.",
+  "madhab_positions": {
+    "hanafi": "Three talaqs in one sitting count as three — marriage is irrevocably dissolved. This is the Hanafi position followed by large portions of the Muslim world. The muhallil marriage is haram but the three divorces still stand.",
+    "maliki": "Three talaqs count as three. Same practical result. Maliki scholars discuss conditions but the triple statement in one session is generally counted as three.",
+    "shafii": "Three talaqs count as three. An-Nawawi: this is the ruling of the four schools with the exception of some who followed Ibn Taymiyyah's position.",
+    "hanbali": "Divided: official school position historically was three count as three. Ibn Taymiyyah and Ibn al-Qayyim disputed this forcefully based on Sahih Muslim 1472. Contemporary Hanbali scholars differ. Some Saudi fatwa bodies now accept the 'counts as one' position."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

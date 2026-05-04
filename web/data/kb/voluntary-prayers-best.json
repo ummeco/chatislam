@@ -1,0 +1,26 @@
+{
+  "slug": "voluntary-prayers-best",
+  "question": "What are the best voluntary (nafl) prayers to perform?",
+  "category": "fiqh-prayer",
+  "summary": "The most emphasized voluntary prayers are the rawatib (sunnah prayers accompanying obligatory ones), Tahajjud, Duha, and Witr.",
+  "answer": "Voluntary prayers (nafl or tatawwu') are among the most accessible ways to draw closer to Allah. The Prophet ﷺ said: 'The most beloved of deeds to Allah are the most consistent, even if small.' (Sahih Bukhari 6465)\n\n**1. Al-Rawatib (Regular Sunnah Prayers)**\nThese accompany the five daily prayers and are the most consistently emphasized voluntary prayers.\n\n- 2 rakats before Fajr: The Prophet ﷺ said: 'The two rak'ahs before Fajr are better than this world and everything in it.' (Sahih Muslim 725) — These are the most emphasized sunnah prayers.\n- 4 rakats before Dhuhr and 2 after, 2 after Maghrib, 2 after Isha (12 rakats total): 'Whoever preserves these twelve rakats of Sunnah, Allah will build for him a house in Paradise.' (Sahih Muslim 728)\n\nThe Hanafi school adds 4 rakats before Asr as a sunnah. The other schools do not list this among the confirmed rawatib.\n\n**2. Qiyam al-Layl / Tahajjud**\nThe night prayer, prayed after sleeping and before Fajr, is the most highly praised voluntary prayer in terms of rank. 'The best prayer after the obligatory ones is the night prayer.' (Sahih Muslim 1163). Allah praises those who 'forsake their beds to call upon their Lord in hope and fear.' (Quran 32:16)\n\n**3. Witr**\nPrayed after Isha (and before Fajr), Witr is described as: 'Allah is witr (odd) and loves witr, so perform witr.' (Sahih Bukhari 6410). The Hanafi school holds it is wajib (obligatory below fard). The other three schools hold it is a confirmed sunnah (sunnah mu'akkadah).\n\n**4. Salat al-Duha (Forenoon Prayer)**\n2-8 rakats prayed after sunrise has risen a spear's length and before Dhuhr. Abu Hurayrah (RA) narrated that his close friend (the Prophet ﷺ) advised him never to leave three things, one of which was two rakats of Duha (Sahih Bukhari 1178).\n\n**5. Tahiyyat al-Masjid (Greeting the Mosque)**\n2 rakats upon entering the mosque before sitting. 'When one of you enters the mosque, let him not sit until he has prayed two rakats.' (Sahih Bukhari 444)\n\n**General principle:**\nConsistency is more beloved than large amounts done rarely. Aisha (RA) narrated that the Prophet ﷺ was most consistent with 11 rakats at night (Sahih Bukhari 1147).",
+  "evidence_quran": ["32:16", "17:79"],
+  "evidence_hadith": [
+    "Sahih Muslim 725 — '2 rakats before Fajr are better than this world and everything in it'",
+    "Sahih Muslim 728 — 'Whoever preserves 12 sunnah rakats, Allah will build him a house in Paradise'",
+    "Sahih Muslim 1163 — 'The best prayer after the obligatory ones is the night prayer'",
+    "Sahih Bukhari 6410 — 'Allah is witr and loves witr, so perform witr'",
+    "Sahih Bukhari 6465 — 'The most beloved deeds to Allah are the most consistent, even if small'"
+  ],
+  "scholar_consensus": "Agreed: rawatib, Tahajjud, Duha, Witr are among the most emphasized voluntary prayers. Disputed: whether Witr is wajib (Hanafi) or strongly recommended sunnah (Maliki/Shafi'i/Hanbali). Disputed: exact count of rawatib.",
+  "madhab_positions": {
+    "hanafi": "Witr is wajib — missing it without excuse is sinful. 12 rawatib: 4 before Dhuhr, 2 after, 2 after Maghrib, 2 after Isha, 2 before Fajr. Tahajjud is highly recommended. 4 before Asr also a sunnah in the Hanafi school.",
+    "maliki": "Witr is sunnah mu'akkadah. Maliki rawatib: 2 before Fajr and 2 after Maghrib are the most confirmed. Some include 2 after Isha. Tahajjud and Duha are highly recommended.",
+    "shafii": "Witr is sunnah mu'akkadah. 12 rawatib as in the hadith of Muslim 728. Duha is a confirmed sunnah. Tahajjud is the most virtuous voluntary prayer.",
+    "hanbali": "Witr is sunnah mu'akkadah. Same 12 rawatib. Tahajjud especially praised. Duha is a confirmed sunnah. Ibn Qudamah discusses the great virtue of night prayer extensively in al-Mughni."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

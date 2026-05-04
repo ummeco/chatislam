@@ -1,0 +1,23 @@
+{
+  "slug": "zakah-on-salary",
+  "question": "How is zakah calculated on a salary or employment income?",
+  "category": "fiqh-zakah",
+  "summary": "Classical schools calculate zakah on accumulated savings after a lunar year; a contemporary view calculates it on income as earned, but the classical method remains dominant.",
+  "answer": "Salary income presents a modern application of classical zakah principles. There are two main approaches among scholars.\n\n**Classical approach (all four traditional schools):**\nA salary is not treated as a standalone zakatable asset in the moment it is received. Rather, it is added to one's existing savings pool. The zakah calculation is done on one's total zakatable assets on the annual zakah date:\n\n1. Choose a fixed date (e.g., 1st Ramadan each year)\n2. On that date, calculate all zakatable assets: cash in bank, physical cash, gold/silver, trade goods, receivable debts\n3. Subtract immediate debts (disputed in some schools)\n4. If the total reaches nisab (85g gold or 595g silver equivalent), pay 2.5% on the full amount\n5. Salaries received throughout the year get absorbed into this pool\n\n**Contemporary / income zakah approach:**\nSome modern scholars and institutions (notably the Egyptian Dar al-Ifta under Sheikh Ali Gomaa, and others) have argued for a contemporary derivation: treat income like agricultural produce, where zakah is paid at the time of harvest. Under this view, 2.5% of gross salary (or net after necessities — scholars differ) would be paid monthly or annually.\n\nThis contemporary approach is held by a minority of classical jurists as well (attributed to some early scholars). It is gaining acceptance in some regions but is not the dominant classical position.\n\n**Which approach is correct?**\nThe classical savings-pool approach is the established position of the four schools. The income-zakah approach is a valid contemporary ijtihad but is not the dominant classical ruling. We present both honestly.\n\n**Practical classical method:**\n- Determine your zakah anniversary date (when you first owned nisab, or set a fixed date)\n- On that date each year, sum all cash and liquid assets\n- If total ≥ nisab and year has passed, pay 2.5% on the total\n- Salary received between the anniversary dates contributes to this pool",
+  "evidence_quran": ["9:103"],
+  "evidence_hadith": [
+    "Abu Dawud 1573 — 'There is no zakah on wealth until a year passes over it' (primary basis for the hawl requirement in classical approach)",
+    "Quran 2:267: 'Spend from the good things which you have earned...'"
+  ],
+  "scholar_consensus": "Agreed (classical schools): zakah is on accumulated wealth after hawl, not on income as received. Contemporary minority view: income zakah paid at time of receipt/annually on gross income. Both have scholarly grounding; classical hawl-based method is the established position.",
+  "madhab_positions": {
+    "hanafi": "Salary is added to the savings pool. Zakah is calculated on the anniversary date on total zakatable wealth. Debts owed to others may be subtracted from the zakatable total.",
+    "maliki": "Same classical savings-pool approach. Maliki scholars note that newly acquired wealth during the year (including salary) does not need a fresh 12-month count if it joins an existing holding that has already passed hawl.",
+    "shafii": "Same classical approach. An-Nawawi: each portion of wealth needs its own hawl from acquisition — but practically, if savings never dip below nisab, the anniversary date covers all added income.",
+    "hanbali": "Classical savings-pool approach. If a person receives salary and it joins an existing pool above nisab that has already completed hawl, the salary component is included in that year's zakah. No separate hawl required for additions to an existing nisab-reaching pool (majority Hanbali position)."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

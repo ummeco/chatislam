@@ -1,0 +1,23 @@
+{
+  "slug": "qibla-when-uncertain",
+  "question": "What do you do when you are uncertain about the direction of the qibla?",
+  "category": "fiqh-prayer",
+  "summary": "When the qibla direction is unknown, a person uses available indicators to make their best determination (ijtihad), and their prayer is valid even if they were wrong.",
+  "answer": "Facing the qibla (the direction of the Kaaba in Makkah) is a condition (shart) for the validity of prayer for those who are able. Allah says: 'So turn your face toward the Sacred Mosque. And wherever you are, turn your faces toward it.' (Quran 2:144, also 2:149-150).\n\n**When the qibla is unknown or unclear:**\nA person must make an effort (ijtihad) using available means to determine the direction. Available indicators include: the position of the sun, moon, and stars (particularly Polaris in the northern hemisphere, which points north); local knowledge; a compass; a qibla app; or asking someone who knows.\n\n**If no determination can be made:**\nAll four schools agree that if after genuine effort no determination is possible, the person prays in whatever direction they believe to be the qibla based on their best judgment (ghalabat al-zann), and their prayer is valid.\n\n**Discovering error after prayer:**\nThe Maliki, Shafi'i, and Hanbali schools hold that if a person made sincere ijtihad and prayed, then later discovered they faced the wrong direction, the prayer is valid and does not need to be repeated. The Hanafi school distinguishes: if the error was discovered during the prayer, the person turns toward the correct direction without restarting; if discovered after, the prayer is valid and not repeated.\n\n**For those who can see the Kaaba directly:**\nThey must face the exact Kaaba ('ayn al-Ka'bah). For those at a distance, facing the general direction of Makkah (jihat al-Ka'bah) is sufficient — there is some scholarly debate about the degree of precision required, but the dominant view is that the prayer direction need not be mathematically precise.\n\n**Voluntary prayer while traveling:**\nAll four schools permit praying voluntary prayers on a moving vehicle (ship, car, plane) without facing the qibla, based on the hadith of Ibn Umar that the Prophet ﷺ would pray on his riding animal in whatever direction it was traveling (Sahih Muslim 700).",
+  "evidence_quran": ["2:144", "2:149", "2:150"],
+  "evidence_hadith": [
+    "Sahih Muslim 700 — Ibn Umar: The Prophet ﷺ prayed on his camel in whatever direction it faced during travel",
+    "Abu Dawud 1226 / Tirmidhi 345 — 'What is between the east and the west is qibla' (for those in regions where Makkah is to the south)"
+  ],
+  "scholar_consensus": "Agreed: facing qibla is obligatory when able; ijtihad is required when direction is unknown; prayer after sincere ijtihad is valid even if later found to be wrong direction. Minor dispute on precision required for distant worshippers.",
+  "madhab_positions": {
+    "hanafi": "Facing the general direction (jihat) of the Kaaba is sufficient for those at a distance. If during prayer one realizes they are facing the wrong direction, they turn mid-prayer without restarting. Prayer completed in wrong direction after valid ijtihad need not be repeated.",
+    "maliki": "The exact direction is required only for those who can see the Kaaba. For others, the general direction suffices. Ijtihad is obligatory before prayer. Error discovered after prayer with valid ijtihad: no repetition required.",
+    "shafii": "General direction is sufficient for distant worshippers. One must put in effort to determine the qibla before praying. If one prays without effort and faces the wrong direction, the prayer is invalid and must be repeated.",
+    "hanbali": "Similar to Shafi'i — effort must be made; general direction is sufficient. Prayer after proper ijtihad is valid even if error is discovered later. Same rule as Shafi'i on praying without making effort (invalid if wrong)."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

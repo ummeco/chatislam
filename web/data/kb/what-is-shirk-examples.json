@@ -1,0 +1,24 @@
+{
+  "slug": "what-is-shirk-examples",
+  "question": "What is shirk? What are examples of shirk?",
+  "category": "fiqh-aqeedah",
+  "summary": "Shirk is associating partners with Allah in His divinity, lordship, or worship; it is the one sin Allah does not forgive if died upon without repentance.",
+  "answer": "Shirk (polytheism, associating partners with Allah) is the gravest sin in Islam. Allah says: 'Indeed, Allah does not forgive that partners be associated with Him, but He forgives what is less than that for whom He wills.' (Quran 4:48). And: 'Whoever associates partners with Allah, Allah has forbidden him Paradise, and his refuge is the Fire.' (Quran 5:72)\n\n**Categories of shirk:**\n\n**1. Shirk in Lordship (Rububiyyah):** Believing anything besides Allah creates, sustains, or controls the universe. Example: believing a deity shares Allah's power to create and sustain all things.\n\n**2. Shirk in Allah's Names and Attributes (Asma wa Sifat):** Attributing Allah's unique attributes to creation, or denying them. Example: believing an idol has the attribute of hearing all things as Allah does.\n\n**3. Shirk in Worship (Uluhiyyah/Ibadah) — the most common category discussed:**\nDirecting any act of worship to other than Allah. Worship (ibadah) includes: prayer, du'a (supplication), sacrifice, vow, prostration of worship, fear, hope, and love in the manner specific to Allah.\n\n**Clear examples of major shirk (shirk akbar):**\n- Making du'a (supplications) to the dead — asking a deceased saint to grant needs directly (see related entry: asking-deceased-for-help)\n- Prostrating in worship to an idol, creation, or person\n- Sacrificing animals in the name of other than Allah\n- Making vows to graves, shrines, or saints\n\n**Minor shirk (shirk asghar):**\n- Riya' (showing off in worship for people's praise): The Prophet ﷺ said: 'What I fear most for you is the minor shirk — riya'.' (Ahmad 23119, graded hasan)\n- Swearing by other than Allah: 'Whoever swears by other than Allah has committed shirk.' (Abu Dawud 3251, Tirmidhi 1535)\n\n**Important editorial note (per theological guidelines):**\nWe present the ruling on practices, not declare individual Muslims mushrikeen. A person who prays at a grave out of cultural confusion about tawassul is not treated the same as someone who knowingly commits shirk. Ignorance is a valid excuse before the argument is established. We follow the principle: correct the practice, do not declare the person.",
+  "evidence_quran": ["4:48", "5:72", "39:65", "31:13"],
+  "evidence_hadith": [
+    "Ahmad 23119 — 'What I fear most for you is minor shirk — riya'",
+    "Abu Dawud 3251 / Tirmidhi 1535 — 'Whoever swears by other than Allah has committed shirk'",
+    "Sahih Bukhari 4497 — Luqman's advice to his son: 'Do not associate partners with Allah; indeed shirk is a great injustice'"
+  ],
+  "scholar_consensus": "Agreed (all schools and all of Ahl us-Sunnah): major shirk is the gravest sin; it negates all deeds if died upon; du'a to the dead is major shirk. Agreed: riya and swearing by other than Allah are minor shirk. Agreed: ignorance before the argument is established is an excuse.",
+  "madhab_positions": {
+    "hanafi": "Major shirk is the gravest sin. The Hanafi school identifies the same categories. Hanafi scholars discuss that a Muslim who commits major shirk has left Islam — but this ruling on an individual requires the hujjah (argument/evidence) to have been established against them first.",
+    "maliki": "Same position on shirk categories. Maliki scholars emphasize tawhid al-ibadah (worship directed to Allah alone) as the core of the Islamic creed.",
+    "shafii": "Same categories. Shafi'i aqeedah is based on Ash'ari and Athari principles — the Asma wa Sifat dimension is discussed in depth by Shafi'i theologians.",
+    "hanbali": "Most detailed classical treatment of shirk categories comes from the Hanbali tradition via Ibn Taymiyyah's 'Qa'idah Jaliyyah' and Ibn al-Qayyim's 'Madarij al-Salikin'. The three-category framework (rububiyyah/asma-sifat/uluhiyyah) is most associated with the Athari/Hanbali tradition."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

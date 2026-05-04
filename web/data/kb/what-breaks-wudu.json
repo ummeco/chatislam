@@ -1,0 +1,24 @@
+{
+  "slug": "what-breaks-wudu",
+  "question": "What breaks wudu (ablution)?",
+  "category": "fiqh-purification",
+  "summary": "Wudu is nullified by natural discharges, loss of consciousness, and certain physical contact depending on the madhab.",
+  "answer": "Wudu (ritual purity) is a precondition for prayer (Quran 5:6). Scholars agree on several nullifiers and differ on others.\n\n**Agreed nullifiers (across all four schools):**\n1. Any discharge from the private parts — urine, feces, gas, or pre-seminal fluid (madhi)\n2. Deep sleep that removes one's awareness\n3. Loss of consciousness (fainting, intoxication, insanity)\n\n**Eating camel meat:** The Hanbali school, following a hadith narrated by Jabir ibn Samurah (Sahih Muslim 360), holds that eating camel meat breaks wudu. The Hanafi, Maliki, and Shafi'i schools do not consider this a nullifier, viewing the hadith as an instruction about precaution rather than a legal nullifier.\n\n**Touching the opposite gender:** The Shafi'i school holds that skin-to-skin contact between a man and a non-mahram woman breaks wudu (based on Quran 5:6, where 'lāmastum al-nisā'' is interpreted literally). The Hanafi school interprets this as sexual intercourse only. The Maliki position distinguishes between contact with and without desire. The Hanbali school generally aligns with the Shafi'i view but with some conditions.\n\n**Touching the private parts:** The Maliki, Shafi'i, and Hanbali schools hold that touching one's private parts (front or back) directly with the palm breaks wudu, based on the hadith: 'Whoever touches his private parts should perform wudu' (Abu Dawud 181, graded hasan by al-Albani). The Hanafi school does not consider this a nullifier unless accompanied by desire.\n\n**Laughing during prayer:** The Hanafi school uniquely holds that audible laughter (qahqahah) during prayer breaks both the prayer and the wudu, based on narrations from the Companions. The other three schools hold it only invalidates the prayer, not the wudu.\n\nFor doubt about whether wudu was broken: the general rule is that certainty is not removed by doubt. If one is certain of having wudu but doubtful whether it was broken, the wudu stands.",
+  "evidence_quran": ["5:6"],
+  "evidence_hadith": [
+    "Sahih Muslim 360 — Jabir ibn Samurah: 'Should we perform wudu after eating camel meat?' The Prophet ﷺ said: 'Yes.' (basis for Hanbali position)",
+    "Abu Dawud 181 — Busrah bint Safwan: 'Whoever touches his private parts should perform wudu.' (graded hasan)",
+    "Sahih Bukhari 175 — Ibn Abbas: wudu is required from what exits, not what enters"
+  ],
+  "scholar_consensus": "Agreed: urine, feces, gas, deep sleep, loss of consciousness nullify wudu. Disputed: camel meat (Hanbali yes, others no), touching opposite-gender skin (Shafi'i/Hanbali yes, Hanafi no), touching private parts (majority yes, Hanafi conditions it).",
+  "madhab_positions": {
+    "hanafi": "Nullifiers: discharges from private parts, deep sleep, unconsciousness, audible laughter during prayer, vomiting a mouthful. Touching skin of opposite gender and touching private parts do NOT break wudu unless desire is involved.",
+    "maliki": "Nullifiers: discharges, sleep that removes alertness, unconsciousness, touching private parts with palm. Touching opposite-gender skin breaks wudu if accompanied by desire or if one is known to experience desire from such contact.",
+    "shafii": "Nullifiers: discharges, sleep in any position other than sitting firmly, unconsciousness, skin-to-skin contact with non-mahram of opposite gender, touching private parts with inner palm.",
+    "hanbali": "Nullifiers: discharges, sleep, unconsciousness, eating camel meat, touching private parts, skin contact with opposite gender (with some conditions). Most comprehensive list of nullifiers among the four schools."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

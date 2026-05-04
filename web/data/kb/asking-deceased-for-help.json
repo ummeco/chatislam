@@ -1,0 +1,24 @@
+{
+  "slug": "asking-deceased-for-help",
+  "question": "Is it permissible to ask deceased people or saints for help or intercession?",
+  "category": "fiqh-aqeedah",
+  "summary": "Directing du'a (supplication) to the deceased — asking them to grant needs directly — is shirk according to scholarly consensus on tawhid al-ibadah; this is distinct from tawassul (seeking intercession through one's rank) which is disputed.",
+  "answer": "This question requires careful distinction between two different practices that are often confused.\n\n**Practice 1: Du'a to the deceased — directing supplication to the dead**\nAsking a deceased person ('O Saint X, cure me,' 'O Prophet, grant me this thing') is directing worship to other than Allah. Du'a is worship (ibadah): 'Du'a is the essence of worship.' (Tirmidhi 3371, graded hasan sahih).\n\nThe scholarly consensus on tawhid al-ibadah: directing du'a to the dead is shirk. This is the hard-line position across all four classical schools and is not a disputed intra-Sunni matter. Quran 35:14: 'If you call upon them, they cannot hear your du'a; and if they could hear, they could not respond to you. On the Day of Resurrection they will deny your associating them.'\n\nIbn Taymiyyah in 'Qa'idah fi al-Tawassul' and 'Qa'idah Jaliyyah' documents this extensively. Ibn al-Qayyim elaborates in 'Ighathah al-Lahfan.'\n\n**Practice 2: Tawassul — types**\nTawassul means using a means (wasila) to come close to Allah. There are disputed and undisputed types:\n\n**Undisputed permissible tawassul:**\n- Tawassul by one's own deeds: 'O Allah, I ask You by my love for You...' — permitted by all\n- Tawassul by asking a living righteous person to make du'a for you: permitted by all (Umar ibn al-Khattab asked Abbas RA to make du'a for rain — Bukhari 1010)\n\n**Disputed: Tawassul by the rank of a person (tawassul bil-jah):**\nSaying 'O Allah, grant me by the rank/honor of the Prophet ﷺ' — not directing du'a to the Prophet, but asking Allah by his rank. Ibn Taymiyyah held this is bid'ah for other than the Prophet ﷺ. Many Maliki, Shafi'i, and Hanbali scholars considered this permissible. This is a genuine intra-Sunni scholarly dispute, not a matter of shirk.\n\n**What is NOT disputed:** Directing du'a directly to the deceased, asking the deceased to grant needs themselves, is shirk — all classical schools agree on this. The confusion arose from imprecise terminology mixing this with the disputed tawassul bil-jah.",
+  "evidence_quran": ["35:14", "46:5", "2:186"],
+  "evidence_hadith": [
+    "Tirmidhi 3371 — 'Du'a is the essence of worship (al-ibadah)'",
+    "Sahih Bukhari 1010 — Umar asked Abbas (living) to make du'a for rain — evidence for tawassul through the living",
+    "Quran 35:14 — 'If you call upon them, they cannot hear your du'a'"
+  ],
+  "scholar_consensus": "Agreed (all four classical schools): directing du'a to the deceased to grant needs is shirk (tawhid al-ibadah). Disputed: tawassul bil-jah (by the rank of a person) — permitted by many Maliki/Shafi'i/Hanbali scholars; considered bid'ah by Ibn Taymiyyah. Not disputed: tawassul through a living person's du'a.",
+  "madhab_positions": {
+    "hanafi": "Directing du'a to the deceased is shirk. This is the unanimous position. The Hanafi school does permit tawassul bil-jah (by rank) in some forms. Hanafi scholars emphasize the critical distinction between asking Allah by the Prophet's rank versus asking the Prophet himself.",
+    "maliki": "Directing du'a to the deceased is shirk — the primary tawhid al-ibadah principle. Tawassul bil-jah through the Prophet ﷺ is permitted in the Maliki school (Ibn Abi Zayd al-Qayrawani mentions forms of tawassul). The key: du'a is always to Allah.",
+    "shafii": "Directing du'a to the deceased is shirk. Many Shafi'i scholars permit tawassul by the Prophet's rank. An-Nawawi discusses visiting graves of the pious and making du'a for them (not to them). The direction of du'a is always toward Allah.",
+    "hanbali": "Directing du'a to the deceased is shirk — the most detailed classical exposition of this ruling comes from Ibn Taymiyyah and Ibn al-Qayyim, both Hanbali. Tawassul bil-jah: Ibn Taymiyyah held it as bid'ah. Other Hanbali scholars permitted it with conditions. The shirk line (du'a to the dead) is undisputed within the school."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

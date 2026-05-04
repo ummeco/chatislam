@@ -1,0 +1,23 @@
+{
+  "slug": "smoking-tobacco",
+  "question": "Is smoking tobacco haram in Islam?",
+  "category": "fiqh-halal-haram",
+  "summary": "Contemporary scholarly consensus considers smoking haram or at minimum strongly forbidden due to established health harms; classical scholars who lived before tobacco reached the Muslim world obviously did not address it directly.",
+  "answer": "Tobacco was introduced to the Muslim world from the Americas in the 16th century CE (approximately 1000 AH). Early scholars debated it with some permitting and others prohibiting it. With the establishment of smoking's severe health harms in the 20th century, the contemporary scholarly consensus shifted strongly toward prohibition.\n\n**Contemporary mainstream position — haram:**\nThe Islamic Fiqh Academy (OIC), the Permanent Committee for Islamic Research and Fatwa (Saudi Arabia), and the majority of contemporary scholars declare smoking haram based on:\n\n1. **Clear harm to health (darar):** 'Do not harm yourselves' — the principle of la darar wal la dirar (no harm and no causing harm) is firmly established in Islamic jurisprudence (derived from the prophetic hadith: 'There should be neither harming nor reciprocating harm,' Ibn Majah 2340, classified as a foundational legal maxim). Smoking causes verified, severe, documented harm to health.\n\n2. **Wasting wealth (israf):** Spending money on something harmful is considered israf (wastefulness), which Allah condemns (Quran 17:26-27).\n\n3. **Harm to others (passive smoking):** Causing harm to others by exposing them to secondhand smoke violates the no-harm principle.\n\n4. **Analogy to khamr:** Although tobacco is not intoxicating in the same way as khamr, it is addictive and harmful — the purpose of many prohibitions is the removal of harm and addiction.\n\n**Historical minority — makruh (disliked):**\nSome early scholars who lived before the health evidence was established classified smoking as makruh (disliked) rather than haram. This position is largely superseded in contemporary scholarship given the medical evidence.\n\n**Ramadan:**\nAll schools and contemporary scholars agree that smoking during the day in Ramadan breaks the fast.",
+  "evidence_quran": ["2:195", "17:26", "4:29"],
+  "evidence_hadith": [
+    "Ibn Majah 2340 — 'There should be neither harming nor reciprocating harm' (la darar wal la dirar) — foundational principle used to prohibit smoking",
+    "Sahih Bukhari 5778 — prohibition of consuming poisons and self-harm"
+  ],
+  "scholar_consensus": "Contemporary consensus among major scholarly institutions: smoking is haram due to established health harms. Historical early scholars (pre-modern) differed: some said haram, some makruh, some permitted. Modern medical evidence has settled the scholarly discussion in favor of prohibition for the overwhelming majority.",
+  "madhab_positions": {
+    "hanafi": "Contemporary Hanafi fatwa bodies (Darul Ifta, Deoband, etc.) declare smoking haram based on la darar principle. Historical early Hanafi scholars who encountered tobacco gave varied opinions — those living before health evidence was established sometimes said makruh.",
+    "maliki": "Contemporary Maliki scholars declare smoking haram. The Maliki legal maxim 'averting harm takes priority over bringing benefit' strongly supports prohibition.",
+    "shafii": "Contemporary Shafi'i scholars declare smoking haram. The Shafi'i prohibition of consuming harmful substances applies directly.",
+    "hanbali": "Strongly haram per contemporary Hanbali scholars. Ibn Baz and Ibn al-Uthaymeen both declared smoking haram explicitly in contemporary fatwas, citing health harm and waste of money."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

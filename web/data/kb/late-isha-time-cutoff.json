@@ -1,0 +1,25 @@
+{
+  "slug": "late-isha-time-cutoff",
+  "question": "Until when can Isha prayer be prayed? What is the time cutoff?",
+  "category": "fiqh-prayer",
+  "summary": "Isha may be prayed until midnight (strongly preferred) or until dawn according to most schools, though delaying past midnight is disliked.",
+  "answer": "The time for Isha begins when the red twilight (shafaq) disappears from the sky after sunset, and it extends until the following Fajr time begins.\n\n**Start of Isha time:**\nAll four schools agree that Isha begins when the red twilight (shafaq ahmar) disappears from the western horizon. The Hanafi school uniquely holds there is a secondary marker: the white twilight (shafaq abyad) disappearing, which extends the start of Isha time slightly. In practice, this can delay the start by 30-60 minutes in some latitudes.\n\n**Preferred time:**\nDelaying Isha somewhat is recommended. The Prophet ﷺ said: 'If it were not a hardship for my ummah, I would command them to delay Isha until a third of the night has passed' (Tirmidhi 167, graded hasan). Abu Barzah (RA) reported the Prophet ﷺ liked to delay Isha (Sahih Bukhari 547).\n\n**The debate on the end time:**\n\n**Midnight position (preferred):** The Prophet ﷺ said: 'The time of Isha extends until midnight (nisf al-layl).' (Sahih Muslim 612). This is the position the majority treat as the end of the preferred time window.\n\n**Until dawn:** Some scholars, including within the Shafi'i and Hanbali schools, note that Isha time technically extends until the beginning of Fajr time. The hadith 'The time for Isha is until the middle of the night' is understood as the end of the preferred time, not the absolute deadline. Praying after midnight and before Fajr is valid but disfavored.\n\n**Sleeping before Isha:**\nAll four schools discourage sleeping before Isha is prayed. The Prophet ﷺ disliked sleeping before Isha and talking after it (Sahih Bukhari 568).\n\n**High latitude considerations:**\nIn summer months at high latitudes (above ~45° N or S), the red twilight may not disappear at all, making the start of Isha time indeterminate. Scholars recommend using a fixed time based on 15° or 18° below horizon, or following local Islamic authority conventions. This is an area of genuine contemporary scholarly discussion.",
+  "evidence_quran": ["17:78"],
+  "evidence_hadith": [
+    "Sahih Muslim 612 — 'The time of Isha extends until midnight (nisf al-layl)'",
+    "Tirmidhi 167 — 'If it were not a hardship, I would command delaying Isha until a third of the night'",
+    "Sahih Bukhari 547 — Abu Barzah: the Prophet ﷺ liked to delay Isha and disliked sleeping before it",
+    "Sahih Bukhari 568 — Prohibition of sleeping before Isha and unnecessary talk after it"
+  ],
+  "scholar_consensus": "Agreed: Isha begins after red twilight disappears; midnight is the preferred end of valid time; the absolute deadline (for praying without sin) is Fajr time. Disputed: Hanafi white-twilight start; definition of 'midnight' (local solar midnight vs. equal halving of night).",
+  "madhab_positions": {
+    "hanafi": "Isha begins after white twilight (shafaq abyad) disappears — later than other schools. Preferred time ends at one-third of the night. Permissible time extends to true midnight. Praying after midnight is still valid but sinful to have delayed without excuse.",
+    "maliki": "Isha begins at red twilight disappearance. Time extends until Fajr but praying after midnight is makruh. Recommended: pray before midnight.",
+    "shafii": "Isha begins at red twilight. Preferred time: midnight. Permissible time: until Fajr. Praying after midnight is valid but contrary to the sunnah. An-Nawawi: the time has two divisions — ikhtiyariyyah (chosen, until midnight) and daruriyyah (necessity, until Fajr).",
+    "hanbali": "Same two-period division as Shafi'i. Isha begins at red twilight. Preferred until midnight; valid until Fajr. Disliked to delay past midnight without necessity."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

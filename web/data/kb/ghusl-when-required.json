@@ -1,0 +1,24 @@
+{
+  "slug": "ghusl-when-required",
+  "question": "When is ghusl (full ritual bath) required?",
+  "category": "fiqh-purification",
+  "summary": "Ghusl is obligatory after sexual discharge, intercourse, menstruation, postnatal bleeding, and death.",
+  "answer": "Ghusl is the full ritual bath that removes major ritual impurity (janabah, hayd, nifas). The Quran commands it in two contexts: 'And if you are in a state of janabah, purify yourselves' (5:6), and instructs that menstruating women should not be approached until they are pure and have purified themselves.\n\n**Obligatory causes of ghusl (agreed by all four schools):**\n\n1. **Sexual intercourse** — regardless of whether ejaculation occurs. The Prophet ﷺ said: 'When a man sits between the four parts of a woman and exerts himself, ghusl becomes obligatory' (Sahih Muslim 348). This is the basis for the rule even without ejaculation.\n\n2. **Ejaculation (maniyy)** — whether through intercourse, wet dream (ihtilam), or otherwise. The Prophet ﷺ said: 'Water (ghusl) is from water (ejaculation)' (Sahih Muslim 343), though scholars clarify that intercourse without ejaculation also requires ghusl based on other proofs.\n\n3. **Menstruation (hayd)** — when the period ends, ghusl is required before resuming prayer, fasting, and intercourse. Quran 2:222: 'Do not approach them until they are pure; when they have purified themselves, then come to them.'\n\n4. **Postnatal bleeding (nifas)** — analogous to menstruation by scholarly consensus.\n\n5. **Death of a Muslim** — ghusl is a communal obligation (fard kifayah) on the living to wash the deceased.\n\n**Recommended (mustahabb) occasions:**\nFriday prayer (strongly recommended, some Hanbalis say obligatory), the two Eid prayers, entering ihram for Hajj or Umrah, after washing a deceased person.\n\n**Minimum requirements for valid ghusl:**\nAll schools agree the water must reach all skin surfaces. Differences exist on whether rinsing the mouth and nose are obligatory (Hanafi: yes, fard; Maliki/Shafi'i/Hanbali: sunnah). Intention (niyyah) is required by all schools except that the Hanafi school considers it a condition for rewarded ghusl but not for ritual validity.\n\n**A woman who had a wet dream:** All four schools agree that if a woman has a wet dream and finds moisture, ghusl is required. Aisha (RA) confirmed this and the Prophet ﷺ confirmed women have the same ruling (Sahih Bukhari 282).",
+  "evidence_quran": ["5:6", "2:222"],
+  "evidence_hadith": [
+    "Sahih Muslim 348 — 'When a man sits between the four parts of a woman and exerts himself, ghusl becomes obligatory'",
+    "Sahih Muslim 343 — 'Water is from water' (al-ma' min al-ma')",
+    "Sahih Bukhari 282 — Aisha: women also require ghusl after wet dreams with discharge"
+  ],
+  "scholar_consensus": "All four schools agree on the five obligatory causes. Differences are on the details of ghusl performance (mouth/nose rinsing) and whether Friday ghusl is obligatory or strongly recommended.",
+  "madhab_positions": {
+    "hanafi": "Obligatory causes: janabah (intercourse or ejaculation), hayd, nifas. For the ghusl itself, rinsing mouth and nose (madmadah and istinshaq) are fard, not just sunnah. Death washing is fard kifayah.",
+    "maliki": "Same five obligatory causes. Rinsing mouth and nose are sunnah. The Maliki school also requires ghusl for the person who washes the deceased. Unique position: if semen is seen on waking but the person does not recall a dream, ghusl is still required.",
+    "shafii": "Same five obligatory causes. Mouth and nose rinsing are sunnah in ghusl. Niyyah is an explicit condition for the ghusl to be valid. Requires intent to remove the specific impurity.",
+    "hanbali": "Same five obligatory causes. Some scholars (Ibn Qudamah) consider Friday ghusl obligatory, not merely recommended. Rinsing mouth and nose are wajib (obligatory) in ghusl according to the stronger position in the school."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

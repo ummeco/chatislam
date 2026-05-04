@@ -1,0 +1,24 @@
+{
+  "slug": "alcohol-cooking-evaporation",
+  "question": "Does cooking food with alcohol make it halal if the alcohol evaporates?",
+  "category": "fiqh-halal-haram",
+  "summary": "Most scholars hold that cooking with alcohol does not make the dish halal even if the alcohol evaporates, because the original substance was prohibited.",
+  "answer": "The question of cooking with alcohol (wine, spirits, beer) touches on two principles: the prohibition of khamr (intoxicating drinks) and the principle of istihalah (transformation purifying a substance).\n\n**The prohibition:**\nKhamr (wine and by extension all intoxicants) is prohibited in Quran 5:90-91. The Prophet ﷺ said: 'Every intoxicant is khamr, and every khamr is haram.' (Sahih Muslim 2003). The prohibition is broad.\n\n**Does cooking/evaporation purify it?**\n\n**Majority view (Maliki, Shafi'i, Hanbali, and the dominant contemporary Hanafi position):**\nCooking with khamr does not make the resulting dish halal. The reasoning:\n1. Khamr is intrinsically haram (not merely because of its intoxicating properties in the quantity consumed, but because it is a prohibited substance).\n2. Using a haram ingredient in cooking does not purify it — even if the alcohol evaporates, the dish was prepared with a prohibited substance.\n3. The Prophet ﷺ prohibited using khamr in any way, including as an ingredient (Abu Dawud 3675: 'Allah has prohibited khamr and the price of khamr, the pig and the price of pigs...').\n\n**Minority Hanafi view:**\nA classical Hanafi opinion holds that khamr used in cooking, if the alcohol evaporates and no trace remains, may be permissible because istihalah has occurred. However, this is not the dominant view even among contemporary Hanafi scholars, who generally prohibit using alcohol in cooking.\n\n**Small trace amounts (flavor extracts, etc.):**\nSome contemporary scholars differentiate between: (a) cooking with alcoholic beverages deliberately added for flavor (clearly haram by majority), and (b) minute trace amounts from natural fermentation or manufacturing processes (more debated). For (b), the principle of istihsan (juristic preference) and la darar (avoiding harm) can be applied.\n\n**Vanilla extract:**\nMany vanilla extracts contain ethanol as a solvent. Contemporary scholars differ: some say it is permissible because the ethanol is not from khamr grapes/dates but from grain (a non-khamr source) and is used as a solvent in tiny amounts. Others say any ethanol-containing product is prohibited. This specific question has substantial scholarly disagreement.",
+  "evidence_quran": ["5:90", "5:91"],
+  "evidence_hadith": [
+    "Sahih Muslim 2003 — 'Every intoxicant is khamr, and every khamr is haram'",
+    "Abu Dawud 3675 — prohibition of the price of khamr and its use",
+    "Abu Dawud 3672 — a person asked the Prophet ﷺ about cooking with khamr; the Prophet ﷺ said to pour it away"
+  ],
+  "scholar_consensus": "Agreed (majority): cooking with alcoholic beverages does not make the dish halal. Disputed: trace amounts from manufacturing processes or non-grape/date ethanol sources. Disputed: whether istihalah applies to evaporated cooking alcohol (minority Hanafi view vs. majority).",
+  "madhab_positions": {
+    "hanafi": "Dominant contemporary Hanafi position: khamr (wine from grapes/dates) used in cooking makes the dish haram even if alcohol evaporates. Classical minority Hanafi view allowed istihalah for cooked alcohol. Non-khamr alcohol (from grain, etc.) is a separate, more debated category in the Hanafi school.",
+    "maliki": "Cooking with khamr is haram and the dish remains haram. Istihalah does not apply here. Any dish deliberately prepared with wine or spirits is impermissible.",
+    "shafii": "Same — dish cooked with khamr is haram regardless of evaporation. The khamr was introduced intentionally, which disqualifies the dish.",
+    "hanbali": "Same position — using khamr in cooking is haram and the product is haram. Ibn Qudamah and classical Hanbali sources are unambiguous on this."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

@@ -1,0 +1,24 @@
+{
+  "slug": "fasting-when-traveling",
+  "question": "Do you have to fast during Ramadan when traveling?",
+  "category": "fiqh-fasting",
+  "summary": "A traveler may break the fast and make up the missed days later; fasting while traveling is also valid if not burdensome.",
+  "answer": "The Quran explicitly provides a concession for travelers: 'Whoever is ill or on a journey, then an equal number of other days.' (Quran 2:185). This establishes the permission to break the fast during travel and make up the days.\n\n**The main positions:**\n\n**Can a traveler fast or must they break the fast?**\nThe majority of scholars (Hanafi, Maliki, Shafi'i, and one view in Hanbali) hold that fasting while traveling is permissible and valid — the concession exists but the traveler may choose to fast. The Prophet ﷺ sometimes fasted while traveling and sometimes broke his fast (Sahih Bukhari 1942, 1943).\n\nThe Prophet ﷺ said: 'It is not righteousness to fast during travel.' (Sahih Bukhari 1946) — Scholars interpret this as applying when fasting causes hardship, not as an absolute prohibition on traveling fasts.\n\n**Which is better — fasting or breaking?**\nThe majority view: if fasting causes no hardship, it may be better to fast so as not to have to make up days later. However, if there is hardship, breaking the fast is clearly better. The Prophet ﷺ said: 'Allah loves that His concessions be acted upon, just as He dislikes that His prohibitions be committed.' (Sahih Ahmad, graded hasan by Ibn Hajar)\n\n**The Hanbali distinction:**\nSome Hanbali scholars held that it is always better to take the concession and break the fast during travel, based on the hadith 'It is not righteousness to fast during travel.' Ibn Qudamah discusses both views.\n\n**Travel conditions that apply:**\nThe same travel distance threshold that allows qasr prayer (approximately 77-81 km depending on school) also applies to breaking the Ramadan fast.\n\n**Making up the days:**\nMissed days must be made up before the following Ramadan arrives. If they are not made up without excuse and the next Ramadan begins, a fidyah (feeding a poor person per missed day) is added alongside the makeup according to the majority.",
+  "evidence_quran": ["2:185"],
+  "evidence_hadith": [
+    "Sahih Bukhari 1942 — Ibn Abbas: The Prophet ﷺ fasted during some journeys and broke his fast on others",
+    "Sahih Bukhari 1946 — 'It is not righteousness to fast during travel' (when causing hardship)",
+    "Sahih Bukhari 1943 — Hamza ibn Amr al-Aslami asked: 'I have the strength to fast during travel — is there any harm?' The Prophet ﷺ said: 'It is a concession from Allah; whoever takes it has done well, and whoever prefers to fast, there is no blame.'"
+  ],
+  "scholar_consensus": "Agreed: breaking the fast during travel is permitted; missed days must be made up. Disputed: whether fasting or breaking is better when no hardship exists. Agreed: travel distance threshold same as for qasr prayer.",
+  "madhab_positions": {
+    "hanafi": "Breaking the fast during travel is permitted; fasting is also valid. If fasting is not burdensome, either is acceptable. Qada required for any broken day.",
+    "maliki": "Same — both fasting and breaking are valid. If breaking causes no disruption to the fast quality (i.e., fasting is easy), fasting is slightly preferable to avoid qada debt. If hardship exists, breaking is better.",
+    "shafii": "Fasting while traveling is valid. If hardship is present, breaking is better. If no hardship, either is fine — some Shafi'i scholars prefer fasting to avoid accumulating qada days.",
+    "hanbali": "A stronger position within the school: taking the concession and breaking the fast is generally preferable (or even superior) during travel, citing the hadith about acting on Allah's concessions. Fasting is still valid. Ibn Qudamah reviews both positions in al-Mughni."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

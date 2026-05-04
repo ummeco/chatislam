@@ -1,0 +1,24 @@
+{
+  "slug": "halal-meat-criteria",
+  "question": "What makes meat halal? What are the criteria for halal slaughter?",
+  "category": "fiqh-halal-haram",
+  "summary": "Halal meat requires: a Muslim (or Jew/Christian per some schools) slaughterer, invocation of Allah's name, a sharp instrument, and severing the key vessels in the throat.",
+  "answer": "The Quran permits: 'Eat of that over which the name of Allah has been mentioned' (Quran 6:118) and forbids: 'Forbidden to you are dead animals, blood, the flesh of swine, and that over which other than Allah's name has been invoked.' (Quran 5:3)\n\n**Conditions for halal slaughter (dhabihah):**\n\n**1. The slaughterer's identity:**\n- All schools agree: a Muslim may perform halal slaughter.\n- Quran 5:5 permits the food of Ahl al-Kitab (People of the Book — Jews and Christians). The Hanafi, Maliki, and Hanbali schools permit meat slaughtered by Jews and Christians. The Shafi'i school also permits this in principle but many Shafi'i scholars add conditions about the specific prayer said during slaughter.\n- An atheist or polytheist's slaughter is not halal according to all schools.\n\n**2. Invocation of Allah's name (tasmiyah):**\n- All schools require mention of Allah's name. 'Do not eat of that over which Allah's name has not been mentioned.' (Quran 6:121)\n- Hanafi: intentionally omitting the tasmiyah renders the meat haram. Forgetting it is excused.\n- Maliki: forgetting the tasmiyah is also excused. Intentional omission makes it haram.\n- Shafi'i: the tasmiyah is strongly recommended (sunnah) but NOT a condition of halal — omitting it intentionally does not make the meat haram per the dominant Shafi'i view.\n- Hanbali: intentional omission makes the meat haram. Forgetting is excused. (Same as Hanafi/Maliki in effect.)\n\n**3. The method — severing key vessels:**\nAll schools require severing at minimum: the trachea (windpipe) and the esophagus. The Maliki school adds the two jugular veins as a condition. The other schools include the jugular veins as strongly recommended.\n\n**4. A sharp instrument:**\nThe Prophet ﷺ said: 'Hasten the death [of the animal]; sharpen your blades and spare the animal suffering.' (Sahih Muslim 1955)\n\n**Mechanical slaughter:**\nContemporary scholars differ on whether machine slaughter is halal if a Muslim invokes the name of Allah once at the start of the process. Most Hanafi-influenced scholars and many others accept this. Some traditional Maliki and Shafi'i scholars require an individual tasmiyah per animal.",
+  "evidence_quran": ["5:3", "5:5", "6:118", "6:121"],
+  "evidence_hadith": [
+    "Sahih Muslim 1955 — 'Hasten the death; sharpen your blades and spare the animal suffering'",
+    "Sahih Bukhari 2488 — slaughter method demonstrated by the Prophet ﷺ",
+    "Abu Dawud 2820 — conditions on correct slaughter procedure"
+  ],
+  "scholar_consensus": "Agreed: Muslim slaughterer, method of severing trachea and esophagus, and name of Allah are required. Agreed: meat of People of the Book is generally permitted (based on Quran 5:5). Disputed: whether tasmiyah is a hard condition (Hanafi/Maliki/Hanbali) or recommended (Shafi'i). Disputed: machine slaughter.",
+  "madhab_positions": {
+    "hanafi": "Muslim or Kitabi (Jewish/Christian) slaughterer. Tasmiyah is obligatory — intentional omission = haram. Forgetting = halal. Must sever: trachea, esophagus, and both jugular veins (cutting 3 of 4 suffices). Machine slaughter generally acceptable if tasmiyah is said.",
+    "maliki": "Muslim or Kitabi slaughterer. Tasmiyah required — intentional omission = haram. Must sever: trachea, esophagus, AND both jugular veins (Maliki is strictest on vessel requirement). Machine slaughter more debated; individual tasmiyah per animal preferred.",
+    "shafii": "Muslim or Kitabi slaughterer. Tasmiyah is sunnah — intentional omission does NOT make meat haram per dominant Shafi'i position. Must sever: trachea and esophagus minimum. Jugular veins strongly recommended.",
+    "hanbali": "Muslim or Kitabi slaughterer. Tasmiyah required — intentional omission = haram; forgetting = halal. Must sever: trachea and esophagus minimum; jugular veins strongly recommended. Machine slaughter accepted by many contemporary Hanbali scholars."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

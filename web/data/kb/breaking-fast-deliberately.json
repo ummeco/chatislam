@@ -1,0 +1,22 @@
+{
+  "slug": "breaking-fast-deliberately",
+  "question": "What is the expiation (kaffarah) for deliberately breaking the Ramadan fast?",
+  "category": "fiqh-fasting",
+  "summary": "Deliberately breaking the Ramadan fast through sexual intercourse requires kaffarah; deliberately eating or drinking requires qada and possibly kaffarah depending on the school.",
+  "answer": "Breaking the Ramadan fast deliberately is a grave matter. The ruling depends on how the fast was broken.\n\n**Kaffarah for sexual intercourse:**\nAll four schools agree: deliberately engaging in sexual intercourse during the day of Ramadan (while fasting) triggers the kaffarah. The Prophet ﷺ was approached by a man who had intercourse with his wife during the day in Ramadan and asked about expiation. The Prophet ﷺ gave the kaffarah in a specific order:\n\n1. Free a slave (if applicable; no longer practically applicable)\n2. Fast two consecutive months\n3. Feed 60 poor people (Sahih Bukhari 1936, Sahih Muslim 1111)\n\nThis is in addition to making up the day (qada).\n\n**Kaffarah for deliberate eating or drinking:**\n\n**Hanafi position:** Deliberate eating, drinking, or sexual intercourse all trigger the kaffarah. This is the broadest application.\n\n**Maliki position:** Kaffarah is triggered by deliberate eating, drinking, or sexual intercourse — all three. Same ruling as Hanafi.\n\n**Shafi'i position:** Kaffarah is triggered ONLY by sexual intercourse, not by eating or drinking deliberately. Deliberate eating/drinking requires only qada. This is based on a reading that the kaffarah hadith was specifically about sexual intercourse.\n\n**Hanbali position:** Kaffarah is triggered only by sexual intercourse (same as Shafi'i) in the stronger position within the school. Deliberate eating/drinking: qada only.\n\n**Is kaffarah per day or per Ramadan?**\nAll schools agree: one kaffarah per day broken by the triggering act. If a person commits the act on multiple days, they owe multiple kaffarahs.\n\n**Kaffarah order:**\nThe schools agree the kaffarah is sequential (tartib) — first try to free a slave (inapplicable today), then fast 60 consecutive days, then feed 60 poor people. The Maliki school allows all three options from the start (not sequential), treating this as a choice.",
+  "evidence_quran": ["2:185"],
+  "evidence_hadith": [
+    "Sahih Bukhari 1936 / Sahih Muslim 1111 — The 'man who had intercourse with his wife in Ramadan' hadith: kaffarah of freeing a slave, then 2 consecutive months of fasting, then feeding 60 poor people"
+  ],
+  "scholar_consensus": "Agreed: kaffarah is required for deliberate sexual intercourse during Ramadan day. Disputed: whether deliberate eating/drinking also triggers kaffarah (Hanafi/Maliki: yes; Shafi'i/Hanbali stronger view: no, only qada). Agreed: kaffarah sequence for intercourse is slave → 2 months fasting → feeding 60.",
+  "madhab_positions": {
+    "hanafi": "Kaffarah required for deliberate eating, drinking, or sexual intercourse. Also required for deliberate smoking. Sequential order (slave → fast → feed). One kaffarah per day of violation. Repentance alongside kaffarah.",
+    "maliki": "Kaffarah required for deliberate eating, drinking, or sexual intercourse. The Maliki school allows the three options to be chosen in any order (not strictly sequential), treating them as equivalent choices.",
+    "shafii": "Kaffarah required only for sexual intercourse during Ramadan day. Deliberate eating or drinking: qada only, no kaffarah. An-Nawawi explains this in al-Majmu'. Sequential order for kaffarah applies.",
+    "hanbali": "Stronger position: kaffarah for sexual intercourse only; deliberate eating/drinking requires qada only. Some Hanbali scholars extend kaffarah to eating/drinking. Ibn Qudamah discusses both positions in al-Mughni."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

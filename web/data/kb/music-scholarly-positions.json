@@ -1,0 +1,24 @@
+{
+  "slug": "music-scholarly-positions",
+  "question": "What is the Islamic ruling on music?",
+  "category": "fiqh-halal-haram",
+  "summary": "Scholars genuinely disagree on music; the majority of classical scholars prohibit instruments and singing with haram content; a minority permit instruments; the debate has serious classical-era scholarly grounding on both sides.",
+  "answer": "The question of music is one of the most genuinely disputed issues in Islamic fiqh. We present the scholarly positions honestly without manufacturing a consensus where none exists.\n\n**The prohibition view (majority of classical scholars):**\nThe primary text cited: 'Among people are those who purchase lahw al-hadith (idle talk/distracting speech) to mislead from the path of Allah.' (Quran 31:6). Ibn Mas'ud (RA) and later scholars interpreted 'lahw al-hadith' as including singing and music. The hadith: 'From my ummah there will be people who make halal: fornication, silk, khamr, and musical instruments (ma'azif).' (Sahih Bukhari 5590) is the strongest narration used for prohibition.\n\nIbn al-Qayyim in 'Ighathah al-Lahfan' and Ibn Taymiyyah presented extensive arguments for prohibition. This is the position of the Hanafi, Maliki, and Hanbali schools (with exceptions and nuances).\n\n**The permissibility view (Ibn Hazm and others):**\nIbn Hazm al-Andalusi (d. 456 AH) in 'al-Muhalla' argued that the Bukhari narration is weak (he disputed its chain). He held that there is no authentic, unambiguous text prohibiting musical instruments. This position, while held by a significant classical scholar, is a minority view.\n\n**What is permitted by consensus:**\n- Duff (frame drum/tambourine without cymbals) for weddings, Eid, and welcoming someone: All schools permit this based on clear hadith (Sahih Bukhari 5147)\n- A cappella singing (without instruments): Generally permitted if content is permissible\n\n**What makes music haram by content:**\nAll scholars agree that music with: sexual lyrics, glorifying alcohol/immorality, or promoting haram activities is haram regardless of the instruments-debate.\n\n**Contemporary scholarly landscape:**\nMany contemporary scholars accept some forms of nasheed (Islamic devotional singing), and a significant contemporary minority permits listening to music generally if the content is permissible and it does not lead to haram. This remains a live scholarly debate.",
+  "evidence_quran": ["31:6"],
+  "evidence_hadith": [
+    "Sahih Bukhari 5590 — 'People from my ummah who make halal: fornication, silk, khamr, and musical instruments' (primary prohibition text)",
+    "Sahih Bukhari 5147 — Aisha: Prophet ﷺ permitted the duff (tambourine) at weddings",
+    "Sahih Bukhari 3931 — permission for singing Eid songs"
+  ],
+  "scholar_consensus": "Genuinely disputed. Majority classical position: musical instruments prohibited. Minority classical position (Ibn Hazm): permitted if content is permissible. Agreed: duff at weddings is permitted. Agreed: music with haram content is haram. Contemporary scholars are divided.",
+  "madhab_positions": {
+    "hanafi": "Musical instruments are generally impermissible. The duff (tambourine) at weddings is an exception. A cappella singing is permitted if content is clean. Some Hanafi scholars permit instruments in general if used for permissible purposes without haram content — this is a minority Hanafi view.",
+    "maliki": "Similar to Hanafi — instruments generally prohibited. Duff permitted at weddings. Maliki scholars in Andalusia (historically) were more lenient on music. Classical Maliki sources like Ibn Abi Zayd al-Qayrawani upheld prohibition.",
+    "shafii": "Generally prohibits musical instruments. Imam al-Shafi'i reportedly said that music is the entertainment of the negligent. Duff at weddings permitted. A cappella Islamic singing permitted.",
+    "hanbali": "Most explicit prohibition position among the four schools. Ibn Qudamah in al-Mughni dedicates a section to prohibiting musical instruments. Ibn Taymiyyah and Ibn al-Qayyim (both Hanbali) wrote extensively against music. Exception: duff at weddings."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

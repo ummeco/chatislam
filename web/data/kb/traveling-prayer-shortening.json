@@ -1,0 +1,24 @@
+{
+  "slug": "traveling-prayer-shortening",
+  "question": "Can you shorten prayers while traveling (qasr)?",
+  "category": "fiqh-prayer",
+  "summary": "A traveler may shorten four-rakat prayers to two; schools differ on whether this is an obligation or a permission.",
+  "answer": "Qasr (shortening) allows the traveler to pray the four-rakat prayers (Dhuhr, Asr, Isha) as two rakats each. Fajr (2 rakats) and Maghrib (3 rakats) are not shortened.\n\n**Quranic basis:**\n'And when you travel through the land, there is no blame upon you for shortening the prayer, if you fear that those who disbelieve may disrupt you.' (Quran 4:101). Scholars note that the 'fear' clause does not restrict qasr to situations of danger, as Aisha (RA) asked the Prophet ﷺ about this and he confirmed qasr is valid in safety too (see below).\n\n**Is shortening obligatory or optional?**\nThe Hanafi school holds that qasr is obligatory (wajib/fard) for a traveler who meets the conditions — praying four rakats would be invalid or makruh al-tahrim. The Maliki, Shafi'i, and Hanbali schools hold that qasr is a concession (rukhsah) and the traveler may pray four rakats though it is less preferred (Maliki: makruh to pray four; Shafi'i/Hanbali: valid but contrary to sunnah).\n\nYa'la ibn Umayyah asked Umar ibn al-Khattab (RA) about why they shorten prayer when no longer fearful, and Umar said: 'I asked the Prophet ﷺ the same question. He said: It is a charity Allah has given you, so accept His charity.' (Sahih Muslim 686)\n\n**Minimum travel distance:**\nHanafi: approximately 77-78 km (48 miles, based on 3 days' walking at classical pace — about 3 marhalah). Maliki and Shafi'i: approximately 81 km (2 marhalah / ~48 miles). Hanbali: same distance range. All schools use a distance threshold; the exact calculation varies slightly by classical measurement used.\n\n**Duration of stay that ends the traveler status:**\nHanafi: intending to stay 15 days ends traveler status. Maliki: 4 days (excluding arrival/departure days). Shafi'i: 4 days. Hanbali: 4 days (21 prayers). A person uncertain of their stay length may continue shortening indefinitely — the Prophet ﷺ stayed in Makkah for 17-19 days during the conquest and kept shortening.\n\n**Combining prayers (jam'):**\nSeparate from qasr. See the related question on combining prayers.",
+  "evidence_quran": ["4:101"],
+  "evidence_hadith": [
+    "Sahih Muslim 686 — Ya'la ibn Umayyah: 'It is a charity Allah has given you, so accept His charity'",
+    "Sahih Bukhari 1090 — Ibn Abbas: 'Allah obligated prayer on the tongue of your Prophet: four rakats in residence, two during travel, and one during fear'",
+    "Sahih Muslim 689 — Ibn Umar: 'I accompanied the Prophet ﷺ and he never prayed more than two rakats while traveling'"
+  ],
+  "scholar_consensus": "Agreed: shortening is valid and practiced. Disputed: whether it is obligatory (Hanafi) or permissible/preferred (Maliki/Shafi'i/Hanbali). Agreed minimum distance threshold (approximately 77-81 km). Disputed: exact days of stay that terminate travel status.",
+  "madhab_positions": {
+    "hanafi": "Qasr is obligatory (wajib) once the traveler exits city limits with the intention of traveling the minimum distance (~77 km). Praying four rakats intentionally is makruh al-tahrim (forbidden-level dislike). Minimum stay: 15 days to become a resident.",
+    "maliki": "Qasr is a confirmed sunnah, strongly recommended to the point that completing the prayer (4 rakats) is makruh. Minimum distance: ~81 km. Minimum stay: 4 days before becoming resident.",
+    "shafii": "Qasr is a valid concession (rukhsah). The traveler may pray four rakats but it is against the sunnah. Minimum distance: approximately 81 km. Minimum stay: 4 days.",
+    "hanbali": "Qasr is the preferred action (sunnah mu'akkadah) for the traveler; completing four rakats is permissible but contrary to the sunnah. Similar distance and stay thresholds to Maliki and Shafi'i."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

@@ -1,0 +1,23 @@
+{
+  "slug": "prayer-direction-on-airplane",
+  "question": "How do you pray on an airplane? Which direction do you face?",
+  "category": "fiqh-prayer",
+  "summary": "Obligatory prayers on planes should face the qibla as closely as possible; if standing and facing qibla is impossible, the prayer is valid in available posture.",
+  "answer": "Prayer on an airplane presents two distinct questions: direction and posture. Scholars are largely in agreement on the direction; they differ more on whether in-seat prayer fulfills the obligation.\n\n**For obligatory (fard) prayers:**\nAll four schools hold that the full conditions of prayer — standing, facing qibla, proper ruku' and sujud — must be fulfilled if possible. If a flight is long enough that a prayer time falls entirely within the flight and one cannot leave the prayer for after landing, the person should:\n\n1. Seek a space on the plane (galley, emergency exit area) to pray standing with proper ruku' and sujud.\n2. Face the qibla direction at the start of the prayer (takbirat al-ihram). If the plane changes course during prayer, the majority view is that one need not continuously reorient — the initial direction is sufficient.\n3. If standing is impossible, sit with proper movements approximating the prayer positions.\n\n**Can you wait until landing?**\nIf the prayer time does not expire before landing, waiting to pray at the airport after landing is better (afdal). If the prayer time would expire in the air, one must pray in the plane.\n\n**In-seat prayer:**\nThe Hanafi school allows in-seat prayer with head movements (for ruku and sujud) only when standing is genuinely impossible. The same conditions apply in all schools. Praying in the seat without necessity when space is available is not valid according to the majority.\n\n**Voluntary prayers:**\nUnanimous agreement that voluntary prayers may be prayed seated in whatever direction the plane faces, based on the practice of the Prophet ﷺ praying on his mount (Sahih Muslim 700). Head movements substitute for ruku and sujud.\n\n**Practical guidance:**\nMany scholars recommend using flight tracking apps that show qibla direction, requesting a window seat to help orient oneself, and asking flight attendants for a private space. Some modern fatwa bodies (e.g., Egyptian Dar al-Ifta) have affirmed that one should pray standing with full movements whenever a reasonable space exists.",
+  "evidence_quran": ["2:238", "2:239"],
+  "evidence_hadith": [
+    "Sahih Muslim 700 — Ibn Umar: The Prophet ﷺ prayed voluntary prayers on his mount in whatever direction it faced",
+    "Quran 2:239: 'If you fear, then on foot or riding; but when you are secure, remember Allah as He has taught you'"
+  ],
+  "scholar_consensus": "Agreed: obligatory prayers require full posture if possible; voluntary prayers may be prayed in-seat in any direction. Disputed: whether in-seat obligatory prayer is valid when space is technically available but cramped.",
+  "madhab_positions": {
+    "hanafi": "Full prayer (standing, qibla, ruku, sujud) is required if possible. In-seat with head movements is valid only when standing is genuinely impossible. Qibla must be faced at the opening takbir; continuous reorientation is not required if the plane turns.",
+    "maliki": "Same general principle. Must attempt to stand and perform full prayer. A contemporary Maliki fatwa approach: if the in-flight cabin crew permits standing briefly, that space must be used for obligatory prayers.",
+    "shafii": "Same — full prayer required when possible. If seated prayer is necessary, movements must be as complete as the posture allows. Sujud must be lower than ruku in head movement even when seated.",
+    "hanbali": "Same — full prayer required when possible. Contemporary Hanbali scholars note that many airplanes have galley space where prayer with full movement is feasible and should be used."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

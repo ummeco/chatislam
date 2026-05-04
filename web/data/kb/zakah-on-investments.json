@@ -1,0 +1,23 @@
+{
+  "slug": "zakah-on-investments",
+  "question": "Is zakah due on stocks, funds, and other investments?",
+  "category": "fiqh-zakah",
+  "summary": "Zakah on stocks is generally due on their zakatable underlying assets (cash and trade goods portions), not on fixed assets, at 2.5% annually.",
+  "answer": "Zakah on modern investment instruments is an area of contemporary fiqh ijtihad. There is no direct classical text on stocks (shares in companies did not exist in their modern form), so scholars derive rulings based on the underlying principles.\n\n**Stocks (shares in a company):**\nContemporary scholars generally apply one of two approaches:\n\n**1. Portfolio value method (common practical view):** Pay 2.5% on the total market value of the shares held at the zakah anniversary date, provided the portfolio has been held for a year at or above nisab. This is the most practical approach and is used by many zakah calculators.\n\n**2. Underlying assets method (more classical-theory aligned):** Look at what the company owns. A company's assets consist of: liquid assets (cash, receivables), trade goods/inventory, and fixed assets (buildings, machinery). Zakah is owed on the zakatable portion (cash + trade goods), not on fixed assets. This requires the investor to obtain the company's zakah-eligible ratio, which some stock exchanges provide (Islamic finance services offer 'zakah ratios' per stock).\n\n**Islamic Fiqh Academy (OIC) resolution (1990):** Shareholders are responsible for zakah on shares. The method endorsed is the underlying assets approach, calculated on liquid and trade-goods portions of the company's value per share.\n\n**Mutual funds and ETFs:**\nSame principles apply — underlying assets of the fund determine zakatable value. For index funds tracking conventional markets (with haram-involved companies), a separate question arises about screening, but the zakah question is independent of the halal screening issue.\n\n**Capital gains:**\nIf shares are held as trading inventory (bought and sold for profit), they are treated as trade goods (urud al-tijarah) and the full value is zakatable at 2.5% on the anniversary date. If held as long-term investment (not for trading), the underlying-assets method applies.\n\n**Retirement accounts (401k, pension):**\nScholars differ: some say zakah is owed annually on the accessible portion; others say zakah is owed only when funds become accessible (upon withdrawal). The latter position (zakah upon access) is easier and has strong scholarly support.",
+  "evidence_quran": ["9:103"],
+  "evidence_hadith": [
+    "Abu Dawud 1562 — Samura ibn Jundub: 'The Prophet ﷺ commanded us to pay zakah on what we prepared for sale' (basis for zakah on trade goods / urud al-tijarah)",
+    "Abu Dawud 1573 — hawl requirement for savings/wealth"
+  ],
+  "scholar_consensus": "No classical-era text directly addresses stocks. Contemporary scholarly consensus (Islamic Fiqh Academy OIC 1990): zakah is owed on shares, on their zakatable underlying asset value. Practical alternative: 2.5% on market value is widely accepted. Dispute: retirement accounts — annual vs. upon-access.",
+  "madhab_positions": {
+    "hanafi": "Stocks held for trading are trade goods (urud al-tijarah) — full market value at anniversary is zakatable at 2.5%. Stocks held as long-term investment: zakah on the liquid/trade-goods portion of the underlying company assets. Contemporary Hanafi scholars (Mufti Taqi Usmani) have written extensively on this.",
+    "maliki": "Similar framework — trade goods are zakatable. Long-term investment shares: zakah on the zakatable underlying assets. Practical Maliki fatwa bodies generally accept market value as the calculation base.",
+    "shafii": "Trade goods zakah applies to shares held for trading. Contemporary Shafi'i scholars generally follow the OIC Fiqh Academy resolution on underlying assets method for investment shares.",
+    "hanbali": "Same principles. Some contemporary Hanbali scholars (in Gulf region) have been influential in shaping the Islamic finance industry's approach to stock zakah and generally endorse the underlying-assets method."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}
