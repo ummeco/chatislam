@@ -1,0 +1,23 @@
+{
+  "slug": "organ-donation",
+  "question": "Is organ donation permissible in Islam?",
+  "category": "modern-issues",
+  "summary": "Organ donation is a genuinely disputed question among contemporary scholars. Some major Islamic bodies permit it based on saving life; others prohibit it based on the sanctity and inviolability of the human body after death.",
+  "answer": "Organ donation — both from living donors and from the deceased — is one of the most actively debated bioethical questions in contemporary Islamic scholarship. Both positions have serious scholarly grounding.\n\n**Arguments for permissibility:**\n1. **Saving life (ihya' al-nafs):** Saving a human life is among the most virtuous acts. The Quran states: 'Whoever saves a life it is as if he has saved all of humanity.' (5:32). Donating an organ that saves a life is seen by many scholars as an act of great merit.\n2. **Consent:** When a person consents to donating their organs upon death, they have exercised their right over their own body in a way that benefits others.\n3. **Benefit after death:** The principle that benefit (maslahah) continues after death is used — the deceased no longer has use of the organs; giving them to living people serves the community.\n4. Organisations that have issued permissions: OIC Fiqh Academy (in some sessions), Muslim World League, Islamic Medical Association of North America, and scholars in Egypt, Turkey, and many Western countries.\n\n**Arguments against permissibility:**\n1. **Sanctity of the body after death:** The Prophet ﷺ said: 'Breaking the bone of a dead person is like breaking it while alive.' (Abu Dawud 3207, graded sahih by Ibn Hibban). Cutting into the body post-mortem is seen by some scholars as violating this principle.\n2. **Ownership of the body:** The body is an amanah (trust) from Allah — a human being does not fully 'own' their body to donate it. Only Allah has ownership.\n3. **Brain death:** Some scholars do not accept 'brain death' as constituting actual death in the Islamic sense. If the donor is not truly dead, removing organs would constitute killing.\n4. Scholars who have prohibited: many Saudi scholars, some Pakistani and Egyptian scholars.\n\n**Living donation:**\nDonating a renewable resource like blood is widely permitted. Donating a kidney or a portion of liver (where one can live with the remainder) is more debated — many scholars permit it with conditions (genuine medical need of recipient, no harm to donor, fully informed consent, no commercial transaction).\n\n**Selling organs:**\nProhibited by the consensus of contemporary scholars — the human body is not a commodity.\n\n**Practical note:**\nThis is a genuine ikhtilaf (scholarly disagreement) between qualified scholars. A Muslim may follow either position. If you wish to donate, register your intent clearly with family.",
+  "evidence_quran": ["5:32 — 'Whoever saves a life it is as if he has saved all of humanity'", "5:2 — 'Cooperate in righteousness and piety'"],
+  "evidence_hadith": [
+    "Abu Dawud 3207 — 'Breaking the bone of a dead person is like breaking it while alive.' (graded sahih — basis for prohibition arguments)",
+    "Sahih Bukhari 5674 — 'Your body has a right over you.' (the body as a trust)"
+  ],
+  "scholar_consensus": "No consensus. Genuinely disputed. Permissibility camp: OIC Fiqh Academy (conditionally), Muslim World League, IMANA, many Egyptian and Turkish scholars. Prohibition camp: many Saudi scholars and others citing body sanctity. Both positions are held by qualified scholars.",
+  "madhab_positions": {
+    "hanafi": "No classical Hanafi ruling on organ donation. Contemporary Hanafi scholars are divided. South Asian Hanafi scholars are generally more cautious; Turkish Hanafi scholars more permissive under necessity.",
+    "maliki": "Maliki principle of maslahah supports permissibility for saving life. Some Maliki scholars in North Africa have permitted organ donation on this basis.",
+    "shafii": "Divided. Shafi'i scholars who emphasise the sanctity of the body post-death tend toward prohibition. Those who emphasise saving life tend toward permission with conditions.",
+    "hanbali": "Divided. The principle of body sanctity is prominent in Hanbali scholarship. Many Hanbali-influenced scholars prohibit. The Saudi Permanent Committee has historically been cautious."
+  },
+  "disclaimer": "This is a study reference presenting a genuine scholarly disagreement. This is not a matter of clear prohibition or permission — it requires personal ijtihad and consultation with a scholar you trust. Both positions are held by qualified scholars of Ahl us-Sunnah.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

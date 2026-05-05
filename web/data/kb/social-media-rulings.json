@@ -1,0 +1,24 @@
+{
+  "slug": "social-media-rulings",
+  "question": "What are the Islamic rulings on using social media platforms?",
+  "category": "modern-issues",
+  "summary": "Social media is permissible as a tool for communication and da'wah but becomes prohibited when used for backbiting, spreading falsehood, immodesty, or wasting time. Moderation and intentional use are emphasized by scholars.",
+  "answer": "Social media platforms (Instagram, TikTok, X/Twitter, Facebook, YouTube, WhatsApp, etc.) are modern tools with no direct classical precedent, but Islamic principles about speech, modesty, backbiting, and time management apply directly.\n\n**Permissible and encouraged uses:**\n- Da'wah and spreading Islamic knowledge\n- Maintaining family connections across distances\n- Business and professional networking in halal industries\n- News and education\n- Calling to good and forbidding evil in appropriate contexts\n\n**Prohibited uses:**\n\n1. **Ghibah (backbiting) and nameemah (tale-carrying):** Posting or sharing content that mocks, belittles, or exposes the private faults of others is ghibah — one of the most serious social sins in the Quran (49:12 compares it to eating the dead flesh of one's brother). This includes 'cancel culture' piling on, call-out posts meant to humiliate, and screenshot-sharing of private conversations.\n\n2. **Kidhb (lying) and spreading falsehood:** Sharing unverified news or misinformation is prohibited: 'It is sufficient for a person to be a liar that he repeats everything he hears.' (Sahih Muslim 5 — the muqaddimah). Sharing sensationalised news without verification is forbidden.\n\n3. **Immodesty (tabarruj):** Women posting images that reveal 'awrah or are designed to attract the attention of non-mahram men is impermissible. This applies to both the poster and those who share, like, or encourage such posts.\n\n4. **Fitnah (discord and tribalism):** Content designed to inflame sectarian tensions among Muslims, spread suspicion, or foster hatred is forbidden.\n\n**Time and addiction concerns:**\nThe Prophet ﷺ said: 'Take advantage of five before five: your youth before old age, your health before sickness, your wealth before poverty, your free time before you are preoccupied, and your life before death.' (Mustadrak al-Hakim, graded sahih). Scholars apply this to social media addiction — hours spent scrolling are hours not spent in prayer, learning, family, or productive work.\n\n**Practical guidance:**\nContemporary scholars recommend: set usage limits, unfollow content that harms your heart, use it as a tool not an identity, and ask yourself regularly whether your usage is bringing you closer to or further from Allah.",
+  "evidence_quran": ["49:11-12 — Prohibition of mockery, slander, backbiting, and spying", "17:36 — 'Do not follow what you have no knowledge of'", "49:6 — Verify information when it comes from an unreliable source"],
+  "evidence_hadith": [
+    "Sahih Muslim 5 (muqaddimah) — 'It is sufficient for a person to be a liar that he repeats everything he hears.'",
+    "Sahih Bukhari 6477 — The one who can guarantee what is between his jaws (speech) and what is between his legs (chastity) is guaranteed Paradise",
+    "Mustadrak al-Hakim — Take advantage of five before five (time management hadith, graded sahih)"
+  ],
+  "scholar_consensus": "Social media is permissible as a tool. Its use for backbiting, lying, immodesty, and inciting fitna is prohibited. All four schools apply the classical rulings on speech, modesty, and honesty to digital communication — the medium does not change the ruling.",
+  "madhab_positions": {
+    "hanafi": "Rules on speech (ghibah, buhtan, nameemah) apply equally online as in person. Online backbiting carries the same prohibition. Business uses are evaluated by commercial principles.",
+    "maliki": "Maliki scholars emphasise public benefit (maslahah) and harm prevention. Platforms used primarily for harm should be avoided. Da'wah use is strongly encouraged.",
+    "shafii": "Detailed Shafi'i rules on the conditions for permissible speech (is it true? is there benefit? is there harm?) apply to every post. Anonymous accounts used for mischief are not excused by anonymity.",
+    "hanbali": "Ibn Taymiyyah's emphasis on preventing fitna (tribalism, discord) applies strongly to contemporary online behavior. Posting content that increases division among Muslims is prohibited."
+  },
+  "disclaimer": "This is a study reference based on classical principles applied to social media. The specific platform or content does not change the underlying Islamic ruling on the nature of the speech or action.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

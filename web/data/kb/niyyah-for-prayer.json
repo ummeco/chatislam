@@ -1,0 +1,23 @@
+{
+  "slug": "niyyah-for-prayer",
+  "question": "How do I make the intention (niyyah) for prayer?",
+  "category": "salah",
+  "summary": "Niyyah (intention) is a condition of valid prayer. It is in the heart, not verbalized aloud. Scholars disagree on whether verbalizing the niyyah is recommended or a bid'ah.",
+  "answer": "The niyyah (نية) is the intention to perform a specific act of worship. It is a pillar or condition of the prayer in all four schools — 'Actions are judged by their intentions' (Sahih Bukhari 1).\n\n**What niyyah consists of:**\nThe heart's determination to perform the specific prayer (e.g., 'I intend to pray the obligatory Zuhr prayer'). The niyyah does not need to be verbalized — it is an act of the heart, not the tongue.\n\n**Does one verbalize the niyyah aloud?**\n\nThis is one of the well-known points of difference among scholars:\n\n**Hanafi position:** Some Hanafi scholars recommend verbally pronouncing the niyyah aloud (e.g., 'Nawaytul usalliya salatan...') to help the tongue confirm what the heart intends. This is considered mustahabb (recommended) in the Hanafi school.\n\n**Maliki position:** Verbal niyyah is not recommended. The niyyah is purely in the heart. Verbalizing it aloud is neither prohibited nor encouraged — it is neutral.\n\n**Shafi'i position:** Some Shafi'i scholars recommended moving the lips to verbalize the niyyah quietly (sirraa) to help the heart and tongue align. Others in the school held it as neutral.\n\n**Hanbali position (and al-Albani):** Verbally pronouncing the niyyah aloud is considered a bid'ah (innovation) because there is no evidence that the Prophet ﷺ or his Companions verbalized the niyyah before prayer. Ibn Taymiyyah and Ibn al-Qayyim explicitly stated this. This has become the widely held Athari position.\n\n**Key principle:** All scholars agree that the niyyah must be in the heart and must correspond to the specific prayer being performed. If someone says the Asr niyyah words but intends Zuhr in their heart — the valid prayer is Zuhr (what they intended).\n\n**Timing:** The niyyah must be made before the opening takbir (Allahu Akbar). It continues through the prayer unless one makes a clear mental decision to stop.",
+  "evidence_quran": [],
+  "evidence_hadith": [
+    "Sahih Bukhari 1 — Umar ibn al-Khattab: 'Actions are judged by their intentions, and every person will have what they intended'",
+    "Sahih Muslim 1907 — Same principle: intention determines the nature and validity of deeds"
+  ],
+  "scholar_consensus": "Niyyah (intention) is required for prayer by ijma'. It is located in the heart. Whether to verbalize it is a well-known scholarly disagreement.",
+  "madhab_positions": {
+    "hanafi": "Verbal niyyah is mustahabb (recommended). Helps align the tongue with the heart's intention.",
+    "maliki": "Niyyah is purely in the heart. Verbalization is neutral — neither required nor prohibited.",
+    "shafii": "Some scholars recommended quiet verbalization. Not obligatory.",
+    "hanbali": "Verbal niyyah aloud is a bid'ah. The Prophet ﷺ and Companions did not verbalize it. Niyyah is in the heart only."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings and deeper study, consult a qualified imam or Islamic scholar in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

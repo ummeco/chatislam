@@ -1,0 +1,24 @@
+{
+  "slug": "business-partnerships-musharakah",
+  "question": "What are the Islamic rules for business partnerships (Musharakah and Mudarabah)?",
+  "category": "fiqh-finance",
+  "summary": "Musharakah (joint ownership partnership) and Mudarabah (investor-worker partnership) are fully permissible and encouraged forms of business cooperation in Islam, with detailed classical rules governing each.",
+  "answer": "Business partnerships are not only permitted but are among the most historically significant commercial structures in Islamic civilization. The Prophet ﷺ himself traded through mudarabah-like arrangements before prophethood, and these structures form the foundation of Islamic finance.\n\n**Musharakah (Full Partnership — Shirkah):**\nA partnership where two or more parties contribute capital (and possibly labour) and share profits and losses according to agreed ratios. There are several types:\n\n- **Shirkah al-Inan:** Each partner contributes capital and possibly labour. Profit sharing ratio is agreed upon by contract (does not have to match capital contribution ratio). Loss must be shared in proportion to capital contribution. This is the most common form.\n- **Shirkah al-Abdan:** Partners contribute labour only, no capital. Used by craftsmen. Valid in the Hanafi and Maliki schools; rejected by the Shafi'i school.\n- **Shirkah al-Mufawadah:** Equal partnership in all respects — capital, labour, liability. Valid in Hanafi; conditions are strict.\n- **Shirkah al-Wujuh:** Partners contribute no capital or labour but their reputation and creditworthiness (buying on credit and splitting profits). Valid in Hanafi and Hanbali; rejected by Shafi'i and Maliki.\n\n**Key musharakah rule:** Profit sharing ratios may be agreed upon freely. However, losses MUST be distributed in proportion to capital. Guaranteeing a fixed return to any partner regardless of profit is prohibited (this is the riba element).\n\n**Mudarabah (Investment Partnership):**\nOne party (rabb al-mal / investor) provides capital; the other (mudarib / worker) provides labour and management. Profit is shared according to agreed ratio. Loss falls entirely on the investor (unless the mudarib was negligent). The mudarib loses time and effort but not money.\n\nThe Prophet ﷺ said: 'The Messenger of Allah said: Three things contain blessing: credit sales, muqaradah (mudarabah), and mixing wheat with barley for home use, not for sale.' (Ibn Majah 2289 — note: some scholars have graded this weak, but mudarabah is established by the consensus of the Companions).\n\n**Modern applications:**\nMusharakah and mudarabah form the basis of Islamic banking products: musharakah mutanaqisah (diminishing partnership) is used for home finance; mudarabah is used in Islamic investment accounts. These are genuine alternatives to interest-based lending.\n\n**Invalid conditions:**\nAny condition that guarantees a fixed return independent of actual profit, or that makes one partner immune to loss while other bears all loss, is void as it resembles riba.",
+  "evidence_quran": ["4:29 — 'Do not consume one another's wealth through falsehood, except through trade by mutual consent'", "2:282 — Document significant transactions"],
+  "evidence_hadith": [
+    "Ibn Majah 2289 — Blessing in credit sales and mudarabah (weak in chain but corroborated by Companion practice)",
+    "Sahih Bukhari 2063 — The Prophet ﷺ used to trade with the wealth of Khadijah (RA) before marriage — historical basis for mudarabah legitimacy",
+    "Muwatta Malik 2/678 — Umar ibn al-Khattab invested orphans' wealth in mudarabah — companion practice establishing consensus"
+  ],
+  "scholar_consensus": "Musharakah and mudarabah are permitted by the consensus of all four schools. They differ on the validity of subcategories (shirkah al-abdan, shirkah al-wujuh) but agree on the core structures.",
+  "madhab_positions": {
+    "hanafi": "Permits all four types of shirkah including al-abdan and al-mufawadah. Most expansive approach to business partnerships. Detailed rules in the Hanafi commercial fiqh tradition.",
+    "maliki": "Permits shirkah al-inan and al-abdan. Does not permit al-wujuh as a standalone. Detailed mudarabah rules; the term muqaradah is used in Maliki fiqh.",
+    "shafii": "Permits only shirkah al-inan and mudarabah. Rejects al-abdan, al-wujuh, and al-mufawadah. More restrictive on partnership types but agrees on core permissibility.",
+    "hanbali": "Permits shirkah al-inan, al-abdan (with conditions), and al-wujuh. Rejects al-mufawadah. Ibn Qudama's al-Mughni has extensive coverage of partnership law."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For structuring an actual business partnership that complies with Islamic law, consult a qualified Islamic finance scholar or Islamic law firm.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

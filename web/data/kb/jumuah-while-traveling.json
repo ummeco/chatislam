@@ -1,0 +1,23 @@
+{
+  "slug": "jumuah-while-traveling",
+  "question": "Is Jumuah (Friday prayer) obligatory when traveling?",
+  "category": "salah",
+  "summary": "Jumuah prayer is not obligatory for travelers (musafir) according to the majority of scholars. A traveler may pray Zuhr instead. If they attend Jumuah, it is valid and counts.",
+  "answer": "The Jumuah prayer is obligatory for Muslim men who are resident (muqim) and meet the conditions. Travelers are excused from its obligation.\n\n**Evidence:**\nThe Prophet ﷺ said: 'Jumuah is an obligation (haqq wajib) upon every Muslim in a community (jama'ah) except four: a slave, a woman, a child, and a sick person.' (Sunan Abu Dawud 1067, graded sahih) Scholars include the traveler in this exemption based on the principle that travel is a hardship accommodation. Additionally, the Prophet ﷺ and his Companions traveled extensively but there is no consistent record of him establishing Jumuah during journeys.\n\n**The majority position (Hanafi, Maliki, Shafi'i, Hanbali):**\nJumuah is not obligatory for the traveler (musafir). A traveler may pray Zuhr (2 rak'ah in qasr, or 4 rak'ah normally) instead of Jumuah.\n\n**If a traveler attends Jumuah:**\nIf a traveler does attend the Jumuah prayer, it is valid and counts for the obligation. The exemption is permission to leave, not a prohibition on attending.\n\n**Defining 'traveler' (musafir):**\nAll four schools agree a musafir is someone who has left their place of residence intending to travel a set distance. The distance threshold:\n- Hanafi, Maliki, Shafi'i, Hanbali schools: approximately 80 km (roughly 48 miles) — based on approximately 3 days of travel by camel. Contemporary scholars have generally maintained this distance.\n\n**What about long-term residence away from home (e.g., students, expats)?**\nA person who has settled in a new city — even temporarily — for an extended period is generally treated as a resident for prayer purposes by majority scholars, meaning Jumuah would be obligatory. The definitions differ: Hanafi allows shortening for up to 15 days; Maliki and Shafi'i require intention to stay less than 4 days for traveler status. Hanbali: more than 21 days makes one a resident.",
+  "evidence_quran": ["62:9"],
+  "evidence_hadith": [
+    "Sunan Abu Dawud 1067 — 'Jumuah is an obligation upon every Muslim in a community, except four: slave, woman, child, sick person' (traveler inferred from principles of hardship accommodation)",
+    "Sahih Bukhari 1088 — The Prophet ﷺ shortened prayer during travel, indicating the traveler's facilitated rulings"
+  ],
+  "scholar_consensus": "Jumuah is not obligatory for travelers by the consensus of the four schools. If attended, it is valid.",
+  "madhab_positions": {
+    "hanafi": "Traveler is exempt from Jumuah. If they attend, it is valid and sufficient.",
+    "maliki": "Traveler is exempt. Attending voluntarily is valid.",
+    "shafii": "Traveler is exempt. If Jumuah is attended, it counts.",
+    "hanbali": "Traveler is exempt. Attending and praying Jumuah is valid and fulfills the midday obligation."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings and deeper study, consult a qualified imam or Islamic scholar in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

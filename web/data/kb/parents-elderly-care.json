@@ -1,0 +1,24 @@
+{
+  "slug": "parents-elderly-care",
+  "question": "What are a Muslim's obligations toward elderly parents? Can a Muslim put parents in a care home?",
+  "category": "fiqh-family",
+  "summary": "Caring for parents is a major obligation in Islam, second only to worshipping Allah. The Quran commands kindness and forbids any word of contempt. Whether a care facility is permissible depends on the standard of care and circumstances.",
+  "answer": "Caring for parents — especially in old age — is one of the most emphasized obligations in the Quran and Sunnah. The Quran places it immediately after the command to worship Allah alone.\n\n**The Quranic command:**\n'Your Lord has decreed that you worship none but Him, and that you be good to your parents. Whether one or both of them reach old age while with you, say not to them a word of contempt, nor repel them, but address them in terms of honour. And lower to them the wing of humility out of mercy and say: My Lord, have mercy upon them as they raised me when I was small.' (Quran 17:23-24)\n\nThe word 'uff' — described as the minimal word of contempt — is explicitly prohibited, establishing that even minor expressions of annoyance toward parents are forbidden.\n\n**The prophetic emphasis:**\nA man asked the Prophet ﷺ: 'Who deserves my best companionship?' He said: 'Your mother.' The man asked again; he said: 'Your mother.' A third time: 'Your mother.' Then: 'Your father.' (Sahih Bukhari 5971). Mothers receive three times the emphasis.\n\nThe Prophet ﷺ said: 'The pleasure of the Lord is in the pleasure of the parent, and the anger of the Lord is in the anger of the parent.' (Tirmidhi 1899, graded hasan-sahih)\n\n**Obligations:**\nScholars list the following obligations toward parents:\n1. Spending on them from one's wealth when they are in need (nafaqah)\n2. Physical care and assistance\n3. Emotional companionship and respectful speech\n4. Not disobeying them in non-sinful matters\n5. Seeking forgiveness for them and visiting their graves after death\n\n**Care facilities:**\nClassical scholars did not discuss care homes as a modern institution. Contemporary scholars address this practically:\n- If a parent needs care beyond what a child can reasonably provide at home (intensive medical needs), placing them in a high-quality facility with regular visits may be acceptable as a last resort.\n- If the motivation is convenience or avoiding responsibility, this is sinful.\n- The standard is: would the parent be neglected, distressed, or harmed? If so, the child must not abandon them to such a place.\n- Regular meaningful visits remain obligatory regardless.\n\nMost scholars encourage home-based care as the default and strongly discourage warehousing elderly parents in facilities where they see their children rarely.",
+  "evidence_quran": ["17:23-24 — The parent care verse", "29:8 / 31:14-15 — Obey parents in what is good, not in sin"],
+  "evidence_hadith": [
+    "Sahih Bukhari 5971 — 'Your mother, your mother, your mother, then your father.' (companionship ranking)",
+    "Tirmidhi 1899 — 'The pleasure of the Lord is in the pleasure of the parent.' (graded hasan-sahih)",
+    "Sahih Bukhari 5972 — The Prophet ﷺ considered neglecting parents among the major sins"
+  ],
+  "scholar_consensus": "Caring for parents is an obligation (wajib) in all four schools. Nafaqah (financial support) for needy parents is fard. Disobedience to parents in non-sinful matters is a major sin. All four schools agree on the core obligations.",
+  "madhab_positions": {
+    "hanafi": "Nafaqah for parents is obligatory when they are in need and the child has means. The obligation extends to grandparents. Obedience is required in permissible matters; disobedience in sinful matters is not permitted.",
+    "maliki": "Nafaqah for parents is fard. The obligation is limited to the immediate parents (not necessarily grandparents in all cases) under the primary ruling. Care is not limited to financial support but includes physical presence and emotional care.",
+    "shafii": "Nafaqah is obligatory for poor parents. The obligation does not extend to grandparents in the same degree. Detailed Shafi'i rules on the limits of obedience vs disobedience.",
+    "hanbali": "Strong emphasis on parental rights. Ibn Taymiyyah wrote extensively on this. Nafaqah is obligatory for parents (and grandparents) who are in need. Physical care is strongly emphasised."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For questions about specific family caregiving situations, consult a qualified scholar.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

@@ -1,0 +1,23 @@
+{
+  "slug": "ramadan-and-pregnancy-detail",
+  "question": "Is a pregnant or breastfeeding woman required to fast in Ramadan? What are her options?",
+  "category": "fiqh-fasting",
+  "summary": "A pregnant or breastfeeding woman may break her fast if she fears harm to herself or her child. The four schools differ on whether she owes makeup days, fidyah, or both.",
+  "answer": "Islam places the health of the mother and child above the obligation of fasting. A pregnant or breastfeeding woman who genuinely fears harm to herself or her child is permitted — and in some cases obligated — to break the fast.\n\n**The exemption:**\nThe Prophet ﷺ said: 'Allah has lifted the fast and half the prayer from the traveler, and the fast from the pregnant and nursing woman.' (Abu Dawud 2408, Nasai 2315 — graded sahih by Ibn Khuzaymah and others). This explicitly places pregnant and nursing women in the category of those with an exemption.\n\nThe exemption applies when the woman reasonably fears harm — whether based on medical advice, her own experience with prior pregnancies, or a doctor's recommendation. If she is healthy and does not fear harm, she should fast.\n\n**What she owes after Ramadan — the disagreement:**\n\nThe **Shafi'i and Hanbali** schools distinguish between two cases:\n- If she feared only for herself (not the child): she owes makeup days only.\n- If she feared only for the child: she owes makeup days *and* fidyah (feeding one poor person per missed day). This is based on the position of Ibn Abbas and Ibn Umar (may Allah be pleased with them).\n\nThe **Hanafi** school holds that she owes only makeup days (qada'), regardless of whether she feared for herself or the child. No fidyah is owed.\n\nThe **Maliki** school holds she owes only makeup days in all cases. No fidyah.\n\n**Breastfeeding:**\nThe same exemption applies. A nursing mother who fears that fasting will diminish her milk supply and harm the infant may break the fast and owes the same obligations as above according to her school.\n\n**Medical advice and personal judgment:**\nA woman who is advised by her doctor to avoid fasting due to gestational diabetes, hyperemesis gravidarum, or fetal growth concerns has a clear basis for exemption. She should track missed days and arrange for qada' or fidyah according to her school.\n\n**Practical note:** Making up missed days is generally easier earlier rather than later, especially for women with consecutive pregnancies or multiple nursing years. Many scholars advise being diligent about qada' during winter months (shorter fasting hours) when able.",
+  "evidence_quran": ["2:184 — 'And upon those who can afford it, a ransom of feeding a needy person'", "2:185 — 'Allah intends for you ease and does not intend for you hardship'"],
+  "evidence_hadith": [
+    "Abu Dawud 2408 / Nasai 2315 — Anas ibn Malik al-Ka'bi: The Prophet ﷺ lifted the fast from the pregnant and nursing woman along with the traveler (graded sahih by Ibn Khuzaymah 2042)",
+    "Sahih Bukhari (athar) — Ibn Abbas and Ibn Umar held that a pregnant woman who fears for her child feeds a poor person per day and does not make up"
+  ],
+  "scholar_consensus": "All four schools permit the pregnant and nursing woman to break her fast when there is genuine fear of harm. All agree she owes qada' (makeup days). They differ on fidyah: Shafi'i and Hanbali require fidyah when fear is for the child; Hanafi and Maliki do not require fidyah.",
+  "madhab_positions": {
+    "hanafi": "Owes only qada' (makeup days). No fidyah required, regardless of whether fear was for herself or the child.",
+    "maliki": "Owes only qada'. No fidyah. If she delayed making up until the next Ramadan without excuse, she owes fidyah in addition to qada' for the delay.",
+    "shafii": "If fear is only for herself: qada' only. If fear is for the child: qada' AND fidyah (one poor person fed per missed day). Based on the positions of Ibn Abbas and Ibn Umar.",
+    "hanbali": "Same as Shafi'i — qada' and fidyah when fear is for the child. Only qada' when fear is for herself."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For your specific medical and fiqh situation, consult both a doctor and a qualified scholar. The exemptions are genuine and should not be neglected out of misplaced piety.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

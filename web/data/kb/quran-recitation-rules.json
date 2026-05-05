@@ -1,0 +1,23 @@
+{
+  "slug": "quran-recitation-rules",
+  "question": "What are the rules of Quran recitation (tajweed)?",
+  "category": "quran",
+  "summary": "Tajweed is the set of rules governing correct Quran recitation. Learning its basics is obligatory; mastery is a communal duty. Key rules include proper pronunciation, elongation, and stopping.",
+  "answer": "Tajweed (تجويد) means to recite each letter of the Quran with its due right — proper articulation point (makhraj), characteristic (sifah), and appropriate elongation (madd). Allah commands: 'And recite the Quran in a measured, rhythmic manner.' (Quran 73:4)\n\n**Status of learning tajweed:**\nScholars distinguish between:\n- **Obligatory (fard 'ayn):** Reciting the Quran without grave errors that change meaning. Every Muslim must recite Fatiha and basic verses correctly for their prayer to be valid.\n- **Communal obligation (fard kifayah):** Mastery of full tajweed rules. If scholars in a community maintain this, the obligation is fulfilled collectively.\n\n**Core tajweed rules:**\n\n1. **Makharij al-Huruf** — The 17 articulation points of Arabic letters. Each letter has a specific origin in the mouth, throat, or nasal passage that must be observed.\n\n2. **Nun Sakinah and Tanween rules:**\n   - Idgham: merging the nun into the following letter\n   - Ikhfa': hiding/nasalization before certain letters\n   - Iqlab: converting to meem sound before ba'\n   - Izhar: clear pronunciation before throat letters\n\n3. **Meem Sakinah rules:** similar categories for silent meem\n\n4. **Madd (elongation):** Natural madd (2 counts), obligatory madd (4-5 counts), permitted madd (2-6 counts) — depending on what follows the long vowel.\n\n5. **Stopping and starting (Waqf and Ibtida'):** Correct places to pause and resume without distorting meaning.\n\n6. **Qalqalah:** The echoing sound in letters ق ط ب ج د when silent.\n\n**The Prophet's recitation:** Umm Salamah described the Prophet's ﷺ recitation as letter-by-letter, clear and slow, such that each letter could be counted. (Sunan Abu Dawud 4001, graded sahih)\n\nMistakes fall into two categories: grave errors (lahn jali) that change meaning — these must be avoided — and minor errors (lahn khafi) which are disliked but do not invalidate the prayer. A student learning should seek a qualified teacher, as tajweed is transmitted orally by definition.",
+  "evidence_quran": ["73:4", "17:106", "25:32"],
+  "evidence_hadith": [
+    "Sunan Abu Dawud 4001 — Umm Salamah: The Prophet ﷺ recited letter by letter, clearly and slowly",
+    "Sahih Bukhari 4937 — 'Whoever recites the Quran well... is with noble angels. Whoever struggles has two rewards'"
+  ],
+  "scholar_consensus": "Correct recitation of the Fatiha and basic prayer verses is obligatory. Tajweed rules have been transmitted through continuous chains of teachers since the time of the Prophet ﷺ.",
+  "madhab_positions": {
+    "hanafi": "Hanafi scholars require correct recitation of obligatory prayer verses. Tajweed mastery is fard kifayah.",
+    "maliki": "Maliki scholars hold that the prayer is valid if basic meaning is preserved, even with minor tajweed errors.",
+    "shafii": "Shafi'i scholars require correct recitation of al-Fatiha as a condition for valid prayer, including its seven verses.",
+    "hanbali": "Hanbali scholars align with Shafi'i on the obligation of correct Fatiha recitation. Tajweed mastery is communally obligatory."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings and deeper study, consult a qualified imam or Islamic scholar in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

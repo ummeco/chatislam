@@ -1,0 +1,23 @@
+{
+  "slug": "fabricated-hadith-warning-signs",
+  "question": "How do I identify fabricated hadith? What are the warning signs?",
+  "category": "hadith",
+  "summary": "Fabricated (mawdu') hadith were invented for various motives. Scholars developed criteria to identify them. Common warning signs include exaggerated rewards, contradicting Quran, or being promoted by sectarians.",
+  "answer": "Fabricated (mawdu') hadith are statements invented and falsely attributed to the Prophet ﷺ. Scholars documented many thousands of fabricated hadith in dedicated works (e.g., al-Mawdu'at by Ibn al-Jawzi and al-La'ali al-Masnu'a by al-Suyuti).\n\n**Why fabricated hadith were created:**\n- Political: to support particular rulers or factions\n- Sectarian: to justify deviant beliefs\n- Ascetic: well-meaning storytellers invented hadith to encourage piety (not realizing the crime)\n- Financial: some narrators were bribed\n- Personal glory: claiming unique knowledge\n\n**Warning signs of a possibly fabricated hadith:**\n\n1. **Exaggerated or absurd rewards for trivial acts:** 'Whoever recites this verse once will have 10,000,000 sins forgiven' — rewards disproportionate to any established scale of virtue.\n\n2. **Contradicts the Quran clearly:** No authentic hadith contradicts clear Quranic text. When contradiction is apparent, the hadith must be checked.\n\n3. **Factual impossibility:** Historical anachronisms, statements that contradict well-established historical fact.\n\n4. **Poor Arabic:** Imam Ibn al-Qayyim noted that fabricated hadith often have poor or stilted Arabic inconsistent with the Prophet's ﷺ eloquence.\n\n5. **Widely circulated without a source:** 'Seek knowledge even unto China' is a famous example — widely quoted, but its chain is severely weak. 'The love of one's homeland is from iman' is another fabricated hadith widely circulated.\n\n6. **Only found in obscure or unverifiable sources:** If a hadith cannot be traced to the six major collections (Kutub al-Sitta) or major musnad collections, scrutinize it.\n\n7. **The narrator is known for fabrication:** Some narrators were exposed as fabricators in their lifetime.\n\n**Practical rule:** Before sharing a hadith, trace it to a named collection with a reference number. If someone says 'the Prophet ﷺ said...' without a reference, ask for the source. Never spread what you cannot verify — 'It is sufficient as a lie for a person to narrate everything he hears.' (Sahih Muslim, introduction, narrated by Abu Hurayra)",
+  "evidence_quran": ["49:6"],
+  "evidence_hadith": [
+    "Sahih Bukhari 110 — 'Whoever attributes to me what I did not say, let him take his seat in the Fire'",
+    "Sahih Muslim introduction — Abu Hurayra: 'It is sufficient as a lie for a person to narrate everything they hear'"
+  ],
+  "scholar_consensus": "Fabricated hadith are never used in any ruling or practice by scholarly ijma'. The science of identifying them (naqd al-hadith) is a communal obligation.",
+  "madhab_positions": {
+    "hanafi": "Hanafi scholars developed rigorous criteria and rejected narrators known for fabrication.",
+    "maliki": "Imam Malik himself famously narrated fewer hadith despite knowing many more — he only narrated what he was confident about.",
+    "shafii": "Imam al-Shafi'i wrote about the dangers of accepting hadith without chain verification.",
+    "hanbali": "Imam Ahmad was among the most rigorous in rejecting weak and fabricated narrators. His Musnad excluded known fabricators."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings and deeper study, consult a qualified imam or Islamic scholar in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

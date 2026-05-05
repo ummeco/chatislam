@@ -1,0 +1,23 @@
+{
+  "slug": "inheritance-fundamentals",
+  "question": "How does Islamic inheritance (mirath) work? Who inherits and how much?",
+  "category": "fiqh-finance",
+  "summary": "Islamic inheritance is governed by detailed Quranic verses. Specific heirs receive fixed shares (fara'id). A surviving spouse, parents, and children are primary heirs. A Muslim cannot disinherit a legal heir.",
+  "answer": "Islamic inheritance law (fara'id or 'ilm al-mirath) is one of the most precisely defined areas of Islamic law, with the Quran specifying exact fractions for many heirs (4:11-12, 4:176). The Prophet ﷺ said: 'Learn the inheritance laws and teach them to others, for they are half of all knowledge and will be the first to be forgotten.' (Ibn Majah 2719, graded hasan).\n\n**Primary principle:**\nA Muslim may dispose of only up to one-third of their estate through a will (wasiyyah). The remaining two-thirds (at minimum) is distributed according to the fara'id system. A Muslim cannot write a will that overrides the Quranic shares, nor can they disinherit a legal heir.\n\n**Fixed shares (Quranic heirs with specified fractions):**\n\n| Heir | Share | Condition |\n|---|---|---|\n| Wife | 1/8 | If husband leaves children |\n| Wife | 1/4 | If husband leaves no children |\n| Husband | 1/4 | If wife leaves children |\n| Husband | 1/2 | If wife leaves no children |\n| Daughter (sole) | 1/2 | No sons |\n| Two or more daughters | 2/3 | No sons |\n| Son and daughter together | Son gets double daughter's share | ('Asabah — residuary) |\n| Mother | 1/6 | Deceased has children or two+ siblings |\n| Mother | 1/3 | Deceased has no children and few siblings |\n| Father | 1/6 | Deceased has children |\n| Father | Residuary | Deceased has no children |\n\n**Key rules:**\n1. A non-Muslim does not inherit from a Muslim, nor a Muslim from a non-Muslim. (Sahih Bukhari 6764)\n2. A murderer cannot inherit from their victim. (Ibn Majah 2735)\n3. A child in the womb (if born alive) inherits.\n4. Children of sons (grandsons) are treated as sons when no son exists, by most schools.\n\n**'Asabah (residuary heirs):**\nAfter the Quranic shares are distributed, the remainder goes to the closest male relative ('asabah): son, then son's son, then father, then grandfather, then brother, and so on.\n\n**'Aul (proportional reduction):**\nIf fixed shares add up to more than one estate, all shares are reduced proportionally. This was the resolution given by Umar ibn al-Khattab (may Allah be pleased with him) and accepted by the Sahaba.\n\n**Radd (return to heirs):**\nIf fixed shares leave a remainder and there are no residuary heirs, the remainder is returned to the Quranic heirs proportionally (this is where schools differ; Hanafi returns to all, Maliki/Shafi'i/Hanbali return to all except the spouse).",
+  "evidence_quran": ["4:11", "4:12", "4:176 — The detailed inheritance verses"],
+  "evidence_hadith": [
+    "Sahih Bukhari 6764 — 'A non-Muslim does not inherit from a Muslim, and a Muslim does not inherit from a non-Muslim.'",
+    "Ibn Majah 2719 — 'Learn the inheritance laws and teach them, for they are half of knowledge and are what will be forgotten first.' (graded hasan)"
+  ],
+  "scholar_consensus": "The fara'id system and its shares are established by Quranic text and are not subject to ijtihad for their core rulings. The four schools agree on the primary heirs and shares. They differ on details such as radd (return of surplus), treatment of some distant relatives, and interaction of certain heirs.",
+  "madhab_positions": {
+    "hanafi": "The surplus estate (after fara'id) is returned to all Quranic heirs including the spouse (radd). This is a distinctive Hanafi position. The school has detailed rules on distant relatives (dhawi al-arham) inheriting when closer heirs are absent.",
+    "maliki": "Surplus returns to Quranic heirs excluding the spouse. Spouse receives no more than their stated share under radd. Dhawi al-arham inherit in absence of closer heirs.",
+    "shafii": "Surplus goes to the Muslim treasury (bayt al-mal) in the absence of residuary heirs — does not return to Quranic heirs including spouses. In practice, the treasury is often non-functional, creating complexity.",
+    "hanbali": "Surplus returns to Quranic heirs excluding the spouse. Closer to Maliki position on radd."
+  },
+  "disclaimer": "Islamic inheritance law is complex and highly fact-specific. This is an overview, not a complete guide. For distribution of an actual estate, consult a qualified Islamic scholar or mufti who specialises in fara'id. Civil law requirements in your country also apply.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

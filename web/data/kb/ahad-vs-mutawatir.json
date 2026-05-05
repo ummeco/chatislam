@@ -1,0 +1,23 @@
+{
+  "slug": "ahad-vs-mutawatir",
+  "question": "What is the difference between ahad and mutawatir hadith?",
+  "category": "hadith",
+  "summary": "Mutawatir hadith are narrated through so many chains that fabrication is impossible — they provide certain knowledge. Ahad hadith have fewer chains and provide probable knowledge binding in practice.",
+  "answer": "Hadith are classified by the number of independent chains transmitting them, which determines the degree of certainty they provide.\n\n**Mutawatir (Mass-Transmitted):**\nA hadith narrated by so many independent reliable narrators at each level of the chain that coordinated fabrication becomes logically impossible. Scholars differ on the minimum number (some say 10, some say 12, some say 70+) but the essential requirement is: enough narrators that normal human experience precludes them all agreeing on a lie.\n\nMutawatir hadith provide **certain (qat'i) knowledge** — the same degree of certainty as historical facts. There are relatively few hadith that reach this level. Examples include: the five pillars of Islam, the number of rak'at in each prayer, the prohibition of alcohol, and descriptions of the last hours of the Prophet's ﷺ life.\n\n**Ahad (Singular/Solitary):**\nA hadith narrated by fewer chains. This category covers the vast majority of hadith, including those in Sahih Bukhari and Sahih Muslim. Ahad is further subdivided:\n- **Mashhur (Famous):** Narrated by 3 or more narrators at each level but falling short of mutawatir\n- **'Aziz (Rare):** Narrated by exactly 2 narrators at some level\n- **Gharib (Strange/Unique):** Narrated by a single narrator at some level\n\nAhad sahih hadith provide **probable (zanni) knowledge that is binding in practice.** This means: a Muslim must act on an authentic ahad hadith (pray, fast, avoid what it prohibits) even though the epistemological certainty is less than mutawatir.\n\n**The aqeedah question:**\nThe Athari/Hanbali position holds that authentic ahad hadith — when they are sahih and their meaning is clear — can establish creedal points, even if not at the mutawatir level. The Ash'ari and Maturidi positions hold that fundamental aqeedah principles require mutawatir evidence. This is a classical scholarly disagreement within Ahl us-Sunnah.\n\n**Practical implication:** When you read a hadith from Sahih Bukhari, it is almost certainly ahad — but this does not make it unreliable. It is obligatory to act upon it.",
+  "evidence_quran": ["49:6"],
+  "evidence_hadith": [
+    "Sahih Bukhari 8 — The five pillars hadith: narrated through many chains (mutawatir in meaning)",
+    "Sahih Muslim 8 — The Jibril hadith on iman: known through multiple chains"
+  ],
+  "scholar_consensus": "The distinction between mutawatir and ahad is agreed upon. Mutawatir provides certain knowledge; ahad provides probable knowledge binding in practice. The debate on ahad in aqeedah is an intra-Sunni scholarly disagreement.",
+  "madhab_positions": {
+    "hanafi": "Maturidi-influenced Hanafi position: fundamental aqeedah requires mutawatir-level evidence. Ahad is binding in fiqh but cannot establish creedal certainties alone.",
+    "maliki": "Similar to Hanafi in practice. The practice of Madinah can supplement or corroborate ahad hadiths.",
+    "shafii": "Ash'ari-influenced position: ahad provides binding knowledge in practice. For core aqeedah, mutawatir or near-mutawatir evidence is preferred.",
+    "hanbali": "Athari position: an authentic (sahih) ahad hadith is binding in both fiqh and aqeedah. To reject authentic hadith because it is 'only ahad' is considered a methodological error."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings and deeper study, consult a qualified imam or Islamic scholar in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

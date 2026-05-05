@@ -1,0 +1,24 @@
+{
+  "slug": "best-time-to-recite-quran",
+  "question": "What is the best time to recite the Quran?",
+  "category": "quran",
+  "summary": "The night and early morning (fajr) are the most virtuous times for Quran recitation, based on Quranic commands and prophetic practice.",
+  "answer": "The Quran itself identifies specific times of special virtue for its recitation, and the Prophet's ﷺ practice confirms them.\n\n**The Fajr recitation:**\nAllah says: 'Establish prayer at the decline of the sun until the darkness of the night and recite the Quran at dawn. Indeed, the recitation at dawn is ever witnessed.' (Quran 17:78) The Arabic 'qur'an al-fajr' (the recitation of Fajr) is specifically described as mashhud — witnessed. Classical scholars explain this as being witnessed by the angels of the night and the angels of the day, both of whom attend the Fajr prayer and its recitation.\n\n**The night:**\n'Indeed, the hours of the night are more effective for training the mind and more suitable for words.' (Quran 73:6) The tahajjud period — the last third of the night — is the time the Prophet ﷺ used most for lengthy Quran recitation. 'Our Lord descends each night to the lowest heaven when the last third of the night remains...' (Sahih Bukhari 1145) Reciting Quran during this time combines the blessing of the descent, the quiet of the night, and the attentiveness of a rested mind.\n\n**After Fajr prayer:**\nThe Prophet ﷺ said: 'Whoever prays Fajr in congregation, then sits remembering Allah until the sun rises, then prays two rak'at — he will have the reward of a complete Hajj and Umra.' (Sunan at-Tirmidhi 586, graded hasan) Many scholars use this time for morning Quran recitation (wird).\n\n**The general principle:**\nEvery time is acceptable for Quran recitation. There is no time when it is prohibited (outside of sexual impurity, which requires ghusl before recitation according to some scholars). The virtue lies in consistency and quality of attention: 'Whoever recites the Quran well and acts upon it will be with the noble and obedient angels. And whoever recites it with difficulty and struggles — they have two rewards.' (Sahih Bukhari 4937)\n\n**Practical advice:** Establish a daily wird (portion). Morning after Fajr and evening after Asr/Maghrib are historically the most commonly practiced times across all schools.",
+  "evidence_quran": ["17:78", "73:6", "73:20"],
+  "evidence_hadith": [
+    "Sahih Bukhari 1145 — 'Our Lord descends each night to the lowest heaven in the last third of the night'",
+    "Sahih Bukhari 4937 — 'Whoever recites the Quran well... will be with the noble angels. And whoever struggles — they have two rewards'",
+    "Sunan at-Tirmidhi 586 — reward for sitting after Fajr remembering Allah until sunrise"
+  ],
+  "scholar_consensus": "The night and Fajr time are the most virtuous for Quran recitation by scholarly consensus. Consistency and understanding take precedence over time-selection alone.",
+  "madhab_positions": {
+    "hanafi": "Recitation is encouraged at all times. The daily wird (portion) system is emphasized to ensure consistency.",
+    "maliki": "Same encouragement toward consistency. Maliki scholars developed detailed wird schedules.",
+    "shafii": "The Shafi'i school gives particular attention to the post-Fajr and tahajjud recitation times based on the same evidence.",
+    "hanbali": "Hanbali scholars encourage recitation in the night prayer and after Fajr, following the prophetic practice."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings and deeper study, consult a qualified imam or Islamic scholar in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

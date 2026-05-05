@@ -1,0 +1,23 @@
+{
+  "slug": "sutra-in-prayer",
+  "question": "What is the sutra in prayer and is it required?",
+  "category": "salah",
+  "summary": "The sutra is an object placed in front of the praying person to mark their prayer space. It is a strong Sunnah. Passing in front of a person in prayer without a sutra is prohibited.",
+  "answer": "A sutra (سترة) is any object placed in front of a person performing prayer — a wall, a stick, a pillar, a bag, or any vertical marker. It serves two purposes: marking the prayer space and preventing distraction.\n\n**The ruling:**\nUsing a sutra is a strong Sunnah (Sunnah mu'akkadah) when praying individually or as an imam, according to the majority of scholars. The Prophet ﷺ said: 'Let none of you pray except toward a sutra, and do not let anyone pass in front of you.' (Sahih Muslim 506)\n\n**Passing in front of a praying person:**\nThe Prophet ﷺ said: 'If the one who passes in front of a praying person knew what a sin it was, it would be better for him to wait forty than to pass in front of him.' (Sahih Bukhari 510) The forty (whether years, months, or days) is left ambiguous in the narration to indicate its severity.\n\n**Key scholarly points:**\n\n- The sutra 'applies' to the space in front of the sutra marker. Anyone passing beyond (i.e., between the praying person and the sutra) commits the sin. Passing beyond the sutra is not the issue.\n- In a mosque (masjid) where the rows of prayer cover the area, the rows of other worshippers effectively serve as sutra for those praying in the row behind.\n- The imam's sutra covers the followers in congregation — they need not place individual sutras.\n- The sutra should be at least 30 cm (approximately one foot) tall according to some scholars, based on the description of the Prophet ﷺ using his mount's saddle.\n\n**Disrupting the prayer:**\nThe Hanafi school holds that a woman, donkey, or black dog passing directly in front of the praying person (without sutra) disrupts the prayer and requires the person to repeat it. The Maliki, Shafi'i, and Hanbali schools hold that the prayer remains valid but the passer commits a sin.",
+  "evidence_quran": [],
+  "evidence_hadith": [
+    "Sahih Muslim 506 — 'Let none of you pray except toward a sutra, and do not allow anyone to pass in front of you'",
+    "Sahih Bukhari 510 — 'If the one who passes in front of a praying person knew what a sin it was, it would be better for him to wait forty than to pass in front of him'"
+  ],
+  "scholar_consensus": "Using a sutra is a confirmed Sunnah. Passing in front of a person in prayer is prohibited. All four schools agree on the basic ruling.",
+  "madhab_positions": {
+    "hanafi": "Sutra is Sunnah. Passing in front of someone praying without a sutra (a woman, black dog, or donkey) disrupts the prayer requiring repeat — a unique Hanafi position.",
+    "maliki": "Sutra is Sunnah. Passing in front is a sin but does not invalidate the prayer.",
+    "shafii": "Sutra is Sunnah. Passing in front is prohibited. Prayer remains valid.",
+    "hanbali": "Sutra is a strong Sunnah. Passing in front is prohibited. Prayer remains valid. The praying person may physically stop the passer by gesture."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings and deeper study, consult a qualified imam or Islamic scholar in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

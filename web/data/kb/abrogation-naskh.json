@@ -1,0 +1,23 @@
+{
+  "slug": "abrogation-naskh",
+  "question": "What is abrogation (naskh) in the Quran?",
+  "category": "quran",
+  "summary": "Naskh (abrogation) is the Quranic and prophetic mechanism by which some earlier rulings were replaced by later ones during the Prophet's lifetime. It is a scholarly field requiring expertise.",
+  "answer": "Naskh (النسخ) literally means 'cancellation' or 'transfer.' In Islamic legal science, it refers to the replacement of an earlier revealed ruling by a later one during the period of Prophetic revelation. This is a divinely guided process, not a contradiction.\n\n**Quranic basis:**\n'We do not abrogate a verse or cause it to be forgotten except that We bring forth something better than it or similar to it. Do you not know that Allah is over all things competent?' (Quran 2:106)\n\n**Why naskh occurred:**\nIslamic law was revealed progressively over 23 years. Earlier revelations established initial practices that were later refined as the community matured. Classic examples:\n- The prohibition of alcohol was gradual: first discouraged (2:219), then prohibited during prayer (4:43), then absolutely prohibited (5:90)\n- The qiblah (prayer direction) changed from Jerusalem to Mecca (Quran 2:144)\n- The initial obligation to fast Ashura' was replaced by Ramadan fasting\n\n**Categories of naskh:**\n1. **Quranic text abrogates Quranic text** (Quran by Quran) — agreed upon\n2. **Sunnah abrogates Sunnah** — agreed upon\n3. **Quran abrogates Sunnah / Sunnah abrogates Quran** — disputed among scholars\n\n**What naskh is NOT:**\n- Naskh does not apply after the Prophet's ﷺ death — revelation has ended\n- Naskh is not a general principle scholars can apply to Quranic verses at will\n- The abrogated verse is still recited; only its ruling is replaced\n- Apparent contradictions in the Quran usually have resolutions through other methods (specification, restriction, different contexts) before naskh is invoked\n\n**Scholarly caution:** Classical scholars were very conservative about identifying naskh. Imam al-Suyuti and others compiled lists of abrogated verses and noted that scholars often disagreed — many instances initially labeled naskh were actually reconcilable texts. The Quran's overall guidance and core theology are entirely intact.",
+  "evidence_quran": ["2:106", "16:101", "2:144"],
+  "evidence_hadith": [
+    "Sahih Muslim 1218 — The qiblah changed from Jerusalem to Mecca during the Prophet's lifetime",
+    "Sahih Bukhari 4530 — Early instructions about fasting Ashura changed after Ramadan was obligated"
+  ],
+  "scholar_consensus": "Naskh occurred during the period of Prophetic revelation by scholarly consensus. The scope and number of abrogated rulings are disputed. No naskh is possible after the Prophet's death.",
+  "madhab_positions": {
+    "hanafi": "Hanafi usul al-fiqh engages extensively with naskh. Imam Abu Hanifa accepted naskh of Sunnah by Quran and vice versa.",
+    "maliki": "Maliki scholars are more restrictive in accepting Sunnah-abrogates-Quran scenarios, requiring strong evidence.",
+    "shafii": "Imam al-Shafi'i held that only Quran can abrogate Quran, and only Sunnah can abrogate Sunnah — a more restrictive position.",
+    "hanbali": "Hanbali scholars follow a middle path, generally requiring strong mutawatir evidence for any claimed naskh."
+  },
+  "disclaimer": "This is a study reference based on classical sources. Naskh is a specialized field requiring expertise in Quranic sciences. For binding rulings and deeper study, consult a qualified Islamic scholar.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

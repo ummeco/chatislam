@@ -1,0 +1,23 @@
+{
+  "slug": "quran-vs-bible-similarities",
+  "question": "What are the similarities between the Quran and the Bible?",
+  "category": "quran",
+  "summary": "The Quran shares many prophets, narratives, and moral teachings with the Bible, as both stem from divine revelation. However, the Quran corrects distortions in prior scriptures and presents a distinct theological vision.",
+  "answer": "The Quran, the Torah (Tawrah), and the Gospel (Injil) are all from Allah according to Islamic belief. This creates both genuine parallels and important distinctions.\n\n**Why similarities exist:**\nAllah sent prophets throughout history, all calling to the same core message: worship Allah alone and follow His guidance. The Quran says: 'He has ordained for you the same religion He enjoined upon Noah and what We have revealed to you and what We enjoined upon Abraham, Moses, and Jesus.' (Quran 42:13) Many narratives overlap because they recount the same historical prophets and divine interventions.\n\n**Shared narratives and figures:**\n- Adam and Eve, and the creation narrative\n- Noah (Nuh) and the flood\n- Abraham (Ibrahim) and monotheism\n- Moses (Musa) and Pharaoh\n- Mary (Maryam) and the miraculous birth of Jesus (Isa)\n- Jesus (Isa) as a prophet, his miracles, and his ascension\n- Solomon (Sulayman), David (Dawud), Joseph (Yusuf)\n- The Psalms (Zabur) attributed to David\n\n**Key Quranic positions on prior scriptures:**\nThe Quran affirms that the Torah and Gospel were originally divine revelations. However, it states they were subsequently altered (tahrif): 'Among those who are Jews there are some who distort words from their proper usages.' (Quran 4:46) Muslims believe the current Bible is a mix of original divine content and human additions/alterations — hence the need for the Quran as the final, preserved revelation.\n\n**Critical theological differences:**\nThe Quran explicitly rejects the Trinity (Quran 4:171), the divinity of Jesus (Quran 5:72), and the concept of an inherited original sin requiring a redemptive sacrifice. Jesus in the Quran is a great prophet, born miraculously, given miracles, and raised to Allah — but is not divine and did not die on the cross (Quran 4:157).\n\n**The Quran's self-claim:** 'This Quran... confirms what was before it and stands guardian over it.' (Quran 5:48)",
+  "evidence_quran": ["42:13", "4:46", "4:171", "5:48", "3:3-4"],
+  "evidence_hadith": [
+    "Sahih Bukhari 3443 — 'The prophets are paternal brothers; their mothers are different but their religion is one'",
+    "Sahih Muslim 153 — On the People of the Book: treat their narrations as neither confirmed nor denied unless Islamic sources verify them"
+  ],
+  "scholar_consensus": "The Quran affirms prior scriptures' divine origins while maintaining that the current Bible has been altered. This is the consensus position. Engaging with the Bible in dawah is permitted using this framework.",
+  "madhab_positions": {
+    "hanafi": "The altered nature of prior scriptures is accepted. Transmission from People of the Book is treated cautiously — neither confirming nor denying unless an Islamic source corroborates.",
+    "maliki": "Same position. Maliki scholars historically engaged with Jewish and Christian scholars in Andalusia on comparative religious discussions.",
+    "shafii": "Same position. Scholarly caution on Isra'iliyyat (stories from Jewish/Christian sources) — used for background, not as binding evidence.",
+    "hanbali": "Same position. Ibn Taymiyyah wrote several major works on comparative theology (al-Jawab al-Sahih) addressing Christian theological claims."
+  },
+  "disclaimer": "This is a study reference based on classical sources. Interfaith discussion and dawah require knowledge and wisdom — consult a qualified imam or scholar for guidance on engagement with People of the Book.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

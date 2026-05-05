@@ -1,0 +1,23 @@
+{
+  "slug": "prayer-in-non-muslim-workplace",
+  "question": "How do I pray in a non-Muslim workplace or when there is no mosque?",
+  "category": "salah",
+  "summary": "Islam permits prayer anywhere that is clean and not a place of impurity. Muslims in non-Muslim workplaces should use available clean spaces, manage prayer times, and can combine or shorten when traveling.",
+  "answer": "The Prophet ﷺ said: 'The whole earth has been made a masjid (place of prayer) for me and a means of purification.' (Sahih Bukhari 335) This means prayer can be performed anywhere clean, without needing a dedicated mosque or prayer room.\n\n**Permissible prayer locations at work:**\n- An unused office or conference room\n- A break room during off hours\n- Outdoor space when weather permits\n- A personal office or cubicle\n- A hallway or quiet corner when nothing else is available\n\n**Conditions for the space:**\n1. The ground/floor must be clean (free from najasah — ritual impurity). A prayer mat solves this.\n2. The person praying must be in a state of purity (wudu).\n3. The direction of qiblah should be identified (phone qiblah app or compass).\n\n**Managing prayer times:**\n- Employers in many countries are legally required to accommodate religious observance. Communicate your prayer schedule professionally and proactively.\n- The five prayers have time windows — you do not need to pray the instant the time enters. Most prayers have windows of 1-2+ hours, giving flexibility.\n- Zuhr (midday) often aligns with lunch breaks.\n\n**Combining and shortening prayers (qasr and jam'):**\n- A traveler (musafir) covering 80+ km from home may shorten (qasr) four-rak'ah prayers to two and may combine Zuhr with Asr, and Maghrib with Isha'.\n- Some scholars permit combining without travel for genuine hardship — consult your madhab for this.\n\n**Fear prayer (salat al-khawf):**\nThe Quran even provides a compressed prayer format for battlefield conditions (Quran 4:101-102), showing Islam's accommodation of genuine difficulty. A missed prayer due to urgent unavoidable circumstances is made up (qada') afterward.\n\n**Practical tip:** Keep a small prayer mat and a compass (or use a phone app) at work. Maintain wudu before leaving for work if possible.",
+  "evidence_quran": ["4:101", "2:286", "22:77"],
+  "evidence_hadith": [
+    "Sahih Bukhari 335 — Jabir ibn Abdullah: 'The whole earth has been made a place of prayer and a means of purification for me'",
+    "Sahih Bukhari 1089 — 'Shorten the prayer — indeed it is not a sin if you shorten' (during travel)"
+  ],
+  "scholar_consensus": "Prayer is valid anywhere clean. All four schools accept prayer in non-mosque locations. The earth was made a place of prayer for this ummah as a distinct blessing.",
+  "madhab_positions": {
+    "hanafi": "Valid in any clean space. Hanafi school permits combining prayers for genuine reasons of hardship even without travel, in some opinions.",
+    "maliki": "Valid anywhere clean. Maliki school is known for relatively flexible positions on combining when facing hardship.",
+    "shafii": "Valid anywhere clean. Travel-related combining and shortening are well-defined. Non-travel combining is more restricted.",
+    "hanbali": "Valid anywhere clean. Ibn Taymiyyah permitted combining prayers for genuine hardship even without travel, a position widely acted upon today."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings on combining prayers or managing prayer times at work, consult a qualified imam in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

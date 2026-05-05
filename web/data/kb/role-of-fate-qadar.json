@@ -1,0 +1,24 @@
+{
+  "slug": "role-of-fate-qadar",
+  "question": "What is the Islamic view on fate and divine decree (qadar)?",
+  "category": "aqeedah",
+  "summary": "Qadar (divine decree) is the sixth pillar of iman. Allah's knowledge, will, and power encompass all things, while humans retain real choice and bear moral responsibility.",
+  "answer": "Belief in divine decree (qadar) is the sixth pillar of iman. The Prophet ﷺ was asked about iman and replied: 'To believe in Allah, His angels, His books, His messengers, the Last Day, and to believe in qadar — the good of it and the bad of it.' (Sahih Muslim 8)\n\n**The four levels of belief in qadar:**\n\n1. **Al-'Ilm** — Allah's knowledge of all things, past, present, and future, before they occur\n2. **Al-Kitabah** — Allah wrote all decrees in the Preserved Tablet (al-Lawh al-Mahfuz) 50,000 years before creation. 'The first thing Allah created was the pen; He commanded it to write and it wrote everything that will be until the Day of Judgment.' (Sunan Abu Dawud 4700, graded sahih)\n3. **Al-Mashe'ah** — Allah's will: nothing happens in existence except by His permission and will\n4. **Al-Khalq** — Allah created all things, including the actions of humans\n\n**Human free will and responsibility:**\nBelief in qadar does not eliminate human choice or moral responsibility. Allah says: 'Whoever wills, let him take a path to his Lord.' (Quran 73:19) Humans have real will (mashi'ah), capacity (qudrah), and choice. The Prophet ﷺ said when asked whether acts are sealed: 'Act, for everyone will have facilitated for them what they were created for.' (Sahih Bukhari 4949) — meaning: trust in the decree but act.\n\n**The classic objection:** If Allah decreed everything, why are we accountable? The Ahl us-Sunnah answer: Allah's decree does not override your real choice. He decreed that you would choose freely. Your accountability is based on your choice, not on the decree itself.\n\n**Historical deviance:** The Qadariyyah denied divine decree (affirming only human free will). The Jabriyyah denied human free will entirely (pure predetermination). Both were rejected by the mainstream as distortions of the full picture.\n\nThe believer holds both: total trust in what is beyond their control + full effort and responsibility for what is in their hands.",
+  "evidence_quran": ["73:19", "54:49", "76:30", "81:29"],
+  "evidence_hadith": [
+    "Sahih Muslim 8 — Jibril hadith: belief in qadar, the good of it and the bad of it, is the sixth pillar of iman",
+    "Sunan Abu Dawud 4700 — 'The first thing Allah created was the Pen; He commanded it to write everything until the Day of Judgment'",
+    "Sahih Bukhari 4949 — 'Act, for everyone will have facilitated for them what they were created for'"
+  ],
+  "scholar_consensus": "Belief in qadar at all four levels is obligatory by ijma'. The balance between divine decree and human responsibility is the Ahl us-Sunnah middle path, rejecting both pure predetermination and denial of divine knowledge.",
+  "madhab_positions": {
+    "hanafi": "Maturidi aqeedah affirms all four levels of qadar. Human free will (ikhtiyar) is real — the human creates their own acts in a dependent sense through what Maturidis call kasb (acquisition).",
+    "maliki": "Ash'ari aqeedah affirms divine decree and uses the concept of kasb (acquisition) similarly to Maturidi school to account for human responsibility.",
+    "shafii": "Ash'ari position: Allah creates human acts; humans acquire them. Both divine decree and human accountability are real.",
+    "hanbali": "Athari position: affirm qadar fully, affirm human choice fully, and do not over-rationalize the combination. Trust the revealed texts on both without forcing a philosophical resolution."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings and deeper study, consult a qualified imam or Islamic scholar in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

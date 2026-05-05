@@ -1,0 +1,23 @@
+{
+  "slug": "what-is-imaan-and-actions",
+  "question": "What is the relationship between iman and deeds?",
+  "category": "aqeedah",
+  "summary": "Iman (faith) includes belief, speech, and action according to Ahl us-Sunnah. It increases with obedience and decreases with sin. A Muslim who commits major sins is still a believer.",
+  "answer": "The definition and components of iman (faith) was one of the most significant aqeedah disputes in early Islam, with three main positions emerging:\n\n**Ahl us-Sunnah wal-Jama'ah (the mainstream position):**\nIman consists of three elements:\n1. Belief in the heart (i'tiqad bil-qalb)\n2. Declaration by the tongue (iqrar bil-lisan)\n3. Action by the limbs ('amal bil-jawarih)\n\nIman increases with obedience and decreases with sin. Allah says: 'The believers are only those who, when Allah is mentioned, their hearts tremble, and when His verses are recited to them, it increases their faith.' (Quran 8:2) The Prophet ﷺ said: 'Iman has seventy-some (or sixty-some) branches. The highest is saying La ilaha illallah, and the lowest is removing harm from the road.' (Sahih Muslim 35)\n\n**The Khawarij position (rejected deviance):**\nThey held that a Muslim who commits a major sin exits Islam entirely. Classical scholars condemned this view as a dangerous innovation that caused the first civil wars in Islam.\n\n**The Murji'ah position (rejected deviance):**\nThey held that actions have no bearing on iman — that iman is only belief in the heart, and no sin can reduce it. This was rejected because it effectively divorced Islam from its ethical demands.\n\n**The Mu'tazilah position:**\nThey held a 'middle position' — the major sinner is neither a believer nor a disbeliever but in a station between the two (al-manzilah bayn al-manzilatain). This was also rejected by mainstream scholars.\n\n**The Athari/Hanbali consensus position:** A Muslim who commits a major sin is still a believer — a believer with deficient iman, deserving of punishment if no repentance — but not declared kafir. The Prophet ﷺ did not exclude adulterers or drunkards from the prayer and did not declare them kafir (Sahih Bukhari 6780 context). They are still given the janazah prayer.\n\nThe question of whether actions are part of iman or merely required by iman is a technical debate. What is agreed: actions matter, iman fluctuates, and major sinners remain Muslims.",
+  "evidence_quran": ["8:2", "49:14-15", "9:71"],
+  "evidence_hadith": [
+    "Sahih Muslim 35 — Abu Hurayra: 'Iman has seventy-some branches. The highest is La ilaha illallah and the lowest is removing harm from the road'",
+    "Sahih Bukhari 33 — 'No one commits zina while they are a believer... but Islam's door remains open to them for repentance'"
+  ],
+  "scholar_consensus": "The Ahl us-Sunnah position — iman includes belief, speech, and deeds; increases and decreases; major sinner remains Muslim — is the consensus. Both the Khawarij extreme (sinner exits Islam) and Murji'ah extreme (actions irrelevant) are rejected deviations.",
+  "madhab_positions": {
+    "hanafi": "Hanafi scholars (influenced by Maturidi aqeedah) held that iman in its essence is belief of the heart, with actions being required separately. This is sometimes described as a 'mild Murji'ah' position, though Hanafi scholars rejected the Murji'ah conclusion.",
+    "maliki": "Maliki scholars hold that iman includes deeds as a component, not merely an accessory. Iman increases and decreases.",
+    "shafii": "Imam al-Shafi'i explicitly stated: 'Iman is speech and deed; it increases and decreases.' This is the standard Shafi'i position.",
+    "hanbali": "Imam Ahmad ibn Hanbal was the strongest voice for the position that iman includes deeds and that it increases with obedience and decreases with sin. This is the Athari standard."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings and deeper study, consult a qualified imam or Islamic scholar in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

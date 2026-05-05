@@ -1,0 +1,24 @@
+{
+  "slug": "dowry-mahr",
+  "question": "What is mahr (dowry) in Islam? Is it required? How is it set?",
+  "category": "fiqh-family",
+  "summary": "Mahr is a mandatory gift from the husband to the wife, established at marriage. It is her exclusive right, belongs to her alone, and may not be reduced or taken back without her consent.",
+  "answer": "Mahr (also called sadaq) is a mandatory gift from the husband to the wife at the time of marriage. It is established by the Quran: 'Give women their mahr as a gift.' (Quran 4:4). It is a pillar of the marriage contract — a marriage without any mahr being agreed upon is still valid, but the husband owes a default mahr (mahr al-mithl) based on what women of similar status in the bride's family received.\n\n**Who does the mahr belong to?**\nThe mahr is exclusively the wife's property. It cannot be taken back by the husband or his family. Her parents and family have no right to it. If she voluntarily gives part of it back to her husband, that is permissible (Quran 4:4: 'If they remit any part of it willingly, then you may enjoy it'). No pressure may be placed on her to return it.\n\n**Types of mahr:**\n- **Mahr mu'ajjal (prompt/immediate mahr):** Paid at or before the wedding. The wife may refuse to consummate the marriage until the prompt mahr is paid.\n- **Mahr mu'ajjal (deferred mahr):** Agreed to be paid later — upon divorce, death of husband, or at an agreed date. Must be clearly specified.\n- **Mahr al-mithl (customary mahr):** The default mahr if no amount was agreed or if the contract is silent. Determined by what comparable women in the bride's family received.\n\n**How much should the mahr be?**\nThere is no maximum. There is a minimal threshold — scholars agree it must be something of value. The Hanafi school specifies a minimum of ten dirhams; others hold any valuable thing (even teaching her Quran) is sufficient based on the hadith of the man who had no wealth and was married on the basis of teaching his wife some Quran (Sahih Bukhari 5030).\n\nThe Prophet ﷺ encouraged modest mahr: 'The best mahr is the easiest.' (Abu Dawud 2117, graded hasan). He approved a mahr of an iron ring (Sahih Bukhari 5135).\n\n**Mahr and divorce:**\nIf divorce occurs before consummation, the wife is entitled to half the specified mahr (Quran 2:237). If after consummation, the full mahr. If the husband dies before consummation, the full mahr is owed from his estate.\n\n**Secret marriages:**\nA marriage with no witnesses or publicly hidden to avoid mahr obligations is invalid in Islamic law.",
+  "evidence_quran": ["4:4 — 'Give women their mahr as a gift'", "2:237 — Half mahr on divorce before consummation", "4:20 — Cannot take back mahr even in divorce"],
+  "evidence_hadith": [
+    "Sahih Bukhari 5135 — The Prophet ﷺ approved a mahr of an iron ring",
+    "Sahih Bukhari 5030 — A man with no wealth was married on the basis of teaching his wife some Quran",
+    "Abu Dawud 2117 — 'The best mahr is the easiest.' (graded hasan)"
+  ],
+  "scholar_consensus": "Mahr is mandatory in all four schools. The wife owns it exclusively. All schools agree on the broad framework — they differ on minimum amounts and default mahr calculations.",
+  "madhab_positions": {
+    "hanafi": "Minimum mahr is 10 dirhams (silver) or equivalent value. Below this, the marriage is valid but the mahr rises to the minimum. Mahr al-mithl is based on what the bride's paternal aunts and similar women received.",
+    "maliki": "No set minimum but mahr must be something of genuine value. The marriage contract is valid with any mahr, however small. Mahr al-mithl is determined by the community standard for comparable women.",
+    "shafii": "Any valuable consideration is sufficient, including teaching the bride something beneficial. No minimum amount required. Mahr al-mithl considers the bride's personal qualities and family background.",
+    "hanbali": "No fixed minimum — any property of value is sufficient. Teaching the bride Quran is explicitly accepted. Mahr al-mithl standard applied similarly to Shafi'i."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For questions about your specific mahr arrangement or rights regarding unpaid mahr, consult a qualified Islamic scholar.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

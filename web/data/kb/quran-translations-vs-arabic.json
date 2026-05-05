@@ -1,0 +1,23 @@
+{
+  "slug": "quran-translations-vs-arabic",
+  "question": "Can I read a Quran translation instead of the Arabic? Are translations considered the Quran?",
+  "category": "quran",
+  "summary": "Translations are interpretations of the Quran's meanings, not the Quran itself. Prayer requires the original Arabic. Reading translations for understanding is encouraged but does not substitute for the original.",
+  "answer": "This is an important distinction with practical implications for prayer and study.\n\n**Are translations the Quran?**\nNo — by scholarly consensus, translations of the Quran into other languages are called 'tafsir' (interpretation/explanation) or 'translation of the meanings' (tarjamat al-ma'ani). They are not the Quran itself. The Quran is the specific Arabic revelation: 'Indeed, We have sent it down as an Arabic Quran so that you may understand.' (Quran 12:2)\n\nThis matters because:\n1. The Quran is Allah's actual speech (kalam Allah) in its Arabic form\n2. The miracle of the Quran (i'jaz) is inseparable from the Arabic\n3. Subtle meanings, implications, and linguistic beauty cannot be fully transferred to another language\n4. Even the most accurate translation reflects the translator's interpretive choices\n\n**Prayer (Salah) requires Arabic:**\nBy scholarly consensus, the obligatory prayer must be performed in Arabic. Reciting a translation in place of al-Fatiha or other Quran portions invalidates the prayer. A new Muslim who cannot yet recite al-Fatiha in Arabic has a temporary accommodation in some schools (see below).\n\n**Using translations for study:**\nReading translations for understanding and reflection is strongly encouraged. The Quran commands understanding: 'Will they not then contemplate the Quran?' (Quran 4:82) Using a good English, Urdu, or other translation alongside the Arabic is an excellent study method.\n\n**Recommended translations (English):**\nScholars have noted the quality of several translations: Saheeh International (clear, Athari-influenced), The Clear Quran by Dr. Mustafa Khattab (readable), and the Arberry translation for literary quality. All have limitations. No single translation should be used exclusively without the Arabic.\n\n**The new Muslim exception:**\nThe Hanafi school permits a new Muslim who cannot yet recite Arabic to temporarily use their own language in prayer until they learn the Arabic. The other three schools require Arabic from the start and prescribe dhikr (such as Subhanallah) as a substitute during the learning period.",
+  "evidence_quran": ["12:2", "4:82", "43:3", "26:195"],
+  "evidence_hadith": [
+    "Sahih Bukhari 756 — 'There is no prayer for one who does not recite al-Fatiha' (requiring Arabic recitation)",
+    "Sahih Bukhari 4937 — The Prophet ﷺ recited the Quran beautifully in Arabic"
+  ],
+  "scholar_consensus": "Translations are not the Quran by ijma'. Prayer requires Arabic by scholarly consensus (with narrow Hanafi exception for beginners).",
+  "madhab_positions": {
+    "hanafi": "Translations are not the Quran. However, Imam Abu Hanifa in one opinion permitted reciting the meaning in one's language in prayer for those unable to learn Arabic — a position his students later restricted.",
+    "maliki": "Arabic is obligatory in prayer. Translations are valuable study tools but not substitutes for the original.",
+    "shafii": "Arabic is strictly required in prayer. Translations are interpretations of meaning only.",
+    "hanbali": "Arabic is obligatory. Translations serve understanding but have no status in prayer."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings and deeper study, consult a qualified imam or Islamic scholar in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

@@ -1,0 +1,23 @@
+{
+  "slug": "attributes-of-allah-overview",
+  "question": "What are the attributes of Allah?",
+  "category": "aqeedah",
+  "summary": "Allah's attributes are affirmed from the Quran and authentic Sunnah. Schools differ on whether to interpret them literally or through rational ta'wil.",
+  "answer": "Allah's attributes (sifat) are known only through divine revelation — the Quran and authentic hadith. They are divided into several categories:\n\n**Attributes of Essence (Dhātiyyah):** These are inseparable from Allah's being — His existence, eternity (without beginning), self-subsistence (Qayyum), and absolute uniqueness. 'There is nothing like Him, and He is the All-Hearing, the All-Seeing.' (Quran 42:11)\n\n**Attributes of Action (Fi'liyyah):** These relate to Allah's acts, such as creating, sustaining, speaking, rising above the Throne, mercy, and anger. 'The Most Merciful rose over the Throne.' (Quran 20:5)\n\n**Attributes of Perfection (Sifat Kamaliyyah):** These include life (Hayat), knowledge ('Ilm), will (Iradah), power (Qudrah), hearing (Sam'), sight (Basar), and speech (Kalam). These seven are known as the seven essential attributes in Ash'ari and Maturidi theology.\n\n**The key scholarly division:**\n\nThe Athari (Hanbali) position, following Imam Ahmad ibn Hanbal and the Salaf, is to affirm attributes exactly as they appear in the Quran and Sunnah — without distorting their meaning, denying them, asking how they exist, or likening them to creation. This principle is summarized in the phrase: 'Affirm without comparison, and declare Allah transcendent without denial.'\n\nThe Ash'ari and Maturidi positions engage in rational theology (kalam). For attributes whose literal meaning would — in their understanding — imply resemblance to creation (such as Allah's 'face,' 'hand,' or 'descending'), they interpret these metaphorically (ta'wil). Both schools emphatically affirm Allah's transcendence and deny any resemblance to creation.\n\nAll three positions are within Ahl us-Sunnah wal-Jama'ah. This is an intramural scholarly debate, not a division between faith and deviance.\n\nAllah has 99 beautiful names (al-Asma' al-Husna), each carrying an attribute. The Prophet ﷺ said: 'To Allah belong ninety-nine names... whoever encompasses them will enter Paradise.' (Sahih Bukhari 2736)",
+  "evidence_quran": ["42:11", "20:5", "59:22-24", "7:180"],
+  "evidence_hadith": [
+    "Sahih Bukhari 2736 — Abu Hurayra: 'Allah has ninety-nine names, one hundred minus one. Whoever encompasses them will enter Paradise'",
+    "Sahih Bukhari 7386 — 'Our Lord descends each night to the lowest heaven when the last third of the night remains'"
+  ],
+  "scholar_consensus": "Affirming Allah's attributes from Quran and Sunnah is obligatory by ijma'. The methodology of affirmation (literal vs. ta'wil) is a legitimate intra-Sunni scholarly disagreement.",
+  "madhab_positions": {
+    "hanafi": "Maturidi aqeedah: seven essential attributes affirmed with rational grounding. Some attributes interpreted via ta'wil to preserve transcendence.",
+    "maliki": "Ash'ari aqeedah is widespread among Maliki scholars. The approach is rational theology affirming transcendence.",
+    "shafii": "Many classical Shafi'i scholars were Ash'ari (e.g., al-Ghazali, al-Nawawi). Seven essential attributes plus rational interpretation of others.",
+    "hanbali": "Athari position: affirm all attributes as they appear, without ta'wil, without comparison, without asking 'how'. This is the position of Imam Ahmad and the Salaf."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings and deeper study, consult a qualified imam or Islamic scholar in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

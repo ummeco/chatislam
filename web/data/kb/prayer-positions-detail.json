@@ -1,0 +1,24 @@
+{
+  "slug": "prayer-positions-detail",
+  "question": "What are the proper physical positions in prayer?",
+  "category": "salah",
+  "summary": "Prayer involves specific positions: standing (qiyam), bowing (ruku'), prostration (sujud), and sitting (juloos). Each has detailed prophetic descriptions with some scholarly differences on specifics.",
+  "answer": "The physical postures of prayer were demonstrated by the Prophet ﷺ who said: 'Pray as you have seen me pray.' (Sahih Bukhari 631) Scholars have recorded the prophetic descriptions in detail.\n\n**1. Qiyam (Standing):**\nStanding straight, facing qiblah. Feet shoulder-width apart approximately. Hands:\n- Hanafi/Hanbali: Right hand over left, placed below the navel (Hanafi) or on the chest/upper chest (Hanbali)\n- Maliki: Hands can be at the sides (sadl) or placed on the chest — Maliki school is known for allowing both\n- Shafi'i: Right hand over left, placed on the chest\nThe eyes look at the place of sujud (prostration). Reciting al-Fatiha aloud or silently depending on the prayer.\n\n**2. Ruku' (Bowing):**\nBowing until the back is flat (horizontal or near). The Prophet ﷺ would level his back like a table (Sahih Bukhari 790). Hands grasp the knees; fingers spread. Reciting 'Subhana Rabbiyal 'Azeem' (Glory be to my Mighty Lord) — at least once; three times or more is Sunnah.\n\n**3. I'tidal (Rising from Ruku'):**\nReturning to full standing (all four schools require returning to full standing before proceeding). Saying 'Sami'Allahu liman hamidah' when rising, then 'Rabbana lakal hamd' when standing.\n\n**4. Sujud (Prostration):**\nDescending to seven body parts on the ground: forehead + nose, both palms, both knees, both feet (toes). The Prophet ﷺ said: 'I have been commanded to prostrate on seven bones.' (Sahih Bukhari 812) Arms elevated off the ground (not spread like a dog — Sahih Bukhari 822). Saying 'Subhana Rabbiyal A'la' (Glory be to my Highest Lord) at least once.\n\n**5. Juloos (Sitting):**\n- First sitting: the iftirash position — right foot upright, left foot flat with foot under the right shin (majority)\n- Final sitting (tashahhhud): iftirash (Hanafi/Maliki/Hanbali) or tawarruk — right foot upright, left tucked under right, sitting on ground (Shafi'i prefers tawarruk in final sitting)\nIndex finger raised during tashahhud recitation (all schools; exact movement — still, gentle movement, or continued pointing — is disputed).",
+  "evidence_quran": ["2:43"],
+  "evidence_hadith": [
+    "Sahih Bukhari 631 — 'Pray as you have seen me pray'",
+    "Sahih Bukhari 790 — The Prophet ﷺ made his back straight in ruku' (like a table)",
+    "Sahih Bukhari 812 — 'I was commanded to prostrate on seven bones: the forehead (with the nose), two hands, two knees, and two feet'"
+  ],
+  "scholar_consensus": "The seven body parts touching in sujud, the straightening of the back in ruku', and the general prayer postures are established by authentic hadiths. Details (hand placement in qiyam, sitting position in final tashahhud) are well-known fiqh differences.",
+  "madhab_positions": {
+    "hanafi": "Hands below navel in qiyam. Iftirash in all sittings. The Prophet's prayer as described in Abu Dawud 726 (detailed description of Hanafi prayer) is the reference.",
+    "maliki": "Sadl (arms at sides) is a known Maliki practice in some narrations. Iftirash in sittings.",
+    "shafii": "Hands on chest in qiyam. Tawarruk in the final sitting. Most detailed description follows the narration of Abu Humaid as-Sa'idi (Sunan Abu Dawud 730).",
+    "hanbali": "Hands on chest. Iftirash in first sitting; tawarruk in final sitting when prayer has two sittings. Details follow the Abu Humaid narration."
+  },
+  "disclaimer": "This is a study reference based on classical sources. Learning proper prayer positions from a qualified teacher or imam in your madhab is strongly recommended.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

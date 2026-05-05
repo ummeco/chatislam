@@ -1,0 +1,23 @@
+{
+  "slug": "what-is-sahih-hadith",
+  "question": "What is a sahih (authentic) hadith?",
+  "category": "hadith",
+  "summary": "A sahih hadith meets five strict criteria of authenticity developed by hadith scholars: connected chain, reliable narrators, sound memory, no hidden defect, and no irregularity.",
+  "answer": "Hadith are the recorded sayings, actions, and tacit approvals of the Prophet Muhammad ﷺ. The science of hadith authentication (ulum al-hadith / mustalah al-hadith) is one of the most sophisticated textual verification systems developed by any civilization.\n\n**The five conditions for a sahih (authentic) hadith:**\n\n1. **Ittisaal al-Sanad (Connected Chain):** Every narrator in the chain personally received the hadith from the one before him, with no gaps or missing links.\n\n2. **'Adalah al-Ruwah (Trustworthy Narrators):** Every narrator must be a Muslim who practiced Islam consistently, was known for moral integrity, and did not commit major sins openly.\n\n3. **Dabt (Accurate Memory/Preservation):** Each narrator must have accurately preserved the hadith — either through precise memory or reliable written notes. This includes both dabt al-sadr (memorization) and dabt al-kitab (written preservation).\n\n4. **'Adam al-Shudhudh (No Irregularity):** The narration should not contradict a stronger, more widely transmitted report.\n\n5. **'Adam al-'Illah al-Qadiha (No Hidden Defect):** No subtle defect (such as a break in the chain appearing connected, or two narrators being confused) that would undermine authenticity.\n\n**The highest grade sahih collections:**\n- **Sahih al-Bukhari** — considered the most authentic book after the Quran by many scholars (Imam al-Bukhari applied the strictest criteria)\n- **Sahih Muslim** — the second most rigorously authenticated collection\n- Together called 'al-Sahihayn' (the Two Sahihs)\n\n**Below sahih:**\n- **Hasan** — meets most criteria but with slightly weaker memory among narrators; still used in fiqh\n- **Da'if** — weak; various deficiencies; limited use\n- **Mawdu'** — fabricated; not used at all\n\nThe Prophet ﷺ warned against attributing false statements to him: 'Whoever attributes to me what I did not say, let him take his seat in the Fire.' (Sahih Bukhari 110)",
+  "evidence_quran": ["49:6", "59:7"],
+  "evidence_hadith": [
+    "Sahih Bukhari 110 — 'Whoever attributes to me what I did not say, let him take his seat in the Fire'",
+    "Sahih Muslim 3 — 'The isnad is part of the religion; were it not for the isnad, anyone could say anything they wished'"
+  ],
+  "scholar_consensus": "The five conditions for sahih hadith are the standard criteria by scholarly consensus in the science of hadith criticism. The authority of Sahih Bukhari and Sahih Muslim is widely acknowledged, though individual hadiths within them may be scrutinized.",
+  "madhab_positions": {
+    "hanafi": "Hanafi usul al-fiqh adds an additional requirement: a hadith narrated by a single narrator (ahad) is subject to additional scrutiny if it contradicts established Hanafi analogical reasoning (qiyas).",
+    "maliki": "Imam Malik gave particular weight to the practice of Madinah as a source alongside authentic hadith, creating a distinctive approach to hadith application.",
+    "shafii": "Imam al-Shafi'i championed the authority of sahih hadith and formalized the science of hadith in his work al-Risalah.",
+    "hanbali": "Imam Ahmad ibn Hanbal gave hadith the highest priority, preferring even a weak hadith over scholarly opinion. His Musnad contains the largest of the classical collections."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings and deeper study, consult a qualified imam or Islamic scholar in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

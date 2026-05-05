@@ -1,0 +1,23 @@
+{
+  "slug": "what-counts-as-eating-during-fast",
+  "question": "What counts as eating or drinking during the fast? Does tasting food, swallowing saliva, or using mouthwash break it?",
+  "category": "fiqh-fasting",
+  "summary": "Consuming anything that reaches the stomach through a deliberate act of swallowing breaks the fast. Saliva, dust, and involuntary factors generally do not.",
+  "answer": "The fast is broken by deliberately consuming anything — food, drink, or a substance with nutritional value — that reaches the stomach through the normal eating passage. Understanding the boundaries helps in common daily situations.\n\n**Saliva:** Swallowing one's own saliva does not break the fast by scholarly consensus, as long as it is pure (not mixed with food remnants or blood). This includes swallowing saliva that accumulates normally in the mouth.\n\n**Rinsing the mouth:** Rinsing (madhmadhah) for wudu is permitted. However, scholars advise against excessive rinsing or gargling during fasting, as anything swallowed intentionally would break the fast. The Shafi'i school holds that if a drop reaches the throat during permitted rinsing without intent, the fast is still broken (a stricter view). The Hanafi school holds the fast intact if swallowing was accidental during wudu rinsing.\n\n**Mouthwash:** Using mouthwash while fasting is risky, as swallowing even a small amount — whether intentional or not — breaks the fast under most opinions. Scholars generally advise avoiding it during fasting hours.\n\n**Tasting food:** The Maliki and Hanbali schools hold that tasting food without swallowing does not break the fast, though it is disliked. The Hanafi school agrees on permissibility when there is genuine need (a cook tasting for seasoning, for example). Any swallowing, however, breaks the fast.\n\n**Smoke and inhaled substances:** Deliberately inhaling smoke — including cigarette smoke or incense — breaks the fast according to the majority (Maliki, Shafi'i, Hanbali). The Hanafi school has a discussion on whether smoke entering involuntarily (like passing through a smoky area) breaks the fast; the relied-upon Hanafi position is that deliberately inhaling smoke breaks the fast.\n\n**Involuntary vomiting:** Does not break the fast (Sahih hadith: 'Whoever is overcome by vomiting owes no makeup.' — Abu Dawud 2380, graded hasan). Deliberately inducing vomiting breaks the fast.\n\n**Dust, flies, and unintentional particles:** Airborne dust, flour, or a fly entering the throat without choice does not break the fast by scholarly consensus.\n\n**Nutrient injections and IV drips:** A disputed modern question. The majority of contemporary scholars hold that IV drips providing nutrition break the fast, while saline-only drips do not. Injections that go directly into the bloodstream (not through the eating passage) are considered permissible by many scholars as they do not constitute eating.",
+  "evidence_quran": ["2:187"],
+  "evidence_hadith": [
+    "Abu Dawud 2380 — 'Whoever is overcome by vomiting owes no makeup fast, but whoever induces vomiting must make it up.' (graded hasan by al-Albani; basis for involuntary vomiting ruling)",
+    "Sahih Bukhari 1933 — Ibn Abbas: Whoever forgetfully eats or drinks should complete the fast, for it is Allah who fed him and gave him drink (forgetfulness does not break fast)"
+  ],
+  "scholar_consensus": "Deliberately swallowing food, drink, or nutrient substances breaks the fast. Involuntary entry (dust, flies), saliva, and forgetful eating do not break the fast. Deliberately induced vomiting, smoke inhalation, and mouthwash-swallowing break the fast.",
+  "madhab_positions": {
+    "hanafi": "The fast is broken by deliberate consumption reaching the stomach via the eating passage. Accidental swallowing during wudu rinsing does not break it. Deliberately inhaling smoke breaks the fast.",
+    "maliki": "Tasting food without swallowing is permissible when needed. Accidental swallowing of water during mouth rinsing breaks the fast. Smoke inhalation breaks the fast.",
+    "shafii": "Stricter on water entry: even an accidental drop reaching the throat during permitted rinsing breaks the fast. Tasting food is disliked but permissible if nothing is swallowed.",
+    "hanbali": "Tasting food without swallowing is permissible when needed. Any swallowing of a substance with nutritional effect breaks the fast. Smoke breaks the fast."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings in your situation — including medical scenarios — consult a qualified scholar.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

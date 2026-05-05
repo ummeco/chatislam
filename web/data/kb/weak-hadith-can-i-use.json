@@ -1,0 +1,23 @@
+{
+  "slug": "weak-hadith-can-i-use",
+  "question": "Can I use weak (da'if) hadith?",
+  "category": "hadith",
+  "summary": "Weak hadith have limited use in Islam. Scholars permit them for virtuous deeds (fada'il al-a'mal) under conditions, but prohibit using them for legal rulings (ahkam). Fabricated hadith are never used.",
+  "answer": "A da'if (weak) hadith has one or more deficiencies in its chain or text — an unreliable narrator, a break in the chain, or other issues falling short of the sahih standard.\n\n**The scholarly debate on using weak hadith:**\n\n**Position 1 — Permitted for virtuous deeds (majority position):**\nMany scholars — including Imam Ahmad ibn Hanbal, Imam al-Nawawi, and Ibn Hajar al-Asqalani — permitted using weak hadith for encouraging acts of worship (fada'il al-a'mal), not for legal rulings, under three conditions:\n1. The hadith is not very weak (not a narrator known for lying)\n2. The act has a general basis elsewhere in Quran or sahih Sunnah\n3. One does not believe the Prophet ﷺ definitely said it — only that it's possible\n\n**Position 2 — Not permitted at all (minority but significant position):**\nIbn al-Madini, al-Bukhari, Yahya ibn Ma'in, and in more recent times al-Albani held that weak hadith should not be used even for virtuous acts. Their reasoning: weak is weak — using it encourages falsehood about the Prophet ﷺ. The Quran and sahih Sunnah already contain sufficient encouragement for all good acts.\n\n**What is agreed upon:**\n- Weak hadith are **never** used for legal rulings (obligatory/forbidden determinations)\n- **Fabricated (mawdu')** hadith are never used for any purpose whatsoever\n- A weak hadith cannot establish a new practice in Islam\n- Using a weak hadith must be accompanied by noting its weakness\n\n**Practical guidance:** When encountering hadith online or in speeches, ask: What is its source? Is it in Bukhari, Muslim, or the four Sunan? Is it graded? Ungraded hadith and circulating quotations attributed to the Prophet ﷺ without a reference should be treated with caution. The bar for attributing words to the Prophet ﷺ is very high.",
+  "evidence_quran": ["49:6"],
+  "evidence_hadith": [
+    "Sahih Bukhari 110 — 'Whoever attributes to me what I did not say, let him take his seat in the Fire'",
+    "Sahih Muslim 3 — 'The isnad is part of the religion; were it not for the isnad, anyone could say anything'"
+  ],
+  "scholar_consensus": "Weak hadith are not used for legal rulings by ijma'. Their use for virtuous acts is disputed — the majority permit it with conditions; a significant minority prohibit it entirely.",
+  "madhab_positions": {
+    "hanafi": "Hanafi scholars generally permitted weak hadith for fada'il al-a'mal and even over certain forms of analogical reasoning when no stronger text is available.",
+    "maliki": "Imam Malik permitted weak hadith for general encouragement. His school gives weight to the practice of Madinah alongside hadith.",
+    "shafii": "Generally more cautious about weak hadith. Imam al-Nawawi (Shafi'i) stated the conditions for their permissible use.",
+    "hanbali": "Imam Ahmad used weak hadith over qiyas in legal matters (unusual), but for fada'il he permitted them. Al-Albani (Hanbali-influenced) prohibited their use entirely, even for fada'il."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings and deeper study, consult a qualified imam or Islamic scholar in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

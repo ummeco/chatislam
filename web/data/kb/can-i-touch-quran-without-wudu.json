@@ -1,0 +1,23 @@
+{
+  "slug": "can-i-touch-quran-without-wudu",
+  "question": "Can I touch the Quran without wudu?",
+  "category": "quran",
+  "summary": "The majority position (Maliki, Shafi'i, Hanbali) requires wudu to physically touch the Mushaf. The Hanafi school requires it for full physical contact. Reciting from memory does not require wudu.",
+  "answer": "This question has both textual evidence and significant scholarly discussion.\n\n**The majority position (Maliki, Shafi'i, Hanbali):**\nIt is not permissible to touch the Mushaf (physical Quran) without wudu. The evidence:\n1. 'None shall touch it except the purified.' (Quran 56:79) — The majority interpret 'it' as the Quran and 'the purified' as those with ritual purity (wudu/tahara).\n2. The letter the Prophet ﷺ sent to Musaylimah, found in the Amr ibn Hazm hadith: 'No one should touch the Quran except one who is pure (tahir).' (al-Muwatta 469, authenticated by multiple scholars)\n\n**The Hanafi position:**\nHandling the Mushaf without wudu is makruh (disliked) at minimum. Many Hanafi scholars hold it is prohibited (haram) to touch the written text directly. However, holding the Quran wrapped in a cover without the skin touching the pages is permitted.\n\n**Points of agreement:**\n- Reciting the Quran from memory requires neither wudu nor tahara (though it is preferred)\n- Reading the Quran on a screen or device: most contemporary scholars treat this as not requiring wudu, since it is not the Mushaf itself\n- A person in major impurity (janabah) may not recite Quran, let alone touch it, according to the majority (based on the hadith: 'The Prophet ﷺ would not recite Quran when in a state of janabah.' Abu Dawud 229, hasan)\n- Menstruating women: scholars differ — the majority prohibit both touching and reciting; some contemporary scholars (e.g., following certain Hanbali opinions) permit recitation from memory\n\n**For digital Quran apps:** The dominant contemporary view allows using Quran apps without wudu, since a phone is not the Mushaf. Some scholars still prefer wudu out of reverence.",
+  "evidence_quran": ["56:79", "56:77-80"],
+  "evidence_hadith": [
+    "al-Muwatta 469 (al-Amr ibn Hazm letter) — 'No one should touch the Quran except one who is pure' (authenticated by al-Bukhari, graded strong by Ibn Abd al-Barr)",
+    "Sunan Abu Dawud 229 — 'The Prophet ﷺ did not recite Quran in the state of janabah' (graded hasan)"
+  ],
+  "scholar_consensus": "The majority require wudu for touching the Mushaf. This is the position of the Maliki, Shafi'i, and Hanbali schools and the Hanafi majority. Reciting from memory without wudu (while not in janabah) is permitted.",
+  "madhab_positions": {
+    "hanafi": "Touching the written text of the Quran directly is prohibited without wudu. Holding a covered Mushaf without touching the text is permitted. Reciting from memory is permitted without wudu.",
+    "maliki": "Touching the Mushaf is prohibited without wudu. This applies to any adult Muslim.",
+    "shafii": "Prohibited to touch the Mushaf without wudu. Applies to the entire Quran including the covers.",
+    "hanbali": "Prohibited to touch the Mushaf without wudu. Reciting from memory is permitted without wudu as long as one is not in the state of janabah."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings and deeper study, consult a qualified imam or Islamic scholar in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

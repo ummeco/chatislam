@@ -1,0 +1,24 @@
+{
+  "slug": "witr-prayer",
+  "question": "What is Witr prayer and is it obligatory?",
+  "category": "salah",
+  "summary": "Witr is an odd-numbered prayer performed after Isha'. Its obligation status is disputed: wajib (obligatory) in the Hanafi school, strong Sunnah in the other three. Minimum is one rak'ah.",
+  "answer": "Witr (الوتر, meaning 'odd') is a prayer of odd-numbered rak'at performed after the Isha' prayer, before Fajr. The Prophet ﷺ never abandoned it, traveling or resident. 'The witr is a right (haqq). Whoever wishes, pray five rak'at; whoever wishes, three; whoever wishes, one.' (Sunan Abu Dawud 1422, graded sahih)\n\n**Ruling on Witr:**\n\n- **Hanafi school:** Witr is wajib (obligatory) — below fard (mandatory) but above Sunnah mu'akkadah. Missing it intentionally without cause is a sin. Making it up (qada') is required if missed.\n\n- **Maliki, Shafi'i, Hanbali schools:** Witr is a highly confirmed Sunnah (Sunnah mu'akkadah). Leaving it without excuse is strongly disliked but not sinful in the same degree as missing a fard prayer.\n\n**Evidence:** The Prophet ﷺ said: 'O people of the Quran, pray Witr — for indeed Allah is Witr (odd/single) and loves the witr.' (Sunan Abu Dawud 1416, Sunan an-Nasa'i, graded sahih)\n\n**How many rak'at?**\n- Minimum: one rak'ah\n- Common: three rak'at\n- Maximum cited: eleven rak'at (includes tahajjud + witr)\n\n**How to pray three rak'at (witr):**\n\n- **Hanafi method:** Three continuous rak'at with one salam at the end (similar to Maghrib but with different sitting arrangements). Qunut (special du'a) is recited in the third rak'ah before ruku' — this is wajib in Hanafi school.\n\n- **Shafi'i and Hanbali method:** Pray two rak'at, give salam, then pray one rak'ah separately. Or pray three rak'at continuously with qunut recited in the third rak'ah after ruku'. Various forms are acceptable.\n\n- **Maliki method:** Three continuous rak'at, but without the Hanafi-style continuous sitting pattern.\n\n**Best time for Witr:** Last third of the night for those confident they will wake for tahajjud. Otherwise, before sleeping after Isha'. 'Whoever fears he will not wake for the last portion of the night should pray Witr before sleeping.' (Sahih Muslim 755)",
+  "evidence_quran": [],
+  "evidence_hadith": [
+    "Sunan Abu Dawud 1422 — 'Witr is a right. Whoever wishes, pray five; whoever wishes, three; whoever wishes, one'",
+    "Sahih Muslim 755 — 'Whoever fears he will not wake should pray Witr before sleeping; whoever expects to wake should delay Witr to the last of the night'",
+    "Sunan Abu Dawud 1416 — 'Allah is Witr and loves the witr'"
+  ],
+  "scholar_consensus": "Witr is at minimum a highly confirmed Sunnah by consensus. The Hanafi school elevates it to wajib (obligatory). The qunut in witr is agreed to be practiced; its timing and content differ by school.",
+  "madhab_positions": {
+    "hanafi": "Witr is wajib. Three rak'at with one salam. Qunut is recited before ruku' in the third rak'ah (Allahummahdinee feeman hadayt...).",
+    "maliki": "Sunnah mu'akkadah. Flexible on form. Qunut in Fajr is a Maliki practice; witr qunut is not as emphasized.",
+    "shafii": "Sunnah mu'akkadah. One rak'ah is valid. Qunut is recommended in the third rak'ah after ruku'.",
+    "hanbali": "Sunnah mu'akkadah. One or three rak'at most common. Qunut may be recited in the second half of Ramadan and at times of calamity."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings and deeper study, consult a qualified imam or Islamic scholar in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

@@ -1,0 +1,23 @@
+{
+  "slug": "what-invalidates-prayer",
+  "question": "What invalidates (nullifies) the prayer?",
+  "category": "salah",
+  "summary": "Prayer is invalidated by breaking wudu, speaking, excessive movement, laughing, turning away from qiblah without excuse, and missing obligatory pillars. Scholars agree on most cases with some differences.",
+  "answer": "The invalidators of prayer (mubtilaht al-salah) are acts that void the prayer, requiring it to be repeated.\n\n**Agreed-upon invalidators across all four schools:**\n\n1. **Breaking wudu (ritual purity):** Any act that nullifies wudu — passing gas, discharges — invalidates the prayer. 'Allah does not accept the prayer of one who breaks his wudu until he performs it again.' (Sahih Bukhari 135)\n\n2. **Intentional speech:** Deliberately speaking words not part of the prayer (dhikr, du'a, Quran). The Prophet ﷺ said: 'Our prayer is not suitable for any human speech — it is only tasbih, takbir, and recitation of Quran.' (Sahih Muslim 537)\n\n3. **Eating or drinking:** Invalidates the prayer by consensus.\n\n4. **Intentionally turning the chest completely away from qiblah:** Without a valid excuse.\n\n5. **Deliberate excessive movement (harakat kathira):** Three or more consecutive movements not part of the prayer by most scholars.\n\n6. **Deliberately skipping an obligatory pillar:** Missing a rukn (obligatory act such as al-Fatiha recitation, ruku', sujud) intentionally.\n\n**Additional disagreements:**\n\n- **Laughing audibly (qahqahah):** Hanafi school: invalidates wudu AND prayer. Other three schools: invalidates only the prayer.\n\n- **Looking at something that reveals awrah (nakedness):** Majority: invalidates prayer; Maliki: does not necessarily invalidate.\n\n- **Uncovering awrah accidentally:** If quickly corrected, prayer is valid per majority. If continued intentionally, prayer is invalid.\n\n- **Praying facing wrong direction in error:** If discovering mid-prayer, the majority require turning toward qiblah and continuing from that point; Shafi'i school may require starting over in some cases.\n\n**What does NOT invalidate prayer:**\n- Accidentally touching someone of the opposite gender (except Shafi'i school where this breaks wudu first)\n- Wiping away sweat or adjusting clothing minimally\n- Involuntary speech (burp, cough, sneeze)\n- Forgetting a Sunnah act",
+  "evidence_quran": ["2:238"],
+  "evidence_hadith": [
+    "Sahih Bukhari 135 — 'Allah does not accept the prayer of one who breaks his wudu until he performs it again'",
+    "Sahih Muslim 537 — 'Our prayer is not suitable for human speech — it is only tasbih, takbir, and Quran recitation'"
+  ],
+  "scholar_consensus": "Breaking wudu, intentional speech, eating/drinking, and turning completely from qiblah invalidate prayer by consensus. Laughing and other acts are disputed.",
+  "madhab_positions": {
+    "hanafi": "Audible laughter (qahqahah) invalidates both prayer and wudu. Minor speech (e.g., forgetting and saying 'Bismillah') invalidates prayer unless truly involuntary.",
+    "maliki": "Core invalidators apply. Some distinctions on what constitutes 'excessive movement' versus what is forgivable.",
+    "shafii": "Skin-to-skin contact with non-mahram of opposite gender breaks wudu first, then the prayer. Laughing invalidates prayer only.",
+    "hanbali": "Core invalidators apply. Deliberate eating or drinking while knowing they are in prayer invalidates it."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings and deeper study, consult a qualified imam or Islamic scholar in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

@@ -1,0 +1,24 @@
+{
+  "slug": "debt-rules",
+  "question": "What are the Islamic rules around taking on debt, lending money, and writing it down?",
+  "category": "fiqh-finance",
+  "summary": "Debt is permitted but treated seriously in Islam. Interest-free lending (qard hasan) is highly encouraged. Borrowing for necessity is permitted. All debts must be repaid. The Quran commands that significant debts be documented in writing.",
+  "answer": "Islam treats debt as a serious matter that affects both worldly and spiritual life. The Prophet ﷺ warned that a martyr's sins are all forgiven except debt (Sahih Muslim 1886), highlighting how seriously it is taken.\n\n**Interest-free lending (Qard Hasan):**\nLending without any increase is not only permitted but strongly encouraged. The Quran mentions it multiple times: 'Who will lend to Allah a beautiful loan (qard hasan)?' (2:245, 57:11, 64:17). The Prophet ﷺ said: 'Every loan has an element of sadaqah.' The lender receives reward from Allah. The borrower must repay exactly what was borrowed — no more, no less (any stipulated addition is riba).\n\n**Taking on debt:**\nBorrowing for genuine need is permitted. The Prophet ﷺ borrowed and had debts. The Quran's longest verse (2:282) addresses debt — commanding it be documented. The key conditions are:\n1. Genuine need or legitimate purpose\n2. Reasonable expectation of ability to repay\n3. No interest\n\n**Obligation to repay:**\nRepaying a debt is a serious obligation (wajib). Deliberately refusing to repay while having the means is considered a form of wrongdoing (dhulm): 'The rich man who delays payment is committing an injustice.' (Sahih Bukhari 2400). A debtor who genuinely cannot pay must be given time: 'If the debtor is in hardship, then give him time until he can repay.' (Quran 2:280).\n\n**Documenting debts:**\nThe Quran in its longest verse (2:282) commands that debts be written down, with a scribe and two witnesses, when possible. This is a practical instruction for protecting rights. The Prophet ﷺ said documentation protects both parties.\n\n**What happens to debt at death?**\nDebts are settled from the estate before any inheritance is distributed. This is established by Quran 4:12 ('after payment of bequest and debt'). Unpaid debts are a serious matter: a deceased person's soul may be held back until debts are settled. The next of kin can settle it on behalf of the deceased, and this is highly encouraged.\n\n**Lending to family and friends:**\nPermitted and encouraged. Scholars advise documenting even informal loans to prevent disputes. The Quran's instruction to document applies regardless of the relationship.\n\n**Selling debt:**\nClassically, selling a debt to a third party at a discount (factoring) is considered a form of riba by most schools, as it involves exchanging a sum of money for a different sum. This is a significant ruling in contemporary Islamic banking.",
+  "evidence_quran": ["2:245 — 'Who will lend to Allah a beautiful loan'", "2:280 — 'If the debtor is in difficulty, give him time'", "2:282 — The documentation verse (longest verse in the Quran)", "4:12 — Inheritance distributed after debts"],
+  "evidence_hadith": [
+    "Sahih Muslim 1886 — The martyr's sins are forgiven except debts",
+    "Sahih Bukhari 2400 — 'The rich man who delays payment is committing injustice.'",
+    "Sahih Bukhari 2305 — The Prophet ﷺ paid back a camel with a better one and said: 'The best of you is the best in repaying.'"
+  ],
+  "scholar_consensus": "Interest-free lending (qard hasan) is highly meritorious. Borrowing for genuine need is permitted. Repayment is obligatory. All four schools agree on these core principles. Debts must be settled from the estate before inheritance distribution.",
+  "madhab_positions": {
+    "hanafi": "Comprehensive rules on qard. A lender stipulating any benefit from the borrower beyond principal repayment constitutes riba. Gifts from a borrower to a lender during the loan period are discouraged to avoid implied interest.",
+    "maliki": "Strong position on obligation to repay. Maliki tradition has extensive rules on the concept of dayn (debt) and salam (advance payment contracts).",
+    "shafii": "Detailed rules on documentation, witnesses, and conditions of valid lending. Shafi'i scholarship has strong positions on the impermissibility of any stipulated benefit in a loan.",
+    "hanbali": "Ibn Taymiyyah wrote extensively on riba and debt. Hanbali rules on charitable lending are well-developed. A gift from borrower to lender connected to the loan is riba even if not stipulated."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For specific financial arrangements — business loans, personal debt restructuring, estate settlement — consult a qualified Islamic finance scholar.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

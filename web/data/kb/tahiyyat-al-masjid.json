@@ -1,0 +1,23 @@
+{
+  "slug": "tahiyyat-al-masjid",
+  "question": "What is Tahiyyat al-Masjid (the greeting prayer of the mosque)?",
+  "category": "salah",
+  "summary": "Tahiyyat al-Masjid is two rak'at of voluntary prayer performed upon entering the mosque before sitting. It is a Sunnah (recommended) according to the majority, and obligatory according to some Shafi'i positions.",
+  "answer": "Tahiyyat al-Masjid (تحية المسجد — the greeting/honor of the mosque) is a two-rak'ah voluntary prayer performed when entering a mosque before sitting down.\n\n**Evidence:**\nThe Prophet ﷺ said: 'When one of you enters the mosque, let him not sit until he has prayed two rak'at.' (Sahih Bukhari 444, Sahih Muslim 714)\n\n**Ruling:**\n\n- **Hanafi school:** Tahiyyat al-Masjid is mandub (recommended). Sitting without praying it is not sinful.\n\n- **Maliki school:** Tahiyyat al-Masjid is sunnah, recommended but not obligatory. If one sits without praying it, one should stand and pray it if still near the beginning of the sitting.\n\n- **Shafi'i school:** Tahiyyat al-Masjid is a confirmed Sunnah, with some Shafi'i scholars holding it to be obligatory (wajib) based on the imperative in the hadith ('let him not sit until...'). The established Shafi'i position is sunnah mu'akkadah.\n\n- **Hanbali school:** Strongly confirmed Sunnah. Leaving it without excuse is disliked.\n\n**When to skip it:**\n- When the congregational prayer is starting (iqamah has been called): begin the prayer directly — the obligatory prayer fulfills the sunnah.\n- During the khutbah (Friday sermon): one should sit and listen; if one enters late during the khutbah, they may pray tahiyyat quickly and then listen.\n\n**Making up missed Tahiyyat:**\nIf one sat without praying it, one may stand and pray it shortly after. If time has passed considerably, most scholars say to leave it.\n\n**Anytime for Tahiyyat al-Masjid?**\nMost schools permit Tahiyyat al-Masjid even during the prohibited prayer times (sunrise, midday, sunset) because it is tied to entering the mosque rather than the time. The Shafi'i school holds this view explicitly based on the hadith's general wording. The Hanafi and Maliki schools dislike voluntary prayers during prohibited times.",
+  "evidence_quran": ["9:18", "72:18"],
+  "evidence_hadith": [
+    "Sahih Bukhari 444 — Abu Qatadah: 'When one of you enters the mosque, let him not sit until he has prayed two rak'at'",
+    "Sahih Muslim 714 — Same hadith with additional detail"
+  ],
+  "scholar_consensus": "Tahiyyat al-Masjid is a confirmed Sunnah by the majority of scholars. The imperative hadith makes it strongly recommended. All four schools encourage it.",
+  "madhab_positions": {
+    "hanafi": "Recommended (mandub). Not sinful to skip. The congregational prayer (jama'ah) takes priority when starting.",
+    "maliki": "Sunnah. Should be prayed upon entry. Skipping without reason is disliked.",
+    "shafii": "Sunnah mu'akkadah. Some scholars in the school hold it wajib. Valid even during prohibited prayer times.",
+    "hanbali": "Strongly encouraged Sunnah. Skipping it is disliked. Congregational prayer fulfills it if starting immediately."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings and deeper study, consult a qualified imam or Islamic scholar in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

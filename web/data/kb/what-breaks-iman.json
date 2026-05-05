@@ -1,0 +1,23 @@
+{
+  "slug": "what-breaks-iman",
+  "question": "What nullifies iman (faith)?",
+  "category": "aqeedah",
+  "summary": "Iman is nullified by certain beliefs and acts that contradict the foundations of Islam. Scholars list these nullifiers with care, emphasizing that individual takfir requires clear proof.",
+  "answer": "The nullifiers of iman (nawaqid al-Islam) are serious matters that classical scholars documented to protect the integrity of the faith. Scholars including Ibn Taymiyyah and Muhammad ibn Abd al-Wahhab wrote dedicated treatises on these. They require careful understanding — declaring a specific individual a kafir is a separate question that requires establishing the hujjah (proof/argument) and ruling out ignorance, compulsion, and misinterpretation.\n\n**Agreed-upon nullifiers:**\n\n1. **Shirk (associating partners with Allah in worship)** — Directing du'a, sacrifice, vows, or any act of worship to other than Allah. 'Indeed, Allah does not forgive association with Him, but He forgives what is less than that for whom He wills.' (Quran 4:48)\n\n2. **Denying the prophethood of Muhammad ﷺ** — Accepting a prophet after him (e.g., the Ahmadiyya/Qadiani belief) or denying his finality (khatm an-nubuwwah) as established by Quran 33:40 and ijma'.\n\n3. **Denying a known necessity of the religion (daruri)** — Denying something that is so firmly established by mutawatir texts and ijma' that no Muslim can be ignorant of it (e.g., the obligation of salah, the prohibition of khamr, the reality of the Hereafter) after the hujjah has been established.\n\n4. **Mocking the religion** — Ridiculing the Quran, the Prophet ﷺ, or the established rituals of Islam. 'If you ask them, they will say: We were only talking and playing. Say: Was it Allah, His verses, and His Messenger that you were mocking?' (Quran 9:65-66)\n\n5. **Turning away from Islam entirely** — Refusing to learn or practice the religion at all.\n\n**Important principle:** These are rulings on acts and beliefs, not on persons. Ignorance (jahl), coercion (ikrah), and misinterpretation are valid excuses. The Prophet ﷺ warned severely against hasty takfir: 'Whoever says to his brother 'O kafir!' one of them is returned it.' (Sahih Bukhari 6104) A person who commits one of these acts out of cultural confusion or inherited error is treated with correction, not declaration of kufr, until the hujjah is established.",
+  "evidence_quran": ["4:48", "9:65-66", "33:40", "2:256"],
+  "evidence_hadith": [
+    "Sahih Bukhari 6104 — 'Whoever says to his brother: O kafir! — one of them is returned it (i.e., one of them truly is a kafir)'",
+    "Sahih Muslim 26 — 'Whoever dies knowing there is no god except Allah will enter Paradise'"
+  ],
+  "scholar_consensus": "The existence of iman-nullifiers is by ijma'. The specific list and conditions for applying them to individuals are carefully guarded by scholarship. Over-takfir (declaring Muslims kafir without clear evidence) is itself condemned.",
+  "madhab_positions": {
+    "hanafi": "Hanafi scholars are notably careful about takfir of individuals. They tend to apply a wider standard before declaring someone's statement or act as kufr, preferring interpretation (ta'wil) where possible.",
+    "maliki": "Maliki scholars list the core nullifiers and apply them with judicial process — not informal pronouncement.",
+    "shafii": "Shafi'i scholars include the nullifiers in aqeedah manuals. Imam al-Nawawi emphasized that declaring a Muslim kafir requires absolute certainty.",
+    "hanbali": "Hanbali scholars, including Ibn Taymiyyah, wrote the most detailed treatises on nullifiers. Ibn Taymiyyah himself repeatedly warned that collective conditions (establishing hujjah, ruling out excuses) must be met before the ruling applies to an individual."
+  },
+  "disclaimer": "This is a study reference based on classical sources. Questions about specific persons or situations should be directed to a qualified imam. This article does not constitute a fatwa or individual judgment.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

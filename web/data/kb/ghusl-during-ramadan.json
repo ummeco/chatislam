@@ -1,0 +1,23 @@
+{
+  "slug": "ghusl-during-ramadan",
+  "question": "Can I delay ghusl until after Fajr during Ramadan, and does being in a state of janabah overnight break my fast?",
+  "category": "fiqh-fasting",
+  "summary": "Being in a state of janabah when Fajr enters does not break or invalidate the Ramadan fast. Ghusl may be performed after Fajr, but should not be delayed past the time needed to pray.",
+  "answer": "A common concern for married couples and anyone who experiences a cause of major ritual impurity (janabah) at night during Ramadan is whether this affects the validity of the fast.\n\n**Does janabah at Fajr invalidate the fast?**\nNo, by scholarly consensus of all four schools. The Prophet ﷺ himself experienced this state at Fajr during Ramadan and his fast was valid. Aisha and Umm Salamah (may Allah be pleased with them) both narrated: 'The Prophet ﷺ used to wake up in a state of janabah due to intercourse, not a dream, in Ramadan, and he would still fast.' (Sahih Muslim 1109, Sahih Bukhari 1926).\n\nThis hadith was specifically confirmed against an earlier understanding from Abu Hurayrah, and the scholarly consensus firmly settled on the position that janabah at Fajr does not affect the fast.\n\n**Can ghusl be delayed past Fajr?**\nYes, in the sense that the fast remains valid. However, ghusl must be performed before the time of Fajr prayer passes, since prayer in a state of janabah is not permitted. Scholars emphasise that deliberately delaying ghusl beyond the time needed to pray Fajr is a sin — not because it breaks the fast, but because it causes a missed prayer. The obligation is to perform ghusl promptly in order to pray.\n\n**What about menstruation ending at night?**\nA woman whose menstrual period ends before Fajr, even shortly before, must fast that day. She may perform ghusl after Fajr and her fast is valid. The Maliki school holds the same. All four schools agree on this point.\n\n**What about a wet dream during the day?**\nA nocturnal emission occurring during the day does not break the fast. The Quran restricts the fast to eating, drinking, and marital relations (2:187) — and all four schools confirm this.\n\n**Ihtihlam (wet dream) during the day:** Does not break the fast. Ghusl becomes obligatory but does not invalidate the fast, since the emission was involuntary.",
+  "evidence_quran": ["2:187"],
+  "evidence_hadith": [
+    "Sahih Muslim 1109 / Sahih Bukhari 1926 — Aisha and Umm Salamah (RA): The Prophet ﷺ would enter Fajr in a state of janabah (from marital relations, not a dream) and still fast.",
+    "Sahih Bukhari 1931 — The earlier understanding of Abu Hurayrah (that janabah at Fajr breaks the fast) was corrected by reference to Aisha's and Umm Salamah's narrations."
+  ],
+  "scholar_consensus": "Unanimous: janabah at Fajr, whether from relations or a dream, does not invalidate the fast. Ghusl must be performed before Fajr prayer to pray, but the fast itself is not broken.",
+  "madhab_positions": {
+    "hanafi": "Janabah at Fajr does not break the fast. Ghusl is wajib for prayer, not for the validity of the fast. A wet dream during the day also does not break the fast.",
+    "maliki": "Same ruling. Menstruation ending before Fajr — the woman fasts that day and performs ghusl after dawn; fast is valid.",
+    "shafii": "Same ruling. If ghusl is delayed it is a sin for missing prayer, not for breaking the fast.",
+    "hanbali": "Same ruling. Strongly advises performing ghusl before Fajr when possible as it is the practice of the Sunnah, but the fast is valid either way."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings in your situation consult a qualified scholar.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

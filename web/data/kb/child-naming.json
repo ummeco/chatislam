@@ -1,0 +1,25 @@
+{
+  "slug": "child-naming",
+  "question": "What are the Islamic guidelines for naming a child? What names are prohibited or discouraged?",
+  "category": "fiqh-family",
+  "summary": "Naming a child is a right of the father and a sunnah on the seventh day. Recommended names include Abdullah, Abdurrahman, and names of prophets. Names implying worship of other than Allah or with bad meanings are prohibited.",
+  "answer": "Choosing a name for a child is both a sunnah and a responsibility. The Prophet ﷺ said: 'You will be called on the Day of Resurrection by your names and the names of your fathers, so choose good names for yourselves.' (Abu Dawud 4948, graded hasan).\n\n**When to name:**\nThe sunnah is to name the child on the seventh day, when the aqiqah is also performed (two sheep for a boy, one for a girl). Naming on the day of birth is also reported and is permissible.\n\n**Best names:**\nThe Prophet ﷺ said: 'The most beloved names to Allah are Abdullah (Servant of Allah) and Abdurrahman (Servant of the Most Merciful).' (Sahih Muslim 2132). Names of prophets are highly recommended. Umar, Ali, Aisha, Khadijah, Maryam — names of the Companions and righteous are encouraged. Muhammad (and its variations: Ahmad, Mahmoud) is considered the most blessed name.\n\n**Prohibited names (haram):**\n1. Names that imply servitude to other than Allah: Abd al-Nabi (Servant of the Prophet), Abd al-Husayn (Servant of Husayn), Abd al-Ka'bah. The prefix 'Abd' (servant/slave of) is reserved for Allah's names only.\n2. Names that are exclusively attributes of Allah, where applying them to a human would be blasphemous: al-Quddus (the Most Holy), al-Jabbar (the Compeller) as a standalone name.\n3. Names with clearly evil meanings.\n\n**Discouraged names (makruh):**\n1. Names like 'Harb' (war), 'Murrah' (bitter), 'Aflah' (most successful), 'Nafi'' (beneficial) — the Prophet ﷺ changed names with inauspicious meanings.\n2. Names of known enemies of Islam or names that represent sinful culture.\n3. Overly grandiose names: 'King of Kings' (Shahanshah) — the Prophet ﷺ said: 'The most contemptible name with Allah is a man called Malik al-Amlak (King of Kings).' (Sahih Bukhari 6206)\n\n**Changing bad names:**\nThe Prophet ﷺ regularly changed names with bad meanings. A child given a prohibited or inauspicious name should have it changed.\n\n**Non-Arabic names:**\nNames from other languages and cultures are permissible as long as they have good or neutral meanings. There is no requirement to give Arabic names specifically, though it is recommended.",
+  "evidence_quran": [],
+  "evidence_hadith": [
+    "Sahih Muslim 2132 — 'The most beloved names to Allah are Abdullah and Abdurrahman.'",
+    "Abu Dawud 4948 — 'You will be called by your names and your fathers' names on the Day of Resurrection, so choose good names.' (graded hasan)",
+    "Sahih Bukhari 6206 — 'The most contemptible name with Allah is a man called King of Kings (Malik al-Amlak).'",
+    "Abu Dawud 4952 — The Prophet ﷺ changed the name Asiyah (a name meaning disobedient) to Jamilah (beautiful)"
+  ],
+  "scholar_consensus": "Names of servitude to other than Allah are prohibited by consensus. Names of prophets and Companions are recommended. Bad-meaning names should be changed. All four schools agree on the fundamentals; details on specific cases vary.",
+  "madhab_positions": {
+    "hanafi": "Prohibits names implying servitude to non-divine beings. Discourages overly ambitious or bad-meaning names. Allows non-Arabic names with good meanings.",
+    "maliki": "Same core rules. Maliki scholars note the right of the father to name the child is the default; the mother may be consulted.",
+    "shafii": "Recommends naming on the seventh day with aqiqah. Considers it the father's right; consulting the mother is praiseworthy.",
+    "hanbali": "Emphasises the prophetic recommendation of giving names of prophets and the Companions. The aqiqah and naming on the seventh day is strongly emphasised in the Hanbali tradition."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For questions about specific names, consult a qualified Islamic scholar.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

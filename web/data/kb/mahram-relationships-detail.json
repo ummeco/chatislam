@@ -1,0 +1,24 @@
+{
+  "slug": "mahram-relationships-detail",
+  "question": "Who is a mahram? What relationships create a permanent mahram?",
+  "category": "fiqh-family",
+  "summary": "A mahram is a person a Muslim woman may never marry due to blood, marriage, or breastfeeding. Mahram men may travel with her, see her uncovered, and be in her presence without restriction.",
+  "answer": "A mahram (pl. maharim) is a person of the opposite sex with whom marriage is permanently forbidden due to a close relationship. For a woman, her mahram men are those she cannot marry — and it is only with them that she may travel, be secluded, and interact without the restrictions that apply to non-mahram men.\n\n**Three sources of mahram relationships:**\n\n**1. Blood (nasab):**\n- Father, grandfather (and higher)\n- Son, grandson (and lower)\n- Brother (full or half)\n- Uncle (father's and mother's brothers)\n- Nephew (brother's and sister's sons)\n\n**2. Marriage (musahara):**\n- Husband's father (father-in-law) — permanent mahram\n- Husband's grandfather\n- Husband's son (step-son) — permanent mahram once the mother's marriage is consummated\n- Wife's father (a man's wife's father) — symmetric relationship\n\n*Note:* A husband's brother (brother-in-law) is NOT a mahram. He is a non-mahram relative and must be treated accordingly. The Prophet ﷺ warned: 'Beware of entering upon women.' They asked: 'What about the brother-in-law, O Messenger of Allah?' He said: 'The brother-in-law is death.' (Sahih Bukhari 5232 — meaning: the danger from laxness with him is severe)\n\n**3. Breastfeeding (rada'):**\nA woman who nurses a child at least five feedings (in the Shafi'i view, based on Sahih Muslim 1452) or any amount that satisfies hunger (in other schools) becomes a milk-mother. Her husband becomes a milk-father. The milk-siblings (any child nursed from the same woman) become mahrams of each other. This mirrors blood relationships in terms of prohibitions.\n\n**Age requirement for breastfeeding mahram:**\nThis only applies to nursing that occurred within the first two years of life. Nursing an adult does not create mahram status in the majority view.\n\n**What changes with a mahram:**\n- A woman may travel with a mahram without restriction\n- She may remove her hijab in front of him (showing hair, arms — not the area between navel and knee)\n- No khalwah (seclusion) restriction applies\n- Unmarriageable permanently\n\n**Temporary prohibitions (not permanent mahrams):**\nA woman cannot marry two sisters simultaneously. She cannot marry a woman in her iddah. These are temporary, not permanent mahram relationships.",
+  "evidence_quran": ["4:23 — The full list of prohibited marriages, establishing permanent mahrams", "24:31 — Women may reveal adornments to mahram relatives"],
+  "evidence_hadith": [
+    "Sahih Bukhari 5232 — 'The brother-in-law is death.' (warning against treating him as mahram)",
+    "Sahih Bukhari 1862 — A woman may not travel except with a mahram",
+    "Sahih Muslim 1452 — Five feedings establish the milk-mahram relationship (Shafi'i basis)"
+  ],
+  "scholar_consensus": "The three categories of mahram (blood, marriage, breastfeeding) are agreed upon by all four schools. They differ on the number of feedings required for milk mahram and some edge cases in marriage-based mahram relationships.",
+  "madhab_positions": {
+    "hanafi": "Any amount of breastfeeding (even one drop) in the first two years creates a milk mahram — the most expansive position. Consequently, Hanafi families in close-knit communities must track nursing carefully.",
+    "maliki": "A minimum of three to five feedings. Milk of one feeding does not create a mahram relationship in the Maliki school.",
+    "shafii": "Five separate feedings are required based on Sahih Muslim 1452. Fewer than five does not create a mahram relationship. Each feeding is a separate session with a clear pause in between.",
+    "hanbali": "Five feedings required, same as Shafi'i. Feedings must occur within the first two years of life."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For specific situations — particularly breastfeeding mahram questions which have significant practical implications — consult a qualified scholar.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

@@ -1,0 +1,23 @@
+{
+  "slug": "interest-on-savings-account",
+  "question": "What should I do with interest earned on a savings account? Can I keep it?",
+  "category": "fiqh-finance",
+  "summary": "Interest received from a conventional savings account is riba and cannot be kept for personal benefit. Scholars agree it must be disposed of by giving it to charity, without the intention of reward.",
+  "answer": "Earning interest on a savings account is a form of riba al-nasi'ah and is prohibited. However, the question of what to do with interest that has already been received — particularly when the account was opened before becoming aware of the prohibition, or when a Muslim holds a conventional account while seeking an Islamic alternative — requires its own answer.\n\n**The core ruling:**\nA Muslim may not open a savings account with the intention of earning interest, nor choose products that maximise interest. If interest accrues on an account, the Muslim cannot keep or benefit from it personally. Keeping the interest as personal income or spending it on oneself or one's family is prohibited.\n\n**What to do with received interest:**\nThe majority of contemporary scholars hold that the interest must be given away to charitable causes — not as sadaqah (voluntary charity) with the intention of reward, but as a disposal (takhallus) to remove the impurity from one's wealth. The person giving does not earn the reward of charity, but they are freed from the sin of holding haram wealth.\n\nThis may go to:\n- General charitable causes (feeding the poor, disaster relief, community projects)\n- Public benefit projects (building roads, public utilities)\n- It may NOT go to mosques or Islamic religious organisations, according to the majority, since it is impure wealth\n\n**Does holding a conventional savings account invalidate the rest of one's wealth?**\nNo. The prohibited element is the interest itself, not the principal. The original deposited amount remains the Muslim's halal wealth. Only the interest must be disposed of.\n\n**Should a Muslim avoid conventional savings accounts entirely?**\nYes, if Islamic alternatives are available. Many banks now offer sharia-compliant current and savings accounts based on qard (interest-free deposit) or wakala (agency) structures. In the UK, US, Canada, and many other countries, Islamic banking options exist. A Muslim should use these when accessible.\n\n**When no Islamic alternative is available:**\nA Muslim may keep their money in a conventional bank account if no Islamic alternative is accessible. The interest that accrues must be disposed of. Some scholars permit keeping accounts that earn zero interest by choosing a non-interest-bearing option even at conventional banks.",
+  "evidence_quran": ["2:278-279", "5:2 — Cooperate in righteousness and piety, not in sin"],
+  "evidence_hadith": [
+    "Sahih Muslim 1598 — All parties to riba transaction are cursed equally",
+    "Ibn Majah 2461 — 'The body nourished by haram will not enter Paradise' — principle behind disposal rather than personal use of interest"
+  ],
+  "scholar_consensus": "Unanimous: interest income is riba and cannot be kept. Unanimous: it must be given away as disposal (not sadaqah) to charitable causes. The person does not earn reward for this giving but clears their wealth. Islamic banking alternatives should be sought.",
+  "madhab_positions": {
+    "hanafi": "Disposal of haram income is obligatory. May be given to the poor or public benefit projects. Some Hanafi scholars permit giving it to any charitable cause including religious institutions (disagreement on this specific point).",
+    "maliki": "Disposal obligatory. Cannot be given to mosques as it is impure. Should go to the poor or general public benefit.",
+    "shafii": "Disposal obligatory. Cannot benefit from it personally in any way. Give to the poor or general charity.",
+    "hanbali": "Disposal obligatory. Ibn Taymiyyah's principle: haram wealth should leave one's possession. Contemporary Hanbali scholars include among disposal options spending on public infrastructure and roads."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For ongoing financial planning, consult a qualified Islamic finance scholar or financial advisor familiar with Islamic finance.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

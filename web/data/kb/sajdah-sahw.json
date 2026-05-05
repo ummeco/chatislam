@@ -1,0 +1,24 @@
+{
+  "slug": "sajdah-sahw",
+  "question": "What is sajdah sahw (prostration of forgetfulness) and when is it required?",
+  "category": "salah",
+  "summary": "Sajdah sahw (prostration of forgetfulness) compensates for mistakes made in prayer — additions, omissions, or uncertainty. It consists of two extra prostrations and is performed at specific points.",
+  "answer": "Sajdah sahw (سجدة السهو) is a corrective prostration performed when a mistake occurs during prayer. The Prophet ﷺ said: 'When one of you has doubt in his prayer and does not know how many rak'at he has prayed — three or four — then he should cast aside the doubt and build on what he is certain of, then perform two prostrations before giving the salam.' (Sahih Muslim 571)\n\n**When is sajdah sahw required?**\n\n1. **Omitting a wajib (obligatory) act:** Forgetting to recite tashahhud in the first sitting, forgetting the qunut (in schools that require it), etc. Note: omitting a rukn (pillar) like sujud requires going back and performing it, not sajdah sahw.\n\n2. **Adding an extra act (ziyadah):** Performing an extra rak'ah, bowing twice in one rak'ah, or making an extra sitting by mistake.\n\n3. **Doubt about the number of rak'at:** When uncertain, build on the lesser number and perform sajdah sahw.\n\n**How to perform it:**\nAfter the final tashahhud (or before it in some schools), perform two additional prostrations — sajdah sahw — then give the salam.\n\n**Before or after salam?**\n\nThis is the classic difference:\n- **Hanafi school:** Sajdah sahw is always performed after the salam. One gives the salam, then performs the two prostrations and repeats the salam.\n- **Maliki school:** Before the salam for additions; after the salam for omissions. Complex conditions.\n- **Shafi'i school:** Before the salam (preferred) but after is also valid.\n- **Hanbali school:** Before the salam for omissions and doubts (following the majority of hadiths); after the salam for additions.\n\nThe Prophet ﷺ performed it both ways in different narrations — before salam (Sahih Muslim 574) and after salam (Sahih Bukhari 1229) — leading to the scholarly differences above.\n\n**If sajdah sahw was due but forgotten:** The majority hold the prayer is still valid as sajdah sahw compensates for mistakes, not the prayer itself.",
+  "evidence_quran": [],
+  "evidence_hadith": [
+    "Sahih Muslim 571 — Abu Sa'id: 'When one of you doubts how many rak'at they prayed... perform two prostrations before salam'",
+    "Sahih Bukhari 1229 — Abu Hurayra: The Prophet ﷺ performed sajdah sahw after salam in the case of the Dhul Yadayn incident",
+    "Sahih Muslim 574 — The Prophet ﷺ performed sajdah sahw before salam in another instance"
+  ],
+  "scholar_consensus": "Sajdah sahw is required for certain mistakes in prayer by consensus. The timing (before vs. after salam) is a well-established scholarly disagreement based on different authentic narrations.",
+  "madhab_positions": {
+    "hanafi": "Always after salam: give salam to the right, perform two prostrations, then give salam again.",
+    "maliki": "Before salam for additions (to cancel the extra act before completing prayer); after salam for omissions.",
+    "shafii": "Preferred before salam. After salam is also valid. Both proven by Sunnah.",
+    "hanbali": "Before salam for omissions and doubt; after salam for additions. Based on organizing the various prophetic hadiths."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings and deeper study, consult a qualified imam or Islamic scholar in your community.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}

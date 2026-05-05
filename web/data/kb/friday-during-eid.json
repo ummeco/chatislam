@@ -1,0 +1,23 @@
+{
+  "slug": "friday-during-eid",
+  "question": "If Eid falls on Friday, do I still have to pray Jumuah?",
+  "category": "salah",
+  "summary": "When Eid falls on Friday, scholars differ: some permit attending Eid and skipping Jumuah (praying Zuhr instead), while others require both. This is a well-known scholarly disagreement.",
+  "answer": "When Eid al-Fitr or Eid al-Adha falls on a Friday, there is a well-known scholarly disagreement with authentic hadith on multiple sides.\n\n**The evidence for exemption from Jumuah (skipping Jumuah, praying Zuhr):**\nIyas ibn Abi Ramlah said: 'I witnessed Mu'awiyah ibn Abi Sufyan asking Zayd ibn Arqam: Did you attend Eid and Jumuah with the Prophet ﷺ? He said: Yes. He asked: How did he do it? He said: He prayed the Eid, then gave permission for Jumuah and said: Whoever wishes to pray it may pray it.' (Sunan Abu Dawud 1070, graded sahih by al-Albani)\n\nAnother narration: The Prophet ﷺ said: 'Two festivals have been combined on this day. Whoever wishes may be excused from Jumuah — but we will hold it.' (Sunan Ibn Majah 1311, graded sahih by al-Albani)\n\n**The conditions for the exemption:**\nThe exemption applies to those who already attended the Eid prayer. The majority who give this exemption still require the imam (and residents of the town near the mosque) to hold Jumuah for those who did not attend Eid.\n\n**The position requiring both Eid and Jumuah:**\nThe Hanafi and Maliki schools hold that Jumuah remains obligatory regardless of Eid falling on the same day, based on the general obligation of Jumuah and the principle that one obligation does not waive another without explicit evidence.\n\n**Who is exempt if the exemption applies?**\nThe exemption applies only to those who attended the Eid prayer. Those who missed Eid still must attend Jumuah according to those who give the exemption.\n\n**Practical guidance:** Check with your local imam regarding which opinion the community mosque is following. If Jumuah is being held, attending is good regardless of the scholarly opinion you follow.",
+  "evidence_quran": ["62:9"],
+  "evidence_hadith": [
+    "Sunan Abu Dawud 1070 — Zayd ibn Arqam: The Prophet ﷺ prayed Eid then permitted people to miss Jumuah, saying 'we will hold it' for those who wish to attend",
+    "Sunan Ibn Majah 1311 — 'Two festivals have combined. Whoever wishes is excused from Jumuah'"
+  ],
+  "scholar_consensus": "There is no consensus — this is a legitimate intra-Sunni scholarly disagreement. The majority (Hanbali, Shafi'i) permit skipping Jumuah after attending Eid. The Hanafi and Maliki schools require both.",
+  "madhab_positions": {
+    "hanafi": "Both Eid and Jumuah are obligatory. One does not waive the other. Jumuah must still be attended.",
+    "maliki": "Jumuah is still obligatory. Eid does not exempt the resident from Jumuah obligation.",
+    "shafii": "Attending Eid exempts the non-imam from the Jumuah obligation. They pray Zuhr instead. The imam and mosque staff must still hold Jumuah.",
+    "hanbali": "Same as Shafi'i: attending Eid exempts from Jumuah; Zuhr is prayed instead. The imam still establishes Jumuah for those who wish to attend."
+  },
+  "disclaimer": "This is a study reference based on classical sources. For binding rulings, consult your local imam to understand which opinion your community's mosque follows.",
+  "reviewed_by_human": false,
+  "review_status": "pending",
+  "draft_date": "2026-05-04"
+}
