@@ -2,16 +2,17 @@ import * as Sentry from '@sentry/nextjs'
 import { scrubPII } from './lib/sentry-scrub'
 
 // Client-side Sentry initialization for ChatIslam.
-// DSN is read from NEXT_PUBLIC_SENTRY_DSN (set in Vercel project: ummat-chatislam).
+// DSN points to GlitchTip (self-hosted, Sentry-API-compatible). @sentry/nextjs SDK used as client.
+// Read from NEXT_PUBLIC_GLITCHTIP_DSN (set in Vercel project: ummat-chatislam).
 // No DSN → Sentry is a no-op; no error is thrown.
 Sentry.init({
-  dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
+  dsn: process.env.NEXT_PUBLIC_GLITCHTIP_DSN,
 
   // Only active in production — avoids noise in local dev.
-  enabled: !!process.env.NEXT_PUBLIC_SENTRY_DSN && process.env.NODE_ENV === 'production',
+  enabled: !!process.env.NEXT_PUBLIC_GLITCHTIP_DSN && process.env.NODE_ENV === 'production',
 
-  // 10% of transactions for performance monitoring.
-  tracesSampleRate: 0.1,
+  // Cost-controlled: 5% of transactions sampled.
+  tracesSampleRate: 0.05,
 
   // C-08a-FIX-P0: No session replays without explicit consent. Errors always captured.
   replaysOnErrorSampleRate: 1.0,
