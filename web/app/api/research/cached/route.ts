@@ -115,11 +115,18 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     const totalTtlSeconds = cacheTtlHours * 3600
     const ageSeconds      = Math.max(0, totalTtlSeconds - ttlRemaining)
 
-    return NextResponse.json({
-      cached:      true,
-      result:      { ...parsed, cached: true },
-      age_seconds: ageSeconds,
-    })
+    return NextResponse.json(
+      {
+        cached:      true,
+        result:      { ...parsed, cached: true },
+        age_seconds: ageSeconds,
+      },
+      {
+        headers: {
+          'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
+        },
+      },
+    )
   } catch {
     return NextResponse.json({ cached: false })
   }
