@@ -1,5 +1,5 @@
 import nextConfig from 'eslint-config-next'
-import noBrandLightOnLight from '../../ummat/apps/brand/src/eslint-rule-no-brand-light-on-light.js'
+import noBrandLightOnLight from './eslint-rules/no-brand-light-on-light.js'
 
 const eslintConfig = [
   ...nextConfig,
