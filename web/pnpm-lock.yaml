@@ -23,6 +23,9 @@ importers:
       '@sentry/nextjs':
         specifier: ^9.0.0
         version: 9.47.1(@opentelemetry/context-async-hooks@1.30.1(@opentelemetry/api@1.9.1))(@opentelemetry/core@1.30.1(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.1))(next@15.5.15(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(@playwright/test@1.59.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)(webpack@5.106.2)
+      '@ummat/consent':
+        specifier: file:../../ummat/packages/consent
+        version: file:../../ummat/packages/consent(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       ioredis:
         specifier: ^5.6.1
         version: 5.10.1
@@ -1727,6 +1730,12 @@ packages:
   '@typescript-eslint/visitor-keys@8.59.1':
     resolution: {integrity: sha512-LdDNl6C5iJExcM0Yh0PwAIBb9PrSiCsWamF/JyEZawm3kFDnRoaq3LGE4bpyRao/fWeGKKyw7icx0YxrLFC5Cg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@ummat/consent@file:../../ummat/packages/consent':
+    resolution: {directory: ../../ummat/packages/consent, type: directory}
+    peerDependencies:
+      react: ^18 || ^19
+      react-dom: ^18 || ^19
 
   '@unrs/resolver-binding-android-arm-eabi@1.11.1':
     resolution: {integrity: sha512-ppLRUgHVaGRWUx0R0Ut06Mjo9gBaBkg3v/8AxusGLhsIotbBLuRk51rAzqLC8gq6NyyAojEXglNjzf6R948DNw==}
@@ -5544,6 +5553,11 @@ snapshots:
     dependencies:
       '@typescript-eslint/types': 8.59.1
       eslint-visitor-keys: 5.0.1
+
+  '@ummat/consent@file:../../ummat/packages/consent(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
 
   '@unrs/resolver-binding-android-arm-eabi@1.11.1':
     optional: true
