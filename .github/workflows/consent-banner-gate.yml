@@ -1,0 +1,43 @@
+# S05-12: Consent Banner Presence Gate — chatislam/web
+
+name: Consent Banner Gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'web/app/layout.tsx'
+  pull_request:
+    paths:
+      - 'web/app/layout.tsx'
+
+jobs:
+  consent-banner-check:
+    name: Consent banner presence check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check ConsentProvider in root layout
+        run: |
+          LAYOUT="web/app/layout.tsx"
+          if [ ! -f "$LAYOUT" ]; then
+            echo "::error::Root layout not found at $LAYOUT"
+            exit 1
+          fi
+          if ! grep -q "ConsentProvider" "$LAYOUT"; then
+            echo "::error file=$LAYOUT::[chatislam] Root layout missing ConsentProvider."
+            exit 1
+          fi
+          echo "✓ ConsentProvider present"
+
+          if grep -qiE 'src=.*umami' "$LAYOUT"; then
+            if ! grep -q "ConsentGatedScript" "$LAYOUT"; then
+              echo "::error file=$LAYOUT::[chatislam] Unconditional Umami script. Use <ConsentGatedScript category=\"analytics\">."
+              exit 1
+            fi
+            echo "✓ Umami script is consent-gated"
+          else
+            echo "✓ No unconditional Umami script"
+          fi
