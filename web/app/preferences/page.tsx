@@ -50,9 +50,16 @@ export default function PreferencesPage() {
   const dismissToast = useCallback(() => setToast(null), [])
 
   useEffect(() => {
-    if (record?.categories) {
-      setDraft({ functional: record.categories.functional ?? false, analytics: record.categories.analytics ?? false, marketing: record.categories.marketing ?? false })
-    }
+    if (!record?.categories) return
+    // Defer state update to next microtask to avoid cascading renders
+    const t = setTimeout(() => {
+      setDraft({
+        functional: record.categories.functional ?? false,
+        analytics: record.categories.analytics ?? false,
+        marketing: record.categories.marketing ?? false,
+      })
+    }, 0)
+    return () => clearTimeout(t)
   }, [record])
 
   async function handleSave(e: React.FormEvent) {
