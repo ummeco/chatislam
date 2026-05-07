@@ -34,7 +34,7 @@ const nextConfig: NextConfig = {
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com",
               "img-src 'self' data: blob: https:",
-              "connect-src 'self' https://*.ummat.dev https://*.nself.org:8543 https://*.sentry.io https://*.ingest.sentry.io wss:",
+              "connect-src 'self' https://*.ummat.dev https://*.nself.org:8543 https://errors.ummat.dev wss:",
               'frame-src https://challenges.cloudflare.com',
               "frame-ancestors 'none'",
               "object-src 'none'",
