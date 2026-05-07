@@ -50,6 +50,11 @@ export function ResearchResult({ result, className = '' }: ResearchResultProps) 
 
   async function handleCopy() {
     try {
+      // Track answer copied
+      if (typeof window !== 'undefined' && window.umami) {
+        window.umami.track('chatislam.answer.copied')
+      }
+
       await navigator.clipboard.writeText(result.result)
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)

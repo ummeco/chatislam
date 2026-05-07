@@ -21,6 +21,15 @@ export function ResearchPageClient() {
     e.preventDefault()
     const q = query.trim()
     if (!q) return
+
+    // Track question asked event (D-P5-14: no question text for PII/theological content protection)
+    if (typeof window !== 'undefined' && window.umami) {
+      window.umami.track('chatislam.question.asked', {
+        question_length: q.length,
+        depth,
+      })
+    }
+
     await search(q, { depth })
   }
 

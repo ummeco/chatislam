@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { ThemeProvider } from "next-themes";
+// S05-06: @ummat/consent — AI conversation data is NOT analytics cookie; explicit-opt-in per D-P3-21
+import { ConsentProvider, CookieBanner } from "@ummat/consent";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -36,6 +38,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" dir="auto">
+      <head>
+        {/* D-P3-21: Umami analytics script */}
+        <script
+          async
+          src="https://cloud.umami.is/script.js"
+          data-website-id="<UMAMI_WEBSITE_ID>"
+        />
+      </head>
       <body>
         {/* WCAG 2.4.1 — skip navigation (B2-06) */}
         <a
@@ -44,10 +54,22 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        {/* B4-02: next-themes ThemeProvider — persists to localStorage, respects prefers-color-scheme */}
-        <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>
-          {children}
-        </ThemeProvider>
+        {/* S05-06: ConsentProvider — AI conversation data is functional (not analytics).
+            Banner clarifies: chat sessions are NOT classified as tracking cookies. */}
+        <ConsentProvider>
+          {/* B4-02: next-themes ThemeProvider — persists to localStorage, respects prefers-color-scheme */}
+          <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>
+            {children}
+          </ThemeProvider>
+          {/* S30-T03: GDPR/CCPA consent banner. */}
+          <CookieBanner
+            strings={{
+              body: 'We use cookies to improve your experience. AI conversation history is functional, not an analytics cookie, and is always on. Analytics and marketing cookies are off by default.',
+            }}
+            privacyPolicyUrl="/legal/privacy"
+            cookiePolicyUrl="/legal/cookies"
+          />
+        </ConsentProvider>
       </body>
     </html>
   );
