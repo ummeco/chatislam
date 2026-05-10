@@ -1,8 +1,15 @@
 /**
  * ChatIslam — Rate Limiter: Adapter Interface + Factory
  *
- * Adapter design: swap between in-memory (Phase 1) and Redis-backed (Phase 3+)
- * without touching call sites. Redis activates automatically when REDIS_URL is set.
+ * CANONICAL SOURCE: ummat/packages/shared/src/security/rate-limit.ts
+ * This file intentionally uses in-memory only — it runs in the Edge runtime
+ * (Next.js middleware) where ioredis/Node.js modules are unavailable.
+ * For server-side (Node.js Route Handlers), use lib/rate-limit-server.ts instead.
+ *
+ * TRAP-M02 NOTE: This file is Edge-only and cannot use Redis. The server-side
+ * rate-limit-server.ts is the security-critical path and is already fail-closed.
+ * This file provides a lightweight pre-flight check only; the authoritative
+ * enforcement happens in rate-limit-server.ts.
  *
  * Limits (per spec):
  *   Anonymous (IP):  5 req/min
