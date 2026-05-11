@@ -13,6 +13,10 @@ on:
     branches: [main, develop]
     paths: ['**/*.tsx', '**/*.jsx']
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   brand-token-guard:
     name: No hardcoded brand hex in JSX/TSX

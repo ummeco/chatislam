@@ -1,0 +1,46 @@
+# Lighthouse CI — reusable workflow (local copy)
+# T-P7-Q-PERF-01 | per-PR Lighthouse gate.
+# Source of truth: /Volumes/X9/Sites/ummeco/.github/workflows/lighthouse-ci-reusable.yml
+
+name: Lighthouse CI (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      project_path:
+        required: true
+        type: string
+        description: 'Path to the Next.js project (relative to repo root)'
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+          cache-dependency-path: ${{ inputs.project_path }}/pnpm-lock.yaml
+      - name: Install dependencies
+        working-directory: ${{ inputs.project_path }}
+        run: pnpm install --frozen-lockfile
+      - name: Build
+        working-directory: ${{ inputs.project_path }}
+        run: pnpm build
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli@0.13.x
+      - name: Run Lighthouse CI
+        working-directory: ${{ inputs.project_path }}
+        run: lhci autorun
+      - name: Upload Lighthouse report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-${{ inputs.project_path }}
+          path: ${{ inputs.project_path }}/.lighthouseci
+          retention-days: 30

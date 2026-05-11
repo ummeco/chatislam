@@ -1,0 +1,98 @@
+name: ChatIslam CI
+
+on:
+  push:
+    branches: [main]
+    paths: ['web/**']
+  pull_request:
+    branches: [main]
+    paths: ['web/**']
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: web
+
+jobs:
+  lint-typecheck:
+    name: Lint & Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.0.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+          cache-dependency-path: 'web/pnpm-lock.yaml'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec eslint . --max-warnings=0
+      - run: pnpm exec tsc --noEmit
+
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.0.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+          cache-dependency-path: 'web/pnpm-lock.yaml'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm test
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.0.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+          cache-dependency-path: 'web/pnpm-lock.yaml'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+        env:
+          NEXT_PUBLIC_SENTRY_DSN: ''
+          ANTHROPIC_API_KEY: 'sk-ant-test-placeholder'
+
+  e2e-tests:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.0.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+          cache-dependency-path: 'web/pnpm-lock.yaml'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - name: Run Playwright tests
+        run: |
+          if [ -f playwright.config.ts ] || [ -f playwright.config.js ]; then
+            pnpm exec playwright test --project=chromium
+          else
+            echo "No playwright config found — skipping (smoke run)"
+          fi
+        env:
+          CI: true
+          NEXT_PUBLIC_SENTRY_DSN: ''
+          ANTHROPIC_API_KEY: 'sk-ant-test-placeholder'

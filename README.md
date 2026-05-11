@@ -10,6 +10,14 @@ Islamic AI: ask questions, get scholar-cited answers. Not a fatwa engine; a stud
 
 > IslamQA (islamqa.us) has merged into ChatIslam. All Q&A functionality is available here.
 
+## Engineering Charter — Required Reading
+
+Before contributing, read [`.github/wiki/ENGINEERING-CHARTER.md`](.github/wiki/ENGINEERING-CHARTER.md). It is the single source of truth for code standards across every Ummeco repo. The most-read sections:
+
+- [§ 21 Common AI-Agent Mistakes](.github/wiki/ENGINEERING-CHARTER.md#21-common-ai-agent-mistakes-read-before-any-change)
+- [§ 4 Naming Conventions](.github/wiki/ENGINEERING-CHARTER.md#4-naming-conventions-master-reference)
+- [§ 6 Documentation Bar](.github/wiki/ENGINEERING-CHARTER.md#6-documentation-bar)
+
 ## What is this
 
 ChatIslam is a free AI chat app for Islamic knowledge and dawah, built on Claude with strict Ahl us-Sunnah wal-Jama'ah guidelines. It adapts its tone to the audience (practicing Muslim, new Muslim, or non-Muslim) and cites sources from Quran, Hadith, and classical scholarship. It is not a fatwa service; complex fiqh questions are escalated to vetted human scholars.

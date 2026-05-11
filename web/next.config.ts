@@ -14,6 +14,10 @@ const nextConfig: NextConfig = {
     '@opentelemetry/auto-instrumentations-node',
     '@opentelemetry/exporter-trace-otlp-http',
   ],
+  // T-P7-Q-PERF-06: AVIF first, WebP fallback. JPEG/PNG fallback handled by Next.js automatically.
+  images: {
+    formats: ['image/avif', 'image/webp'],
+  },
   async headers() {
     return [
       {
