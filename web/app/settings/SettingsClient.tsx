@@ -186,6 +186,7 @@ export default function SettingsClient() {
                   value={opt.value}
                   checked={settings.madhhab === opt.value}
                   onChange={() => updateMadhhab(opt.value)}
+                  aria-label={`Madhhab preference: ${opt.label}`}
                   className="text-emerald-600 focus:ring-emerald-500"
                 />
                 <span className="text-sm text-gray-800 dark:text-gray-200">{opt.label}</span>
@@ -217,6 +218,7 @@ export default function SettingsClient() {
                   value={opt.value}
                   checked={settings.audienceDefault === opt.value}
                   onChange={() => updateAudience(opt.value)}
+                  aria-label={`Conversation mode: ${opt.label} — ${opt.description}`}
                   className="mt-0.5 text-emerald-600 focus:ring-emerald-500"
                 />
                 <div>
@@ -244,8 +246,9 @@ export default function SettingsClient() {
               type="checkbox"
               checked={settings.conversationHistory}
               onChange={(e) => updateHistory(e.target.checked)}
-              className="h-4 w-4 rounded text-emerald-600 focus:ring-emerald-500"
+              aria-label="Enable conversation history"
               aria-describedby="history-desc"
+              className="h-4 w-4 rounded text-emerald-600 focus:ring-emerald-500"
             />
             <span id="history-desc" className="text-sm text-gray-800 dark:text-gray-200">
               Enable conversation history
@@ -271,6 +274,7 @@ export default function SettingsClient() {
               type="button"
               onClick={removeBYOKey}
               disabled={byoKeyBusy}
+              aria-label="Remove stored Anthropic API key"
               className="text-sm text-red-600 underline hover:no-underline disabled:opacity-50 dark:text-red-400"
             >
               Remove key
@@ -286,12 +290,14 @@ export default function SettingsClient() {
               onChange={(e) => setByoKeyInput(e.target.value)}
               placeholder="sk-ant-..."
               autoComplete="off"
+              aria-label="Anthropic API key (sk-ant- prefix)"
               className="flex-1 rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
             />
             <button
               type="button"
               onClick={saveBYOKey}
               disabled={byoKeyBusy || !byoKeyInput.trim()}
+              aria-label="Save Anthropic API key"
               className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700 disabled:opacity-50"
             >
               {byoKeyBusy ? 'Saving…' : 'Save'}
@@ -317,12 +323,14 @@ export default function SettingsClient() {
         <div className="flex flex-wrap gap-3">
           <a
             href="/auth/signin"
+            aria-label="Sign in to ChatIslam"
             className="rounded-lg border border-gray-300 px-4 py-2 text-sm text-gray-700 transition hover:bg-gray-50 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-800"
           >
             Sign in
           </a>
           <a
             href="/auth/signup"
+            aria-label="Create a ChatIslam account"
             className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700"
           >
             Create account

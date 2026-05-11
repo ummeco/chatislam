@@ -9,6 +9,10 @@
             "import": "./dist/index.js",
             "types": "./dist/index.d.ts"
         },
+        "./server": {
+            "import": "./dist/server-handler.js",
+            "types": "./dist/server-handler.d.ts"
+        },
         "./components": {
             "import": "./dist/components.js",
             "types": "./dist/components.d.ts"
