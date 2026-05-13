@@ -256,9 +256,9 @@ export function TutorLessonView({
             >
               {msg.content || (
                 <span className="inline-flex gap-1">
-                  <span className="animate-bounce">·</span>
-                  <span className="animate-bounce [animation-delay:0.1s]">·</span>
-                  <span className="animate-bounce [animation-delay:0.2s]">·</span>
+                  <span className="motion-safe:animate-bounce">·</span>
+                  <span className="motion-safe:animate-bounce [animation-delay:0.1s]">·</span>
+                  <span className="motion-safe:animate-bounce [animation-delay:0.2s]">·</span>
                 </span>
               )}
             </div>

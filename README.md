@@ -10,6 +10,8 @@ Islamic AI: ask questions, get scholar-cited answers. Not a fatwa engine; a stud
 
 > IslamQA (islamqa.us) has merged into ChatIslam. All Q&A functionality is available here.
 
+**P7 status (2026-05):** Engineering Excellence Foundation complete. Prompt-injection defenses hardened, rate-limit adapter updated to Upstash for multi-instance safety. See [CHANGELOG](.github/wiki/CHANGELOG.md) for details.
+
 ## Engineering Charter — Required Reading
 
 Before contributing, read [`.github/wiki/ENGINEERING-CHARTER.md`](.github/wiki/ENGINEERING-CHARTER.md). It is the single source of truth for code standards across every Ummeco repo. The most-read sections:

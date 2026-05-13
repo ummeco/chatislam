@@ -57,7 +57,7 @@ export function TutorPathSelector({ onSelect, disabled = false }: TutorPathSelec
     return (
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2" aria-busy="true" aria-label="Loading paths">
         {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="h-28 animate-pulse rounded-lg bg-gray-200 dark:bg-gray-800" />
+          <div key={i} className="h-28 motion-safe:animate-pulse rounded-lg bg-gray-200 dark:bg-gray-800" />
         ))}
       </div>
     )

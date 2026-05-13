@@ -68,7 +68,7 @@ export function FeynmanProgressBar({ phase, depth }: FeynmanProgressBarProps) {
       <div className="h-1.5 w-full overflow-hidden rounded-full bg-gray-200 dark:bg-gray-800">
         <div
           className={`h-full rounded-full transition-all duration-500 ease-out ${config.color} ${
-            isActive ? 'animate-pulse' : ''
+            isActive ? 'motion-safe:animate-pulse' : ''
           }`}
           style={{ width: `${config.pct}%` }}
           role="progressbar"

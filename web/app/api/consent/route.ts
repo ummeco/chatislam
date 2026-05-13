@@ -6,7 +6,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { handleConsentRequest, type ConsentHandlerInput } from '@ummat/consent'
+import { handleConsentRequest, type ConsentHandlerInput } from '@ummat/consent/server'
 
 const DOMAIN = 'chatislam.org'
 

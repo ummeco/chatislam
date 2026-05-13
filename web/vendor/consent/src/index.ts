@@ -56,25 +56,4 @@ export type { ConsentGatedProps, GatedCategory } from './gating.js'
 export { getMessages, isRtlLocale } from './i18n.js'
 export type { ConsentLocale, ConsentMessages } from './i18n.js'
 
-// Server handler (S-C-S05-T05) — Node only; do NOT import from client bundles.
-// Re-exported as `@ummat/consent/server` would be cleaner but the package
-// only ships one entry today; consumers should `import { handleConsentRequest }
-// from '@ummat/consent'` only inside Route Handlers.
-export {
-  handleConsentRequest,
-  parseConsentBody,
-  isSameOrigin,
-  makeFingerprintHash,
-  clientIpFromHeaders,
-  resolveLatestCookiePolicyVersion,
-  insertConsentRecords,
-  fetchLatestConsent,
-  ConsentValidationError,
-} from './server-handler.js'
-export type {
-  ConsentPostPayload,
-  ConsentWriteContext,
-  HasuraAdminConfig,
-  ConsentHandlerInput,
-  ConsentHandlerResult,
-} from './server-handler.js'
+// Server handler (S-C-S05-T05) — Node only. Import from '@ummat/consent/server', not this entry.

@@ -162,7 +162,7 @@ export function ChatSidebar({ isOpen = true, onClose }: ChatSidebarProps) {
         {authToken && isLoading && (
           <div className="space-y-2 px-1 pt-2">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="h-10 animate-pulse rounded-lg bg-gray-100 dark:bg-gray-800" />
+              <div key={i} className="h-10 motion-safe:animate-pulse rounded-lg bg-gray-100 dark:bg-gray-800" />
             ))}
           </div>
         )}

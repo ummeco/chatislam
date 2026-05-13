@@ -13,6 +13,9 @@ const nextConfig: NextConfig = {
     '@opentelemetry/sdk-node',
     '@opentelemetry/auto-instrumentations-node',
     '@opentelemetry/exporter-trace-otlp-http',
+    // @ummat/consent/server uses node:crypto — must stay out of client bundle.
+    // The exports map split (./server entry) is the primary fix; this is belt-and-suspenders.
+    '@ummat/consent',
   ],
   // T-P7-Q-PERF-06: AVIF first, WebP fallback. JPEG/PNG fallback handled by Next.js automatically.
   images: {

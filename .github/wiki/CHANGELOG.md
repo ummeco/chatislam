@@ -6,6 +6,19 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [Unreleased — P7 Engineering Excellence Foundation] — 2026-05
+
+> No version bump. P7 ships infrastructure cascade only.
+
+### Changed
+
+- Prompt-injection defenses hardened (T-P7-SIEGE carry-forward)
+- Upstash adapter replaces in-memory rate limiter for multi-instance safety (from P4 — now confirmed in P7 baseline)
+- Shared `@ummat/observability` workspace package consumed (otel-init + sentry-scrub)
+- README updated with P7 status and CHANGELOG link (T-P7-DOC-08)
+
+---
+
 ## [Unreleased — P4]
 
 ### Added
