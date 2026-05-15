@@ -32,8 +32,8 @@ export default function CaliforniaPrivacyPage() {
         </p>
         <p className="mb-10 opacity-70 max-w-2xl text-sm leading-relaxed">
           This page describes the privacy rights available to California residents under the California Consumer
-          Privacy Rights Act (CPRA/CCPA). ChatIslam is operated by Ummeco, LLC.
-          {/* TODO(U-15): Insert full legal entity and registered agent details. */}
+          Privacy Rights Act (CPRA/CCPA). ChatIslam is operated by Ummeco, LLC, 1679 S. Dupont Hwy, Suite 100,
+          Dover, DE 19901. Contact: <a href="mailto:privacy@ummat.dev" className="text-[#79C24C] hover:underline">privacy@ummat.dev</a>.
         </p>
 
         {/* Do Not Sell — prominent */}
