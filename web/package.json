@@ -42,5 +42,11 @@
     "eslint-config-next": "^16.2.4",
     "typescript": "^5.7.0",
     "vitest": "^3.1.2"
+  },
+  "pnpm": {
+    "overrides": {
+      "fast-uri": ">=3.1.2",
+      "postcss": ">=8.5.14"
+    }
   }
 }
