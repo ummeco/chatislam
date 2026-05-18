@@ -23,6 +23,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { MessageBubble }                             from '../../components/chat/MessageBubble'
+import DisclaimerFooter                              from '../../components/chat/DisclaimerFooter'
 import type { MadhabStance }                         from '../../lib/madhhab'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -245,6 +246,30 @@ export default function ChatPage() {
           AI-assisted Islamic Q&amp;A — grounded in the Quran and authentic Sunnah
         </p>
       </header>
+
+      {/* T01-LEGAL-COUNSEL-PACK: Persistent sharia disclaimer banner */}
+      <div
+        role="banner"
+        aria-label="AI Islamic guidance disclaimer"
+        style={{
+          backgroundColor: '#1E5E2F',
+          border:          '1px solid rgba(121,194,76,0.4)',
+          borderRadius:    '6px',
+          padding:         '0.5rem 0.75rem',
+          marginTop:       '0.75rem',
+          display:         'flex',
+          alignItems:      'flex-start',
+          gap:             '0.5rem',
+        }}
+      >
+        <span aria-hidden="true" style={{ fontSize: '0.75rem', flexShrink: 0, marginTop: '1px' }}>⚠️</span>
+        <p style={{ margin: 0, fontSize: '0.72rem', color: '#C9F27A', lineHeight: '1.45' }}>
+          <strong>AI-generated.</strong> Always consult a qualified Islamic scholar for binding fatwa.{' '}
+          <a href="/legal/sharia-disclaimer" style={{ color: '#79C24C', textDecoration: 'underline' }}>
+            Learn more
+          </a>
+        </p>
+      </div>
 
       {/* Audience mode + query counter */}
       <div
@@ -507,6 +532,7 @@ export default function ChatPage() {
           </a>
           . Not a substitute for a qualified Islamic scholar.
         </p>
+        <DisclaimerFooter />
       </div>
     </main>
   )
