@@ -64,7 +64,7 @@ export default function DsrPage() {
             <h2 className="text-xl font-semibold mb-3">Delete Conversation History</h2>
             <p>
               You can delete individual conversations or your full history from{' '}
-              <Link href="/settings" className="text-[#79C24C] hover:underline">
+              <Link href="/settings" className="text-[#5A9438] hover:underline">
                 Settings → Conversation History
               </Link>
               . Deletion is permanent after 30 days.
@@ -75,7 +75,7 @@ export default function DsrPage() {
             <h2 className="text-xl font-semibold mb-3">Submit a Request</h2>
             <p>
               Email{' '}
-              <a href="mailto:privacy@ummat.dev" className="text-[#79C24C] hover:underline">
+              <a href="mailto:privacy@ummat.dev" className="text-[#5A9438] hover:underline">
                 privacy@ummat.dev
               </a>{' '}
               with subject line &ldquo;DSR Request — ChatIslam — [right type]&rdquo;.
@@ -88,7 +88,7 @@ export default function DsrPage() {
             <p>
               By default, anonymised conversation data may be used to improve AI quality.
               To opt out, go to{' '}
-              <Link href="/settings" className="text-[#79C24C] hover:underline">
+              <Link href="/settings" className="text-[#5A9438] hover:underline">
                 Settings → Privacy → AI Training
               </Link>
               {' '}and toggle off &ldquo;Help improve ChatIslam&rdquo;. This takes effect
@@ -100,7 +100,7 @@ export default function DsrPage() {
           <section>
             <h2 className="text-xl font-semibold mb-3">Contact</h2>
             <p>
-              <a href="mailto:privacy@ummat.dev" className="text-[#79C24C] hover:underline">
+              <a href="mailto:privacy@ummat.dev" className="text-[#5A9438] hover:underline">
                 privacy@ummat.dev
               </a>
             </p>
@@ -108,9 +108,9 @@ export default function DsrPage() {
 
           <section className="border-t border-white/10 pt-6">
             <ul className="space-y-1">
-              <li><Link href="/privacy" className="text-[#79C24C] hover:underline">Privacy Policy</Link></li>
-              <li><Link href="/legal/sharia-disclaimer" className="text-[#79C24C] hover:underline">AI Guidance Disclaimer</Link></li>
-              <li><Link href="/legal/attribution" className="text-[#79C24C] hover:underline">Open Source Attribution</Link></li>
+              <li><Link href="/privacy" className="text-[#5A9438] hover:underline">Privacy Policy</Link></li>
+              <li><Link href="/legal/sharia-disclaimer" className="text-[#5A9438] hover:underline">AI Guidance Disclaimer</Link></li>
+              <li><Link href="/legal/attribution" className="text-[#5A9438] hover:underline">Open Source Attribution</Link></li>
             </ul>
           </section>
 

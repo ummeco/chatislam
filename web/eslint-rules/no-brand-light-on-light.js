@@ -29,18 +29,20 @@
 
 'use strict'
 
-/** Regex: matches text-brand-light, text-brand-mid, text-ummat-light, text-ummat-mid
- *  including dynamic class strings and template literals.
+/** Regex: matches text-brand-light, text-brand-mid, text-ummat-light, text-ummat-mid,
+ *  AND literal hex arbitrary values text-[#79C24C] / text-[#C9F27A].
  *  NOT matched: bg-brand-light, bg-brand-mid, border-brand-light (backgrounds/borders are safe).
  */
 const FORBIDDEN_PATTERN =
-  /\btext-(brand|ummat)-(light|mid)\b/
+  /\btext-(brand|ummat)-(light|mid)\b|text-\[#(79C24C|C9F27A)\]/i
 
 const SUGGESTIONS = {
-  'text-brand-light':  'text-brand-on-dark (on dark bg) or text-brand-on-light / text-brand-600 (on light bg)',
-  'text-brand-mid':    'text-brand-on-light (7.38:1) or text-brand-600 (4.5:1, D-P3-15)',
-  'text-ummat-light':  'text-ummat-on-dark (on dark bg) or text-ummat-on-light / text-ummat-600 (on light bg)',
-  'text-ummat-mid':    'text-ummat-on-light (7.38:1) or text-ummat-600 (4.5:1, D-P3-15)',
+  'text-brand-light':   'text-brand-on-dark (on dark bg) or text-brand-on-light / text-brand-600 (on light bg)',
+  'text-brand-mid':     'text-brand-on-light (7.38:1) or text-brand-600 (4.5:1, D-P3-15)',
+  'text-ummat-light':   'text-ummat-on-dark (on dark bg) or text-ummat-on-light / text-ummat-600 (on light bg)',
+  'text-ummat-mid':     'text-ummat-on-light (7.38:1) or text-ummat-600 (4.5:1, D-P3-15)',
+  'text-[#79C24C]':     'text-[#5A9438] (4.5:1 on white, WCAG AA) — A11Y-T01',
+  'text-[#C9F27A]':     'text-[#5A9438] (on light bg) or keep on dark bg (#07180d+)',
 }
 
 /** @type {import('eslint').Rule.RuleModule} */
@@ -66,8 +68,9 @@ const rule = {
     /** Extract all string literals from a JSX attribute value node */
     function checkStringForViolations(node, str) {
       let match
-      const re = /\b(text-(brand|ummat)-(light|mid))\b/g
-      while ((match = re.exec(str)) !== null) {
+      // Token-based: text-brand-light / text-brand-mid / text-ummat-light / text-ummat-mid
+      const reToken = /\b(text-(brand|ummat)-(light|mid))\b/g
+      while ((match = reToken.exec(str)) !== null) {
         const cls = match[1]
         const ratio = cls.includes('light') ? '1.28' : '2.18'
         context.report({
@@ -77,6 +80,21 @@ const rule = {
             cls,
             ratio,
             suggestion: SUGGESTIONS[cls] ?? 'text-brand-on-light or text-brand-600',
+          },
+        })
+      }
+      // Literal hex arbitrary values: text-[#79C24C] / text-[#C9F27A] — A11Y-T01
+      const reHex = /text-\[#(79C24C|C9F27A)\]/gi
+      while ((match = reHex.exec(str)) !== null) {
+        const cls = match[0].replace(/i$/i, '')  // normalize case
+        const ratio = match[1].toUpperCase() === 'C9F27A' ? '1.28' : '2.9'
+        context.report({
+          node,
+          messageId: 'forbidden',
+          data: {
+            cls,
+            ratio,
+            suggestion: SUGGESTIONS[`text-[#${match[1].toUpperCase()}]`] ?? 'text-[#5A9438] (A11Y-T01)',
           },
         })
       }

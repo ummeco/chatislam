@@ -33,7 +33,7 @@ export default function CaliforniaPrivacyPage() {
         <p className="mb-10 opacity-70 max-w-2xl text-sm leading-relaxed">
           This page describes the privacy rights available to California residents under the California Consumer
           Privacy Rights Act (CPRA/CCPA). ChatIslam is operated by Ummeco, LLC, 1679 S. Dupont Hwy, Suite 100,
-          Dover, DE 19901. Contact: <a href="mailto:privacy@ummat.dev" className="text-[#79C24C] hover:underline">privacy@ummat.dev</a>.
+          Dover, DE 19901. Contact: <a href="mailto:privacy@ummat.dev" className="text-[#5A9438] hover:underline">privacy@ummat.dev</a>.
         </p>
 
         {/* Do Not Sell — prominent */}
@@ -116,7 +116,7 @@ export default function CaliforniaPrivacyPage() {
 
           <section>
             <h2 className="text-xl font-semibold mb-3">How to Submit a Request</h2>
-            <p>Email <a href="mailto:privacy@ummat.dev" className="text-[#79C24C] hover:underline">privacy@ummat.dev</a> with subject line &quot;CPRA Request&quot;. Include your full name and the email associated with your account.</p>
+            <p>Email <a href="mailto:privacy@ummat.dev" className="text-[#5A9438] hover:underline">privacy@ummat.dev</a> with subject line &quot;CPRA Request&quot;. Include your full name and the email associated with your account.</p>
             <p className="mt-2">We respond within 45 days (extendable to 90 days with notice). Up to two free requests per 12-month period.</p>
           </section>
 
@@ -124,8 +124,8 @@ export default function CaliforniaPrivacyPage() {
           <section className="border-t border-white/10 pt-6">
             <h2 className="text-lg font-semibold mb-3">Related</h2>
             <ul className="space-y-1">
-              <li><Link href="/privacy" className="text-[#79C24C] hover:underline">Privacy Policy</Link></li>
-              <li><Link href="/preferences" className="text-[#79C24C] hover:underline">Manage Cookie Preferences</Link></li>
+              <li><Link href="/privacy" className="text-[#5A9438] hover:underline">Privacy Policy</Link></li>
+              <li><Link href="/preferences" className="text-[#5A9438] hover:underline">Manage Cookie Preferences</Link></li>
             </ul>
           </section>
         </div>
