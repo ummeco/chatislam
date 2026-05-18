@@ -1,5 +1,9 @@
 import type { NextConfig } from "next";
 import { withSentryConfig } from "@sentry/nextjs";
+import withBundleAnalyzer from '@next/bundle-analyzer'
+
+// T12: Bundle analyzer — run with ANALYZE=true pnpm build
+const analyzeBundles = withBundleAnalyzer({ enabled: process.env.ANALYZE === 'true' })
 
 const nextConfig: NextConfig = {
   // Server-side packages that must not be bundled by webpack.
@@ -31,6 +35,7 @@ const nextConfig: NextConfig = {
           { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
           { key: 'X-XSS-Protection', value: '1; mode=block' },
           { key: 'Permissions-Policy', value: 'camera=(), microphone=(), geolocation=(self)' },
+          { key: 'Strict-Transport-Security', value: 'max-age=31536000; includeSubDomains' },
           {
             // B5-10: CSP hardened — removed 'unsafe-eval' (not needed for ChatIslam)
             // Anthropic API calls are server-side only (Route Handlers) — not in CSP
@@ -50,6 +55,13 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        // T11: API routes must never be cached — prevent stale auth/data responses.
+        source: '/api/:path*',
+        headers: [
+          { key: 'Cache-Control', value: 'no-store, max-age=0' },
+        ],
+      },
     ]
   },
 };
@@ -57,7 +69,7 @@ const nextConfig: NextConfig = {
 // withSentryConfig wraps Next.js config to upload source maps to GlitchTip on build.
 // T25.07: url points to self-hosted GlitchTip at errors.ummat.dev (not Sentry SaaS).
 // Requires SENTRY_AUTH_TOKEN (=GLITCHTIP_AUTH_TOKEN), SENTRY_ORG, SENTRY_PROJECT in Vercel env vars.
-export default withSentryConfig(nextConfig, {
+export default withSentryConfig(analyzeBundles(nextConfig), {
   org: process.env.SENTRY_ORG ?? "ummeco",
   project: process.env.SENTRY_PROJECT ?? "chatislam-web",
   sentryUrl: 'https://errors.ummat.dev',

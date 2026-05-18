@@ -23,3 +23,22 @@ jobs:
     uses: ./.github/workflows/_reusable-lighthouse.yml
     with:
       project_path: web
+
+  bundle-size:
+    name: Bundle size check (web)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
+      - name: Build with bundle analyzer (T12)
+        run: ANALYZE=true pnpm build
+        env:
+          ANALYZE: 'true'
