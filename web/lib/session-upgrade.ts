@@ -65,7 +65,10 @@ export async function upgradeSession(
       }>
     }>(
       `query($session_id: uuid!) {
-        ci_sessions(where: { id: { _eq: $session_id } }, limit: 1) {
+        ci_sessions(
+          where: { id: { _eq: $session_id }, user_id: { _is_null: true } }
+          limit: 1
+        ) {
           id user_id
           messages: ci_messages { id }
         }
@@ -79,9 +82,11 @@ export async function upgradeSession(
       return { upgraded: false, messages_moved: 0, anon_session_id: anonSessionId }
     }
 
-    // If already owned by this user, no upgrade needed
-    if (anonSession.user_id === userId) {
-      return { upgraded: true, messages_moved: 0, anon_session_id: anonSessionId, user_session_id: anonSessionId }
+    // T03 (SEC-HARDENING): Reject if session is already owned by ANY user.
+    // The query already fetches user_id; if non-null, this session was previously
+    // claimed — reject to prevent session hijack via a known anon UUID.
+    if (anonSession.user_id !== null) {
+      return { upgraded: false, messages_moved: 0, anon_session_id: anonSessionId }
     }
 
     const messageCount = anonSession.messages.length
@@ -90,8 +95,8 @@ export async function upgradeSession(
       return { upgraded: false, messages_moved: 0, anon_session_id: anonSessionId }
     }
 
-    // 2. Check if the user already has an existing session for this flow
-    //    If so, we reassign messages; otherwise, claim this session
+    // 2. Check if the user already has an existing authenticated session.
+    //    Messages will be moved there; otherwise a fresh session UUID is created.
     const userSessionData = await hasuraQuery<{
       ci_sessions: Array<{ id: string }>
     }>(
@@ -105,29 +110,51 @@ export async function upgradeSession(
       { user_id: userId },
     )
 
-    const targetSessionId = userSessionData.ci_sessions[0]?.id ?? anonSessionId
+    // T03 (SEC-HARDENING): Issue a NEW session UUID for the authenticated user.
+    // Never claim the anon session row — textbook session fixation fix.
+    // The new session is created fresh; the anon session is then abandoned.
+    const existingUserSessionId = userSessionData.ci_sessions[0]?.id ?? null
 
-    // 3. Claim the anon session (update user_id)
-    await hasuraQuery(
-      `mutation($id: uuid!, $user_id: uuid!) {
-        update_ci_sessions_by_pk(pk_columns: { id: $id }, _set: { user_id: $user_id }) { id }
-      }`,
-      { id: anonSessionId, user_id: userId },
-    )
-
-    // 4. If merging into an existing session, move the messages
-    if (targetSessionId !== anonSessionId) {
-      await hasuraQuery(
-        `mutation($anon_id: uuid!, $target_id: uuid!) {
-          update_ci_messages(
-            where: { session_id: { _eq: $anon_id } }
-            _set:  { session_id: $target_id }
-          ) { affected_rows }
+    // 3a. If user already has a session, target that; else create a new one.
+    let targetSessionId: string
+    if (existingUserSessionId) {
+      targetSessionId = existingUserSessionId
+    } else {
+      // Insert a new authenticated session row with a fresh UUID
+      const newSession = await hasuraQuery<{
+        insert_ci_sessions_one: { id: string }
+      }>(
+        `mutation($user_id: uuid!) {
+          insert_ci_sessions_one(object: { user_id: $user_id }) { id }
         }`,
-        { anon_id: anonSessionId, target_id: targetSessionId },
+        { user_id: userId },
       )
+      targetSessionId = newSession.insert_ci_sessions_one.id
     }
 
+    // 3b. Move messages from the anon session to the new/existing authenticated session
+    await hasuraQuery(
+      `mutation($anon_id: uuid!, $target_id: uuid!) {
+        update_ci_messages(
+          where: { session_id: { _eq: $anon_id } }
+          _set:  { session_id: $target_id }
+        ) { affected_rows }
+      }`,
+      { anon_id: anonSessionId, target_id: targetSessionId },
+    )
+
+    // 3c. Mark the anon session abandoned (not deleted — preserves audit trail)
+    await hasuraQuery(
+      `mutation($id: uuid!) {
+        update_ci_sessions_by_pk(
+          pk_columns: { id: $id }
+          _set:       { abandoned: true }
+        ) { id }
+      }`,
+      { id: anonSessionId },
+    )
+
+    // The caller MUST update localStorage to the new targetSessionId.
     return {
       upgraded:        true,
       messages_moved:  messageCount,

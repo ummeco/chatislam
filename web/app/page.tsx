@@ -59,25 +59,60 @@ export default function Home() {
         </a>
       </p>
 
-      {/* Sticky footer disclaimer — no JS required (SCI-11) */}
+      {/* Sticky footer — AI disclaimer + legal links (T09-LEGAL-COUNSEL-PACK) */}
       <footer
-        role="note"
-        aria-label="AI disclaimer"
         style={{
           position:    "fixed",
           bottom:      0,
           left:        0,
           right:       0,
-          padding:     "0.5rem 1rem",
-          fontSize:    "0.7rem",
-          color:       "rgba(201, 242, 122, 0.6)",   /* WCAG AA: 5.27:1 at 0.6 alpha on #0D2F17-90% bg */
-          textAlign:   "center",
           background:  "rgba(13, 47, 23, 0.9)",
           borderTop:   "1px solid rgba(45, 90, 53, 0.5)",
         }}
       >
-        AI-generated content only. Not a fatwa. Consult a qualified Islamic scholar for
-        personal religious decisions.
+        {/* SCI-11: AI disclaimer */}
+        <p
+          role="note"
+          aria-label="AI disclaimer"
+          style={{
+            padding:   "0.5rem 1rem 0.25rem",
+            fontSize:  "0.7rem",
+            color:     "rgba(201, 242, 122, 0.6)",
+            textAlign: "center",
+          }}
+        >
+          AI-generated content only. Not a fatwa. Consult a qualified Islamic scholar for
+          personal religious decisions.
+        </p>
+        {/* T09-LEGAL-COUNSEL-PACK: Legal links — Privacy · Terms · Cookies · AUP */}
+        <nav
+          aria-label="Legal links"
+          style={{
+            display:        "flex",
+            flexWrap:       "wrap",
+            justifyContent: "center",
+            gap:            "0 1rem",
+            padding:        "0 1rem 0.5rem",
+            fontSize:       "0.65rem",
+          }}
+        >
+          {[
+            ["Privacy Policy",  "/privacy"],
+            ["Terms",           "/terms"],
+            ["Cookies",         "/cookies"],
+            ["Acceptable Use",  "/aup"],
+            ["Open Source",     "/legal/attribution"],
+            ["Sharia Disclaimer", "/legal/sharia-disclaimer"],
+          ].map(([label, href]) => (
+            <a
+              key={href}
+              href={href}
+              style={{ color: "rgba(201, 242, 122, 0.45)", textDecoration: "none" }}
+            >
+              {label}
+            </a>
+          ))}
+        </nav>
       </footer>
     </main>
   );

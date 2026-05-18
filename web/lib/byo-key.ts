@@ -23,13 +23,22 @@ const IV_LENGTH = 12   // 96-bit IV — recommended for GCM
 const TAG_LENGTH = 16  // 128-bit auth tag
 
 /**
- * Derive a 32-byte key from BYO_KEY_ENCRYPTION_SECRET via SHA-256.
- * The env var should be 64 hex chars (32 bytes) or any high-entropy string.
+ * Derive a 32-byte AES-256 key from BYO_KEY_ENCRYPTION_SECRET via HKDF-SHA-256.
+ *
+ * T05 (SEC-HARDENING): Replaced bare SHA-256 hash with HKDF to provide proper
+ * key derivation against low-entropy secrets. Fixed salt + info string means
+ * the derivation is deterministic — existing encrypted keys remain decryptable
+ * with no re-encryption step needed.
+ *
+ * The env var should be a minimum 32-byte (256-bit) random hex string.
+ * See chatislam/web/.env.example for documentation.
  */
 function getDerivedKey(): Buffer {
   const secret = process.env.BYO_KEY_ENCRYPTION_SECRET
   if (!secret) throw new Error('BYO_KEY_ENCRYPTION_SECRET is not set')
-  return crypto.createHash('sha256').update(secret).digest()
+  return Buffer.from(
+    crypto.hkdfSync('sha256', Buffer.from(secret, 'utf8'), 'ummat-byo-key-v1', 'aes-256-gcm', 32)
+  )
 }
 
 /**

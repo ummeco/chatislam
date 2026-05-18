@@ -2,13 +2,14 @@
 
 /**
  * ChatIslam — Sign up client (CB-07 T42b)
- *
- * Hasura Auth registration form.
- * On success, stores JWT in localStorage and redirects to /chat.
+ * T09 (SEC-HARDENING): Routes through /api/auth/signup proxy for Turnstile verification.
+ * Direct client→Hasura Auth calls replaced with server-side proxy.
  */
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? ''
 
 export function SignUpClient() {
   const router = useRouter()
@@ -18,7 +19,29 @@ export function SignUpClient() {
   const [isLoading, setIsLoading] = useState(false)
   const [error,     setError]     = useState<string | null>(null)
 
-  const AUTH_URL = process.env.NEXT_PUBLIC_AUTH_URL ?? 'https://auth.ummat.dev'
+  // T09: Turnstile token — populated by the invisible managed challenge.
+  const turnstileToken = useRef<string>('')
+  const turnstileRef   = useRef<HTMLDivElement>(null)
+
+  // Mount Cloudflare Turnstile invisible widget
+  useEffect(() => {
+    if (!TURNSTILE_SITE_KEY || !turnstileRef.current) return
+
+    const script = document.createElement('script')
+    script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit'
+    script.async = true
+    script.onload = () => {
+      if (typeof window.turnstile === 'undefined') return
+      window.turnstile.render(turnstileRef.current!, {
+        sitekey: TURNSTILE_SITE_KEY,
+        callback: (token: string) => { turnstileToken.current = token },
+        'expired-callback': () => { turnstileToken.current = '' },
+        appearance: 'interaction-only',
+      })
+    }
+    document.head.appendChild(script)
+    return () => { document.head.removeChild(script) }
+  }, [])
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -32,10 +55,15 @@ export function SignUpClient() {
     setIsLoading(true)
 
     try {
-      const res = await fetch(`${AUTH_URL}/v1/auth/signup/email-password`, {
+      // T09: Use server-side proxy — Turnstile is verified server-side before auth
+      const res = await fetch('/api/auth/signup', {
         method:  'POST',
         headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify({ email, password }),
+        body:    JSON.stringify({
+          email,
+          password,
+          turnstileToken: turnstileToken.current,
+        }),
       })
 
       const data = await res.json() as {
@@ -106,6 +134,9 @@ export function SignUpClient() {
             />
             <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">At least 8 characters</p>
           </div>
+
+          {/* T09: Cloudflare Turnstile invisible widget container */}
+          {TURNSTILE_SITE_KEY && <div ref={turnstileRef} />}
 
           {error && (
             <p role="alert" className="text-sm text-red-600 dark:text-red-400">{error}</p>

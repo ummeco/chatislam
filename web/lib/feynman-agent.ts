@@ -13,6 +13,10 @@
 import Anthropic from '@anthropic-ai/sdk'
 import crypto from 'crypto'
 import type { Citation } from './citation'
+// T08 (SEC-HARDENING): sanitize LLM output before caching or returning.
+// sanitizeUserInput strips injection tokens and control chars.
+// It does NOT strip Arabic Unicode or Quranic diacritics — verified safe for Islamic content.
+import { sanitizeUserInput } from './sanitize-input'
 
 // ─── Types ─────────────────────────────────────────────────────────────────────
 
@@ -381,7 +385,13 @@ export async function researchQuery(
   const classification = await classifyQuery(query)
 
   // Phase 2: Generate response
-  const responseText = await generateResponse(query, depth, classification, opts)
+  const rawResponseText = await generateResponse(query, depth, classification, opts)
+
+  // T08 (SEC-HARDENING): Sanitize LLM output before citation extraction and caching.
+  // Removes prompt-injection tokens that may have been injected via external scholarly sources.
+  // Arabic text, Quranic diacritics (tashkeel), and hadith numbers are preserved —
+  // sanitizeUserInput's strip patterns target only control chars and injection keywords.
+  const responseText = sanitizeUserInput(rawResponseText)
 
   // Phase 3: Extract citations + madhhab analysis
   const citations       = extractCitations(responseText)
