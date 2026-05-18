@@ -1,0 +1,40 @@
+{
+  "_comment": "Malay (ms) — machine-translated stubs. Flagged for theological review on fiqh terms (e.g., dakwah, Islamic jurisprudence terminology in Bahasa Melayu) before production use. T05-P9.",
+  "nav": {
+    "home": "Laman Utama",
+    "newChat": "Sembang Baru",
+    "history": "Sejarah",
+    "settings": "Tetapan"
+  },
+  "common": {
+    "loading": "Memuatkan...",
+    "error": "Sesuatu telah berlaku",
+    "retry": "Cuba lagi",
+    "cancel": "Batal",
+    "close": "Tutup",
+    "back": "Kembali",
+    "send": "Hantar",
+    "submit": "Serahkan"
+  },
+  "chat": {
+    "placeholder": "Tanyakan soalan tentang Islam...",
+    "empty": "Tanya apa sahaja tentang Islam",
+    "emptySubtitle": "Dapatkan jawapan berdasarkan ilmu yang sahih",
+    "streaming": "Sedang menjawab...",
+    "errorMessage": "Tidak dapat mendapatkan jawapan. Sila cuba lagi.",
+    "incompleteResponse": "Jawapan telah terganggu. Sila cuba lagi.",
+    "offlineBanner": "Anda sedang luar talian. Mesej akan dihantar apabila bersambung semula.",
+    "newConversation": "Mulakan perbualan baru"
+  },
+  "modes": {
+    "muslim": "Muslim",
+    "newMuslim": "Muslim Baru",
+    "nonMuslim": "Bukan Muslim / Dakwah",
+    "selectMode": "Pilih mod anda"
+  },
+  "errors": {
+    "rateLimit": "Terlalu banyak permintaan. Sila tunggu sebentar.",
+    "serverError": "Ralat pelayan. Sila cuba lagi.",
+    "networkError": "Ralat rangkaian. Semak sambungan anda."
+  }
+}

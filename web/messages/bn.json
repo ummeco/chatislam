@@ -1,0 +1,40 @@
+{
+  "_comment": "Bengali (bn) — machine-translated stubs. Flagged for theological review on fiqh terms and Islamic terminology in Bengali before production use. T05-P9.",
+  "nav": {
+    "home": "হোম",
+    "newChat": "নতুন চ্যাট",
+    "history": "ইতিহাস",
+    "settings": "সেটিংস"
+  },
+  "common": {
+    "loading": "লোড হচ্ছে...",
+    "error": "কিছু একটা ভুল হয়েছে",
+    "retry": "আবার চেষ্টা করুন",
+    "cancel": "বাতিল",
+    "close": "বন্ধ করুন",
+    "back": "পিছনে",
+    "send": "পাঠান",
+    "submit": "জমা দিন"
+  },
+  "chat": {
+    "placeholder": "ইসলাম সম্পর্কে একটি প্রশ্ন করুন...",
+    "empty": "ইসলাম সম্পর্কে যেকোনো কিছু জিজ্ঞেস করুন",
+    "emptySubtitle": "প্রামাণিক ইলমের উপর ভিত্তি করে উত্তর পান",
+    "streaming": "উত্তর দিচ্ছে...",
+    "errorMessage": "উত্তর পাওয়া যায়নি। আবার চেষ্টা করুন।",
+    "incompleteResponse": "উত্তর বাধাগ্রস্ত হয়েছে। আবার চেষ্টা করুন।",
+    "offlineBanner": "আপনি অফলাইনে আছেন। পুনরায় সংযুক্ত হলে বার্তা পাঠানো হবে।",
+    "newConversation": "একটি নতুন কথোপকথন শুরু করুন"
+  },
+  "modes": {
+    "muslim": "মুসলিম",
+    "newMuslim": "নতুন মুসলিম",
+    "nonMuslim": "অমুসলিম / দাওয়াহ",
+    "selectMode": "আপনার মোড নির্বাচন করুন"
+  },
+  "errors": {
+    "rateLimit": "অনেক বেশি অনুরোধ। একটু অপেক্ষা করুন।",
+    "serverError": "সার্ভার ত্রুটি। আবার চেষ্টা করুন।",
+    "networkError": "নেটওয়ার্ক ত্রুটি। আপনার সংযোগ পরীক্ষা করুন।"
+  }
+}

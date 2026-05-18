@@ -166,3 +166,96 @@ export function determineCitationConfidence(
   if (!url.startsWith(baseUrl)) return 'external'
   return exists ? 'verified' : 'pending'
 }
+
+// ─── IslamQA corpus query (T03-P9) ───────────────────────────────────────────
+
+export interface IslamQAMatch {
+  /** DB UUID of the question */
+  questionId:  string
+  titleEn:     string
+  bodyEn:      string | null
+  category:    string | null
+  sourceUrl:   string | null
+  madhabTags:  string[]
+}
+
+/**
+ * Full-text search ci_islamqa_questions for the top-3 closest matches.
+ *
+ * Used server-side only (admin secret). Falls back gracefully to empty array
+ * on any error — never blocks the chat response.
+ *
+ * @param query  The user's query string (pre-sanitized)
+ * @returns      Up to 3 IslamQA question matches as Citation sources
+ */
+export async function queryIslamQACorpus(query: string): Promise<IslamQAMatch[]> {
+  const HASURA_ENDPOINT    = process.env.HASURA_ADMIN_URL ?? process.env.NEXT_PUBLIC_HASURA_URL ?? ''
+  const HASURA_ADMIN_SECRET = process.env.HASURA_GRAPHQL_ADMIN_SECRET ?? ''
+
+  if (!HASURA_ENDPOINT) return []
+
+  const GQL = `
+    query SearchIslamQA($query: String!) {
+      ci_islamqa_questions(
+        where: {
+          _or: [
+            { title_en: { _ilike: $query } }
+            { body_en:  { _ilike: $query } }
+          ]
+        }
+        limit: 3
+        order_by: { imported_at: desc }
+      ) {
+        id
+        title_en
+        body_en
+        category
+        source_url
+        madhab_tags
+      }
+    }
+  `
+
+  // Build a loose ILIKE pattern from query keywords (top 5 words, ≥4 chars)
+  const keywords  = query.split(/\s+/).filter((w) => w.length >= 4).slice(0, 5)
+  const pattern   = keywords.length > 0 ? `%${keywords.join('%')}%` : `%${query.slice(0, 50)}%`
+
+  try {
+    const res = await fetch(HASURA_ENDPOINT, {
+      method:  'POST',
+      headers: {
+        'Content-Type':          'application/json',
+        'x-hasura-admin-secret': HASURA_ADMIN_SECRET,
+      },
+      body:   JSON.stringify({ query: GQL, variables: { query: pattern } }),
+      signal: AbortSignal.timeout(3000),
+    })
+
+    if (!res.ok) return []
+
+    const data = await res.json() as {
+      data?: {
+        ci_islamqa_questions?: Array<{
+          id:          string
+          title_en:    string
+          body_en:     string | null
+          category:    string | null
+          source_url:  string | null
+          madhab_tags: string[] | null
+        }>
+      }
+    }
+
+    return (data.data?.ci_islamqa_questions ?? []).map((q) => ({
+      questionId: q.id,
+      titleEn:    q.title_en,
+      bodyEn:     q.body_en,
+      category:   q.category,
+      sourceUrl:  q.source_url,
+      madhabTags: q.madhab_tags ?? [],
+    }))
+  } catch {
+    // Non-blocking — IslamQA corpus is supplementary
+    return []
+  }
+}

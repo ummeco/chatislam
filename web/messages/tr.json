@@ -1,0 +1,40 @@
+{
+  "_comment": "Turkish (tr) — machine-translated stubs. Flagged for theological review on fiqh terms (e.g., 'dava' for Dawah, Islamic jurisprudence terminology) before production use. T05-P9.",
+  "nav": {
+    "home": "Ana Sayfa",
+    "newChat": "Yeni Sohbet",
+    "history": "Geçmiş",
+    "settings": "Ayarlar"
+  },
+  "common": {
+    "loading": "Yükleniyor...",
+    "error": "Bir şeyler yanlış gitti",
+    "retry": "Tekrar dene",
+    "cancel": "İptal",
+    "close": "Kapat",
+    "back": "Geri",
+    "send": "Gönder",
+    "submit": "Gönder"
+  },
+  "chat": {
+    "placeholder": "İslam hakkında bir soru sorun...",
+    "empty": "İslam hakkında herhangi bir şey sorun",
+    "emptySubtitle": "Gerçek ilme dayalı cevaplar alın",
+    "streaming": "Yanıt hazırlanıyor...",
+    "errorMessage": "Yanıt alınamadı. Lütfen tekrar deneyin.",
+    "incompleteResponse": "Yanıt kesintiye uğradı. Lütfen tekrar deneyin.",
+    "offlineBanner": "Çevrimdışısınız. Bağlantı yeniden kurulduğunda mesajlar gönderilecek.",
+    "newConversation": "Yeni bir sohbet başlatın"
+  },
+  "modes": {
+    "muslim": "Müslüman",
+    "newMuslim": "Yeni Müslüman",
+    "nonMuslim": "Gayrimüslim / Dava",
+    "selectMode": "Modunuzu seçin"
+  },
+  "errors": {
+    "rateLimit": "Çok fazla istek. Lütfen bir an bekleyin.",
+    "serverError": "Sunucu hatası. Lütfen tekrar deneyin.",
+    "networkError": "Ağ hatası. Bağlantınızı kontrol edin."
+  }
+}

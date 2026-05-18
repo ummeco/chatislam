@@ -19,6 +19,11 @@ build/
 .env.production.local
 .env.prod
 
+# Defense-in-depth: also ignore web/.env.local at repo root level (T02 — belt-and-suspenders;
+# web/.gitignore already covers this but nested gitignores can be bypassed by some tools)
+web/.env.local
+web/.env*.local
+
 # OS
 .DS_Store
 Thumbs.db

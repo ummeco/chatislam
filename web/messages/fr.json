@@ -1,0 +1,40 @@
+{
+  "_comment": "French (fr) — machine-translated stubs. Flagged for theological review on fiqh terms before production use. T05-P9.",
+  "nav": {
+    "home": "Accueil",
+    "newChat": "Nouvelle conversation",
+    "history": "Historique",
+    "settings": "Paramètres"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "retry": "Réessayer",
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "back": "Retour",
+    "send": "Envoyer",
+    "submit": "Soumettre"
+  },
+  "chat": {
+    "placeholder": "Posez une question sur l'Islam...",
+    "empty": "Posez n'importe quelle question sur l'Islam",
+    "emptySubtitle": "Obtenez des réponses fondées sur une érudition authentique",
+    "streaming": "En train de répondre...",
+    "errorMessage": "Impossible d'obtenir une réponse. Veuillez réessayer.",
+    "incompleteResponse": "La réponse a été interrompue. Veuillez réessayer.",
+    "offlineBanner": "Vous êtes hors ligne. Les messages seront envoyés à la reconnexion.",
+    "newConversation": "Démarrer une nouvelle conversation"
+  },
+  "modes": {
+    "muslim": "Musulman(e)",
+    "newMuslim": "Nouveau(elle) Musulman(e)",
+    "nonMuslim": "Non-Musulman / Dawah",
+    "selectMode": "Sélectionnez votre mode"
+  },
+  "errors": {
+    "rateLimit": "Trop de requêtes. Veuillez patienter un moment.",
+    "serverError": "Erreur serveur. Veuillez réessayer.",
+    "networkError": "Erreur réseau. Vérifiez votre connexion."
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "_comment": "Indonesian (id) — machine-translated stubs. Flagged for theological review on fiqh terms (e.g., dawah, Islamic jurisprudence terminology in Bahasa Indonesia) before production use. T05-P9.",
+  "nav": {
+    "home": "Beranda",
+    "newChat": "Obrolan Baru",
+    "history": "Riwayat",
+    "settings": "Pengaturan"
+  },
+  "common": {
+    "loading": "Memuat...",
+    "error": "Terjadi kesalahan",
+    "retry": "Coba lagi",
+    "cancel": "Batalkan",
+    "close": "Tutup",
+    "back": "Kembali",
+    "send": "Kirim",
+    "submit": "Kirim"
+  },
+  "chat": {
+    "placeholder": "Ajukan pertanyaan tentang Islam...",
+    "empty": "Tanyakan apa saja tentang Islam",
+    "emptySubtitle": "Dapatkan jawaban berdasarkan ilmu yang sahih",
+    "streaming": "Sedang menjawab...",
+    "errorMessage": "Tidak dapat mendapatkan jawaban. Silakan coba lagi.",
+    "incompleteResponse": "Jawaban terputus. Silakan coba lagi.",
+    "offlineBanner": "Anda sedang offline. Pesan akan terkirim saat terhubung kembali.",
+    "newConversation": "Mulai percakapan baru"
+  },
+  "modes": {
+    "muslim": "Muslim",
+    "newMuslim": "Mualaf",
+    "nonMuslim": "Non-Muslim / Dakwah",
+    "selectMode": "Pilih mode Anda"
+  },
+  "errors": {
+    "rateLimit": "Terlalu banyak permintaan. Harap tunggu sebentar.",
+    "serverError": "Kesalahan server. Silakan coba lagi.",
+    "networkError": "Kesalahan jaringan. Periksa koneksi Anda."
+  }
+}

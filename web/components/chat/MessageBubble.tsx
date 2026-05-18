@@ -14,8 +14,9 @@
  * Both MadhabTagRow and CitationBadge render nothing when no data is present.
  */
 
-import { MadhabTagRow }  from './MadhabTagRow'
-import { CitationBadge } from './CitationBadge'
+import { MadhabTagRow }    from './MadhabTagRow'
+import { CitationBadge }   from './CitationBadge'
+import { MessageFeedback } from './MessageFeedback'
 import type { MadhabStance } from '../../lib/madhhab'
 import type { Citation }     from '../../lib/citation'
 
@@ -34,6 +35,8 @@ export interface MessageBubbleProps {
   citations?:      Citation[]
   /** Scholar disclaimer text — defaults to canonical warning */
   disclaimer?:     string
+  /** sessionId — required for feedback submission (T04-P9) */
+  sessionId?:      string
 }
 
 // ─── Default disclaimer ───────────────────────────────────────────────────────
@@ -123,6 +126,11 @@ export function MessageBubble({
         <p className="mt-3 text-xs leading-snug text-emerald-700 opacity-80">
           {disclaimer}
         </p>
+      )}
+
+      {/* Message feedback — thumbs up/down — only on assistant messages (T04-P9) */}
+      {isAssistant && sessionId && (
+        <MessageFeedback messageId={id} sessionId={sessionId} />
       )}
     </article>
   )
