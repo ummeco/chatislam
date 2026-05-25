@@ -27,7 +27,7 @@
     "@ummat/consent": "file:./vendor/consent",
     "ioredis": "^5.6.1",
     "next": "^15.5.16",
-    "next-intl": "^4.9.2",
+    "next-intl": "^4.12.0",
     "next-themes": "^0.4.6",
     "react": "19.1.0",
     "react-dom": "19.1.0"
