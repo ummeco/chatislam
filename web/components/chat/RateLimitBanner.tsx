@@ -89,33 +89,20 @@ export default function RateLimitBanner({
     <div
       role="alert"
       aria-live="polite"
-      style={{
-        display:         'flex',
-        alignItems:      'flex-start',
-        gap:             '0.75rem',
-        padding:         '0.875rem 1rem',
-        backgroundColor: '#1a3a1f',
-        border:          '1px solid #2d5a35',
-        borderRadius:    '0.5rem',
-        color:           '#C9F27A',
-        fontSize:        '0.875rem',
-        lineHeight:      '1.5',
-      }}
+      className="flex items-start gap-3 px-4 py-3.5 bg-[#1a3a1f] border border-[#2d5a35] rounded-lg text-[#C9F27A] text-sm leading-relaxed"
     >
       {/* Icon */}
-      <span aria-hidden="true" style={{ fontSize: '1.1rem', flexShrink: 0, marginTop: '0.05rem' }}>⏳</span>
+      <span aria-hidden="true" className="text-lg shrink-0 mt-px">⏳</span>
 
       {/* Text */}
-      <div style={{ flex: 1 }}>
-        <strong style={{ display: 'block', marginBottom: '0.25rem' }}>{heading}</strong>
-        <span style={{ color: 'rgba(201, 242, 122, 0.85)' }}>
+      <div className="flex-1">
+        <strong className="block mb-1">{heading}</strong>
+        <span className="text-[rgba(201,242,122,0.85)]">
           {body(countdown, retryAfterSeconds)}
         </span>
         {reason === 'daily_budget_exceeded' && (
-          <span
-            style={{ display: 'block', marginTop: '0.5rem', color: '#79C24C', fontSize: '0.8rem' }}
-          >
-            <a href="/plus" style={{ color: '#79C24C' }}>Upgrade to Plus</a>
+          <span className="block mt-2 text-ummat-accent text-xs">
+            <a href="/plus" className="text-ummat-accent hover:text-ummat-light underline">Upgrade to Plus</a>
             {' '}for unlimited access.
           </span>
         )}
@@ -128,16 +115,7 @@ export default function RateLimitBanner({
           onDismiss?.()
         }}
         aria-label="Dismiss rate limit notice"
-        style={{
-          background:  'none',
-          border:      'none',
-          cursor:      'pointer',
-          color:       'rgba(201, 242, 122, 0.6)',
-          fontSize:    '1.1rem',
-          flexShrink:  0,
-          padding:     '0',
-          lineHeight:  '1',
-        }}
+        className="bg-transparent border-0 cursor-pointer text-[rgba(201,242,122,0.6)] text-lg shrink-0 p-0 leading-none hover:text-ummat-light transition-colors"
       >
         ×
       </button>

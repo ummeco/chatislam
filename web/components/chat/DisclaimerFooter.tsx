@@ -28,13 +28,10 @@ export default function DisclaimerFooter({ compact = false }: DisclaimerFooterPr
     <p
       role="note"
       aria-label="Disclaimer: AI-generated content, not a fatwa"
-      style={{
-        fontSize:   compact ? '0.7rem' : '0.75rem',
-        color:      'rgba(201, 242, 122, 0.5)',
-        margin:     compact ? '0.25rem 0 0' : '0.5rem 0 0',
-        lineHeight: '1.4',
-        textAlign:  'center',
-      }}
+      className={[
+        'text-[rgba(201,242,122,0.5)] leading-snug text-center',
+        compact ? 'text-[0.7rem] mt-1' : 'text-xs mt-2',
+      ].join(' ')}
     >
       {compact ? DISCLAIMER_COMPACT : DISCLAIMER_TEXT}
     </p>

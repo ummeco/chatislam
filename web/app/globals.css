@@ -1,3 +1,18 @@
+@import "tailwindcss";
+
+/* Ummat brand design tokens — available as CSS vars and Tailwind theme */
+@theme {
+  --color-ummat-primary: #1E5E2F;
+  --color-ummat-accent: #79C24C;
+  --color-ummat-light: #C9F27A;
+  --color-ummat-deep: #0D2F17;
+  --color-ummat-bg: #07180d;
+  --color-ummat-text: #f0fce8;
+  --color-ummat-muted: rgba(201, 242, 122, 0.6);
+  --color-ummat-bg-light: #f5faf2;
+  --color-ummat-text-dark: #0D2F17;
+}
+
 *,
 *::before,
 *::after {
