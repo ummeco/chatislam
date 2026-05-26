@@ -54,7 +54,7 @@ export function MadhabTagRow({ stances, className = '' }: MadhabTagRowProps) {
             {stance.is_majority && (
               <span className="text-gray-400 dark:text-gray-600" aria-label="majority view">★</span>
             )}
-            <span className="max-w-[120px] truncate text-opacity-80">
+            <span className="max-w-[120px] truncate text-gray-500/80 dark:text-gray-400/80">
               {stance.stance}
             </span>
           </span>
