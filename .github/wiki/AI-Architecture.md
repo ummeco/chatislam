@@ -59,3 +59,28 @@ Users can provide their own Anthropic API key to bypass rate limits and use thei
 - [[Rate-Limiting]] -- token budgets and spend alerts
 - [[BYO-Keys]] -- per-user API keys
 - [[Disclaimer]] -- what the AI can and cannot answer
+
+## GraphQL Client Pattern
+
+Three clients in `lib/graphql.ts`:
+
+```typescript
+import { GraphQLClient } from 'graphql-request'
+
+// Public queries (Hasura public role) — client + server
+export const gqlClient = new GraphQLClient(process.env.NEXT_PUBLIC_HASURA_URL!)
+
+// Authenticated queries — client + server
+export const authedClient = (token: string) =>
+  new GraphQLClient(process.env.NEXT_PUBLIC_HASURA_URL!, {
+    headers: { Authorization: `Bearer ${token}` },
+  })
+
+// Admin queries — SERVER ONLY, never import in Client Components
+export const adminClient = new GraphQLClient(
+  process.env.HASURA_ADMIN_URL ?? process.env.NEXT_PUBLIC_HASURA_URL!,
+  { headers: { 'x-hasura-admin-secret': process.env.HASURA_GRAPHQL_ADMIN_SECRET! } }
+)
+```
+
+Rule: `adminClient` uses `HASURA_GRAPHQL_ADMIN_SECRET` — never a `NEXT_PUBLIC_*` key. Always validate `x-remote-schema-secret` in the Remote Schema route handler.
