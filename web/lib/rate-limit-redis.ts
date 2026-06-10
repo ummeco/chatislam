@@ -37,7 +37,6 @@ export class RedisRateLimitAdapter implements RateLimitAdapter {
   constructor(redisUrl: string) {
     // ioredis is an optional dep — imported here so the module is tree-shaken
     // when REDIS_URL is not set and the factory uses the memory adapter instead.
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
     const Redis = require('ioredis')
     this.redis = new Redis(redisUrl, {
       maxRetriesPerRequest: 3,

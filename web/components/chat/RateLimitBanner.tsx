@@ -86,6 +86,7 @@ export default function RateLimitBanner({
   const { heading, body } = COPY[reason]
 
   return (
+    /* eslint-disable ummat/no-brand-light-on-light -- dark bg #1a3a1f, contrast ≥7:1 */
     <div
       role="alert"
       aria-live="polite"
@@ -102,7 +103,7 @@ export default function RateLimitBanner({
         </span>
         {reason === 'daily_budget_exceeded' && (
           <span className="block mt-2 text-ummat-accent text-xs">
-            <a href="/plus" className="text-ummat-accent hover:text-ummat-light underline">Upgrade to Plus</a>
+            <a href="/plus" className="text-ummat-accent hover:text-white underline">Upgrade to Plus</a>
             {' '}for unlimited access.
           </span>
         )}
@@ -115,10 +116,11 @@ export default function RateLimitBanner({
           onDismiss?.()
         }}
         aria-label="Dismiss rate limit notice"
-        className="bg-transparent border-0 cursor-pointer text-[rgba(201,242,122,0.6)] text-lg shrink-0 p-0 leading-none hover:text-ummat-light transition-colors"
+        className="bg-transparent border-0 cursor-pointer text-[rgba(201,242,122,0.6)] text-lg shrink-0 p-0 leading-none hover:text-white transition-colors"
       >
         ×
       </button>
     </div>
+    /* eslint-enable ummat/no-brand-light-on-light */
   )
 }

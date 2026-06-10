@@ -32,6 +32,7 @@ export function useSeasonalMode(): UseSeasonalModeReturn {
 
   useEffect(() => {
     if (_cachedStatus) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- syncing module-level cache to state; no async subscription
       setStatus(_cachedStatus)
       setIsLoading(false)
       return

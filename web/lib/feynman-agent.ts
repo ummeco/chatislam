@@ -67,7 +67,6 @@ function getRedis(): RedisLike {
   if (_redis) return _redis
   const url = process.env.REDIS_URL
   if (!url) throw new Error('REDIS_URL not set')
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
   const { Redis } = require('ioredis') as { Redis: new (url: string) => RedisLike }
   _redis = new Redis(url)
   return _redis

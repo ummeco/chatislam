@@ -53,6 +53,7 @@ export default function DsrPage() {
                 { right: 'Restriction', desc: 'Request restriction of processing in certain circumstances.' },
               ].map(({ right, desc }) => (
                 <li key={right} className="flex gap-2">
+                  {/* eslint-disable-next-line ummat/no-brand-light-on-light -- dark bg #07180d, contrast ≥7:1 */}
                   <span className="font-semibold text-[#C9F27A] w-24 shrink-0">{right}</span>
                   <span>{desc}</span>
                 </li>

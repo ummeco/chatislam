@@ -171,7 +171,7 @@ export default function AttributionPage() {
                         href={homepage}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-medium text-[#5A9438] hover:text-[#C9F27A]"
+                        className="font-medium text-[#5A9438] hover:text-white"
                       >
                         {name}
                       </a>
@@ -222,7 +222,7 @@ export default function AttributionPage() {
                 ['The Unlicense', 'https://unlicense.org'],
               ].map(([label, url]) => (
                 <li key={label}>
-                  <a href={url} target="_blank" rel="noopener noreferrer" className="text-[#5A9438] hover:text-[#C9F27A]">
+                  <a href={url} target="_blank" rel="noopener noreferrer" className="text-[#5A9438] hover:text-white">
                     {label}
                   </a>
                 </li>
@@ -234,7 +234,7 @@ export default function AttributionPage() {
             <h2 className="text-lg font-semibold mb-3">Contact</h2>
             <p>
               For open source license inquiries:{' '}
-              <a href="mailto:legal@ummat.dev" className="text-[#5A9438] hover:text-[#C9F27A]">
+              <a href="mailto:legal@ummat.dev" className="text-[#5A9438] hover:text-white">
                 legal@ummat.dev
               </a>
             </p>

@@ -57,6 +57,7 @@ export function MessageBubble({
   madhabStances  = [],
   citations      = [],
   disclaimer     = DEFAULT_DISCLAIMER,
+  sessionId,
 }: MessageBubbleProps) {
   const isAssistant = role === 'assistant'
   const isUser      = role === 'user'

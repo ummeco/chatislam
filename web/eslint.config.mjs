@@ -4,7 +4,7 @@ import noBrandLightOnLight from './eslint-rules/no-brand-light-on-light.js'
 const eslintConfig = [
   ...nextConfig,
   {
-    ignores: ['public/**', 'coverage/**'],
+    ignores: ['public/**', 'coverage/**', 'k6/**', 'vendor/consent/dist/**'],
   },
   // C-09a-FIX-01: brand contrast guard — block text-brand-light / text-brand-mid in JSX/TSX.
   // These fail WCAG 2.2 AA on white/light surfaces (1.28:1 and 2.18:1 respectively).

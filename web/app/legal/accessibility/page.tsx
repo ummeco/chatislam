@@ -17,6 +17,7 @@ export default function AccessibilityPage() {
           <Link href="/" className="mb-6 inline-block text-sm text-white/40 hover:text-white/70 transition-colors">
             ← Back to ChatIslam
           </Link>
+          {/* eslint-disable-next-line ummat/no-brand-light-on-light -- dark bg #07180d, contrast ≥7:1 */}
           <h1 className="text-3xl font-bold text-[#C9F27A] sm:text-4xl">Accessibility</h1>
           <p className="mt-3 text-sm text-white/40">Last updated: May 18, 2026</p>
         </div>

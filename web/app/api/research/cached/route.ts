@@ -24,7 +24,6 @@ function getRedis(): RedisLike | null {
   const url = process.env.REDIS_URL
   if (!url) return null
   try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
     const { Redis } = require('ioredis') as { Redis: new (url: string) => RedisLike }
     _redis = new Redis(url)
     return _redis
@@ -62,7 +61,6 @@ export async function DELETE(req: NextRequest): Promise<NextResponse> {
 
   const cacheKey = researchCacheKey(q, depth, lang)
   try {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     await (redis as any).del(cacheKey)
     return NextResponse.json({ deleted: true })
   } catch {

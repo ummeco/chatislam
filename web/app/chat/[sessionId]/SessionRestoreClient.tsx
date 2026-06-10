@@ -8,6 +8,7 @@
  */
 
 import { useEffect } from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useConversationHistory } from '../../../hooks/useConversationHistory'
 
@@ -40,9 +41,9 @@ export function SessionRestoreClient({ sessionId }: SessionRestoreClientProps) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center gap-3">
         <p className="text-sm text-red-600 dark:text-red-400">{error ?? 'Conversation not found'}</p>
-        <a href="/chat" className="text-sm text-emerald-600 underline dark:text-emerald-400">
+        <Link href="/chat" className="text-sm text-emerald-600 underline dark:text-emerald-400">
           Start a new conversation
-        </a>
+        </Link>
       </div>
     )
   }

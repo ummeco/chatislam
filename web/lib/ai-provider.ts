@@ -55,7 +55,6 @@ function getStreamRedis(): RedisStreamLike | null {
   const url = process.env.REDIS_URL
   if (!url) return null
   try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
     const { Redis } = require('ioredis') as { Redis: new (url: string) => RedisStreamLike }
     _streamRedis = new Redis(url)
     return _streamRedis

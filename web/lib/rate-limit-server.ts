@@ -69,7 +69,6 @@ export function getServerRedis(): IORedisClient | null {
   if (!url) return null
 
   try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
     const { Redis } = require('ioredis') as { Redis: new (url: string, opts: object) => IORedisClient }
     _redisClient = new Redis(url, {
       maxRetriesPerRequest: 1,  // fail fast
