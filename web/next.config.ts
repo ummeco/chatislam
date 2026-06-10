@@ -17,9 +17,12 @@ const nextConfig: NextConfig = {
     '@opentelemetry/sdk-node',
     '@opentelemetry/auto-instrumentations-node',
     '@opentelemetry/exporter-trace-otlp-http',
-    // @ummat/consent/server uses node:crypto — must stay out of client bundle.
-    // The exports map split (./server entry) is the primary fix; this is belt-and-suspenders.
-    '@ummat/consent',
+    // NOTE: @ummat/consent is intentionally NOT in serverExternalPackages.
+    // It is a client component package (CookieBanner, ConsentProvider use hooks).
+    // Marking the whole package as serverExternal breaks SSR because Next.js then
+    // imports it in a server context where React.useState is null (digest 70762509).
+    // The server-only sub-entry (@ummat/consent/server) stays server-safe via the
+    // exports map split — no special config needed.
   ],
   // T-P7-Q-PERF-06: AVIF first, WebP fallback. JPEG/PNG fallback handled by Next.js automatically.
   images: {

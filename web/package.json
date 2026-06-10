@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start --port 3042",
     "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
     "test:watch": "vitest",
     "setup": "pnpx tsx ~/Sites/ummeco/scripts/setup.sh",
     "doctor": "pnpx tsx ~/Sites/ummeco/scripts/doctor.ts",

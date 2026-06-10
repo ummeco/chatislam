@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { ThemeProvider } from "next-themes";
 // S05-06: @ummat/consent — AI conversation data is NOT analytics cookie; explicit-opt-in per D-P3-21
-import { ConsentProvider, CookieBanner, ConsentGatedScript } from "@ummat/consent";
+// ClientProviders wraps ThemeProvider + ConsentProvider as a client component so this layout
+// stays a server component (prevents useState null in Next.js 15 prerender workers).
+import ClientProviders from "./ClientProviders";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -48,29 +49,12 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
-        {/* S05-06: ConsentProvider — AI conversation data is functional (not analytics).
-            Banner clarifies: chat sessions are NOT classified as tracking cookies. */}
-        <ConsentProvider>
-          {/* B4-02: next-themes ThemeProvider — persists to localStorage, respects prefers-color-scheme */}
-          <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>
-            {children}
-          </ThemeProvider>
-          {/* S30-T03: GDPR/CCPA consent banner. */}
-          <CookieBanner
-            strings={{
-              body: 'We use cookies to improve your experience. AI conversation history is functional, not an analytics cookie, and is always on. Analytics and marketing cookies are off by default.',
-            }}
-            privacyPolicyUrl="/legal/privacy"
-            cookiePolicyUrl="/legal/cookies"
-          />
-          {/* S-C-S05-T08: Umami gated behind analytics consent — GDPR Art 7 compliance.
-              Removed unconditional <script> in <head>; now only loads after explicit grant. */}
-          <ConsentGatedScript
-            category="analytics"
-            src="https://cloud.umami.is/script.js"
-            data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
-          />
-        </ConsentProvider>
+        {/* S05-06: ClientProviders — ConsentProvider + ThemeProvider in a client boundary.
+            Banner clarifies: chat sessions are NOT classified as tracking cookies.
+            B4-02: ThemeProvider persists to localStorage, respects prefers-color-scheme. */}
+        <ClientProviders umamiWebsiteId={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}>
+          {children}
+        </ClientProviders>
       </body>
     </html>
   );
