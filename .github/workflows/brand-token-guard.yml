@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     continue-on-error: true  # advisory-only until B-series migration completes (P4-26)
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Check for hardcoded brand hex values
         run: |
           HEX_PATTERN='#(C9F27A|79C24C|1E5E2F|0D2F17|c9f27a|79c24c|1e5e2f|0d2f17)'
