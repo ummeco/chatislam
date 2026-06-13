@@ -51,9 +51,11 @@
   },
   "pnpm": {
     "overrides": {
+      "@grpc/grpc-js": ">=1.14.4 <2",
       "@opentelemetry/exporter-prometheus": ">=0.217.0",
       "@opentelemetry/sdk-node": ">=0.217.0",
-      "fast-uri": ">=3.1.2",
+      "esbuild": ">=0.28.1 <1",
+      "fast-uri": ">=3.1.2 <4",
       "postcss": ">=8.5.14"
     }
   }
