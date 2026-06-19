@@ -90,7 +90,7 @@ export function extractKeyHint(plaintextKey: string): string {
 // ─── Hasura helpers ─────────────────────────────────────────────────────────
 
 const HASURA_ENDPOINT     = process.env.HASURA_ENDPOINT     ?? 'https://api.ummat.dev/v1/graphql'
-const HASURA_ADMIN_SECRET = process.env.HASURA_ADMIN_SECRET ?? ''
+const HASURA_ADMIN_SECRET = process.env.HASURA_GRAPHQL_ADMIN_SECRET ?? ''
 
 async function hasuraAdmin<T>(query: string, variables: Record<string, unknown>): Promise<T> {
   const res = await fetch(HASURA_ENDPOINT, {

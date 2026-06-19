@@ -75,7 +75,7 @@ async function hasuraAdminQuery(
   variables: Record<string, unknown>,
 ): Promise<unknown> {
   const url    = getEnv('HASURA_ADMIN_URL') || getEnv('NEXT_PUBLIC_HASURA_URL')
-  const secret = getEnv('HASURA_GRAPHQL_ADMIN_SECRET') || getEnv('HASURA_ADMIN_SECRET')
+  const secret = getEnv('HASURA_GRAPHQL_ADMIN_SECRET')
 
   if (!url || !secret) {
     throw new Error(

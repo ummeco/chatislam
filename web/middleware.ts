@@ -18,6 +18,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
+import { jwtVerify } from 'jose'
 import {
   checkRateLimit,
   getClientIp,
@@ -25,6 +26,9 @@ import {
   AUTH_PER_MINUTE,
   TOKEN_PER_MINUTE,
 } from './lib/rate-limit'
+
+// HS256 signing key for Hasura-issued JWTs (raw key form, matching the route handlers).
+const JWT_SECRET = process.env.HASURA_JWT_SECRET
 
 // Apply rate limiting only to AI routes — not GraphQL / auth / static assets
 export const config = {
@@ -47,7 +51,7 @@ export async function middleware(req: NextRequest): Promise<NextResponse> {
     return nextWithHeaders(result.remaining, result.resetAt)
   }
 
-  const userId = extractUserIdFromJwt(authHeader)
+  const userId = await extractUserIdFromJwt(authHeader)
   const isAuth = !!userId
 
   // Per-minute check — keyed by userId if authed, IP if anon
@@ -96,18 +100,24 @@ function rateLimitResponse(retryAfterSeconds: number, message: string): NextResp
 }
 
 /**
- * Extract user ID from JWT without full verification.
- * Edge middleware cannot use crypto — full JWT verification happens in the route handler.
- * This is only used to choose the correct rate limit bucket.
+ * Extract the user ID from a Bearer JWT AFTER verifying its HS256 signature.
+ * jose runs in the Edge runtime via Web Crypto, so signature verification is
+ * available here (the prior atob-only decode trusted a forgeable `sub`). On any
+ * verification failure — bad signature, wrong algorithm, expiry, missing secret —
+ * we return null so the request falls back to the anonymous rate-limit bucket and
+ * a forged token can never select another user's authenticated bucket. Full
+ * authorization still happens in the route handler.
  */
-function extractUserIdFromJwt(authHeader: string): string | null {
-  if (!authHeader.startsWith('Bearer ')) return null
+async function extractUserIdFromJwt(authHeader: string): Promise<string | null> {
+  if (!authHeader.startsWith('Bearer ') || !JWT_SECRET) return null
   try {
     const token = authHeader.slice(7)
-    const payload = token.split('.')[1]
-    if (!payload) return null
-    const decoded = JSON.parse(atob(payload.replace(/-/g, '+').replace(/_/g, '/')))
-    return (decoded as { sub?: string }).sub ?? null
+    const { payload } = await jwtVerify(
+      token,
+      new TextEncoder().encode(JWT_SECRET),
+      { algorithms: ['HS256'] },
+    )
+    return typeof payload.sub === 'string' ? payload.sub : null
   } catch {
     return null
   }

@@ -14,7 +14,7 @@ import * as Sentry from '@sentry/nextjs'
 import { NextRequest, NextResponse } from 'next/server'
 
 const HASURA_ENDPOINT     = process.env.HASURA_ENDPOINT     ?? 'https://api.ummat.dev/v1/graphql'
-const HASURA_ADMIN_SECRET = process.env.HASURA_ADMIN_SECRET ?? ''
+const HASURA_ADMIN_SECRET = process.env.HASURA_GRAPHQL_ADMIN_SECRET ?? ''
 const ELASTIC_EMAIL_API   = process.env.ELASTIC_EMAIL_ADMIN_API_KEY ?? ''
 const FROM_EMAIL          = 'noreply@chatislam.org'
 const FROM_NAME           = 'ChatIslam'

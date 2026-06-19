@@ -110,7 +110,7 @@ export function hashMessage(content: string): string {
 // ─── Hasura persistence ─────────────────────────────────────────────────────
 
 const HASURA_ENDPOINT    = process.env.HASURA_ENDPOINT ?? 'https://api.ummat.dev/v1/graphql'
-const HASURA_ADMIN_SECRET = process.env.HASURA_ADMIN_SECRET ?? ''
+const HASURA_ADMIN_SECRET = process.env.HASURA_GRAPHQL_ADMIN_SECRET ?? ''
 
 const INSERT_MODERATION_EVENT = `
   mutation InsertModerationEvent($object: ci_moderation_events_insert_input!) {

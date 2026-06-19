@@ -10,12 +10,12 @@
 
 import * as Sentry from '@sentry/nextjs'
 import { NextRequest, NextResponse } from 'next/server'
+import { requireCronAuth } from '../../../../lib/cron-auth'
 
 const HASURA_ENDPOINT     = process.env.HASURA_ENDPOINT     ?? 'https://api.ummat.dev/v1/graphql'
-const HASURA_ADMIN_SECRET = process.env.HASURA_ADMIN_SECRET ?? ''
+const HASURA_ADMIN_SECRET = process.env.HASURA_GRAPHQL_ADMIN_SECRET ?? ''
 const ELASTIC_EMAIL_API   = process.env.ELASTIC_EMAIL_ADMIN_API_KEY ?? ''
 const ALERT_EMAIL         = process.env.ALERT_EMAIL         ?? 'info@ussunnah.org'
-const CRON_SECRET         = process.env.CRON_SECRET         ?? ''
 const SPEND_ALERT_USD     = Number(process.env.SPEND_ALERT_THRESHOLD_USD ?? '10')
 const FROM_EMAIL          = 'noreply@chatislam.org'
 
@@ -112,10 +112,13 @@ async function sendSpendAlert(estimatedUsd: number, inputTokens: number, outputT
 // ─── Handler ──────────────────────────────────────────────────────────────────
 
 export async function GET(req: NextRequest): Promise<NextResponse> {
-  // Verify cron secret
-  const auth = req.headers.get('authorization') ?? ''
-  if (CRON_SECRET && auth !== `Bearer ${CRON_SECRET}`) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  // Auth: timing-safe CRON_SECRET verification (P2-E1-W01 Track E)
+  const authError = requireCronAuth(req.headers.get('authorization'))
+  if (authError) {
+    return new NextResponse(authError.body, {
+      status: authError.status,
+      headers: { 'Content-Type': 'application/json' },
+    })
   }
 
   try {

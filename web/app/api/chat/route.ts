@@ -33,6 +33,7 @@
 import * as Sentry from '@sentry/nextjs'
 import { NextRequest, NextResponse } from 'next/server'
 import crypto from 'crypto'
+import { jwtVerify } from 'jose'
 import { checkQueryGate }                                    from '../../../lib/chatislam-query-gate'
 import { sanitizeUserInput, containsEscalationTokens,
          containsBase64InjectionAttempt }                    from '../../../lib/sanitize-input'
@@ -50,8 +51,10 @@ import {
   checkServerRateLimit,
   getUserPerMinLimit,
   getAnonIpPerMinLimit,
+  getIpPerMinLimit,
   userRateLimitKey,
   anonIpRateLimitKey,
+  ipRateLimitKey,
 }                                                            from '../../../lib/rate-limit-server'
 import {
   getSpendGuard,
@@ -171,15 +174,25 @@ interface SessionInfo {
   planTier: 'free' | 'plus'
 }
 
-function parseSession(req: NextRequest): SessionInfo {
+/**
+ * Parse and cryptographically verify the session JWT.
+ * Uses HASURA_JWT_SECRET (HS256) — never trusts unverified claims.
+ * Returns { userId: null, planTier: 'free' } if no Authorization header.
+ * Returns { userId: null, planTier: 'free' } if token is invalid (fails silently
+ * for chat — the query gate enforces auth requirements downstream).
+ */
+async function parseSession(req: NextRequest): Promise<SessionInfo> {
   const auth = req.headers.get('authorization') ?? ''
   if (!auth.startsWith('Bearer ')) return { userId: null, planTier: 'free' }
+  const token = auth.slice(7)
+  const jwtSecret = process.env.HASURA_JWT_SECRET
+  if (!jwtSecret) return { userId: null, planTier: 'free' }
   try {
-    const token   = auth.slice(7)
-    const payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64url').toString())
-    const claims  = payload['https://hasura.io/jwt/claims'] ?? {}
-    const userId  = claims['x-hasura-user-id'] ?? null
-    const role    = claims['x-hasura-default-role'] ?? 'user'
+    const secret = new TextEncoder().encode(jwtSecret)
+    const { payload } = await jwtVerify(token, secret, { algorithms: ['HS256'] })
+    const claims = (payload as Record<string, unknown>)['https://hasura.io/jwt/claims'] as Record<string, unknown> | undefined ?? {}
+    const userId  = (claims['x-hasura-user-id'] as string | undefined) ?? null
+    const role    = (claims['x-hasura-default-role'] as string | undefined) ?? 'user'
     return { userId, planTier: role === 'plus' ? 'plus' : 'free' }
   } catch {
     return { userId: null, planTier: 'free' }
@@ -190,7 +203,7 @@ function parseSession(req: NextRequest): SessionInfo {
 
 const DAILY_TOKEN_CAP = Number(process.env.CHAT_DAILY_TOKEN_CAP ?? '50000')
 const HASURA_ENDPOINT     = process.env.HASURA_ENDPOINT     ?? 'https://api.ummat.dev/v1/graphql'
-const HASURA_ADMIN_SECRET = process.env.HASURA_ADMIN_SECRET ?? ''
+const HASURA_ADMIN_SECRET = process.env.HASURA_GRAPHQL_ADMIN_SECRET ?? ''
 
 interface TokenBudgetRow {
   tokens_used_today: number
@@ -365,6 +378,21 @@ function queryHash(message: string, sessionId: string): string {
 // ─── POST handler ─────────────────────────────────────────────────────────────
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
+  // Kill switch — set CHATISLAM_KILL_SWITCH=1 in Vercel to disable the AI endpoint
+  // without a deploy (P2-E1-W01 Track E).
+  if (process.env.CHATISLAM_KILL_SWITCH === '1') {
+    return new NextResponse(
+      JSON.stringify({ error: 'Service temporarily unavailable. Please try again later.' }),
+      {
+        status: 503,
+        headers: {
+          'Content-Type': 'application/json',
+          'Retry-After': '3600',
+        },
+      },
+    )
+  }
+
   // 1. Parse body
   let body: ChatRequestBody
   try {
@@ -380,7 +408,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   const rawMessage = body.message.trim()
 
   // 2. Session
-  const { userId, planTier } = parseSession(req)
+  const { userId, planTier } = await parseSession(req)
   const clientIp             = getClientIp(req)
   const ipHash               = hashIp(clientIp)
   const sessionId            = body.sessionId ?? null
@@ -400,7 +428,33 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     )
   }
 
-  // 3b. Per-user / per-IP Redis rate limit (T0-04-01) — FAIL-CLOSED
+  // 3b. Per-IP hard cap (W1-14) — 60 req/min per IP regardless of auth status.
+  // Applies before per-user limit to catch coordinated IP-level abuse.
+  {
+    const ipRlResult = await checkServerRateLimit(ipRateLimitKey(ipHash), getIpPerMinLimit())
+    if (!ipRlResult.allowed) {
+      const retryAfter = String(ipRlResult.retryAfterSeconds || 60)
+      return NextResponse.json(
+        {
+          error:       'rate_limited',
+          message:     ipRlResult.redisError
+            ? 'Service temporarily unavailable. Please try again shortly.'
+            : 'Too many requests from this IP. Please slow down.',
+          retry_after: ipRlResult.retryAfterSeconds || 60,
+        },
+        {
+          status:  429,
+          headers: {
+            'Retry-After':           retryAfter,
+            'X-RateLimit-Remaining': '0',
+            'X-RateLimit-Reset':     String(Math.ceil(ipRlResult.resetAt / 1000)),
+          },
+        },
+      )
+    }
+  }
+
+  // 3c. Per-user / per-IP Redis rate limit (T0-04-01) — FAIL-CLOSED
   // Authenticated users: 10 req/min (env: RATE_LIMIT_USER_PER_MIN)
   // Anonymous users:      5 req/min (env: RATE_LIMIT_ANON_IP_PER_MIN)
   // On Redis unreachable: fail CLOSED (return 429) — never open Anthropic on outage

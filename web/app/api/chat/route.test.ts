@@ -1,3 +1,7 @@
+// @vitest-environment node
+//
+// Server-side route tests run in Node: the route verifies JWTs with jose, and the
+// default jsdom env breaks jose's `instanceof Uint8Array` checks (cross-realm).
 /**
  * /api/chat route tests
  * Sprint 10 — T1-10-02 integration tests
@@ -15,6 +19,7 @@
 
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { NextRequest } from 'next/server'
+import { SignJWT } from 'jose'
 import { POST } from './route'
 import type Anthropic from '@anthropic-ai/sdk'
 
@@ -67,8 +72,10 @@ vi.mock('../../../lib/rate-limit-server', () => ({
   })),
   getUserPerMinLimit:    vi.fn(() => 10),
   getAnonIpPerMinLimit:  vi.fn(() => 5),
+  getIpPerMinLimit:      vi.fn(() => 5),
   userRateLimitKey:      vi.fn((id: string) => `ci:rl:user:${id}:min`),
   anonIpRateLimitKey:    vi.fn((hash: string) => `ci:rl:anon:${hash}:min`),
+  ipRateLimitKey:        vi.fn((hash: string) => `ci:rl:ip:${hash}:min`),
 }))
 
 // ─── Mock: spend-guard — return null if not configured
@@ -153,16 +160,25 @@ function mockAnthropicError(error: Error) {
   mockCreate.mockRejectedValueOnce(error)
 }
 
-function makeJwt(role: string = 'user'): string {
-  const header = Buffer.from(JSON.stringify({ alg: 'HS256' })).toString('base64url')
-  const payload = Buffer.from(JSON.stringify({
+const TEST_JWT_SECRET = 'test-jwt-secret-at-least-32-characters-long-xx'
+
+/**
+ * Build a validly signed HS256 JWT for tests. Signs with TEST_JWT_SECRET; the
+ * route verifies against HASURA_JWT_SECRET (set to the same value in beforeEach),
+ * so this yields an accepted token. Tests that stub a DIFFERENT secret thereby
+ * exercise the forged/rejected path (signature mismatch → anonymous fallback).
+ */
+async function makeJwt(role: string = 'user'): Promise<string> {
+  return new SignJWT({
     'https://hasura.io/jwt/claims': {
       'x-hasura-user-id': 'test-user-123',
       'x-hasura-default-role': role,
     },
-  })).toString('base64url')
-  const signature = Buffer.from('test-signature').toString('base64url')
-  return `${header}.${payload}.${signature}`
+  })
+    .setProtectedHeader({ alg: 'HS256' })
+    .setIssuedAt()
+    .setExpirationTime('15m')
+    .sign(new TextEncoder().encode(TEST_JWT_SECRET))
 }
 
 // ─── Tests ────────────────────────────────────────────────────────────────────
@@ -174,7 +190,8 @@ beforeEach(() => {
   vi.stubEnv('REDIS_URL',                                'redis://localhost:6379')
   vi.stubEnv('ANTHROPIC_MODEL',                         'claude-sonnet-4-6')
   vi.stubEnv('HASURA_ENDPOINT',                         'http://localhost/noop')
-  vi.stubEnv('HASURA_ADMIN_SECRET',                     'test-secret')
+  vi.stubEnv('HASURA_GRAPHQL_ADMIN_SECRET',              'test-secret')
+  vi.stubEnv('HASURA_JWT_SECRET',                        TEST_JWT_SECRET)
   vi.stubEnv('IP_HASH_SALT',                            'test-salt')
   // Don't set RATE_LIMIT_ANTHROPIC_GLOBAL_USD_DAILY by default — tests can override if needed
 })
@@ -218,7 +235,7 @@ describe('POST /api/chat', () => {
     gateAllow({ queriesUsed: 10, queriesLimit: null, planTier: 'plus' })
     mockAnthropicSuccess()
 
-    const req = makeRequest({ message: 'Unlimited plus question' }, `Bearer ${makeJwt('plus')}`)
+    const req = makeRequest({ message: 'Unlimited plus question' }, `Bearer ${await makeJwt('plus')}`)
     const res = await POST(req)
 
     expect(res.status).toBe(200)
@@ -287,5 +304,23 @@ describe('POST /api/chat', () => {
     expect(res.status).toBe(429)
     const body = await res.json() as Record<string, unknown>
     expect(body.error).toBe('rate_limited')
+  })
+
+  // ── Test 9: forged JWT treated as anonymous (P2-E1-W01 Track A) ───────────
+  it('test-9: forged (unsigned) JWT falls back to anonymous free-tier treatment', async () => {
+    // A JWT with a fake signature must NOT grant elevated access.
+    // parseSession catches the jose jwtVerify error and returns userId=null, planTier=free.
+    vi.stubEnv('HASURA_JWT_SECRET', 'a-secret-that-the-forged-token-was-not-signed-with')
+    gateAllow({ queriesUsed: 1, queriesLimit: 3, planTier: 'free' })
+    mockAnthropicSuccess()
+
+    const req = makeRequest({ message: 'What is Zakat?' }, `Bearer ${await makeJwt('admin')}`)
+    const res = await POST(req)
+
+    // Route does NOT reject forged JWT outright — it downgrades to anonymous.
+    // The response is 200 (free tier allowed), but planTier must be 'free', not 'admin'.
+    expect(res.status).toBe(200)
+    const body = await res.json() as Record<string, unknown>
+    expect(body.planTier).toBe('free')
   })
 })

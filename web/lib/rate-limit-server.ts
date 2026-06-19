@@ -208,6 +208,13 @@ export function getAnonIpPerMinLimit(): number {
   return Number.isFinite(n) && n > 0 ? n : 5
 }
 
+/** Per-IP per-minute hard cap (all requests, auth or anon). Default: 60. */
+export function getIpPerMinLimit(): number {
+  const raw = process.env.RATE_LIMIT_IP_PER_MIN
+  const n   = raw ? Number(raw) : NaN
+  return Number.isFinite(n) && n > 0 ? n : 60
+}
+
 /**
  * Build the Redis key for per-user rate limiting.
  * Prefixed with `ci:rl:user:` to avoid collision with quota keys.
@@ -222,4 +229,12 @@ export function userRateLimitKey(userId: string): string {
  */
 export function anonIpRateLimitKey(ipHash: string): string {
   return `ci:rl:anon:${ipHash}:min`
+}
+
+/**
+ * Build the Redis key for per-IP hard-cap rate limiting (all requests).
+ * Uses a pre-hashed IP (SHA-256 hex) — callers must hash before passing.
+ */
+export function ipRateLimitKey(ipHash: string): string {
+  return `ci:rl:ip:${ipHash}:min`
 }

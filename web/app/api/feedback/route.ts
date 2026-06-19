@@ -20,6 +20,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
+import { jwtVerify } from 'jose'
 import { sanitizeUserInput }          from '../../../lib/sanitize-input'
 
 // ─── Constants ────────────────────────────────────────────────────────────────
@@ -201,20 +202,19 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     )
   }
 
-  // ── Extract user_id from JWT (best-effort — not required) ──
+  // ── Extract user_id from verified JWT (best-effort — not required for feedback) ──
   let userId: string | null = null
   try {
     const authHeader = req.headers.get('authorization') ?? ''
-    if (authHeader.startsWith('Bearer ')) {
-      const token   = authHeader.slice(7)
-      const payload = token.split('.')[1]
-      if (payload) {
-        const decoded = JSON.parse(atob(payload.replace(/-/g, '+').replace(/_/g, '/')))
-        const claims  = decoded as { sub?: string }
-        userId        = claims.sub ?? null
-      }
+    const jwtSecret = process.env.HASURA_JWT_SECRET
+    if (authHeader.startsWith('Bearer ') && jwtSecret) {
+      const token  = authHeader.slice(7)
+      const secret = new TextEncoder().encode(jwtSecret)
+      const { payload } = await jwtVerify(token, secret, { algorithms: ['HS256'] })
+      const claims = (payload as Record<string, unknown>)['https://hasura.io/jwt/claims'] as Record<string, unknown> | undefined ?? {}
+      userId = (claims['x-hasura-user-id'] as string | undefined) ?? (payload.sub as string | undefined) ?? null
     }
-  } catch { /* non-blocking */ }
+  } catch { /* non-blocking — feedback can be anonymous */ }
 
   // ── Persist ──
   try {

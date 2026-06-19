@@ -13,6 +13,7 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { getCurrentSeasonalMode, type SeasonalMode } from '../../../../lib/seasonal'
+import { requireCronAuth } from '../../../../lib/cron-auth'
 
 // ─── Redis ────────────────────────────────────────────────────────────────────
 
@@ -60,10 +61,13 @@ const ALL_MODES: SeasonalMode[] = ['ramadan', 'eid_al_fitr', 'eid_al_adha', 'dhu
 // ─── POST handler ─────────────────────────────────────────────────────────────
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
-  // Auth: Vercel cron secret
-  const cronSecret = req.headers.get('authorization')
-  if (process.env.CRON_SECRET && cronSecret !== `Bearer ${process.env.CRON_SECRET}`) {
-    return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
+  // Auth: timing-safe CRON_SECRET verification (P2-E1-W01 Track E)
+  const authError = requireCronAuth(req.headers.get('authorization'))
+  if (authError) {
+    return new NextResponse(authError.body, {
+      status: authError.status,
+      headers: { 'Content-Type': 'application/json' },
+    })
   }
 
   if (!HASURA_ENDPOINT) {
