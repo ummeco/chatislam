@@ -48,5 +48,5 @@ export interface ConsentGatedProps {
  * the server-side render of <ConsentGated> always returns the fallback
  * (or null).  This prevents flash-of-tracker content during hydration.
  */
-export declare function ConsentGated({ category, children, fallback }: ConsentGatedProps): import("react/jsx-runtime").JSX.Element;
+export declare function ConsentGated({ category, children, fallback }: ConsentGatedProps): React.JSX.Element;
 //# sourceMappingURL=gating.d.ts.map

@@ -1,0 +1,209 @@
+/**
+ * @ummat/ui — Accessibility baseline (WCAG 2.2 AA)
+ *
+ * Import in each app's globals.css after @ummat/brand/css:
+ *   @import 'path/to/a11y.css';
+ *
+ * Covers:
+ * - B2-02: 2.4.11 Focus Not Obscured — sticky elements and modal handling
+ * - B2-04: 2.5.8 Target Size — global min tap target enforcement
+ * - B2-05: Color contrast — green-600 (#5A9438) on light surfaces
+ * - B2-07: Focus visible — :focus-visible ring (#1E5E2F) for all interactive elements
+ * - B3-01: dir="rtl" logical properties
+ * - B6-02: prefers-reduced-motion (handled by @ummat/brand/css globally)
+ */
+
+/* ============================================================
+   B2-07: Focus Visible — global reset
+   Ensure :focus-visible ring is never hidden by outline: none.
+   Components in components.css set their own ring color.
+   ============================================================ */
+*:focus-visible {
+  outline: 2px solid var(--focus-ring, #1E5E2F);  /* was --brand-mid (#79C24C) — failed WCAG 2.2 AA (2.9:1). #1E5E2F = 11.6:1 AAA */
+  outline-offset: 2px;
+}
+
+/* Remove outline only when browser supports :focus-visible */
+@supports selector(:focus-visible) {
+  *:focus:not(:focus-visible) {
+    outline: none;
+  }
+}
+
+
+/* ============================================================
+   B2-04: 2.5.8 Target Size 24×24px minimum
+   CSS px min-size on all interactive elements.
+   We use 44px for comfortable touch targets (Apple HIG / Material).
+   ============================================================ */
+button,
+[role="button"],
+a,
+input,
+select,
+textarea,
+[role="menuitem"],
+[role="option"],
+[role="tab"],
+[role="checkbox"],
+[role="radio"],
+[role="switch"],
+[role="combobox"] {
+  /* Logical minimum so pointer users don't struggle */
+  min-height: 24px;
+  min-width: 24px;
+}
+
+/* Touch targets: aim for 44px on mobile (iOS HIG) */
+@media (pointer: coarse) {
+  button,
+  [role="button"],
+  a:not([role="presentation"]) {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+
+/* ============================================================
+   B2-02: 2.4.11 Focus Not Obscured
+   Sticky headers and modals must not obscure the focused element.
+   - Use scroll-margin-top to push content below sticky nav.
+   - Modal dialogs use native <dialog> which is always on top.
+   ============================================================ */
+
+/* Default scroll padding to clear sticky nav (~64px typical) */
+:root {
+  scroll-padding-top: 80px;
+  scroll-padding-bottom: 80px;
+}
+
+/* Ensure sticky/fixed navs have z-index below modals */
+header[data-sticky],
+nav[data-sticky],
+.sticky-nav {
+  z-index: var(--z-sticky, 20);
+}
+
+/* Focus ring must always be above sticky headers */
+:focus-visible {
+  position: relative;
+  z-index: calc(var(--z-sticky, 20) + 1);
+  outline-color: var(--focus-ring, #1E5E2F);  /* reinforce token override */
+}
+
+
+/* ============================================================
+   B2-05: Color contrast on light backgrounds (D-P3-15)
+   Any text/icon on a light surface (white or --brand-green-light)
+   must use green-600 (#5A9438) or darker.
+   ============================================================ */
+/* Applied via Tailwind class: text-brand-600 or inline style var(--brand-green-600) */
+/* The CSS rule below is a safety net for link colors on light pages */
+.light-surface a,
+.bg-white a,
+[data-theme="light"] a {
+  color: var(--brand-green-600, #5A9438);
+}
+.light-surface a:hover,
+.bg-white a:hover,
+[data-theme="light"] a:hover {
+  color: var(--brand-green-dark, #1E5E2F);
+}
+
+
+/* ============================================================
+   B2-06: ARIA landmarks — skip link for keyboard users
+   Add <a href="#main-content" class="skip-link"> before nav.
+   ============================================================ */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: var(--space-4, 1rem);
+  background: var(--brand-green-mid, #79C24C);
+  color: #ffffff;
+  padding: var(--space-2, 0.5rem) var(--space-4, 1rem);
+  border-radius: var(--radius-md, 0.375rem);
+  font-weight: 600;
+  z-index: var(--z-tooltip, 70);
+  text-decoration: none;
+  transition: top var(--duration-fast, 150ms) ease;
+}
+.skip-link:focus {
+  top: var(--space-2, 0.5rem);
+}
+
+
+/* ============================================================
+   B3-01: RTL logical properties
+   Replace physical margin/padding/border with logical equivalents.
+   ============================================================ */
+[dir="rtl"] {
+  /* Flip text alignment for body copy */
+  text-align: start;
+}
+
+/* Ensure all margin-left/right use logical props */
+/* Note: component CSS already uses margin-inline / padding-inline.
+   This section handles legacy non-component selectors. */
+[dir="rtl"] .ltr-only { display: none; }
+[dir="ltr"] .rtl-only { display: none; }
+
+
+/* ============================================================
+   B2-03: 2.5.7 Dragging Movements — pointer alternatives
+   Any drag interaction must have a pointer/keyboard alternative.
+   Mark drag containers to enforce CSS that hints at alternatives.
+   ============================================================ */
+[data-draggable="true"] {
+  /* Visual cue that element is draggable */
+  cursor: grab;
+}
+[data-draggable="true"]:active {
+  cursor: grabbing;
+}
+/* Keyboard alternative: arrow-key reordering via aria-grabbed */
+[aria-grabbed="true"] {
+  box-shadow: 0 0 0 3px var(--focus-ring, #1E5E2F);
+}
+
+
+/* ============================================================
+   T-P7-Q-A11Y-01: Visually-hidden utility for live regions and
+   off-screen accessible labels. Equivalent to Tailwind's sr-only
+   but namespaced so apps without Tailwind can still consume.
+   ============================================================ */
+.ummat-sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* T-P7-Q-A11Y-03: Skip link surface defaults — namespaced so apps without
+   Tailwind get a working visual on focus. Apps that load Tailwind get the
+   richer focus styling via the className composed on <SkipLink>. */
+.ummat-skip-link {
+  position: absolute;
+  inset-inline-start: var(--space-2, 0.5rem);
+  inset-block-start: -200%;
+  background: #ffffff;
+  color: var(--brand-green-deep, #0D2F17);
+  padding: var(--space-2, 0.5rem) var(--space-4, 1rem);
+  border-radius: var(--radius-md, 0.375rem);
+  font-weight: 600;
+  z-index: var(--z-tooltip, 70);
+  text-decoration: none;
+  transition: inset-block-start var(--duration-fast, 150ms) ease;
+}
+.ummat-skip-link:focus,
+.ummat-skip-link:focus-visible {
+  inset-block-start: var(--space-2, 0.5rem);
+  outline: 2px solid var(--focus-ring, #1E5E2F);
+  outline-offset: 2px;
+}

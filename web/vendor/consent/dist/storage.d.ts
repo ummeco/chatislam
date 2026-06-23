@@ -1,20 +1,15 @@
-import type { ConsentRecord, ConsentVersion } from './types.js';
-export declare const STORAGE_KEY = "ummat_consent";
-export declare const CURRENT_CONSENT_VERSION: ConsentVersion;
+/**
+ * FILE: packages/consent/src/storage.ts
+ * PURPOSE: Browser (DOM) consent storage adapter — localStorage IO.
+ *          Delegates all pure logic to ./core/storage-pure.ts.
+ * INVARIANTS: Only loaded in web/Next.js contexts. Never imported from RN.
+ * DO NOT: Add pure logic here — it belongs in ./core/storage-pure.ts.
+ * REFS: ADR-0027
+ */
+import type { ConsentRecord } from './types.js';
+import { STORAGE_KEY, CURRENT_CONSENT_VERSION, buildConsentRecord, buildAcceptAllRecord, buildRejectNonEssentialRecord, shouldRePrompt } from './core/storage-pure.js';
+export { STORAGE_KEY, CURRENT_CONSENT_VERSION, buildConsentRecord, buildAcceptAllRecord, buildRejectNonEssentialRecord, shouldRePrompt, };
 export declare function readConsent(): ConsentRecord | null;
 export declare function writeConsent(record: ConsentRecord): void;
 export declare function clearConsent(): void;
-export declare function buildConsentRecord(categories: ConsentRecord['categories'], options?: {
-    doNotTrack?: boolean;
-    doNotSell?: boolean;
-}): ConsentRecord;
-export declare function buildAcceptAllRecord(options?: {
-    doNotTrack?: boolean;
-    doNotSell?: boolean;
-}): ConsentRecord;
-export declare function buildRejectNonEssentialRecord(options?: {
-    doNotTrack?: boolean;
-    doNotSell?: boolean;
-}): ConsentRecord;
-export declare function shouldRePrompt(record: ConsentRecord | null): boolean;
 //# sourceMappingURL=storage.d.ts.map

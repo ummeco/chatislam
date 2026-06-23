@@ -2,7 +2,7 @@ import { COOKIES } from './cookie-inventory.js';
 const COOKIE_NAME_RE = /^([^=\s;,]+)/;
 function parseCookieName(setCookieHeader) {
     const match = COOKIE_NAME_RE.exec(setCookieHeader.trim());
-    return match ? match[1] : null;
+    return match?.[1] ?? null;
 }
 export function auditCookies(setCookieHeaders) {
     const inventoryByName = new Map(COOKIES.map((c) => [c.name, c]));

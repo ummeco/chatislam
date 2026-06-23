@@ -42,20 +42,19 @@ export function CookieBanner({
       <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 sm:py-5">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
           <div className="flex-1 min-w-0">
-            {/* eslint-disable-next-line ummat/no-brand-light-on-light -- dark bg #0D2F17, contrast ≥7:1 */}
             <p className="text-sm font-semibold text-[#C9F27A] mb-1">{s.title}</p>
             <p className="text-sm text-gray-300 leading-relaxed">
               {s.body}{' '}
               <a
                 href={privacyPolicyUrl}
-                className="underline text-[#5A9438] hover:text-white transition-colors"
+                className="underline text-[#5A9438] hover:text-[#C9F27A] transition-colors"
               >
                 Privacy Policy
               </a>
               {' · '}
               <a
                 href={cookiePolicyUrl}
-                className="underline text-[#5A9438] hover:text-white transition-colors"
+                className="underline text-[#5A9438] hover:text-[#C9F27A] transition-colors"
               >
                 Cookie Policy
               </a>
@@ -77,7 +76,7 @@ export function CookieBanner({
             <button
               type="button"
               onClick={openPreferences}
-              className="px-4 py-2 text-sm rounded-md border border-[#79C24C] text-[#5A9438] hover:border-[#C9F27A] hover:text-white transition-colors whitespace-nowrap"
+              className="px-4 py-2 text-sm rounded-md border border-[#79C24C] text-[#5A9438] hover:border-[#C9F27A] hover:text-[#C9F27A] transition-colors whitespace-nowrap"
             >
               {s.customize}
             </button>

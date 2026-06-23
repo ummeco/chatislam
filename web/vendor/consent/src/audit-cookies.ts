@@ -12,7 +12,7 @@ const COOKIE_NAME_RE = /^([^=\s;,]+)/
 
 function parseCookieName(setCookieHeader: string): string | null {
   const match = COOKIE_NAME_RE.exec(setCookieHeader.trim())
-  return match ? match[1] : null
+  return match?.[1] ?? null
 }
 
 export function auditCookies(setCookieHeaders: string[]): AuditResult {

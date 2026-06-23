@@ -18,7 +18,7 @@ const DEFAULT_STRINGS = {
     alwaysOn: 'Always on',
 };
 function Toggle({ id, label, description, checked, disabled, onChange, alwaysOnLabel }) {
-    return (_jsxs("div", { className: "flex items-start gap-4 py-4 border-b border-[#1E5E2F] last:border-0", children: [_jsxs("div", { className: "flex-1 min-w-0", children: [_jsx("p", { className: "text-sm font-semibold text-white mb-1", children: label }), _jsx("p", { className: "text-xs text-gray-400 leading-relaxed", children: description })] }), _jsx("div", { className: "flex-shrink-0 mt-0.5", children: disabled ? (_jsx("span", { className: "text-xs text-[#79C24C] font-medium", children: alwaysOnLabel })) : (_jsx("button", { type: "button", role: "switch", "aria-checked": checked, id: id, onClick: () => onChange(!checked), className: [
+    return (_jsxs("div", { className: "flex items-start gap-4 py-4 border-b border-[#1E5E2F] last:border-0", children: [_jsxs("div", { className: "flex-1 min-w-0", children: [_jsx("p", { className: "text-sm font-semibold text-white mb-1", children: label }), _jsx("p", { className: "text-xs text-gray-400 leading-relaxed", children: description })] }), _jsx("div", { className: "flex-shrink-0 mt-0.5", children: disabled ? (_jsx("span", { className: "text-xs text-[#5A9438] font-medium", children: alwaysOnLabel })) : (_jsx("button", { type: "button", role: "switch", "aria-checked": checked, id: id, onClick: () => onChange(!checked), className: [
                         'relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#79C24C]',
                         checked ? 'bg-[#79C24C]' : 'bg-gray-600',
                     ].join(' '), children: _jsx("span", { className: [

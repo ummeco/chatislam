@@ -1,0 +1,27 @@
+{
+  "banner": {
+    "title": "We use cookies",
+    "body": "We use cookies to improve your experience. Non-essential cookies are only set with your consent.",
+    "acceptAll": "Accept all",
+    "rejectNonEssential": "Reject non-essential",
+    "customize": "Manage preferences",
+    "privacyLink": "Privacy Policy",
+    "cookieLink": "Cookie Policy",
+    "eeaNote": "(EEA — GDPR applies)"
+  },
+  "preferences": {
+    "title": "Cookie Preferences",
+    "save": "Save preferences",
+    "cancel": "Cancel",
+    "withdrawAll": "Withdraw all consent",
+    "alwaysOn": "Always on",
+    "strictlyNecessary": "Strictly Necessary",
+    "strictlyNecessaryDesc": "Required for the site to function. These cannot be disabled.",
+    "functional": "Functional",
+    "functionalDesc": "Remember your preferences (language, location, settings) so you do not have to re-enter them.",
+    "analytics": "Analytics",
+    "analyticsDesc": "Help us understand how visitors use the site so we can improve it. All data is anonymised.",
+    "marketing": "Marketing",
+    "marketingDesc": "Allow third-party content (such as YouTube videos) and relevant advertising. Disabled by default."
+  }
+}

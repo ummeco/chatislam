@@ -16,5 +16,5 @@ export { CURRENT_POLICY_VERSION } from './version.js';
 export { ConsentGated, useConsentGate } from './gating.js';
 // i18n (S-C-S05-T03)
 export { getMessages, isRtlLocale } from './i18n.js';
-// Server handler (S-C-S05-T05) — Node only. Import from '@ummat/consent/server', not here.
+// Server handler (S-C-S05-T05) — Node only. Import from '@ummat/consent/server', not this entry.
 //# sourceMappingURL=index.js.map

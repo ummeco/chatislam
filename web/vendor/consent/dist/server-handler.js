@@ -34,6 +34,7 @@
  */
 import { createHash } from 'node:crypto';
 export class ConsentValidationError extends Error {
+    code;
     constructor(code, message) {
         super(message);
         this.code = code;
@@ -248,7 +249,7 @@ export async function insertConsentRecords(hasura, payload, context, options = {
         return { error: `hasura_http_${res.status}` };
     const data = (await res.json());
     if (data.errors?.length)
-        return { error: data.errors[0].message };
+        return { error: data.errors[0]?.message ?? 'hasura_error' };
     const ids = data.data?.insert_lg_consent_record?.returning?.map((r) => r.id) ?? [];
     return { ids };
 }
@@ -290,6 +291,8 @@ export async function fetchLatestConsent(hasura, context) {
         return null;
     // Take most recent row.  Map back to category state.
     const head = rows[0];
+    if (!head)
+        return null;
     const categories = head.consent_type === 'cookie_banner_accept'
         ? { analytics: true, marketing: true, functional: true }
         : head.consent_type === 'cookie_banner_reject'

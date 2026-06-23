@@ -17,7 +17,7 @@ export interface ConsentProviderProps {
     children: React.ReactNode;
     onConsentChange?: (record: ConsentRecord) => void;
 }
-export declare function ConsentProvider({ children, onConsentChange }: ConsentProviderProps): import("react/jsx-runtime").JSX.Element;
+export declare function ConsentProvider({ children, onConsentChange }: ConsentProviderProps): React.JSX.Element;
 export declare function useConsent(): ConsentContextValue;
 export {};
 //# sourceMappingURL=useConsent.d.ts.map

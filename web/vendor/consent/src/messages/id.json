@@ -1,0 +1,27 @@
+{
+  "banner": {
+    "title": "Kami menggunakan cookie",
+    "body": "Kami menggunakan cookie untuk meningkatkan pengalaman Anda. Cookie non-esensial hanya disetel dengan persetujuan Anda.",
+    "acceptAll": "Terima semua",
+    "rejectNonEssential": "Tolak non-esensial",
+    "customize": "Kelola preferensi",
+    "privacyLink": "Kebijakan Privasi",
+    "cookieLink": "Kebijakan Cookie",
+    "eeaNote": "(EEA — GDPR berlaku)"
+  },
+  "preferences": {
+    "title": "Preferensi Cookie",
+    "save": "Simpan preferensi",
+    "cancel": "Batal",
+    "withdrawAll": "Cabut semua persetujuan",
+    "alwaysOn": "Selalu aktif",
+    "strictlyNecessary": "Sangat Diperlukan",
+    "strictlyNecessaryDesc": "Diperlukan agar situs berfungsi. Ini tidak dapat dinonaktifkan.",
+    "functional": "Fungsional",
+    "functionalDesc": "Mengingat preferensi Anda (bahasa, lokasi, pengaturan) sehingga Anda tidak perlu memasukkannya kembali.",
+    "analytics": "Analitik",
+    "analyticsDesc": "Membantu kami memahami cara pengunjung menggunakan situs sehingga kami dapat meningkatkannya. Semua data dianonimkan.",
+    "marketing": "Pemasaran",
+    "marketingDesc": "Izinkan konten pihak ketiga (seperti video YouTube) dan iklan yang relevan. Dinonaktifkan secara default."
+  }
+}

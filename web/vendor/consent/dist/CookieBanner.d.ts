@@ -1,3 +1,4 @@
+import React from 'react';
 import type { CookieBannerStrings, ConsentRegion } from './types.js';
 export interface CookieBannerProps {
     strings?: CookieBannerStrings;
@@ -5,5 +6,5 @@ export interface CookieBannerProps {
     privacyPolicyUrl?: string;
     cookiePolicyUrl?: string;
 }
-export declare function CookieBanner({ strings, region, privacyPolicyUrl, cookiePolicyUrl, }: CookieBannerProps): import("react/jsx-runtime").JSX.Element | null;
+export declare function CookieBanner({ strings, region, privacyPolicyUrl, cookiePolicyUrl, }: CookieBannerProps): React.JSX.Element | null;
 //# sourceMappingURL=CookieBanner.d.ts.map

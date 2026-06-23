@@ -1,0 +1,64 @@
+{
+  "name": "@ummat/api-conventions",
+  "version": "0.1.0",
+  "description": "Canonical API conventions: response shapes, error codes, request_id middleware, zod-error mapping",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./responses": {
+      "import": "./dist/responses.js",
+      "types": "./dist/responses.d.ts"
+    },
+    "./zod-error": {
+      "import": "./dist/zod-error.js",
+      "types": "./dist/zod-error.d.ts"
+    },
+    "./request-id": {
+      "import": "./dist/request-id.js",
+      "types": "./dist/request-id.d.ts"
+    },
+    "./status-codes": {
+      "import": "./dist/status-codes.js",
+      "types": "./dist/status-codes.d.ts"
+    },
+    "./with-request-context": {
+      "import": "./dist/with-request-context.js",
+      "types": "./dist/with-request-context.d.ts"
+    },
+    "./oauth": {
+      "import": "./dist/oauth.js",
+      "types": "./dist/oauth.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src --ext .ts,.tsx --max-warnings 0",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix"
+  },
+  "dependencies": {
+    "uuidv7": "^1.0.2",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "catalog:",
+    "@typescript-eslint/parser": "catalog:",
+    "eslint": "catalog:",
+    "typescript": "^5.4.0",
+    "vitest": "^3.2.6"
+  }
+}

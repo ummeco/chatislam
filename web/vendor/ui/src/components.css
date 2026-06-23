@@ -1,0 +1,549 @@
+/**
+ * @ummat/ui — Component styles
+ *
+ * Import after @ummat/brand/css in your app's globals.css:
+ *   @import '@ummat/brand/css';
+ *   @import '@ummat/ui/styles'; (or inline this file)
+ *
+ * All durations reference tokens from @ummat/brand.
+ * prefers-reduced-motion is handled globally in @ummat/brand/css.
+ */
+
+/* ============================================================
+   FOCUS RING — WCAG 2.4.7 + 2.4.11 (B2-07)
+   Shared :focus-visible ring applied globally.
+   Not obscured by sticky nav (z-index handled per layout).
+   ============================================================ */
+:focus-visible {
+  outline: 2px solid var(--brand-green-mid);
+  outline-offset: var(--focus-ring-offset, 2px);
+  border-radius: var(--radius-sm);
+}
+
+/* Remove default outline only when focus-visible is supported */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* FocusRing wrapper */
+.ummat-focus-ring {
+  display: inline-flex;
+  position: relative;
+}
+
+
+/* ============================================================
+   BUTTON (B1-04, B2-04)
+   ============================================================ */
+.ummat-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-latin);
+  font-weight: 600;
+  border-radius: var(--radius-xl);
+  transition:
+    background-color var(--duration-fast) var(--easing-out),
+    opacity var(--duration-fast) var(--easing-out),
+    transform var(--duration-fast) var(--easing-out);
+  position: relative;
+  white-space: nowrap;
+  /* B2-04: min target size 24×24 CSS px — use 44px for comfortable tap */
+  min-height: 44px;
+  min-width: 44px;
+}
+
+.ummat-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.ummat-btn:disabled,
+.ummat-btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Sizes */
+.ummat-btn--sm { padding: var(--space-1-5) var(--space-3); font-size: var(--text-sm); min-height: 32px; }
+.ummat-btn--md { padding: var(--space-2-5) var(--space-5); font-size: var(--text-base); }
+.ummat-btn--lg { padding: var(--space-3) var(--space-6); font-size: var(--text-lg); }
+.ummat-btn--full { width: 100%; }
+
+/* Variants — dark background (default) */
+.ummat-btn--primary {
+  background-color: var(--brand-green-mid);
+  color: #ffffff;
+}
+.ummat-btn--primary:hover:not(:disabled) {
+  background-color: var(--brand-green-dark);
+}
+
+/* D-P3-15: light-bg variant uses green-600 — WCAG AA on white/light surfaces */
+.ummat-btn--light-bg {
+  background-color: var(--brand-green-600);
+  color: #ffffff;
+}
+.ummat-btn--light-bg:hover:not(:disabled) {
+  background-color: var(--brand-green-dark);
+}
+
+.ummat-btn--secondary {
+  background-color: transparent;
+  color: var(--brand-green-mid);
+  border: 1.5px solid var(--brand-green-mid);
+}
+.ummat-btn--secondary:hover:not(:disabled) {
+  background-color: rgba(121, 194, 76, 0.1);
+}
+
+.ummat-btn--ghost {
+  background-color: transparent;
+  color: var(--color-text-primary, var(--color-fg));
+}
+.ummat-btn--ghost:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.ummat-btn--danger {
+  background-color: var(--color-error);
+  color: #ffffff;
+}
+.ummat-btn--danger:hover:not(:disabled) {
+  filter: brightness(0.9);
+}
+
+/* Loading spinner */
+.ummat-btn__spinner {
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: ummat-spin var(--duration-slow) linear infinite;
+  flex-shrink: 0;
+}
+.ummat-btn__label--hidden {
+  opacity: 0;
+  position: absolute;
+}
+
+@keyframes ummat-spin {
+  to { transform: rotate(360deg); }
+}
+
+
+/* ============================================================
+   INPUT (B1-04, B2-04)
+   ============================================================ */
+.ummat-input-wrap { display: flex; flex-direction: column; gap: var(--space-1); }
+.ummat-input-wrap--full { width: 100%; }
+
+.ummat-input__label {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text-secondary, var(--color-fg-secondary));
+}
+
+.ummat-input__field {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.ummat-input {
+  flex: 1;
+  padding: var(--space-2-5) var(--space-3);
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  color: var(--color-fg);
+  font-size: var(--text-base);
+  font-family: var(--font-latin);
+  /* B2-04: min height 44px for touch targets */
+  min-height: 44px;
+  transition: border-color var(--duration-fast) var(--easing-out),
+              box-shadow var(--duration-fast) var(--easing-out);
+}
+.ummat-input:focus-visible {
+  border-color: var(--brand-green-mid);
+  box-shadow: 0 0 0 3px rgba(121, 194, 76, 0.25);
+  outline: none; /* border provides visual indication */
+}
+.ummat-input::placeholder {
+  color: var(--color-fg-muted);
+}
+
+.ummat-input-wrap--error .ummat-input {
+  border-color: var(--color-error);
+}
+.ummat-input-wrap--error .ummat-input:focus-visible {
+  box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.25);
+}
+
+.ummat-input-wrap--disabled .ummat-input {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ummat-input__prefix,
+.ummat-input__suffix {
+  position: absolute;
+  color: var(--color-fg-muted);
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+.ummat-input__prefix { left: var(--space-3); }
+.ummat-input__suffix { right: var(--space-3); }
+
+.ummat-input__hint { font-size: var(--text-sm); color: var(--color-fg-muted); }
+.ummat-input__error { font-size: var(--text-sm); color: var(--color-error); }
+
+
+/* ============================================================
+   BADGE (B1-04)
+   ============================================================ */
+.ummat-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.ummat-badge--sm { padding: var(--space-0-5) var(--space-2); font-size: var(--text-xs); }
+.ummat-badge--md { padding: var(--space-1) var(--space-2-5); font-size: var(--text-sm); }
+
+.ummat-badge--default  { background: rgba(121, 194, 76, 0.15); color: var(--brand-green-mid); }
+.ummat-badge--success  { background: rgba(121, 194, 76, 0.15); color: var(--brand-green-mid); }
+.ummat-badge--warning  { background: rgba(232, 200, 74, 0.15); color: var(--color-warning); }
+.ummat-badge--danger   { background: rgba(248, 113, 113, 0.15); color: var(--color-error); }
+.ummat-badge--info     { background: rgba(96, 165, 250, 0.15); color: var(--color-info); }
+.ummat-badge--neutral  { background: rgba(255, 255, 255, 0.08); color: var(--color-fg-muted); }
+
+
+/* ============================================================
+   CARD (B1-04)
+   ============================================================ */
+.ummat-card {
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+}
+.ummat-card--default   { background: var(--color-surface); border: 1px solid var(--color-border); }
+.ummat-card--elevated  { background: var(--color-elevated); box-shadow: var(--shadow-md); }
+.ummat-card--outlined  { background: transparent; border: 1.5px solid var(--color-border); }
+.ummat-card--glass     {
+  background: rgba(15, 36, 24, 0.6);
+  border: 1px solid rgba(201, 242, 122, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.ummat-card--interactive {
+  cursor: pointer;
+  transition: background-color var(--duration-fast) var(--easing-out),
+              transform var(--duration-fast) var(--easing-out);
+}
+.ummat-card--interactive:hover {
+  background-color: var(--color-surface-hover);
+}
+.ummat-card--interactive:active { transform: scale(0.99); }
+
+.ummat-card__header { padding: var(--space-4) var(--space-4) 0; }
+.ummat-card__body   { padding: var(--space-4); }
+.ummat-card__footer {
+  padding: 0 var(--space-4) var(--space-4);
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-4);
+}
+
+
+/* ============================================================
+   MODAL (B1-04, B2-02)
+   ============================================================ */
+.ummat-modal {
+  padding: 0;
+  border: none;
+  background: transparent;
+  max-width: 100vw;
+  max-height: 100vh;
+  /* Ensure focus is never obscured by the backdrop (WCAG 2.4.11) */
+  overflow: visible;
+}
+
+.ummat-modal::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.ummat-modal__content {
+  background: var(--color-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-xl);
+  width: min(90vw, var(--modal-max-width, 32rem));
+  max-height: min(90vh, 800px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  /* Keep content above backdrop so focus rings are always visible */
+  position: relative;
+  z-index: var(--z-modal);
+
+  animation: ummat-modal-in var(--duration-base) var(--easing-out);
+}
+
+@keyframes ummat-modal-in {
+  from { opacity: 0; transform: scale(0.95) translateY(8px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.ummat-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+  gap: var(--space-3);
+}
+.ummat-modal__title {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-fg);
+  margin: 0;
+}
+.ummat-modal__close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-fg-muted);
+  padding: var(--space-1-5);
+  border-radius: var(--radius-md);
+  /* B2-04: min 44×44px target */
+  min-width: 44px;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--duration-fast) var(--easing-out),
+              background-color var(--duration-fast) var(--easing-out);
+}
+.ummat-modal__close:hover {
+  color: var(--color-fg);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+.ummat-modal__body { padding: var(--space-5); flex: 1; }
+
+
+/* ============================================================
+   TOAST (B1-04)
+   ============================================================ */
+.ummat-toast {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-xl);
+  font-size: var(--text-sm);
+  box-shadow: var(--shadow-lg);
+  max-width: 400px;
+  animation: ummat-toast-in var(--duration-base) var(--easing-spring);
+}
+
+@keyframes ummat-toast-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.ummat-toast--info    { background: var(--color-info-bg); border: 1px solid var(--color-info); color: var(--color-fg); }
+.ummat-toast--success { background: var(--color-success-bg); border: 1px solid var(--color-success); color: var(--color-fg); }
+.ummat-toast--warning { background: var(--color-warning-bg); border: 1px solid var(--color-warning); color: var(--color-fg); }
+.ummat-toast--error   { background: var(--color-error-bg); border: 1px solid var(--color-error); color: var(--color-fg); }
+
+.ummat-toast__icon    { flex-shrink: 0; font-size: var(--text-base); }
+.ummat-toast__message { flex: 1; line-height: var(--leading-snug); }
+.ummat-toast__close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: currentColor;
+  opacity: 0.6;
+  font-size: var(--text-lg);
+  line-height: 1;
+  padding: var(--space-1);
+  min-width: 24px;
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ummat-toast__close:hover { opacity: 1; }
+
+
+/* ============================================================
+   AVATAR (B1-04)
+   ============================================================ */
+.ummat-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  flex-shrink: 0;
+  font-weight: 600;
+}
+.ummat-avatar--xs  { width: 1.5rem; height: 1.5rem; font-size: 0.6rem; }
+.ummat-avatar--sm  { width: 2rem;   height: 2rem;   font-size: 0.75rem; }
+.ummat-avatar--md  { width: 2.5rem; height: 2.5rem; font-size: 0.875rem; }
+.ummat-avatar--lg  { width: 3rem;   height: 3rem;   font-size: 1rem; }
+.ummat-avatar--xl  { width: 4rem;   height: 4rem;   font-size: 1.25rem; }
+
+.ummat-avatar__img     { width: 100%; height: 100%; object-fit: cover; }
+.ummat-avatar__initials { color: var(--brand-green-mid); }
+
+
+/* ============================================================
+   SKELETON (B1-04, B6-06)
+   — Uses shared keyframe from @ummat/brand/css
+   ============================================================ */
+.ummat-skeleton--rect   { width: 100%; height: 1rem; border-radius: var(--radius-md); }
+.ummat-skeleton--circle { border-radius: var(--radius-full); }
+.ummat-skeleton--text   { height: 0.875rem; margin-bottom: var(--space-2); border-radius: var(--radius-sm); }
+
+.ummat-skeleton-group { display: flex; flex-direction: column; }
+
+
+/* ============================================================
+   BANNER (B1-04)
+   ============================================================ */
+.ummat-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-sm);
+  border-radius: var(--radius-xl);
+}
+
+.ummat-banner--info    { background: var(--color-info-bg); border: 1px solid var(--color-info); color: var(--color-fg); }
+.ummat-banner--success { background: var(--color-success-bg); border: 1px solid var(--color-success); color: var(--color-fg); }
+.ummat-banner--warning { background: var(--color-warning-bg); border: 1px solid var(--color-warning); color: var(--color-fg); }
+.ummat-banner--error   { background: var(--color-error-bg); border: 1px solid var(--color-error); color: var(--color-fg); }
+.ummat-banner--offline { background: rgba(50, 50, 50, 0.9); border: 1px solid #555; color: #eee; }
+
+.ummat-banner__content { flex: 1; }
+.ummat-banner__dismiss {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: currentColor;
+  opacity: 0.7;
+  font-size: var(--text-lg);
+  min-width: 24px;
+  min-height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-1);
+}
+.ummat-banner__dismiss:hover { opacity: 1; }
+
+
+/* ============================================================
+   DATA STATE (B5-01)
+   ============================================================ */
+.ummat-data-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-10) var(--space-4);
+  text-align: center;
+}
+
+.ummat-data-state--partial,
+.ummat-data-state--stale {
+  flex-direction: row;
+  padding: var(--space-2-5) var(--space-4);
+  justify-content: flex-start;
+  border-radius: var(--radius-xl);
+  margin-bottom: var(--space-4);
+  font-size: var(--text-sm);
+}
+
+.ummat-data-state--empty   { color: var(--color-fg-muted); }
+.ummat-data-state--error   { color: var(--color-error); }
+.ummat-data-state--offline { color: var(--color-fg-muted); }
+.ummat-data-state--partial { background: var(--color-warning-bg); border: 1px solid var(--color-warning); color: var(--color-fg); }
+.ummat-data-state--stale   { background: var(--color-info-bg); border: 1px solid var(--color-info); color: var(--color-fg); }
+
+.ummat-data-state__icon    { font-size: var(--text-3xl); }
+.ummat-data-state__message { font-size: var(--text-sm); line-height: var(--leading-relaxed); }
+
+
+/* ============================================================
+   PAGE TRANSITIONS (B6-03)
+   CSS-only fade-in for Next.js App Router pages.
+   Apply `.ummat-page` to the outermost element of each page.
+   prefers-reduced-motion: skip animation entirely.
+   ============================================================ */
+@keyframes ummat-page-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.ummat-page {
+  animation: ummat-page-in var(--duration-base, 250ms) var(--easing-out, ease-out) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ummat-page {
+    animation: none;
+  }
+}
+
+/* Drawer / slide-in panel (B6-04) */
+@keyframes ummat-drawer-in-right {
+  from { opacity: 0; transform: translateX(100%); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes ummat-drawer-in-left {
+  from { opacity: 0; transform: translateX(-100%); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes ummat-drawer-in-bottom {
+  from { opacity: 0; transform: translateY(100%); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.ummat-drawer--right  { animation: ummat-drawer-in-right  var(--duration-base, 250ms) var(--easing-out, ease-out) both; }
+.ummat-drawer--left   { animation: ummat-drawer-in-left   var(--duration-base, 250ms) var(--easing-out, ease-out) both; }
+.ummat-drawer--bottom { animation: ummat-drawer-in-bottom var(--duration-base, 250ms) var(--easing-out, ease-out) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ummat-drawer--right,
+  .ummat-drawer--left,
+  .ummat-drawer--bottom {
+    animation: none;
+  }
+}
+
+
+/* ============================================================
+   RTL SUPPORT (B3-01)
+   Logical properties for all components
+   ============================================================ */
+[dir="rtl"] .ummat-btn           { flex-direction: row-reverse; }
+[dir="rtl"] .ummat-input__prefix { left: auto; right: var(--space-3); }
+[dir="rtl"] .ummat-input__suffix { right: auto; left: var(--space-3); }
+[dir="rtl"] .ummat-modal__header { flex-direction: row-reverse; }
+[dir="rtl"] .ummat-banner        { flex-direction: row-reverse; }
+[dir="rtl"] .ummat-toast         { flex-direction: row-reverse; }

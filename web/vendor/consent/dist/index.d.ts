@@ -17,6 +17,4 @@ export { ConsentGated, useConsentGate } from './gating.js';
 export type { ConsentGatedProps, GatedCategory } from './gating.js';
 export { getMessages, isRtlLocale } from './i18n.js';
 export type { ConsentLocale, ConsentMessages } from './i18n.js';
-export { handleConsentRequest, parseConsentBody, isSameOrigin, makeFingerprintHash, clientIpFromHeaders, resolveLatestCookiePolicyVersion, insertConsentRecords, fetchLatestConsent, ConsentValidationError, } from './server-handler.js';
-export type { ConsentPostPayload, ConsentWriteContext, HasuraAdminConfig, ConsentHandlerInput, ConsentHandlerResult, } from './server-handler.js';
 //# sourceMappingURL=index.d.ts.map

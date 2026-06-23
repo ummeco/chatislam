@@ -322,7 +322,7 @@ export async function insertConsentRecords(
     data?: { insert_lg_consent_record?: { returning: { id: string }[] } }
     errors?: Array<{ message: string }>
   }
-  if (data.errors?.length) return { error: data.errors[0].message }
+  if (data.errors?.length) return { error: data.errors[0]?.message ?? 'hasura_error' }
   const ids = data.data?.insert_lg_consent_record?.returning?.map((r) => r.id) ?? []
   return { ids }
 }
@@ -369,6 +369,7 @@ export async function fetchLatestConsent(
 
   // Take most recent row.  Map back to category state.
   const head = rows[0]
+  if (!head) return null
   const categories: ConsentRecord['categories'] =
     head.consent_type === 'cookie_banner_accept'
       ? { analytics: true, marketing: true, functional: true }

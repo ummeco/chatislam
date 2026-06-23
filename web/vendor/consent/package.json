@@ -1,33 +1,81 @@
 {
-    "name": "@ummat/consent",
-    "version": "0.1.0",
-    "type": "module",
-    "main": "./dist/index.js",
-    "types": "./dist/index.d.ts",
-    "exports": {
-        ".": {
-            "import": "./dist/index.js",
-            "types": "./dist/index.d.ts"
-        },
-        "./server": {
-            "import": "./dist/server-handler.js",
-            "types": "./dist/server-handler.d.ts"
-        },
-        "./components": {
-            "import": "./dist/components.js",
-            "types": "./dist/components.d.ts"
-        },
-        "./hooks": {
-            "import": "./dist/hooks.js",
-            "types": "./dist/hooks.d.ts"
-        },
-        "./utils": {
-            "import": "./dist/utils.js",
-            "types": "./dist/utils.d.ts"
-        }
+  "name": "@ummat/consent",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "GDPR/CCPA cookie consent components and hooks for Ummat apps (web + core)",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
     },
-    "peerDependencies": {
-        "react": "^18 || ^19",
-        "react-dom": "^18 || ^19"
+    "./core": {
+      "import": "./dist/core/index.js",
+      "types": "./dist/core/index.d.ts"
+    },
+    "./web": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./server": {
+      "import": "./dist/server-handler.js",
+      "types": "./dist/server-handler.d.ts"
+    },
+    "./components": {
+      "import": "./dist/components.js",
+      "types": "./dist/components.d.ts"
+    },
+    "./hooks": {
+      "import": "./dist/hooks.js",
+      "types": "./dist/hooks.d.ts"
+    },
+    "./utils": {
+      "import": "./dist/utils.js",
+      "types": "./dist/utils.d.ts"
     }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --ext .ts,.tsx --max-warnings 0",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix"
+  },
+  "peerDependencies": {
+    "react": "^18 || ^19",
+    "react-dom": "^18 || ^19"
+  },
+  "peerDependenciesMeta": {
+    "react-dom": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.4.0",
+    "@testing-library/react": "^16.0.0",
+    "@types/node": "^25.6.2",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@typescript-eslint/eslint-plugin": "catalog:",
+    "@typescript-eslint/parser": "catalog:",
+    "@vitejs/plugin-react": "^4.2.0",
+    "eslint": "catalog:",
+    "jsdom": "^24.0.0",
+    "typescript": "^5.4.0",
+    "vitest": "^3.2.6"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "keywords": [
+    "consent",
+    "gdpr",
+    "ccpa",
+    "cookies",
+    "privacy"
+  ]
 }

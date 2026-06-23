@@ -128,11 +128,9 @@ export function ConsentProvider({ children, onConsentChange }: ConsentProviderPr
   const [preferencesOpen, setPreferencesOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
   const onConsentChangeRef = useRef(onConsentChange)
-  // eslint-disable-next-line react-hooks/refs -- standard ref-as-stable-callback pattern; safe to assign in render
   onConsentChangeRef.current = onConsentChange
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect -- setMounted(true) is intentional hydration init, not a cascade
     setMounted(true)
     const stored = readConsent()
     const dnt = detectDoNotTrack()

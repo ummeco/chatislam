@@ -116,6 +116,7 @@ export function getMessages(locale: string | undefined): ConsentMessages {
     typeof process !== 'undefined' &&
     process.env?.NODE_ENV !== 'production'
   ) {
+    // eslint-disable-next-line no-console
     console.warn(
       `[@ummat/consent i18n-missing] locale="${l}" — falling back to en. Translate src/messages/${l}.json.`
     )

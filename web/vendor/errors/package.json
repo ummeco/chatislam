@@ -1,0 +1,53 @@
+{
+  "name": "@ummat/errors",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Canonical AppError hierarchy + route wrapper for the Ummat monorepo (T-P7-Q-ERR-01)",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./route-wrapper": {
+      "types": "./dist/route-wrapper.d.ts",
+      "import": "./dist/route-wrapper.mjs",
+      "require": "./dist/route-wrapper.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "type-check": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src --ext .ts,.tsx --max-warnings 0",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix"
+  },
+  "dependencies": {
+    "@ummat/api-conventions": "file:../api-conventions"
+  },
+  "peerDependencies": {
+    "react": ">=19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@typescript-eslint/eslint-plugin": "catalog:",
+    "@typescript-eslint/parser": "catalog:",
+    "eslint": "catalog:",
+    "tsup": "^8.0.0",
+    "typescript": "^5.7.2",
+    "vitest": "^3.2.6"
+  }
+}
