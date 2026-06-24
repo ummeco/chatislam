@@ -73,7 +73,7 @@ async function fetchMoonSightingData(): Promise<MoonSightingResponse | null> {
   const apiUrl = process.env.SEASONAL_MOON_SIGHTING_API
   if (!apiUrl) return null
   try {
-    const res = await fetch(apiUrl, { next: { revalidate: 3600 } })
+    const res = await fetch(apiUrl)
     if (!res.ok) return null
     return await res.json() as MoonSightingResponse
   } catch {

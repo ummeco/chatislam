@@ -1,0 +1,116 @@
+/**
+ * src/pages/api/graphql.ts — ChatIslam Hasura Remote Schema endpoint (Astro SSR)
+ *
+ * Hasura calls this route to resolve ChatIslam-specific GraphQL fields (AI chat
+ * sessions, query history, dawah mode settings) federated into api.ummat.dev.
+ * Every Hasura request includes x-remote-schema-secret for authentication.
+ *
+ * Phase 1 (stub): returns an empty schema stub.
+ * Implement chat session queries and mutations in CI v0.2+.
+ *
+ * See: backend/docs/architecture.md — Hasura Remote Schemas
+ */
+
+import type { APIRoute } from 'astro'
+import { z } from 'zod'
+
+export const prerender = false
+
+const SECRET = process.env.REMOTE_SCHEMA_SECRET
+
+const GraphQLBodySchema = z.object({
+  query:         z.string().optional(),
+  operationName: z.string().optional(),
+  variables:     z.record(z.string(), z.unknown()).optional(),
+})
+
+const INTROSPECTION_RESPONSE = {
+  data: {
+    __schema: {
+      queryType: { name: 'Query' },
+      mutationType: null,
+      subscriptionType: null,
+      types: [
+        {
+          kind: 'OBJECT',
+          name: 'Query',
+          description: 'ChatIslam Remote Schema',
+          fields: [
+            {
+              name: '_chatislam',
+              description: 'Placeholder — expanded in CI v0.2',
+              args: [],
+              type: { kind: 'SCALAR', name: 'Boolean', ofType: null },
+              isDeprecated: false,
+              deprecationReason: null,
+            },
+          ],
+          inputFields: null,
+          interfaces: [],
+          enumValues: null,
+          possibleTypes: null,
+        },
+      ],
+      directives: [],
+    },
+  },
+}
+
+function unauthorized() {
+  return new Response(JSON.stringify({ errors: [{ message: 'Unauthorized' }] }), {
+    status:  401,
+    headers: { 'Content-Type': 'application/json' },
+  })
+}
+
+export const POST: APIRoute = async ({ request }) => {
+  if (!SECRET || request.headers.get('x-remote-schema-secret') !== SECRET) {
+    return unauthorized()
+  }
+
+  const rawBody = await request.json().catch(() => null)
+  const parsedGql = GraphQLBodySchema.safeParse(rawBody)
+  if (!parsedGql.success) {
+    return new Response(JSON.stringify({ errors: [{ message: 'Invalid request body' }] }), {
+      status:  400,
+      headers: { 'Content-Type': 'application/json' },
+    })
+  }
+  const body = parsedGql.data
+
+  if (
+    typeof body.query === 'string' &&
+    (body.query.includes('__schema') || body.query.includes('IntrospectionQuery'))
+  ) {
+    return new Response(JSON.stringify(INTROSPECTION_RESPONSE), {
+      status:  200,
+      headers: { 'Content-Type': 'application/json' },
+    })
+  }
+
+  return new Response(JSON.stringify({ data: { _chatislam: null } }), {
+    status:  200,
+    headers: { 'Content-Type': 'application/json' },
+  })
+}
+
+// Only Hasura (api.ummat.dev) and local dev call this Remote Schema endpoint.
+// Wildcard is replaced with an explicit allowlist — never open to all origins.
+const REMOTE_SCHEMA_ORIGINS = [
+  'https://api.ummat.dev',
+  'https://api.chatislam.local.nself.org:8543',
+]
+
+export const OPTIONS: APIRoute = async ({ request }) => {
+  const origin = request.headers.get('Origin') ?? ''
+  const corsOrigin = REMOTE_SCHEMA_ORIGINS.includes(origin) ? origin : null
+
+  return new Response(null, {
+    status: 204,
+    headers: {
+      ...(corsOrigin ? { 'Access-Control-Allow-Origin': corsOrigin } : {}),
+      'Access-Control-Allow-Headers': 'Content-Type, x-remote-schema-secret',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    },
+  })
+}
