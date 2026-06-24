@@ -16,6 +16,15 @@ const eslintConfig = [
       'public/**',
       'coverage/**',
       'k6/**',
+      // Vendored sub-packages (file: deps) are consumed via their built dist/ and run
+      // their own lint pipelines. We do not re-lint their internals here, with ONE
+      // exception kept on purpose: vendor/consent/src stays linted so the brand-contrast
+      // guard (no-brand-light-on-light) keeps covering CookieBanner.
+      'vendor/api-conventions/**',
+      'vendor/astro-preset/**',
+      'vendor/brand/**',
+      'vendor/errors/**',
+      'vendor/ui/**',
       'vendor/consent/dist/**',
       'dist/**',
       '.astro/**',

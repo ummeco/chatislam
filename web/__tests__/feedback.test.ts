@@ -17,32 +17,35 @@
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { NextRequest } from 'next/server'
+import type { APIContext } from 'astro'
 
 // ─── Mock ioredis (Redis client) ──────────────────────────────────────────────
+// The route loads ioredis via CJS require('ioredis'), so the mock MUST be registered
+// at module top-level (hoisted) — an in-test vi.mock would not intercept require().
+// Per-test behaviour is driven by the mutable `redisState` object.
 
-type RedisCommand = { cmd: string; args: unknown[] }
+const redisState = {
+  incrValue:   1,
+  ttlValue:    3600,
+  shouldThrow: false,
+}
 
-function makeRedisMock(options: {
-  incrValue?: number
-  ttlValue?: number
-  shouldThrow?: boolean
-}) {
-  const { incrValue = 1, ttlValue = 3600, shouldThrow = false } = options
-
-  return class MockRedis {
+vi.mock('ioredis', () => {
+  class MockRedis {
     async incr(_key: string): Promise<number> {
-      if (shouldThrow) throw new Error('Redis connection refused')
-      return incrValue
+      if (redisState.shouldThrow) throw new Error('Redis connection refused')
+      return redisState.incrValue
     }
     async expire(_key: string, _seconds: number): Promise<number> {
       return 1
     }
     async ttl(_key: string): Promise<number> {
-      return ttlValue
+      return redisState.ttlValue
     }
   }
-}
+  // Support both `const { Redis } = require('ioredis')` and `import Redis from 'ioredis'`.
+  return { Redis: MockRedis, default: MockRedis }
+})
 
 // ─── Mock fetch (Hasura) ──────────────────────────────────────────────────────
 
@@ -67,24 +70,34 @@ function makeHasuraMock(options: {
   })
 }
 
-// ─── Helper to build a NextRequest ───────────────────────────────────────────
+// ─── Helper to build an Astro APIContext ──────────────────────────────────────
+// Astro endpoint signature: POST({ request }: APIContext) with the platform Request.
+// Migrated from next/server NextRequest (D-P2-STACK-CANON).
 
 const VALID_MSG_ID  = '11111111-1111-1111-1111-111111111111'
 const VALID_SESS_ID = '22222222-2222-2222-2222-222222222222'
 
-function makeRequest(body: Record<string, unknown>): NextRequest {
-  return new NextRequest('http://localhost/api/feedback', {
+function makeRequest(body: Record<string, unknown>): APIContext {
+  const request = new Request('http://localhost/api/feedback', {
     method:  'POST',
     headers: { 'Content-Type': 'application/json' },
     body:    JSON.stringify(body),
   })
+  return { request } as unknown as APIContext
 }
 
 // ─── Test suite ───────────────────────────────────────────────────────────────
 
 describe('/api/feedback POST handler', () => {
   beforeEach(() => {
+    // Reset the route module so its cached Redis singleton (_feedbackRedis) does not
+    // leak between tests. The hoisted vi.mock('ioredis') survives resetModules and is
+    // re-applied to the route's dynamic import('ioredis').
     vi.resetModules()
+    // Reset the ioredis mock to its default (under-limit, no throw) state.
+    redisState.incrValue   = 1
+    redisState.ttlValue    = 3600
+    redisState.shouldThrow = false
     // Set required env vars
     process.env.HASURA_ADMIN_URL = 'https://api.ummat.dev/v1/graphql'
     process.env.HASURA_GRAPHQL_ADMIN_SECRET = 'test-secret'
@@ -94,7 +107,7 @@ describe('/api/feedback POST handler', () => {
 
   it('1. Happy path: thumbs-up returns { success: true }', async () => {
     vi.stubGlobal('fetch', makeHasuraMock({}))
-    const { POST } = await import('../app/api/feedback/route')
+    const { POST } = await import('../src/pages/api/feedback')
     const req = makeRequest({ message_id: VALID_MSG_ID, session_id: VALID_SESS_ID, rating: 1 })
     const res = await POST(req)
     expect(res.status).toBe(200)
@@ -104,7 +117,7 @@ describe('/api/feedback POST handler', () => {
 
   it('2. Happy path: thumbs-down with correction + flagged_reason', async () => {
     vi.stubGlobal('fetch', makeHasuraMock({}))
-    const { POST } = await import('../app/api/feedback/route')
+    const { POST } = await import('../src/pages/api/feedback')
     const req = makeRequest({
       message_id:      VALID_MSG_ID,
       session_id:      VALID_SESS_ID,
@@ -119,35 +132,37 @@ describe('/api/feedback POST handler', () => {
   })
 
   it('3. Validation: missing message_id → 400', async () => {
-    const { POST } = await import('../app/api/feedback/route')
+    const { POST } = await import('../src/pages/api/feedback')
     const req = makeRequest({ session_id: VALID_SESS_ID, rating: 1 })
     const res = await POST(req)
     expect(res.status).toBe(400)
-    const json = await res.json() as Record<string, unknown>
-    expect(typeof json.error).toBe('string')
-    expect((json.error as string).toLowerCase()).toContain('message_id')
+    const json = await res.json() as { error: string; details: { fieldErrors: Record<string, unknown> } }
+    expect(json.error).toBe('invalid_input')
+    expect(Object.keys(json.details.fieldErrors)).toContain('message_id')
   })
 
   it('4. Validation: invalid UUID for message_id → 400', async () => {
-    const { POST } = await import('../app/api/feedback/route')
+    const { POST } = await import('../src/pages/api/feedback')
     const req = makeRequest({ message_id: 'not-a-uuid', session_id: VALID_SESS_ID, rating: 1 })
     const res = await POST(req)
     expect(res.status).toBe(400)
-    const json = await res.json() as Record<string, unknown>
-    expect((json.error as string).toLowerCase()).toContain('message_id')
+    const json = await res.json() as { error: string; details: { fieldErrors: Record<string, unknown> } }
+    expect(json.error).toBe('invalid_input')
+    expect(Object.keys(json.details.fieldErrors)).toContain('message_id')
   })
 
   it('5. Validation: rating 0 → 400', async () => {
-    const { POST } = await import('../app/api/feedback/route')
+    const { POST } = await import('../src/pages/api/feedback')
     const req = makeRequest({ message_id: VALID_MSG_ID, session_id: VALID_SESS_ID, rating: 0 })
     const res = await POST(req)
     expect(res.status).toBe(400)
-    const json = await res.json() as Record<string, unknown>
-    expect((json.error as string).toLowerCase()).toContain('rating')
+    const json = await res.json() as { error: string; details: { fieldErrors: Record<string, unknown> } }
+    expect(json.error).toBe('invalid_input')
+    expect(Object.keys(json.details.fieldErrors)).toContain('rating')
   })
 
   it('6. Validation: correction_text > 500 chars → 400', async () => {
-    const { POST } = await import('../app/api/feedback/route')
+    const { POST } = await import('../src/pages/api/feedback')
     const req = makeRequest({
       message_id:      VALID_MSG_ID,
       session_id:      VALID_SESS_ID,
@@ -156,12 +171,13 @@ describe('/api/feedback POST handler', () => {
     })
     const res = await POST(req)
     expect(res.status).toBe(400)
-    const json = await res.json() as Record<string, unknown>
-    expect((json.error as string).toLowerCase()).toContain('correction_text')
+    const json = await res.json() as { error: string; details: { fieldErrors: Record<string, unknown> } }
+    expect(json.error).toBe('invalid_input')
+    expect(Object.keys(json.details.fieldErrors)).toContain('correction_text')
   })
 
   it('7. Validation: invalid flagged_reason → 400', async () => {
-    const { POST } = await import('../app/api/feedback/route')
+    const { POST } = await import('../src/pages/api/feedback')
     const req = makeRequest({
       message_id:     VALID_MSG_ID,
       session_id:     VALID_SESS_ID,
@@ -170,15 +186,17 @@ describe('/api/feedback POST handler', () => {
     })
     const res = await POST(req)
     expect(res.status).toBe(400)
-    const json = await res.json() as Record<string, unknown>
-    expect((json.error as string).toLowerCase()).toContain('flagged_reason')
+    const json = await res.json() as { error: string; details: { fieldErrors: Record<string, unknown> } }
+    expect(json.error).toBe('invalid_input')
+    expect(Object.keys(json.details.fieldErrors)).toContain('flagged_reason')
   })
 
   it('8. Rate limit: 11th submission → 429 with retry_after', async () => {
     process.env.REDIS_URL = 'redis://localhost:6379'
-    vi.mock('ioredis', () => ({ Redis: makeRedisMock({ incrValue: 11, ttlValue: 1800 }) }))
+    redisState.incrValue = 11
+    redisState.ttlValue  = 1800
     vi.stubGlobal('fetch', makeHasuraMock({}))
-    const { POST } = await import('../app/api/feedback/route')
+    const { POST } = await import('../src/pages/api/feedback')
     const req = makeRequest({ message_id: VALID_MSG_ID, session_id: VALID_SESS_ID, rating: 1 })
     const res = await POST(req)
     expect(res.status).toBe(429)
@@ -190,9 +208,9 @@ describe('/api/feedback POST handler', () => {
 
   it('9. Redis down: falls back gracefully (allows submission)', async () => {
     process.env.REDIS_URL = 'redis://localhost:6379'
-    vi.mock('ioredis', () => ({ Redis: makeRedisMock({ shouldThrow: true }) }))
+    redisState.shouldThrow = true
     vi.stubGlobal('fetch', makeHasuraMock({}))
-    const { POST } = await import('../app/api/feedback/route')
+    const { POST } = await import('../src/pages/api/feedback')
     const req = makeRequest({ message_id: VALID_MSG_ID, session_id: VALID_SESS_ID, rating: 1 })
     const res = await POST(req)
     // Graceful: allowed on Redis error
@@ -201,7 +219,7 @@ describe('/api/feedback POST handler', () => {
 
   it('10. Hasura error: returns 500', async () => {
     vi.stubGlobal('fetch', makeHasuraMock({ shouldFail: true }))
-    const { POST } = await import('../app/api/feedback/route')
+    const { POST } = await import('../src/pages/api/feedback')
     const req = makeRequest({ message_id: VALID_MSG_ID, session_id: VALID_SESS_ID, rating: 1 })
     const res = await POST(req)
     expect(res.status).toBe(500)
@@ -216,7 +234,7 @@ describe('/api/feedback POST handler', () => {
       capturedPayload = body.variables?.object ?? null
       return { ok: true, status: 200, json: async () => ({ data: { insert_ci_message_feedback_one: { id: 'x' } } }) }
     }))
-    const { POST } = await import('../app/api/feedback/route')
+    const { POST } = await import('../src/pages/api/feedback')
     const req = makeRequest({
       message_id:      VALID_MSG_ID,
       session_id:      VALID_SESS_ID,
@@ -237,7 +255,7 @@ describe('/api/feedback POST handler', () => {
       capturedPayload = body.variables?.object ?? null
       return { ok: true, status: 200, json: async () => ({ data: { insert_ci_message_feedback_one: { id: 'x' } } }) }
     }))
-    const { POST } = await import('../app/api/feedback/route')
+    const { POST } = await import('../src/pages/api/feedback')
     const req = makeRequest({
       message_id:      VALID_MSG_ID,
       session_id:      VALID_SESS_ID,

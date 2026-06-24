@@ -40,7 +40,6 @@ export default defineConfig({
     },
   },
   vite: {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     plugins: [tailwindcss() as any],
     build: {
       // @astrojs/react v5 uses destructuring params that esbuild can't lower

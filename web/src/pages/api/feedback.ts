@@ -55,12 +55,22 @@ interface RedisLike {
 
 let _feedbackRedis: RedisLike | null = null
 
-function getFeedbackRedis(): RedisLike | null {
+async function getFeedbackRedis(): Promise<RedisLike | null> {
   if (_feedbackRedis) return _feedbackRedis
   const url = process.env.REDIS_URL
   if (!url) return null
   try {
-    const { Redis } = require('ioredis') as { Redis: new (u: string) => RedisLike }
+    // Dynamic ESM import (this file is type: module) — keeps ioredis out of the cold
+    // path when REDIS_URL is unset and is reliably mockable in tests. ioredis is a
+    // transitive runtime dep (no bundled types resolvable here), so the specifier is
+    // resolved at runtime; vitest's vi.mock('ioredis') intercepts it.
+    // @ts-ignore — ioredis has no resolvable type declarations from this package
+    const mod = (await import('ioredis')) as unknown as {
+      Redis?: new (u: string) => RedisLike
+      default?: new (u: string) => RedisLike
+    }
+    const Redis = mod.Redis ?? mod.default
+    if (!Redis) return null
     _feedbackRedis = new Redis(url)
     return _feedbackRedis
   } catch {
@@ -72,7 +82,7 @@ async function checkFeedbackRateLimit(sessionId: string): Promise<{
   allowed:    boolean
   retryAfter: number
 }> {
-  const redis = getFeedbackRedis()
+  const redis = await getFeedbackRedis()
   if (!redis) return { allowed: true, retryAfter: 0 }  // graceful: allow when no Redis
 
   const key = `ci:fb:${sessionId}`

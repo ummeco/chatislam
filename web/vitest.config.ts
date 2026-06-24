@@ -6,7 +6,10 @@ export default defineConfig({
   test: {
     environment: 'node',
     globals: true,
-    exclude: ['node_modules', 'dist', '**/__tests__/e2e/**'],
+    // Vendored sub-packages (file: deps) ship their own vitest suites and tsconfig
+    // (which extend a monorepo base not present here). They are validated in their
+    // own CI; this app only tests its own src/, lib/, and __tests__/.
+    exclude: ['node_modules', 'dist', '**/__tests__/e2e/**', 'vendor/**'],
     testTimeout: 10000,
     coverage: {
       // P7 Q-TEST T01 baseline. Critical-path scope (T02 90%) — spend-guard +

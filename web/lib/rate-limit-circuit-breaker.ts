@@ -27,7 +27,7 @@
  * Ref: .claude/docs/p2-robustness-framework-spec.md §5 (circuit-breaker)
  */
 
-import * as Sentry from '@sentry/nextjs'
+import * as Sentry from '@sentry/astro'
 import { checkServerRateLimit } from './rate-limit-server'
 import type { PerRequestRateLimitResult } from './rate-limit-server'
 

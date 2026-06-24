@@ -11,7 +11,6 @@
  */
 
 import { useCallback, useEffect, useState } from 'react'
-import { useRouter, usePathname } from 'next/navigation'
 
 interface ConversationSummary {
   id:               string
@@ -27,8 +26,8 @@ interface ChatSidebarProps {
 }
 
 export function ChatSidebar({ isOpen = true, onClose }: ChatSidebarProps) {
-  const router   = useRouter()
-  const pathname = usePathname()
+  // next/navigation removed (D-P2-STACK-CANON) — use the platform location API.
+  const pathname = typeof window !== 'undefined' ? window.location.pathname : ''
 
   const [sessions,   setSessions]   = useState<ConversationSummary[]>([])
   const [isLoading,  setIsLoading]  = useState(false)
@@ -40,7 +39,7 @@ export function ChatSidebar({ isOpen = true, onClose }: ChatSidebarProps) {
   const fetchSessions = useCallback(async (token: string) => {
     setIsLoading(true)
     try {
-      const HASURA_URL = process.env.NEXT_PUBLIC_HASURA_URL
+      const HASURA_URL = import.meta.env.PUBLIC_HASURA_URL
       if (!HASURA_URL) return
 
       const res = await fetch(HASURA_URL, {
@@ -89,9 +88,7 @@ export function ChatSidebar({ isOpen = true, onClose }: ChatSidebarProps) {
   }, [])
 
   useEffect(() => {
-    // fetchSessions is an async function — setState calls inside it are in callbacks,
-    // not synchronously in the effect body. The rule incorrectly flags this pattern.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+    // fetchSessions is async — setState runs in callbacks, not synchronously in the effect body.
     if (authToken) void fetchSessions(authToken)
   }, [authToken, fetchSessions])
 
@@ -133,7 +130,7 @@ export function ChatSidebar({ isOpen = true, onClose }: ChatSidebarProps) {
       {/* New chat button */}
       <div className="px-3 py-2">
         <button
-          onClick={() => router.push('/chat')}
+          onClick={() => window.location.assign('/chat')}
           className="flex w-full items-center gap-2 rounded-lg bg-emerald-600 px-3 py-2 text-sm font-medium text-white transition hover:bg-emerald-700 dark:bg-emerald-500 dark:hover:bg-emerald-600"
         >
           <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -178,7 +175,7 @@ export function ChatSidebar({ isOpen = true, onClose }: ChatSidebarProps) {
           return (
             <button
               key={session.id}
-              onClick={() => router.push(`/chat/${session.id}`)}
+              onClick={() => window.location.assign(`/chat/${session.id}`)}
               className={`group flex w-full flex-col gap-0.5 rounded-lg px-3 py-2 text-left transition ${
                 isActive
                   ? 'bg-emerald-50 dark:bg-emerald-950'

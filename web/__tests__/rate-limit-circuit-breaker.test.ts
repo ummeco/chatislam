@@ -27,7 +27,7 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 // Mock checkServerRateLimit so we control what "Redis" returns
 // ---------------------------------------------------------------------------
 
-vi.mock('@sentry/nextjs', () => ({
+vi.mock('@sentry/astro', () => ({
   captureException:   vi.fn(),
   captureMessage:     vi.fn(),
   addBreadcrumb:      vi.fn(),
@@ -153,20 +153,21 @@ describe('rate-limit-circuit-breaker', () => {
   // ── Test 5 ────────────────────────────────────────────────────────────────
   it('OPEN: in-memory cap is respected (cap+1 request is denied)', async () => {
     setEnv(3, 60_000, 1)  // cap=3, stay open 60s, trip on 1 failure
+    const key = 'ci:rl:anon:ddd:min'
     mockCheck.mockResolvedValueOnce(REDIS_ERROR)
-    await checkRateLimitWithCircuitBreaker('ci:rl:anon:ddd:min', 5)  // trips circuit
+    // The tripping request itself fails open and consumes one in-memory slot (count=1).
+    await checkRateLimitWithCircuitBreaker(key, 5)  // trips circuit + consumes slot 1
     expect(_cb.state).toBe('OPEN')
 
-    const key = 'ci:rl:anon:ddd:min'
-    // 3 requests should be allowed
-    for (let i = 0; i < 3; i++) {
+    // cap=3 and the trip already used slot 1, so 2 more are allowed (slots 2 and 3).
+    for (let i = 0; i < 2; i++) {
       const r = await checkRateLimitWithCircuitBreaker(key, 5)
       expect(r.allowed).toBe(true)
     }
-    // 4th should be denied
-    const r4 = await checkRateLimitWithCircuitBreaker(key, 5)
-    expect(r4.allowed).toBe(false)
-    expect(r4.retryAfterSeconds).toBeGreaterThanOrEqual(1)
+    // The next (4th total within the window) exceeds cap and is denied.
+    const denied = await checkRateLimitWithCircuitBreaker(key, 5)
+    expect(denied.allowed).toBe(false)
+    expect(denied.retryAfterSeconds).toBeGreaterThanOrEqual(1)
   })
 
   // ── Test 6 ────────────────────────────────────────────────────────────────
@@ -214,16 +215,15 @@ describe('rate-limit-circuit-breaker', () => {
   // ── Test 9 ────────────────────────────────────────────────────────────────
   it('CHATISLAM_RATE_LIMIT_FAILOPEN_CAP env var overrides default cap', async () => {
     setEnv(2, 60_000, 1)  // cap=2
-    mockCheck.mockResolvedValueOnce(REDIS_ERROR)  // trip
-    await checkRateLimitWithCircuitBreaker('ci:rl:anon:hhh:min', 5)
-
     const key = 'ci:rl:anon:hhh:min'
-    const r1 = await checkRateLimitWithCircuitBreaker(key, 5)
-    const r2 = await checkRateLimitWithCircuitBreaker(key, 5)
-    const r3 = await checkRateLimitWithCircuitBreaker(key, 5)  // cap=2, so 3rd denied
+    mockCheck.mockResolvedValueOnce(REDIS_ERROR)  // trip — consumes slot 1
+    await checkRateLimitWithCircuitBreaker(key, 5)
+
+    // cap=2 and the trip already used slot 1, so only one more is allowed.
+    const r1 = await checkRateLimitWithCircuitBreaker(key, 5)  // slot 2 — allowed
+    const r2 = await checkRateLimitWithCircuitBreaker(key, 5)  // over cap — denied
     expect(r1.allowed).toBe(true)
-    expect(r2.allowed).toBe(true)
-    expect(r3.allowed).toBe(false)
+    expect(r2.allowed).toBe(false)
   })
 
   // ── Test 10 ───────────────────────────────────────────────────────────────

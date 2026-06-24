@@ -7,7 +7,7 @@
  *            cookie, set-cookie, x-hasura-user-id
  *   Fields:  password, token, secret, email, phone (deep-scrub in extra/contexts)
  */
-import type { ErrorEvent, EventHint } from '@sentry/nextjs'
+import type { ErrorEvent, EventHint } from '@sentry/astro'
 
 /** Headers to redact entirely (value replaced with [REDACTED]). */
 const BLOCKED_HEADERS = new Set([

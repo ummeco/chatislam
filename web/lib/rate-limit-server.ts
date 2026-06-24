@@ -17,7 +17,7 @@
  *   RATE_LIMIT_ANTHROPIC_GLOBAL_USD_DAILY  — global spend cap USD/day (default: 50)
  */
 
-import * as Sentry from '@sentry/nextjs'
+import * as Sentry from '@sentry/astro'
 
 export interface PerRequestRateLimitResult {
   /** Whether the request is allowed to proceed */
