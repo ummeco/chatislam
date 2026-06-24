@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 // S05-09: CCPA disclosure page — chatislam.org
-// TODO(U-15): Replace placeholder copy with counsel-reviewed text before publishing.
+// ADR-DEFERRED (P2-E5-W02-S02-T01 / U-15): Counsel copy pending; route is noindex.
+// Route intentionally offline (robots: noindex, no footer link) until U-15 counsel review.
 // DO NOT publish to prod until U-15 is resolved (TRAP-P6 do-not-publish rule).
 // LAST_UPDATED: 2026-05-06
 

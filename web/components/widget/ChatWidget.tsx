@@ -115,8 +115,14 @@ export default function ChatWidget({ mode = 'Muslim', sessionId: initSessionId =
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-      {/* Message list */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '0.75rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+      {/* Message list — P2-E6 AC-05: aria-live="polite" so screen readers announce new messages */}
+      <div
+        role="log"
+        aria-live="polite"
+        aria-label="Chat messages"
+        aria-atomic="false"
+        style={{ flex: 1, overflowY: 'auto', padding: '0.75rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}
+      >
         {messages.length === 0 && (
           <p style={{ color: 'rgba(201, 242, 122, 0.5)', fontSize: '0.8rem', textAlign: 'center', marginTop: '1rem' }}>
             Ask a question about Islam…

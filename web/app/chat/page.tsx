@@ -22,8 +22,11 @@
  */
 
 import { useState, useRef, useEffect, useCallback } from 'react'
+import { useLocale } from 'next-intl'
 import { MessageBubble }                             from '../../components/chat/MessageBubble'
 import DisclaimerFooter                              from '../../components/chat/DisclaimerFooter'
+// P2-E6-W01-S01-T01 AC-02: LanguageSelector in header, persists via NEXT_LOCALE cookie
+import { LanguageSelector }                          from '../../components/layout/LanguageSelector'
 import type { MadhabStance }                         from '../../lib/madhhab'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -78,6 +81,9 @@ function generateId(): string {
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export default function ChatPage() {
+  // P2-E6: locale for LanguageSelector header display
+  const locale = useLocale()
+
   const [state, setState] = useState<ConversationState>({
     conversationId: null,
     messages:       [],
@@ -239,12 +245,15 @@ export default function ChatPage() {
         padding:        '1rem',
       }}
     >
-      {/* Header */}
-      <header style={{ paddingBottom: '1rem', borderBottom: '1px solid #1E5E2F' }}>
-        <h1 style={{ fontSize: '1.5rem', fontWeight: 700, margin: 0 }}>ChatIslam</h1>
-        <p style={{ margin: '0.25rem 0 0', fontSize: '0.875rem', color: '#79C24C' }}>
-          AI-assisted Islamic Q&amp;A — grounded in the Quran and authentic Sunnah
-        </p>
+      {/* Header — P2-E6 AC-02: LanguageSelector visible, persists via NEXT_LOCALE cookie */}
+      <header style={{ paddingBottom: '1rem', borderBottom: '1px solid #1E5E2F', display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '1rem' }}>
+        <div>
+          <h1 style={{ fontSize: '1.5rem', fontWeight: 700, margin: 0 }}>ChatIslam</h1>
+          <p style={{ margin: '0.25rem 0 0', fontSize: '0.875rem', color: '#79C24C' }}>
+            AI-assisted Islamic Q&amp;A — grounded in the Quran and authentic Sunnah
+          </p>
+        </div>
+        <LanguageSelector currentLocale={locale} />
       </header>
 
       {/* T01-LEGAL-COUNSEL-PACK: Persistent sharia disclaimer banner */}
@@ -389,8 +398,11 @@ export default function ChatPage() {
         </div>
       )}
 
-      {/* Conversation history */}
+      {/* Conversation history — P2-E6 AC-05: role="log" + aria-live="polite" for screen readers */}
       <section
+        role="log"
+        aria-live="polite"
+        aria-atomic="false"
         aria-label="Conversation history"
         style={{
           flex:       1,

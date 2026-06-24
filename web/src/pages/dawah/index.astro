@@ -1,0 +1,67 @@
+---
+/**
+ * dawah/index.astro — Dawah mode landing page (static)
+ *
+ * PURPOSE: SEO landing for dawah-focused chat. Links to /chat with dawah mode.
+ * CONSTRAINTS: No Next.js. Static Astro page.
+ * REF: P2-E3-W02-S02-T02
+ */
+
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import SiteNav from '../../components/SiteNav.astro'
+import DisclaimerBanner from '../../components/DisclaimerBanner.astro'
+
+const title       = 'Dawah — ChatIslam'
+const description = 'AI-assisted dawah conversations — gentle, bridge-building, and grounded in authentic Islamic scholarship.'
+---
+
+<BaseLayout title={title} description={description}>
+  <SiteNav currentPath="/dawah" />
+
+  <main id="main-content" style="max-width: 800px; margin: 0 auto; padding: 3rem 1.5rem;">
+    <h1 style="font-size: 2rem; font-weight: 700; color: var(--brand-green-light); margin-bottom: 1rem;">
+      Dawah — Sharing Islam
+    </h1>
+    <p style="font-size: 1rem; color: var(--brand-green-mid); margin-bottom: 1.5rem; line-height: 1.7;">
+      ChatIslam&apos;s dawah mode is designed for gentle, thoughtful outreach — helping you answer
+      questions from non-Muslims and new Muslims with care, evidence, and wisdom.
+    </p>
+
+    <DisclaimerBanner />
+
+    <h2 style="font-size: 1.25rem; font-weight: 600; color: var(--brand-green-light); margin: 1.5rem 0 0.75rem;">
+      How Dawah Mode Works
+    </h2>
+    <ul style="list-style: none; padding: 0; display: grid; gap: 0.75rem;">
+      <li style="display: flex; gap: 0.5rem; font-size: 0.9rem; color: var(--brand-green-light); line-height: 1.6;">
+        <span aria-hidden="true" style="color: var(--brand-green-mid); flex-shrink: 0;">•</span>
+        Bridge-building language — respectful and welcoming to those exploring Islam
+      </li>
+      <li style="display: flex; gap: 0.5rem; font-size: 0.9rem; color: var(--brand-green-light); line-height: 1.6;">
+        <span aria-hidden="true" style="color: var(--brand-green-mid); flex-shrink: 0;">•</span>
+        Evidence-based responses citing Quran and Sunnah
+      </li>
+      <li style="display: flex; gap: 0.5rem; font-size: 0.9rem; color: var(--brand-green-light); line-height: 1.6;">
+        <span aria-hidden="true" style="color: var(--brand-green-mid); flex-shrink: 0;">•</span>
+        Ahl us-Sunnah wal-Jamaah guidelines — authentic classical scholarship
+      </li>
+    </ul>
+
+    <a
+      href="/chat"
+      style="
+        display: inline-block;
+        margin-top: 2rem;
+        background-color: var(--brand-green-mid);
+        color: var(--brand-green-deep);
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        text-decoration: none;
+      "
+    >
+      Start a Dawah Conversation
+    </a>
+  </main>
+</BaseLayout>

@@ -21,7 +21,8 @@ export type MadhabTag = 'hanafi' | 'maliki' | 'shafii' | 'hanbali' | 'all'
 export interface MadhabStance {
   madhhab:     MadhabTag
   stance:      string
-  source?:     string
+  /** Scholar citation source (required per Gate A; '' = uncited). Never omit. */
+  source:      string
   is_majority: boolean
 }
 
@@ -116,9 +117,16 @@ export function extractMadhabStances(text: string): MadhabStance[] {
         (madhhab === 'hanbali' && /majority|jumhur/i.test(stanceText))
       )
 
+      // Extract scholar citation from the stance text slice (empty string = uncited per Gate A)
+      const sourceMatch = stanceText.match(
+        /(?:according to|imam|sheikh|shaykh|ibn\s+\w+)\s+([A-Z][a-z]+(?: [A-Z][a-z]+){0,3})/i,
+      )
+      const source = sourceMatch ? sourceMatch[1].trim() : ''
+
       stances.push({
         madhhab,
         stance:      stanceText,
+        source,
         is_majority: isMajority,
       })
     }

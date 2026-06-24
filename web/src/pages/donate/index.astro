@@ -1,0 +1,31 @@
+---
+/**
+ * donate/index.astro — Donate page (static)
+ *
+ * PURPOSE: Support / donate landing page.
+ * REF: P2-E3-W02-S02-T02
+ */
+
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import SiteNav from '../../components/SiteNav.astro'
+
+const title       = 'Donate — ChatIslam'
+const description = 'Support ChatIslam to keep free Islamic AI guidance available to the world.'
+---
+
+<BaseLayout title={title} description={description}>
+  <SiteNav currentPath="/donate" />
+
+  <main id="main-content" style="max-width: 800px; margin: 0 auto; padding: 3rem 1.5rem; text-align: center;">
+    <h1 style="font-size: 2rem; font-weight: 700; color: var(--brand-green-light); margin-bottom: 1rem;">
+      Support ChatIslam
+    </h1>
+    <p style="font-size: 1rem; color: var(--brand-green-mid); margin-bottom: 1.5rem; max-width: 480px; margin-inline: auto; line-height: 1.7;">
+      ChatIslam is free for everyone. Your donation keeps it running and helps us improve the service
+      for the global Muslim community.
+    </p>
+    <p style="font-size: 0.875rem; color: rgba(201,242,122,0.6); margin-bottom: 2rem;">
+      Donation integration coming soon. JazakAllah khayran for your support.
+    </p>
+  </main>
+</BaseLayout>

@@ -1,0 +1,95 @@
+---
+/**
+ * BaseLayout.astro — ChatIslam base HTML shell
+ *
+ * PURPOSE: Wraps every page. Injects brand tokens, RTL direction,
+ *          Sentry, Umami, skip link, and lang/dir attributes.
+ * INPUTS:  title, description, locale (optional, defaults 'en')
+ * OUTPUTS: Full <html> document shell
+ * CONSTRAINTS:
+ *   - No Next.js imports.
+ *   - Sentry from SENTRY_DSN_CHATISLAM (vault) — no GlitchTip reference.
+ *   - Umami analytics (D-P3-21) only if PUBLIC_UMAMI_WEBSITE_ID is set.
+ *   - RTL locales: ar, ur, fa (Arabic, Urdu, Farsi).
+ * REF: P2-E3-W02-S02-T02
+ */
+
+import '../styles/global.css'
+
+export interface Props {
+  title: string
+  description?: string
+  locale?: string
+  /** Override canonical URL */
+  canonical?: string
+  /** Open Graph image URL */
+  ogImage?: string
+}
+
+const {
+  title,
+  description = 'AI-powered Islamic guidance — accurate, sourced, always available.',
+  locale       = 'en',
+  canonical,
+  ogImage,
+} = Astro.props
+
+const RTL_LOCALES = new Set(['ar', 'ur', 'fa'])
+const isRtl       = RTL_LOCALES.has(locale.split('-')[0] ?? 'en')
+
+const siteUrl     = import.meta.env.PUBLIC_BASE_URL ?? 'https://chatislam.org'
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).href
+
+// Sentry DSN — from vault SENTRY_DSN_CHATISLAM (server-only; injected at build)
+const sentryDsn   = import.meta.env.SENTRY_DSN_CHATISLAM ?? import.meta.env.SENTRY_DSN ?? ''
+const umamiId     = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID ?? ''
+---
+
+<html lang={locale} dir={isRtl ? 'rtl' : 'ltr'}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#1E5E2F" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ChatIslam" />
+    <meta property="og:url" content={canonicalUrl} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Web manifest -->
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- Umami analytics (D-P3-21) — no cookie, GDPR-safe -->
+    {umamiId && (
+      <script
+        defer
+        src="https://analytics.ummat.dev/script.js"
+        data-website-id={umamiId}
+      />
+    )}
+
+    <!-- Sentry init (server DSN injected by Sentry Astro integration at build) -->
+    {sentryDsn && (
+      <meta name="sentry-dsn" content={sentryDsn} />
+    )}
+  </head>
+  <body>
+    <!-- WCAG 2.4.1 skip link -->
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <slot />
+  </body>
+</html>

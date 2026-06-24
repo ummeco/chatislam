@@ -12,6 +12,12 @@
 
 import * as Sentry from '@sentry/nextjs'
 import { NextRequest, NextResponse } from 'next/server'
+import { z } from 'zod'
+
+// Zod schema — T03 AC-01: Priority 2 validation at early-access boundary
+const EarlyAccessSchema = z.object({
+  email: z.string().email().optional(),
+})
 
 const HASURA_ENDPOINT     = process.env.HASURA_ENDPOINT     ?? 'https://api.ummat.dev/v1/graphql'
 const HASURA_ADMIN_SECRET = process.env.HASURA_GRAPHQL_ADMIN_SECRET ?? ''
@@ -108,14 +114,11 @@ async function sendConfirmation(email: string): Promise<void> {
 // ─── Handler ──────────────────────────────────────────────────────────────────
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
-  let body: { email?: unknown }
-  try {
-    body = (await req.json()) as { email?: unknown }
-  } catch {
-    return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 })
-  }
-
-  const email = typeof body.email === 'string' ? body.email.trim().toLowerCase() : ''
+  const rawBody = await req.json().catch(() => null)
+  const parsedBody = EarlyAccessSchema.safeParse(rawBody)
+  const email = parsedBody.success && parsedBody.data.email
+    ? parsedBody.data.email.trim().toLowerCase()
+    : ''
   if (!email || !EMAIL_RE.test(email)) {
     return NextResponse.json({ error: 'A valid email address is required' }, { status: 400 })
   }

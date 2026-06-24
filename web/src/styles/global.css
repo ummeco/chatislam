@@ -1,0 +1,74 @@
+/*
+ * ChatIslam — Global Styles (Astro 5)
+ * Brand palette: #C9F27A (light) · #79C24C (mid) · #1E5E2F (dark) · #0D2F17 (deep)
+ * REF: P2-E3-W02-S02-T02 · @ummat/astro-preset injects brand tokens via integration
+ */
+
+@import "tailwindcss";
+
+/* ── Base ──────────────────────────────────────────────────────────────────── */
+
+:root {
+  --brand-green-light:  #C9F27A;
+  --brand-green-mid:    #79C24C;
+  --brand-green-dark:   #1E5E2F;
+  --brand-green-deep:   #0D2F17;
+  --font-inter:         'Inter', system-ui, sans-serif;
+  --font-nastaliq:      'Noto Nastaliq Urdu', serif;
+  color-scheme: dark;
+}
+
+html {
+  background-color: var(--brand-green-deep);
+  color: var(--brand-green-light);
+  font-family: var(--font-inter);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* RTL overrides — direction set by @ummat/astro-preset based on locale */
+[dir="rtl"] {
+  font-family: var(--font-nastaliq), var(--font-inter);
+}
+
+/* ── Skip link (WCAG 2.4.1) ──────────────────────────────────────────────── */
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 200;
+  padding: 0.5rem 1rem;
+  background-color: var(--brand-green-dark);
+  color: var(--brand-green-light);
+  border-radius: 0.25rem;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+/* ── Animations ──────────────────────────────────────────────────────────── */
+
+@keyframes ci-dot-bounce {
+  from { transform: translateY(0); opacity: 0.4; }
+  to   { transform: translateY(-4px); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @keyframes ci-dot-bounce {
+    from { opacity: 0.4; }
+    to   { opacity: 1; }
+  }
+}
+
+/* ── Prose ────────────────────────────────────────────────────────────────── */
+
+a {
+  color: var(--brand-green-mid);
+  text-decoration: underline;
+}
+
+a:hover {
+  color: var(--brand-green-light);
+}

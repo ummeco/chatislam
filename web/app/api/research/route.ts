@@ -9,6 +9,7 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import crypto from 'crypto'
+import { z } from 'zod'
 import { researchQuery, researchCacheKey, type FeynmanDepth, type ResearchResponse } from '../../../lib/feynman-agent'
 import type { MadhabTag } from '../../../lib/madhhab'
 
@@ -21,6 +22,15 @@ interface ResearchRequest {
   language?:   'en' | 'ar' | 'id'
   session_id?: string
 }
+
+// Zod schema — T03 AC-01: Priority 2 validation at research boundary
+const ResearchRequestSchema = z.object({
+  query:      z.string().min(1, 'query is required').max(500),
+  depth:      z.enum(['summary', 'intermediate', 'scholarly']),
+  madhhab:    z.string().optional(),
+  language:   z.enum(['en', 'ar', 'id']).optional(),
+  session_id: z.string().optional(),
+})
 
 // ─── Redis rate limiter ───────────────────────────────────────────────────────
 
@@ -137,25 +147,16 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
   }
 
-  // Parse body
-  let body: ResearchRequest
-  try {
-    body = (await req.json()) as ResearchRequest
-  } catch {
-    return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 })
+  // Parse body — Zod safeParse (T03 AC-01)
+  const rawBody = await req.json().catch(() => null)
+  const parsedBody = ResearchRequestSchema.safeParse(rawBody)
+  if (!parsedBody.success) {
+    return NextResponse.json(
+      { error: 'invalid_input', details: parsedBody.error.flatten() },
+      { status: 400 },
+    )
   }
-
-  // Validate
-  if (!body.query || typeof body.query !== 'string' || body.query.trim() === '') {
-    return NextResponse.json({ error: 'query is required' }, { status: 400 })
-  }
-  if (body.query.length > 500) {
-    return NextResponse.json({ error: 'query exceeds 500 characters' }, { status: 400 })
-  }
-  const validDepths: FeynmanDepth[] = ['summary', 'intermediate', 'scholarly']
-  if (!body.depth || !validDepths.includes(body.depth)) {
-    return NextResponse.json({ error: 'depth must be summary|intermediate|scholarly' }, { status: 400 })
-  }
+  const body: ResearchRequest = parsedBody.data as ResearchRequest
 
   const userId = parseUserId(req)
 

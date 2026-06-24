@@ -4,9 +4,13 @@
 // both call useState/useEffect and cannot run during Next.js static prerendering.
 // Digest fix: prevents "Cannot read properties of null (reading 'useState')"
 // in Next.js 15 prerender workers.
+//
+// P2-E5-W01-S01-T01 (AC-06): installs the IndexedDB offline-queue drain listener
+// so queued messages are replayed automatically when connectivity is restored.
 
 import { ThemeProvider } from 'next-themes'
 import { ConsentProvider, CookieBanner, ConsentGatedScript } from '@ummat/consent'
+import { useEffect } from 'react'
 import type { ReactNode } from 'react'
 
 interface ClientProvidersProps {
@@ -15,6 +19,19 @@ interface ClientProvidersProps {
 }
 
 export default function ClientProviders({ children, umamiWebsiteId }: ClientProvidersProps) {
+  // Install the IndexedDB offline-queue drain listener once at app boot.
+  // Dynamic import keeps the IDB code out of the initial bundle.
+  useEffect(() => {
+    import('../lib/offline-message-queue').then(({ installOnlineListener }) => {
+      installOnlineListener((results) => {
+        const failed = results.filter((r) => !r.success).length
+        if (failed > 0) {
+          console.warn(`[offline-queue] ${failed} message(s) failed to replay`)
+        }
+      })
+    }).catch(console.error)
+  }, [])
+
   return (
     <ConsentProvider>
       <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>

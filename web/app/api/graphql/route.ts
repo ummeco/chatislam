@@ -12,8 +12,15 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
+import { z } from 'zod'
 
 const SECRET = process.env.REMOTE_SCHEMA_SECRET
+
+const GraphQLBodySchema = z.object({
+  query:         z.string().optional(),
+  operationName: z.string().optional(),
+  variables:     z.record(z.unknown()).optional(),
+})
 
 const INTROSPECTION_RESPONSE = {
   data: {
@@ -56,7 +63,12 @@ export async function POST(req: NextRequest) {
     return unauthorized()
   }
 
-  const body = await req.json()
+  const rawBody = await req.json().catch(() => null)
+  const parsedGql = GraphQLBodySchema.safeParse(rawBody)
+  if (!parsedGql.success) {
+    return NextResponse.json({ errors: [{ message: 'Invalid request body' }] }, { status: 400 })
+  }
+  const body = parsedGql.data
 
   if (
     typeof body.query === 'string' &&

@@ -1,0 +1,31 @@
+---
+/**
+ * DisclaimerBanner.astro — AI fatwa disclaimer (SCI-11 · T01-LEGAL-COUNSEL-PACK)
+ *
+ * PURPOSE: Persistent visible banner: AI is not a fatwa source.
+ * CONSTRAINTS: Pure static HTML — no client JS required.
+ * REF: P2-E3-W02-S02-T02
+ */
+---
+
+<div
+  role="note"
+  aria-label="AI Islamic guidance disclaimer"
+  style="
+    background-color: var(--brand-green-dark);
+    border: 1px solid rgba(121,194,76,0.4);
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    margin: 0.75rem 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  "
+>
+  <span aria-hidden="true" style="font-size: 0.75rem; flex-shrink: 0; margin-top: 2px;">⚠️</span>
+  <p style="margin: 0; font-size: 0.72rem; color: var(--brand-green-light); line-height: 1.45;">
+    <strong>AI-generated.</strong> Responses are for informational purposes only and are not fatwas
+    or authoritative religious rulings. Always consult a qualified Islamic scholar.
+    <a href="/legal/sharia-disclaimer" style="color: var(--brand-green-mid);">Learn more</a>
+  </p>
+</div>

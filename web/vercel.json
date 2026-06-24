@@ -1,4 +1,5 @@
 {
+  "framework": "astro",
   "crons": [
     {
       "path": "/api/cron/spend-alert",
@@ -7,14 +8,23 @@
   ],
   "headers": [
     {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Frame-Options",        "value": "SAMEORIGIN" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy",        "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy",     "value": "camera=(), microphone=(), geolocation=()" }
+      ]
+    },
+    {
       "source": "/widget(.*)",
       "headers": [
         {
-          "key": "Content-Security-Policy",
+          "key":   "Content-Security-Policy",
           "value": "frame-ancestors https://ummat.app https://*.ummat.app"
         },
         {
-          "key": "X-Frame-Options",
+          "key":   "X-Frame-Options",
           "value": "ALLOW-FROM https://ummat.app"
         }
       ]
@@ -22,15 +32,81 @@
     {
       "source": "/api/widget/(.*)",
       "headers": [
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "https://ummat.app"
-        },
-        {
-          "key": "Access-Control-Allow-Methods",
-          "value": "POST, OPTIONS"
-        }
+        { "key": "Access-Control-Allow-Origin",  "value": "https://ummat.app" },
+        { "key": "Access-Control-Allow-Methods", "value": "POST, OPTIONS" }
       ]
+    }
+  ],
+  "redirects": [
+    {
+      "source":      "/chat/:sessionId",
+      "destination": "/chat",
+      "permanent":   true
+    },
+    {
+      "source":      "/admin(.*)",
+      "destination": "/",
+      "permanent":   true
+    },
+    {
+      "source":      "/auth(.*)",
+      "destination": "/",
+      "permanent":   true
+    },
+    {
+      "source":      "/preferences(.*)",
+      "destination": "/",
+      "permanent":   true
+    },
+    {
+      "source":      "/settings(.*)",
+      "destination": "/",
+      "permanent":   true
+    },
+    {
+      "source":      "/ramadan(.*)",
+      "destination": "/",
+      "permanent":   true
+    },
+    {
+      "source":      "/seasonal(.*)",
+      "destination": "/",
+      "permanent":   true
+    },
+    {
+      "source":      "/tutor(.*)",
+      "destination": "/chat",
+      "permanent":   true
+    },
+    {
+      "source":      "/research(.*)",
+      "destination": "/chat",
+      "permanent":   true
+    },
+    {
+      "source":      "/widget(.*)",
+      "destination": "/chat",
+      "permanent":   true
+    },
+    {
+      "source":      "/legal/accessibility(.*)",
+      "destination": "/legal/sharia-disclaimer",
+      "permanent":   true
+    },
+    {
+      "source":      "/legal/attribution(.*)",
+      "destination": "/legal/sharia-disclaimer",
+      "permanent":   true
+    },
+    {
+      "source":      "/legal/california(.*)",
+      "destination": "/privacy",
+      "permanent":   true
+    },
+    {
+      "source":      "/legal/dsr(.*)",
+      "destination": "/privacy",
+      "permanent":   true
     }
   ]
 }

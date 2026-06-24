@@ -1,0 +1,97 @@
+---
+/**
+ * SiteNav.astro — ChatIslam site navigation header
+ *
+ * PURPOSE: Top nav bar with logo, primary links, and locale indicator.
+ * INPUTS:  currentPath (optional), locale (optional)
+ * CONSTRAINTS: Static Astro component — no client JS.
+ * REF: P2-E3-W02-S02-T02
+ */
+
+export interface Props {
+  currentPath?: string
+  locale?: string
+}
+
+const { currentPath = '/', locale = 'en' } = Astro.props
+---
+
+<nav
+  class="site-nav"
+  aria-label="Site navigation"
+  style="
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--brand-green-dark);
+    background-color: var(--brand-green-deep);
+    gap: 1rem;
+  "
+>
+  <a
+    href="/"
+    style="
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--brand-green-light);
+      text-decoration: none;
+    "
+    aria-label="ChatIslam home"
+  >
+    ChatIslam
+  </a>
+
+  <ul
+    style="
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    "
+    role="list"
+  >
+    <li>
+      <a
+        href="/chat"
+        aria-current={currentPath === '/chat' ? 'page' : undefined}
+        style="font-size: 0.875rem; color: var(--brand-green-mid); text-decoration: none;"
+      >
+        Ask a Question
+      </a>
+    </li>
+    <li>
+      <a
+        href="/dawah"
+        aria-current={currentPath === '/dawah' ? 'page' : undefined}
+        style="font-size: 0.875rem; color: var(--brand-green-mid); text-decoration: none;"
+      >
+        Dawah
+      </a>
+    </li>
+    <li>
+      <a
+        href="/donate"
+        style="font-size: 0.875rem; color: var(--brand-green-mid); text-decoration: none;"
+      >
+        Donate
+      </a>
+    </li>
+  </ul>
+
+  <!-- Locale badge (non-interactive in static pages; chat island has full selector) -->
+  <span
+    style="
+      font-size: 0.75rem;
+      color: var(--brand-green-mid);
+      padding: 0.125rem 0.375rem;
+      border: 1px solid var(--brand-green-dark);
+      border-radius: 4px;
+    "
+    aria-label={`Current language: ${locale}`}
+  >
+    {locale.toUpperCase()}
+  </span>
+</nav>

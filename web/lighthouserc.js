@@ -1,22 +1,32 @@
-// Lighthouse CI config — Sprint B9 DR-B9-PERF-01 + DR-B9-A11Y-01
-// Project: ChatIslam (chatislam.org)
+/**
+ * lighthouserc.js — Lighthouse CI config for Astro 5
+ * Target: all four categories >= 95 on static landing pages (QA-A gate).
+ * REF: P2-E3-W02-S02-T02
+ */
+
+/** @type {import('@lhci/cli').LhciConfig} */
 module.exports = {
   ci: {
     collect: {
-      startServerCommand: 'pnpm start',
-      url: ['http://localhost:3000/'],
-      numberOfRuns: 3,
+      staticDistDir: './dist',
+      url: [
+        'http://localhost:4321/',
+        'http://localhost:4321/dawah',
+        'http://localhost:4321/donate',
+        'http://localhost:4321/legal/sharia-disclaimer',
+      ],
+      numberOfRuns: 1,
     },
     assert: {
       assertions: {
-        'categories:performance': ['error', { minScore: 0.90 }],
-        'categories:accessibility': ['error', { minScore: 0.90 }],
-        'categories:best-practices': ['warn', { minScore: 0.90 }],
-        'categories:seo': ['warn', { minScore: 0.90 }],
-        'first-contentful-paint': ['warn', { maxNumericValue: 1800 }],
-        'largest-contentful-paint': ['error', { maxNumericValue: 2500 }],
-        'cumulative-layout-shift': ['error', { maxNumericValue: 0.1 }],
-        'total-blocking-time': ['warn', { maxNumericValue: 200 }],
+        'categories:performance':    ['error', { minScore: 0.95 }],
+        'categories:accessibility':  ['error', { minScore: 0.95 }],
+        'categories:best-practices': ['error', { minScore: 0.95 }],
+        'categories:seo':            ['error', { minScore: 0.95 }],
+        'first-contentful-paint':    ['warn',  { maxNumericValue: 1500 }],
+        'largest-contentful-paint':  ['error', { maxNumericValue: 2000 }],
+        'cumulative-layout-shift':   ['error', { maxNumericValue: 0.05 }],
+        'total-blocking-time':       ['warn',  { maxNumericValue: 150 }],
       },
     },
     upload: {

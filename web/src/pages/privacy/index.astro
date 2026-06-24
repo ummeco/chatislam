@@ -1,0 +1,31 @@
+---
+/**
+ * privacy/index.astro — Privacy policy (static)
+ * REF: P2-E3-W02-S02-T02
+ */
+
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import SiteNav from '../../components/SiteNav.astro'
+
+const title       = 'Privacy Policy — ChatIslam'
+const description = 'ChatIslam privacy policy — how we handle your data.'
+---
+
+<BaseLayout title={title} description={description}>
+  <SiteNav currentPath="/privacy" />
+  <main id="main-content" style="max-width: 800px; margin: 0 auto; padding: 3rem 1.5rem;">
+    <h1 style="font-size: 2rem; font-weight: 700; color: var(--brand-green-light); margin-bottom: 1.5rem;">Privacy Policy</h1>
+    <p style="font-size: 0.875rem; color: var(--brand-green-mid); margin-bottom: 1rem;">Last updated: June 2026</p>
+    <section style="line-height: 1.7; color: var(--brand-green-light); font-size: 0.9rem;">
+      <p>ChatIslam collects minimal data necessary to provide the AI chat service.</p>
+      <p style="margin-top: 1rem;">
+        We use Umami analytics (cookieless, GDPR-compliant) and Cloudflare for infrastructure.
+        Chat conversations may be stored temporarily for rate-limiting purposes only.
+        No personal data is sold or shared with third parties for advertising.
+      </p>
+      <p style="margin-top: 1rem;">
+        For questions, contact us at <a href="mailto:privacy@chatislam.org">privacy@chatislam.org</a>.
+      </p>
+    </section>
+  </main>
+</BaseLayout>

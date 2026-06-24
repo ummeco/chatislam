@@ -1,0 +1,27 @@
+---
+/**
+ * terms/index.astro — Terms of service (static)
+ * REF: P2-E3-W02-S02-T02
+ */
+
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import SiteNav from '../../components/SiteNav.astro'
+
+const title       = 'Terms of Service — ChatIslam'
+const description = 'ChatIslam terms of service.'
+---
+
+<BaseLayout title={title} description={description}>
+  <SiteNav currentPath="/terms" />
+  <main id="main-content" style="max-width: 800px; margin: 0 auto; padding: 3rem 1.5rem;">
+    <h1 style="font-size: 2rem; font-weight: 700; color: var(--brand-green-light); margin-bottom: 1.5rem;">Terms of Service</h1>
+    <p style="font-size: 0.875rem; color: var(--brand-green-mid); margin-bottom: 1rem;">Last updated: June 2026</p>
+    <section style="line-height: 1.7; color: var(--brand-green-light); font-size: 0.9rem;">
+      <p>By using ChatIslam, you agree to use it only for lawful purposes and in accordance with
+         Ahl us-Sunnah wal-Jamaah Islamic content guidelines.</p>
+      <p style="margin-top: 1rem;">AI-generated responses are for informational purposes only.
+         They are not fatwas or authoritative religious rulings.
+         Always consult a qualified Islamic scholar for binding religious guidance.</p>
+    </section>
+  </main>
+</BaseLayout>

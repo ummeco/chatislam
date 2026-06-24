@@ -1,4 +1,4 @@
-// app/api/auth/signin/route.ts — T09 (SEC-HARDENING)
+// app/api/auth/signin/route.ts — T09 (SEC-HARDENING) + T03 (P2-E5 Zod validation)
 // Server-side proxy for Hasura Auth signin with Cloudflare Turnstile verification.
 // Replaces the direct client→Hasura Auth call in SignInClient.tsx.
 //
@@ -6,20 +6,27 @@
 // Returns:  { session: { accessToken, refreshToken, accessTokenExpiresIn } } | { error }
 
 import { NextRequest, NextResponse } from 'next/server'
+import { z } from 'zod'
 import { verifyTurnstileToken } from '@/lib/turnstile'
 
 const AUTH_URL = process.env.NEXT_PUBLIC_AUTH_URL ?? 'https://auth.ummat.dev'
 
-export async function POST(req: NextRequest) {
-  const body = await req.json().catch(() => null) as {
-    email?: string
-    password?: string
-    turnstileToken?: string
-  } | null
+const SigninSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(1),
+  turnstileToken: z.string().optional(),
+})
 
-  if (!body?.email || !body?.password) {
-    return NextResponse.json({ error: 'Email and password required' }, { status: 400 })
+export async function POST(req: NextRequest) {
+  const rawBody = await req.json().catch(() => null)
+  const parsed = SigninSchema.safeParse(rawBody)
+  if (!parsed.success) {
+    return NextResponse.json(
+      { error: 'invalid_input', details: parsed.error.flatten() },
+      { status: 400 },
+    )
   }
+  const body = parsed.data
 
   // T09: Turnstile verification — fail closed in production, warn in dev.
   const isProd = process.env.NODE_ENV === 'production'

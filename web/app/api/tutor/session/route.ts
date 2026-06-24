@@ -8,6 +8,12 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
+import { z } from 'zod'
+
+// Zod schema — T03 AC-01: Priority 2 validation at tutor session boundary
+const TutorSessionSchema = z.object({
+  path_id: z.string().min(1, 'path_id is required').optional(),
+})
 
 // ─── Redis rate limiter ───────────────────────────────────────────────────────
 
@@ -118,16 +124,17 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ error: 'rate_limited' }, { status: 429, headers: { 'Retry-After': '60' } })
   }
 
-  // Parse body
-  let body: { path_id?: string }
-  try {
-    body = (await req.json()) as { path_id?: string }
-  } catch {
-    return NextResponse.json({ error: 'invalid_json' }, { status: 400 })
+  // Parse body — Zod safeParse (T03 AC-01)
+  const rawBody = await req.json().catch(() => null)
+  const parsedBody = TutorSessionSchema.safeParse(rawBody)
+  if (!parsedBody.success) {
+    return NextResponse.json(
+      { error: 'invalid_input', details: parsedBody.error.flatten() },
+      { status: 400 },
+    )
   }
-
-  const { path_id } = body
-  if (!path_id || typeof path_id !== 'string') {
+  const { path_id } = parsedBody.data
+  if (!path_id) {
     return NextResponse.json({ error: 'path_id is required' }, { status: 400 })
   }
 

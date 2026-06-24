@@ -20,8 +20,19 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
+import { z } from 'zod'
 import { jwtVerify } from 'jose'
 import { sanitizeUserInput }          from '../../../lib/sanitize-input'
+
+const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+
+const FeedbackSchema = z.object({
+  message_id:      z.string().regex(UUID_PATTERN),
+  session_id:      z.string().regex(UUID_PATTERN),
+  rating:          z.union([z.literal(-1), z.literal(1)]),
+  correction_text: z.string().max(500).optional(),
+  flagged_reason:  z.enum(['incorrect', 'inappropriate', 'off_topic']).optional(),
+})
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -143,55 +154,23 @@ function isUuid(v: string): boolean {
 // ─── Route handler ────────────────────────────────────────────────────────────
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
-  let body: unknown
-  try {
-    body = await req.json()
-  } catch {
-    return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 })
+  const rawBody = await req.json().catch(() => null)
+  const parsed = FeedbackSchema.safeParse(rawBody)
+  if (!parsed.success) {
+    return NextResponse.json(
+      { error: 'invalid_input', details: parsed.error.flatten() },
+      { status: 400 },
+    )
   }
 
-  const b = body as Record<string, unknown>
+  const { message_id, session_id, rating, correction_text, flagged_reason } = parsed.data
 
-  // ── Validation ──
-  const { message_id, session_id, rating, correction_text, flagged_reason } = b
-
-  if (typeof message_id !== 'string' || !isUuid(message_id)) {
-    return NextResponse.json({ error: 'message_id must be a valid UUID' }, { status: 400 })
-  }
-
-  if (typeof session_id !== 'string' || !isUuid(session_id)) {
-    return NextResponse.json({ error: 'session_id must be a valid UUID' }, { status: 400 })
-  }
-
-  if (rating !== -1 && rating !== 1) {
-    return NextResponse.json({ error: 'rating must be -1 or 1' }, { status: 400 })
-  }
-
-  let sanitizedCorrection: string | null = null
-  if (correction_text !== undefined) {
-    if (typeof correction_text !== 'string') {
-      return NextResponse.json({ error: 'correction_text must be a string' }, { status: 400 })
-    }
-    if (correction_text.length > MAX_CORRECTION_LENGTH) {
-      return NextResponse.json(
-        { error: `correction_text must be ≤ ${MAX_CORRECTION_LENGTH} characters` },
-        { status: 400 },
-      )
-    }
-    sanitizedCorrection = scrubPii(sanitizeUserInput(correction_text))
-  }
-
-  const VALID_REASONS = ['incorrect', 'inappropriate', 'off_topic']
-  let sanitizedReason: string | null = null
-  if (flagged_reason !== undefined) {
-    if (typeof flagged_reason !== 'string' || !VALID_REASONS.includes(flagged_reason)) {
-      return NextResponse.json(
-        { error: `flagged_reason must be one of: ${VALID_REASONS.join(', ')}` },
-        { status: 400 },
-      )
-    }
-    sanitizedReason = flagged_reason
-  }
+  // ── Sanitize optional text fields ──
+  const sanitizedCorrection: string | null =
+    correction_text !== undefined
+      ? scrubPii(sanitizeUserInput(correction_text))
+      : null
+  const sanitizedReason: string | null = flagged_reason ?? null
 
   // ── Rate limit ──
   const rl = await checkFeedbackRateLimit(session_id)

@@ -8,7 +8,7 @@
  * Events are logged by sha256 hash of the message only — no plaintext stored.
  */
 
-import * as Sentry from '@sentry/nextjs'
+import * as Sentry from '@sentry/astro'
 import crypto from 'crypto'
 
 // ─── Types ─────────────────────────────────────────────────────────────────

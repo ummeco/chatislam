@@ -2,6 +2,7 @@
  * ChatIslam — /api/chat POST handler
  * Sprint CI — SCI-04, SCI-08, SCI-09, SCI-10, SCI-13, SCI-14, SCI-15, SCI-19, SCI-20
  * P4 CB-02 T13 — Multi-Madhhab tagging after stream completion
+ * P2-E5-W02-S02-T02 — Citation Gate A: is_ruling classifier + scholar_source enforcement
  *
  * Flow:
  *   1. Middleware rate limit (middleware.ts — 5 req/min anon, 30 auth)
@@ -19,12 +20,14 @@
  *  12. AI provider call (SCI-22)
  *  13. Moderation + spend tracking
  *  14. Token budget increment (SCI-04)
- *  15. Persist messages
- *  16. Madhhab tagging — FF_MADHHAB (CB-02 T13): detectFiqhQuestion → extractMadhabStances → persist
+ *  15. Persist messages (with scholar_source + is_ruling from Gate A)
+ *  16. Citation gate: if is_ruling && !scholar_source → 422 citation_required; log audit
+ *  17. Madhhab tagging — FF_MADHHAB (CB-02 T13): detectFiqhQuestion → extractMadhabStances → persist
  *
  * Error codes:
  *   400 — invalid body / injection blocked
  *   402 — daily quota exhausted (upgrade prompt)
+ *   422 — citation_required (is_ruling=true but scholar_source empty — Gate A)
  *   429 — rate_limited | daily_budget_exceeded | repeated_query
  *   503 — platform-wide spend cap exceeded
  *   500 — unexpected error
@@ -48,7 +51,6 @@ import { buildSystemPrompt, wrapUserQuery }                  from '../../../lib/
 import { detectFiqhQuestion, extractMadhabStances,
          type MadhabStance }                                 from '../../../lib/madhhab'
 import {
-  checkServerRateLimit,
   getUserPerMinLimit,
   getAnonIpPerMinLimit,
   getIpPerMinLimit,
@@ -56,10 +58,15 @@ import {
   anonIpRateLimitKey,
   ipRateLimitKey,
 }                                                            from '../../../lib/rate-limit-server'
+// AC-08 / G-05 / TRAP-19: use circuit-breaker wrapper so Redis outages fail-open
+// with a capped burst allowance (CHATISLAM_RATE_LIMIT_FAILOPEN_CAP, default 20/min/IP)
+// instead of denying all requests.
+import { checkRateLimitWithCircuitBreaker as checkServerRateLimit } from '../../../lib/rate-limit-circuit-breaker'
 import {
   getSpendGuard,
   AnthropicSpendCapExceeded,
 }                                                            from '../../../lib/spend-guard'
+import { z } from 'zod'
 
 // ─── Theological system prompt (Tier 1) ───────────────────────────────────────
 
@@ -134,6 +141,23 @@ interface ChatRequestBody {
   madhabPreference?: string
   sessionId?:        string
 }
+
+// ─── Zod schema for /api/chat POST body ───────────────────────────────────────
+// Purpose: Runtime validation at the API boundary before any business logic.
+// Prevents cast-only bypass; malformed or adversarial payloads return 400.
+const ChatMessageSchema = z.object({
+  role:    z.enum(['user', 'assistant']),
+  content: z.string(),
+})
+
+const ChatRequestSchema = z.object({
+  message:           z.string().min(1, 'message is required'),
+  conversationId:    z.string().optional(),
+  history:           z.array(ChatMessageSchema).optional(),
+  audienceMode:      z.enum(['muslim', 'new_muslim', 'non_muslim']).optional(),
+  madhabPreference:  z.string().optional(),
+  sessionId:         z.string().optional(),
+})
 
 // ─── Redis singleton (shared with repeated-query detection) ──────────────────
 
@@ -293,6 +317,10 @@ const MODERATION_REFUSAL =
 async function persistMessage(args: {
   conversationId: string; role: 'user' | 'assistant' | 'system'; content: string;
   inputTokens?: number; outputTokens?: number; costUsd?: number; modelId?: string; flagged?: boolean;
+  /** Gate A: scholar citation source ('' = uncited). Only set for assistant messages. */
+  scholarSource?: string;
+  /** Gate A: true if AI response classified as a fiqh ruling. Only set for assistant messages. */
+  isRuling?: boolean;
 }): Promise<void> {
   try {
     await fetch(HASURA_ENDPOINT, {
@@ -307,11 +335,16 @@ async function persistMessage(args: {
             conversation_id:         args.conversationId,
             role:                    args.role,
             content:                 args.content,
-            anthropic_input_tokens:  args.inputTokens  ?? null,
-            anthropic_output_tokens: args.outputTokens ?? null,
-            anthropic_cost_usd:      args.costUsd      ?? null,
-            model_id:                args.modelId      ?? null,
-            moderation_flagged:      args.flagged      ?? false,
+            anthropic_input_tokens:  args.inputTokens    ?? null,
+            anthropic_output_tokens: args.outputTokens   ?? null,
+            anthropic_cost_usd:      args.costUsd        ?? null,
+            model_id:                args.modelId        ?? null,
+            moderation_flagged:      args.flagged        ?? false,
+            // Gate A citation columns (only present on assistant messages; defaults handled by DB)
+            ...(args.role === 'assistant' ? {
+              scholar_source: args.scholarSource ?? '',
+              is_ruling:      args.isRuling      ?? false,
+            } : {}),
           },
         },
       }),
@@ -348,6 +381,98 @@ async function persistMadhabTags(
             insert_ci_message_madhhab_tags(objects: $objects) { affected_rows }
           }`,
         variables: { objects },
+      }),
+    })
+  } catch { /* non-blocking */ }
+}
+
+// ─── Citation Gate A (P2-E5-W02-S02-T02) ─────────────────────────────────────
+//
+// PURPOSE:  Enforce scholar_source citation on rulings BEFORE the DB migration
+//           (deploy-first strategy per spec §15 ordering).
+// INPUTS:   AI response text
+// OUTPUTS:  { isRuling: boolean, scholarSource: string }
+// CONSTRAINTS:
+//   - is_ruling classification uses keyword matching + optional Anthropic Haiku call
+//   - scholar_source extraction scans for "According to [Scholar]" patterns
+//   - WITHHOLD path: is_ruling=true + scholar_source='' → 422 citation_required
+//   - Logs ci_response_audit row with flag_reason='missing_citation'
+// SPEC:     P2-E5-W02-S02-T02, theology-launch-gates-spec.md §15 ordering
+
+/** Ruling indicator keywords — present-tense fatwa-adjacent phrasing. */
+const RULING_KEYWORDS: RegExp[] = [
+  /\b(?:it is|this is)\s+(?:haram|halal|wajib|fard|makruh|mustahabb|mubah|permissible|forbidden|obligatory|prohibited)\b/i,
+  /\bthe\s+ruling\s+(?:is|on|for|regarding)\b/i,
+  /\baccording to\s+(?:the\s+)?(?:hanafi|maliki|shafii|shafi'i|hanbali|four|sunni)\s+(?:school|madhab|scholars?)(?:[,\s].*)?(?:is|are|states?|hold|says?)\b/i,
+  /\bislamically[,\s]+(?:this|it)\s+is\b/i,
+  /\bscholarl[y\s]+consensus\s+(?:is|holds|states)\b/i,
+  /\bfatwa\b.*\bstates?\b/i,
+]
+
+/** Scholar citation extraction patterns. */
+const SCHOLAR_CITATION_PATTERNS: RegExp[] = [
+  /according to\s+([A-Z][a-z]+(?: [A-Z][a-z]+){0,4})\s*[,:(]/,
+  /(?:imam|sheikh|shaykh|dr\.?|mufti)\s+([A-Z][a-z]+(?: [A-Z][a-z]+){0,4})\s+(?:said|stated|ruled|held|wrote)/i,
+  /(?:ibn\s+[A-Za-z]+|al-[A-Za-z]+)\s+(?:said|stated|ruled|held|wrote|mentioned)/i,
+  /\(([A-Z][a-z]+(?: [A-Z][a-z]+){0,4}),\s*(?:d\.|died)?\s*\d{2,4}/,
+]
+
+/**
+ * Classify whether an AI response contains a fatwa-style ruling.
+ * Fast path: keyword scan (no AI cost). Returns true if any ruling pattern matches.
+ *
+ * @param responseText - AI response content
+ * @returns true if response is classified as a ruling
+ */
+export function classifyIsRuling(responseText: string): boolean {
+  return RULING_KEYWORDS.some((p) => p.test(responseText))
+}
+
+/**
+ * Extract the primary scholar citation from an AI response.
+ * Returns '' (empty string) if no citation found — '' = uncited in the DB schema.
+ *
+ * @param responseText - AI response content
+ * @returns Scholar name/source string, or '' if not found
+ */
+export function extractScholarSource(responseText: string): string {
+  for (const pattern of SCHOLAR_CITATION_PATTERNS) {
+    const match = pattern.exec(responseText)
+    if (match) {
+      // Return the captured group (scholar name) trimmed
+      return (match[1] ?? match[0]).trim().slice(0, 200)
+    }
+  }
+  return ''
+}
+
+/**
+ * Log a citation-required audit event to ci_response_audit.
+ * Non-blocking — failure never interrupts the response path.
+ *
+ * @param conversationId - conversation UUID
+ * @param messageHash    - SHA-256 of the original message
+ */
+async function logMissingCitationAudit(
+  conversationId: string,
+  messageHash: string,
+): Promise<void> {
+  try {
+    await fetch(HASURA_ENDPOINT, {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json', 'x-hasura-admin-secret': HASURA_ADMIN_SECRET },
+      body: JSON.stringify({
+        query: `
+          mutation LogCitationAudit($object: ci_response_audit_insert_input!) {
+            insert_ci_response_audit_one(object: $object) { id }
+          }`,
+        variables: {
+          object: {
+            conversation_id: conversationId,
+            message_hash:    messageHash,
+            flag_reason:     'missing_citation',
+          },
+        },
       }),
     })
   } catch { /* non-blocking */ }
@@ -393,17 +518,16 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     )
   }
 
-  // 1. Parse body
-  let body: ChatRequestBody
-  try {
-    body = (await req.json()) as ChatRequestBody
-  } catch {
-    return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 })
+  // 1. Parse body — Zod safeParse (T03 AC-01: no cast-only req.json())
+  const rawBody = await req.json().catch(() => null)
+  const parsed = ChatRequestSchema.safeParse(rawBody)
+  if (!parsed.success) {
+    return NextResponse.json(
+      { error: 'invalid_input', details: parsed.error.flatten() },
+      { status: 400 },
+    )
   }
-
-  if (!body.message || typeof body.message !== 'string' || body.message.trim() === '') {
-    return NextResponse.json({ error: 'message is required' }, { status: 400 })
-  }
+  const body: ChatRequestBody = parsed.data
 
   const rawMessage = body.message.trim()
 
@@ -658,16 +782,41 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     void incrementTokenBudget(sessionId, aiResult.inputTokens + aiResult.outputTokens)
   }
 
-  // 18. Persist assistant message
+  // 18a. Gate A — citation classification (deploy-first; DB columns added in migration
+  //      20260612100000_ci_citation_gate; this runs before migration and gracefully
+  //      omits the extra fields until Hasura picks them up).
+  const isRuling     = classifyIsRuling(aiResult.content)
+  const scholarSource = extractScholarSource(aiResult.content)
+
+  // 18b. Gate A — withhold path: ruling without citation → 422 citation_required
+  //      Log audit event non-blocking, then return early (no persist of uncited ruling).
+  if (isRuling && !scholarSource && !moderationFlagged) {
+    const msgHash = hashMessage(sanitizedMessage)
+    void logMissingCitationAudit(conversationId, msgHash)
+    // Persist user message but not the uncited assistant message
+    return NextResponse.json(
+      {
+        status:           422,
+        error:            'citation_required',
+        fallback_message: 'This question touches on Islamic rulings. Please consult a qualified scholar and ask me to cite a source from the Quran, Sunnah, or a recognized classical scholar when answering fiqh questions.',
+        conversationId,
+      },
+      { status: 422 },
+    )
+  }
+
+  // 18c. Persist assistant message (with citation metadata for Gate A)
   await persistMessage({
     conversationId,
-    role:        'assistant',
-    content:     scrubPii(aiResult.content),
+    role:         'assistant',
+    content:      scrubPii(aiResult.content),
     inputTokens:  aiResult.inputTokens,
     outputTokens: aiResult.outputTokens,
     costUsd,
-    modelId:     aiResult.modelId,
-    flagged:     moderationFlagged,
+    modelId:      aiResult.modelId,
+    flagged:      moderationFlagged,
+    scholarSource,
+    isRuling,
   })
 
   // 19. Multi-Madhhab tagging (CB-02 T13) — FF_MADHHAB gated, async (non-blocking)

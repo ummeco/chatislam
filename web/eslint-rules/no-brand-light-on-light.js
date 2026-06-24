@@ -27,8 +27,6 @@
  *   ])
  */
 
-'use strict'
-
 /** Regex: matches text-brand-light, text-brand-mid, text-ummat-light, text-ummat-mid,
  *  AND literal hex arbitrary values text-[#79C24C] / text-[#C9F27A].
  *  NOT matched: bg-brand-light, bg-brand-mid, border-brand-light (backgrounds/borders are safe).
@@ -154,4 +152,4 @@ const rule = {
   },
 }
 
-module.exports = rule
+export default rule

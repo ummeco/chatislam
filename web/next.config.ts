@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 import { withSentryConfig } from "@sentry/nextjs";
 import withBundleAnalyzer from '@next/bundle-analyzer'
+import createNextIntlPlugin from 'next-intl/plugin';
+
+// P2-E6-W01-S01-T01: next-intl plugin wires up i18n/request.ts for locale detection.
+const withNextIntl = createNextIntlPlugin('./i18n/request.ts');
 
 // T12: Bundle analyzer — run with ANALYZE=true pnpm build
 const analyzeBundles = withBundleAnalyzer({ enabled: process.env.ANALYZE === 'true' })
@@ -72,7 +76,7 @@ const nextConfig: NextConfig = {
 // withSentryConfig wraps Next.js config to upload source maps to GlitchTip on build.
 // T25.07: url points to self-hosted GlitchTip at errors.ummat.dev (not Sentry SaaS).
 // Requires SENTRY_AUTH_TOKEN (=GLITCHTIP_AUTH_TOKEN), SENTRY_ORG, SENTRY_PROJECT in Vercel env vars.
-export default withSentryConfig(analyzeBundles(nextConfig), {
+export default withSentryConfig(withNextIntl(analyzeBundles(nextConfig)), {
   org: process.env.SENTRY_ORG ?? "ummeco",
   project: process.env.SENTRY_PROJECT ?? "chatislam-web",
   sentryUrl: 'https://errors.ummat.dev',

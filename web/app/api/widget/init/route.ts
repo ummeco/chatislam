@@ -11,6 +11,13 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import crypto from 'crypto'
+import { z } from 'zod'
+
+// Zod schema — T03 AC-01: Priority 2 validation at widget init boundary
+const WidgetInitSchema = z.object({
+  mode:   z.string().optional(),
+  origin: z.string().optional(),
+})
 
 const ALLOWED_ORIGINS = (process.env.WIDGET_ALLOWED_ORIGINS ?? 'ummat.app')
   .split(',')
@@ -36,12 +43,9 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ error: 'Origin not permitted' }, { status: 403 })
   }
 
-  let body: { mode?: string; origin?: string }
-  try {
-    body = (await req.json()) as { mode?: string; origin?: string }
-  } catch {
-    body = {}
-  }
+  const rawBody = await req.json().catch(() => null)
+  const parsedWidget = WidgetInitSchema.safeParse(rawBody ?? {})
+  const body = parsedWidget.success ? parsedWidget.data : {}
 
   const validModes = ['Muslim', 'NewMuslim', 'NonMuslim']
   const mode       = validModes.includes(body.mode ?? '') ? body.mode! : 'Muslim'

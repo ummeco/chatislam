@@ -18,6 +18,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import crypto from 'crypto'
 import Anthropic from '@anthropic-ai/sdk'
+import { z } from 'zod'
 import {
   buildTutorSystemPrompt,
   scoreMastery,
@@ -27,6 +28,13 @@ import {
   type CiTutorLesson,
 } from '../../../../lib/tutor-engine'
 import { storePartialContent } from '../../../../lib/ai-provider'
+
+// Zod schema — T03 AC-01: Priority 2 validation at tutor message boundary
+const TutorMessageSchema = z.object({
+  session_id: z.string().min(1).optional(),
+  message:    z.string().min(1).max(2000).optional(),
+  message_id: z.string().optional(),
+})
 
 // ─── Redis ────────────────────────────────────────────────────────────────────
 
@@ -175,24 +183,19 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ error: 'daily_limit_reached' }, { status: 429 })
   }
 
-  // Parse body
-  let body: {
-    session_id?: string
-    message?:    string
-    message_id?: string  // for stream recovery
+  // Parse body — Zod safeParse (T03 AC-01)
+  const rawBody = await req.json().catch(() => null)
+  const parsedBody = TutorMessageSchema.safeParse(rawBody)
+  if (!parsedBody.success) {
+    return NextResponse.json(
+      { error: 'invalid_input', details: parsedBody.error.flatten() },
+      { status: 400 },
+    )
   }
-  try {
-    body = (await req.json()) as typeof body
-  } catch {
-    return NextResponse.json({ error: 'invalid_json' }, { status: 400 })
-  }
-
+  const body = parsedBody.data
   const { session_id, message } = body
-  if (!session_id || !message || typeof message !== 'string' || !message.trim()) {
+  if (!session_id || !message || !message.trim()) {
     return NextResponse.json({ error: 'session_id and message are required' }, { status: 400 })
-  }
-  if (message.length > 2000) {
-    return NextResponse.json({ error: 'message too long (max 2000 chars)' }, { status: 400 })
   }
 
   // SEC-H8: injection guard

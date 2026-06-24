@@ -1,0 +1,38 @@
+---
+/**
+ * legal/sharia-disclaimer.astro — Sharia disclaimer page (static, SCI-11)
+ * REF: P2-E3-W02-S02-T02
+ */
+
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import SiteNav from '../../components/SiteNav.astro'
+
+const title       = 'Sharia Disclaimer — ChatIslam'
+const description = 'ChatIslam AI responses are not fatwas. Learn about our Islamic content guidelines.'
+---
+
+<BaseLayout title={title} description={description}>
+  <SiteNav currentPath="/legal/sharia-disclaimer" />
+  <main id="main-content" style="max-width: 800px; margin: 0 auto; padding: 3rem 1.5rem;">
+    <h1 style="font-size: 2rem; font-weight: 700; color: var(--brand-green-light); margin-bottom: 1.5rem;">Sharia Disclaimer</h1>
+    <section style="line-height: 1.8; color: var(--brand-green-light); font-size: 0.9rem; display: grid; gap: 1rem;">
+      <p>
+        ChatIslam provides AI-generated responses for informational and educational purposes only.
+        <strong>Responses are not fatwas and do not constitute authoritative religious rulings.</strong>
+      </p>
+      <p>
+        Our AI follows Ahl us-Sunnah wal-Jamaah content guidelines with a preference for
+        Hanbali, Shafi&apos;i, Maliki, and Hanafi scholarship. Athari aqeedah is primary;
+        Ash&apos;ari and Maturidi positions are accepted within the Ahl us-Sunnah umbrella.
+      </p>
+      <p>
+        For personal religious guidance, binding legal rulings (fatwa), or complex fiqh questions,
+        always consult a qualified Islamic scholar.
+      </p>
+      <p>
+        Content outside the Ahl us-Sunnah umbrella (e.g., Ahmadiyya, Nation of Islam doctrines)
+        is not presented as valid Islamic scholarship.
+      </p>
+    </section>
+  </main>
+</BaseLayout>

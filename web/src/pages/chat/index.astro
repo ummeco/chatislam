@@ -1,0 +1,48 @@
+---
+/**
+ * chat/index.astro — Chat page (static shell + client:load island)
+ *
+ * PURPOSE: Static page wrapper for the AI chat island.
+ *   The ChatIsland React component loads client-side (client:load).
+ *   Everything else (nav, disclaimer, layout) is static HTML.
+ *
+ * CONSTRAINTS:
+ *   - No Next.js imports.
+ *   - Turnstile site key read from PUBLIC_TURNSTILE_SITE_KEY (D-P3-20).
+ *   - Chat proxy URL points to Cloudflare Worker (infra repo) for rate-limit
+ *     + server-side Turnstile verify + Anthropic API proxy.
+ *   - Theology gate enforced in CF Worker system prompt.
+ * REF: P2-E3-W02-S02-T02 · D-P3-20
+ */
+
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import SiteNav from '../../components/SiteNav.astro'
+import DisclaimerBanner from '../../components/DisclaimerBanner.astro'
+import ChatIsland from '../../islands/ChatIsland'
+
+// Read locale from cookie / Accept-Language header (simplified for Astro hybrid)
+const acceptLanguage = Astro.request.headers.get('accept-language') ?? 'en'
+const locale         = acceptLanguage.split(',')[0]?.split(';')[0]?.trim().split('-')[0] ?? 'en'
+
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? ''
+// CF Worker chat proxy — rate limiting + Turnstile verify + AI (infra repo)
+const chatProxyUrl = import.meta.env.PUBLIC_CHAT_PROXY_URL ?? '/api/chat'
+
+const title       = 'Chat — ChatIslam'
+const description = 'Ask questions about Islam. AI-assisted answers grounded in authentic scholarship from the Quran and Sunnah.'
+
+export const prerender = false // Hybrid SSR for locale detection
+---
+
+<BaseLayout title={title} description={description} locale={locale}>
+  <SiteNav currentPath="/chat" locale={locale} />
+  <DisclaimerBanner />
+
+  {/* React 19 chat island — client:load hydrates immediately */}
+  <ChatIsland
+    client:load
+    locale={locale}
+    turnstileSiteKey={turnstileSiteKey}
+    chatProxyUrl={chatProxyUrl}
+  />
+</BaseLayout>

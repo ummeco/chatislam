@@ -306,6 +306,39 @@ describe('POST /api/chat', () => {
     expect(body.error).toBe('rate_limited')
   })
 
+  // ── Test T03-AC-02: Zod safeParse validation boundary ────────────────────────
+  it('T03-AC-02: returns 400 with invalid_input and error.flatten() when message is missing', async () => {
+    const req = makeRequest({}) // no message field
+    const res = await POST(req)
+
+    expect(res.status).toBe(400)
+    const body = await res.json() as Record<string, unknown>
+    expect(body.error).toBe('invalid_input')
+    expect(body.details).toBeDefined()
+  })
+
+  it('T03-AC-02: returns 400 with invalid_input when audienceMode is invalid enum value', async () => {
+    const req = makeRequest({ message: 'Test question', audienceMode: 'invalid_mode' })
+    const res = await POST(req)
+
+    expect(res.status).toBe(400)
+    const body = await res.json() as Record<string, unknown>
+    expect(body.error).toBe('invalid_input')
+  })
+
+  it('T03-AC-02: returns 400 on malformed JSON body', async () => {
+    const req = new NextRequest('http://localhost/api/chat', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'x-forwarded-for': '127.0.0.1' },
+      body: 'not-json',
+    })
+    const res = await POST(req)
+
+    expect(res.status).toBe(400)
+    const body = await res.json() as Record<string, unknown>
+    expect(body.error).toBe('invalid_input')
+  })
+
   // ── Test 9: forged JWT treated as anonymous (P2-E1-W01 Track A) ───────────
   it('test-9: forged (unsigned) JWT falls back to anonymous free-tier treatment', async () => {
     // A JWT with a fake signature must NOT grant elevated access.
