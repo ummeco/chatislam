@@ -1,0 +1,39 @@
+---
+/**
+ * tutor/index.astro — AI Tutor landing (static shell + client:load island)
+ *
+ * PURPOSE: Astro wrapper for the AI Tutor island. The TutorIsland React
+ *   component loads client-side (client:load); nav + layout are static.
+ *   Feature-flagged: redirects to /chat when FF_AI_TUTOR is 'false'.
+ *
+ * CONSTRAINTS:
+ *   - No Next.js imports (migrated from app/tutor/page.tsx).
+ *   - Same BaseLayout / SiteNav / RTL / theme as other Astro pages.
+ * REF: CB-03 T25 · D-P2-STACK-CANON
+ */
+
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import SiteNav from '../../components/SiteNav.astro'
+import TutorIsland from '../../components/TutorIsland'
+
+export const prerender = false // Hybrid SSR for feature flag + locale detection
+
+// Feature flag: redirect to /chat when AI tutor disabled (parity with Next page)
+if (import.meta.env.FF_AI_TUTOR === 'false') {
+  return Astro.redirect('/chat')
+}
+
+// Read locale from Accept-Language header (simplified for Astro hybrid)
+const acceptLanguage = Astro.request.headers.get('accept-language') ?? 'en'
+const locale         = acceptLanguage.split(',')[0]?.split(';')[0]?.trim().split('-')[0] ?? 'en'
+
+const title       = 'AI Tutor | ChatIslam'
+const description = 'Structured Islamic learning paths with AI-powered tutoring and mastery tracking.'
+---
+
+<BaseLayout title={title} description={description} locale={locale}>
+  <SiteNav currentPath="/tutor" locale={locale} />
+
+  {/* React 19 tutor island — client:load hydrates immediately */}
+  <TutorIsland client:load />
+</BaseLayout>

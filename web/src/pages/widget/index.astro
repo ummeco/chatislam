@@ -1,0 +1,56 @@
+---
+/**
+ * widget/index.astro — Embeddable chat widget page (SCI-16)
+ *
+ * PURPOSE: Static shell for the WidgetIsland React component, served for
+ *   iframe embedding. Migrated from the Next.js App-Router /widget page.
+ *
+ * Route: /widget?mode=Muslim|NewMuslim|NonMuslim&origin=<host>&sessionId=<id>
+ *
+ * CONSTRAINTS:
+ *   - No Next.js imports.
+ *   - mode/origin validated server-side here (origin enforcement also via CSP
+ *     frame-ancestors headers; this check is informational).
+ *   - WIDGET_ALLOWED_ORIGINS env (comma-separated) gates allowed parents.
+ * REF: SCI-16 · D-P2-STACK-CANON
+ */
+
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import WidgetIsland from '../../islands/WidgetIsland'
+
+const params    = Astro.url.searchParams
+const rawMode   = params.get('mode') ?? 'Muslim'
+const origin    = params.get('origin') ?? ''
+const sessionId = params.get('sessionId')
+
+const allowedOrigins = (import.meta.env.WIDGET_ALLOWED_ORIGINS ?? 'ummat.app')
+  .split(',')
+  .map((o) => o.trim())
+
+// Validate mode
+const validModes = ['Muslim', 'NewMuslim', 'NonMuslim'] as const
+type WidgetMode = typeof validModes[number]
+const mode: WidgetMode = validModes.includes(rawMode as WidgetMode)
+  ? (rawMode as WidgetMode)
+  : 'Muslim'
+
+// Validate origin (informational — full enforcement via CSP headers)
+const isAllowedOrigin = !origin || allowedOrigins.some(
+  (allowed) => origin === allowed || origin.endsWith(`.${allowed}`),
+)
+
+const title       = 'ChatIslam Widget'
+const description = 'Embeddable ChatIslam AI chat widget.'
+
+export const prerender = false // Per-request mode/origin validation
+---
+
+<BaseLayout title={title} description={description}>
+  {isAllowedOrigin ? (
+    <WidgetIsland client:load mode={mode} sessionId={sessionId} />
+  ) : (
+    <div style={{ padding: '1rem', color: '#C9F27A', fontSize: '0.875rem' }}>
+      Origin not authorized.
+    </div>
+  )}
+</BaseLayout>

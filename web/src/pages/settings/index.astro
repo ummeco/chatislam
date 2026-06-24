@@ -1,0 +1,39 @@
+---
+/**
+ * settings/index.astro — User settings page (migrated from app/settings/page.tsx · CB-07 T51)
+ *
+ * PURPOSE: Static shell wrapping the interactive SettingsIsland.
+ *   The form (madhhab, audience mode, history toggle, BYO key, account)
+ *   loads client-side (client:load). Nav + heading are static.
+ *
+ * CONSTRAINTS:
+ *   - No Next.js imports. Mirrors chat/index.astro shell pattern.
+ *   - Same BaseLayout / RTL / theme as existing Astro pages.
+ * REF: CB-07 T51 · D-P2-STACK-CANON
+ */
+
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import SiteNav from '../../components/SiteNav.astro'
+import SettingsIsland from '../../islands/SettingsIsland'
+
+const acceptLanguage = Astro.request.headers.get('accept-language') ?? 'en'
+const locale         = acceptLanguage.split(',')[0]?.split(';')[0]?.trim().split('-')[0] ?? 'en'
+
+const title       = 'Settings — ChatIslam'
+const description = 'Manage your ChatIslam preferences: madhhab, audience mode, conversation history, and API key.'
+
+export const prerender = false // Hybrid SSR for locale detection
+---
+
+<BaseLayout title={title} description={description} locale={locale}>
+  <SiteNav currentPath="/settings" locale={locale} />
+
+  <main class="mx-auto max-w-2xl px-4 py-8" id="main-content">
+    <h1 class="mb-6 text-2xl font-bold text-gray-900 dark:text-gray-100">
+      Settings
+    </h1>
+
+    {/* React 19 settings island — client:load hydrates immediately */}
+    <SettingsIsland client:load />
+  </main>
+</BaseLayout>

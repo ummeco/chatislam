@@ -1,0 +1,29 @@
+---
+/**
+ * preferences/index.astro — Privacy/consent preferences page (static shell + island)
+ *
+ * PURPOSE: Static page wrapper for the consent-management island.
+ *   PreferencesIsland loads client-side (client:only="react") because it
+ *   depends on browser-only consent storage via @ummat/consent (no SSR markup).
+ *   Nav + layout are static Astro HTML.
+ *
+ * CONSTRAINTS:
+ *   - No Next.js imports.
+ *   - Same BaseLayout/SiteNav/RTL/theme as other Astro pages.
+ * REF: migrated from app/preferences/page.tsx (S05-08) · D-P2-STACK-CANON
+ */
+
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import SiteNav from '../../components/SiteNav.astro'
+import PreferencesIsland from '../../islands/PreferencesIsland'
+
+const title       = 'Privacy Preferences — ChatIslam'
+const description = 'Control how ChatIslam uses your data — cookie categories and marketing email preferences.'
+---
+
+<BaseLayout title={title} description={description}>
+  <SiteNav currentPath="/preferences" />
+
+  {/* React 19 consent island — client:only (browser-only consent storage) */}
+  <PreferencesIsland client:only="react" />
+</BaseLayout>

@@ -1,0 +1,34 @@
+---
+/**
+ * research/index.astro — Research page (static shell + client:load island)
+ *
+ * PURPOSE: Static page wrapper for the Feynman Research Agent island.
+ *   The ResearchIsland React component hydrates client-side (client:load).
+ *   Nav + layout are static HTML.
+ *
+ * CONSTRAINTS:
+ *   - No Next.js imports.
+ *   - Mirrors chat/index.astro structure (BaseLayout + SiteNav).
+ * REF: CB-01 T08 · D-P2-STACK-CANON (migrated from app/research/page.tsx)
+ */
+
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import SiteNav from '../../components/SiteNav.astro'
+import ResearchIsland from '../../islands/ResearchIsland'
+
+// Read locale from Accept-Language header (simplified for Astro hybrid)
+const acceptLanguage = Astro.request.headers.get('accept-language') ?? 'en'
+const locale         = acceptLanguage.split(',')[0]?.split(';')[0]?.trim().split('-')[0] ?? 'en'
+
+const title       = 'Research | ChatIslam'
+const description = 'Deep Islamic research powered by the Feynman Research Agent. Summary, cited, or scholarly depth.'
+
+export const prerender = false // Hybrid SSR for locale detection
+---
+
+<BaseLayout title={title} description={description} locale={locale}>
+  <SiteNav currentPath="/research" locale={locale} />
+
+  {/* React 19 research island — client:load hydrates immediately */}
+  <ResearchIsland client:load />
+</BaseLayout>

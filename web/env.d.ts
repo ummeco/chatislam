@@ -1,6 +1,15 @@
 /// <reference path=".astro/types.d.ts" />
 /// <reference types="astro/client" />
 
+// Window.umami — Umami analytics (D-P3-21). Optional because consent-gated.
+// Mirrors root types/umami.d.ts so islands under src/ resolve the global.
+interface Window {
+  umami?: {
+    track: (event: string, data?: Record<string, unknown>) => void
+    identify?: (userId: string) => void
+  }
+}
+
 interface ImportMetaEnv {
   // Hasura GraphQL endpoint (per-app CORS-restricted)
   readonly PUBLIC_HASURA_URL: string
