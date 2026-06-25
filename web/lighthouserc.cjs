@@ -1,21 +1,27 @@
 /**
- * lighthouserc.js — Lighthouse CI config for Astro 5
+ * lighthouserc.cjs — Lighthouse CI config for Astro 5 (SSR app)
  * Target: all four categories >= 95 on static landing pages (QA-A gate).
- * REF: P2-E3-W02-S02-T02
+ *
+ * The app is SSR (output: 'server', @astrojs/vercel adapter) so there is no
+ * ./dist. The four landing pages below are `export const prerender = true`,
+ * so `pnpm build` emits their static HTML into the Vercel static output dir.
+ * LHCI serves that dir directly — no running server needed, fully deterministic.
+ * REF: P2-E3-W02-S02-T02 · T-P7-Q-PERF-01
  */
 
 /** @type {import('@lhci/cli').LhciConfig} */
 module.exports = {
   ci: {
     collect: {
-      staticDistDir: './dist',
+      // Vercel adapter writes prerendered HTML + client assets here.
+      staticDistDir: './.vercel/output/static',
       url: [
-        'http://localhost:4321/',
-        'http://localhost:4321/dawah',
-        'http://localhost:4321/donate',
-        'http://localhost:4321/legal/sharia-disclaimer',
+        'http://localhost/',
+        'http://localhost/dawah',
+        'http://localhost/donate',
+        'http://localhost/legal/sharia-disclaimer',
       ],
-      numberOfRuns: 1,
+      numberOfRuns: 3,
     },
     assert: {
       assertions: {
