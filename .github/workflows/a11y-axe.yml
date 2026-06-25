@@ -71,13 +71,13 @@ jobs:
         # Tags: wcag2a, wcag2aa, wcag21a, wcag21aa, wcag22aa
         # --exit: exit non-zero on violation
         # --tags: enforce up to WCAG 2.2 AA
+        # @axe-core/cli prints results to stdout by default; there is no
+        # --reporter flag (it errors "unknown option '--reporter'").
         run: |
           axe http://localhost:3042 \
             --tags wcag2a,wcag2aa,wcag21a,wcag21aa,wcag22aa \
             --exit \
-            --reporter cli \
             --include "main, nav, [role='main']"
           axe http://localhost:3042/chat \
             --tags wcag2a,wcag2aa,wcag21a,wcag21aa,wcag22aa \
-            --exit \
-            --reporter cli
+            --exit
