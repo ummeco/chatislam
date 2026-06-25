@@ -20,12 +20,6 @@ concurrency:
 jobs:
   lighthouse:
     name: Lighthouse CI
-    # Non-blocking: the lighthouserc targets a static dist (staticDistDir:
-    # ./dist), but chatislam/web is an SSR app (output: 'server', Vercel
-    # adapter) with no static dist — Lighthouse needs a running server here.
-    # Tracked as follow-up to rewire LHCI to build+serve the SSR app. The
-    # blocking perf gate is the bundle-size job below.
-    continue-on-error: true
     uses: ./.github/workflows/_reusable-lighthouse.yml
     with:
       project_path: web
