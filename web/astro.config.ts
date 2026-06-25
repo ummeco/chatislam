@@ -45,6 +45,12 @@ export default defineConfig({
       // @astrojs/react v5 uses destructuring params that esbuild can't lower
       // to legacy targets. Since Node >=22.12.0 is required, modern targets are safe.
       target: 'es2022',
+      rollupOptions: {
+        // ioredis is loaded via dynamic import only when REDIS_URL is set and
+        // is resolved at runtime inside the Vercel serverless function. Mark it
+        // external so rollup does not try (and fail) to resolve it at build time.
+        external: [/^ioredis$/, /^ioredis\//],
+      },
     },
     esbuild: {
       // Prevent esbuild from attempting to lower modern JS to legacy targets
@@ -65,9 +71,13 @@ export default defineConfig({
       'import.meta.env.PUBLIC_UMAMI_WEBSITE_ID': JSON.stringify(process.env.PUBLIC_UMAMI_WEBSITE_ID ?? ''),
     },
     ssr: {
-      // These modules must stay server-side only
+      // These modules must stay server-side only and are resolved at runtime
+      // inside the Vercel serverless function (not bundled by rollup).
+      // ioredis is a transitive runtime dep loaded via dynamic import in
+      // src/pages/api/feedback.ts and rate-limit code; externalize so the
+      // server entrypoint build does not try to resolve it at bundle time.
       noExternal: [],
-      external: ['@anthropic-ai/sdk'],
+      external: ['@anthropic-ai/sdk', 'ioredis'],
     },
   },
 })

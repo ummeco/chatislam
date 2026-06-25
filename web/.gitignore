@@ -28,6 +28,12 @@ next-env.d.ts
 # Testing
 coverage/
 .nyc_output/
+playwright-report/
+test-results/
+__tests__/e2e/**/*-snapshots/
+
+# Astro
+.astro/
 
 # Sentry
 .sentryclirc

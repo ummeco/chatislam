@@ -6,10 +6,12 @@ on:
   push:
     branches: [main]
     paths:
-      - 'web/app/layout.tsx'
+      - 'web/src/layouts/BaseLayout.astro'
+      - 'web/src/islands/PreferencesIsland.tsx'
   pull_request:
     paths:
-      - 'web/app/layout.tsx'
+      - 'web/src/layouts/BaseLayout.astro'
+      - 'web/src/islands/PreferencesIsland.tsx'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -23,25 +25,35 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Check ConsentProvider in root layout
+      - name: Check consent surface is present (Astro)
         run: |
-          LAYOUT="web/app/layout.tsx"
-          if [ ! -f "$LAYOUT" ]; then
-            echo "::error::Root layout not found at $LAYOUT"
-            exit 1
-          fi
-          if ! grep -q "ConsentProvider" "$LAYOUT"; then
-            echo "::error file=$LAYOUT::[chatislam] Root layout missing ConsentProvider."
-            exit 1
-          fi
-          echo "✓ ConsentProvider present"
+          # Post-migration (D-P2-STACK-CANON): consent is managed by the
+          # @ummat/consent package via the PreferencesIsland surface, not a
+          # Next.js ConsentProvider in app/layout.tsx. Verify that consent
+          # management is wired up and that any analytics script in the root
+          # layout is the cookieless (GDPR-safe) Umami variant per D-P3-21.
+          ISLAND="web/src/islands/PreferencesIsland.tsx"
+          LAYOUT="web/src/layouts/BaseLayout.astro"
 
-          if grep -qiE 'src=.*umami' "$LAYOUT"; then
-            if ! grep -q "ConsentGatedScript" "$LAYOUT"; then
-              echo "::error file=$LAYOUT::[chatislam] Unconditional Umami script. Use <ConsentGatedScript category=\"analytics\">."
+          if [ ! -f "$ISLAND" ]; then
+            echo "::error::Consent preferences surface not found at $ISLAND"
+            exit 1
+          fi
+          if ! grep -q "useConsent" "$ISLAND"; then
+            echo "::error file=$ISLAND::[chatislam] Consent surface missing @ummat/consent useConsent hook."
+            exit 1
+          fi
+          echo "✓ Consent management surface present (@ummat/consent)"
+
+          if [ -f "$LAYOUT" ] && grep -qiE 'src=.*umami|src=.*analytics\.ummat' "$LAYOUT"; then
+            # Umami must be the cookieless build (no analytics cookie → no prior
+            # consent required under GDPR per D-P3-21). Reject any cookie-domain
+            # / localStorage cache config that would make it consent-bearing.
+            if grep -qiE 'data-domains|data-cache="true"|umami-cookie' "$LAYOUT"; then
+              echo "::error file=$LAYOUT::[chatislam] Umami script appears consent-bearing. Keep the cookieless variant or gate it behind consent."
               exit 1
             fi
-            echo "✓ Umami script is consent-gated"
+            echo "✓ Umami script is the cookieless GDPR-safe variant (D-P3-21)"
           else
-            echo "✓ No unconditional Umami script"
+            echo "✓ No analytics script in root layout"
           fi

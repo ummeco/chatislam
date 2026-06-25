@@ -55,7 +55,10 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: process.env.CI ? 'pnpm start' : 'pnpm dev',
+    // astro preview is not supported by the @astrojs/vercel/serverless
+    // adapter, so use the dev server in CI as well (it serves SSR routes with
+    // any adapter). reuseExistingServer stays false in CI for a clean run.
+    command: 'pnpm dev',
     url: 'http://localhost:3042',
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
