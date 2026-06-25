@@ -54,12 +54,15 @@ jobs:
           NEXT_PUBLIC_AUTH_URL: 'https://auth.ummat.dev'
           ANTHROPIC_API_KEY: 'dummy-for-build'
 
-      - name: Start production server
+      # `pnpm start` (astro preview) is unsupported by @astrojs/vercel/serverless,
+      # so it never binds and wait-on times out. Use the dev server, which serves
+      # SSR routes with any adapter (same approach as playwright.config.ts).
+      - name: Start dev server
         working-directory: web
-        run: pnpm start --port 3042 &
+        run: pnpm dev &
 
       - name: Wait for server
-        run: npx wait-on http://localhost:3042 --timeout 30000
+        run: npx wait-on http://localhost:3042 --timeout 120000
 
       - name: Install axe-cli
         run: npm install -g @axe-core/cli
