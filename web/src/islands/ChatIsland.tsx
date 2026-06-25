@@ -139,7 +139,7 @@ function TurnstileWidget({ siteKey, onSuccess, onError }: TurnstileWidgetProps) 
     }
   }, [siteKey, onSuccess, onError])
 
-  return <div ref={containerRef} aria-label="Bot verification challenge" />
+  return <div ref={containerRef} role="group" aria-label="Bot verification challenge" />
 }
 
 interface TurnstileAPI {
@@ -156,7 +156,7 @@ function EmptyState() {
       aria-label="Chat is ready"
       data-testid="empty-state"
       data-state="empty"
-      style={{ textAlign: 'center', padding: '2rem', color: 'var(--brand-green-mid)' }}
+      style={{ textAlign: 'center', padding: '2rem', color: 'var(--brand-green-light)' }}
     >
       <p style={{ fontSize: '1rem' }}>
         Ask any question about Islam — Q&amp;A, dawah, or learning.
@@ -573,7 +573,7 @@ export default function ChatIsland({ locale, turnstileSiteKey, chatProxyUrl }: C
             aria-label={`${queriesRemaining} free queries remaining today`}
             style={{
               fontSize:        '0.75rem',
-              color:           queriesRemaining <= 1 ? '#ff9966' : 'var(--brand-green-mid)',
+              color:           queriesRemaining <= 1 ? '#ff9966' : 'var(--brand-green-light)',
               backgroundColor: 'var(--brand-green-dark)',
               padding:         '0.2rem 0.5rem',
               borderRadius:    '4px',
@@ -699,7 +699,7 @@ export default function ChatIsland({ locale, turnstileSiteKey, chatProxyUrl }: C
       </div>
 
       {/* "Powered by Anthropic" disclosure */}
-      <p style={{ fontSize: '0.65rem', color: 'rgba(201,242,122,0.35)', textAlign: 'center', margin: 0 }}>
+      <p style={{ fontSize: '0.65rem', color: 'rgba(201,242,122,0.7)', textAlign: 'center', margin: 0 }}>
         Powered by Anthropic · Ahl us-Sunnah wal-Jamaah content guidelines apply
       </p>
     </main>

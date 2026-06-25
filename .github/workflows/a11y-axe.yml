@@ -64,20 +64,38 @@ jobs:
       - name: Wait for server
         run: npx wait-on http://localhost:3042 --timeout 120000
 
+      # @axe-core/cli bundles a `chromedriver` whose version tracks the latest
+      # Chrome stable. The runner's pre-installed Google Chrome is often a major
+      # behind, so the bundled driver aborts with a version mismatch (exit 2):
+      # "This version of ChromeDriver only supports Chrome version N".
+      # Install the ChromeDriver that matches THIS runner's Chrome and point axe
+      # at it. nanasess/setup-chromedriver auto-detects the installed Chrome and
+      # drops the matching driver at /usr/local/bin/chromedriver.
+      - name: Setup matching ChromeDriver
+        uses: nanasess/setup-chromedriver@v3
+
       - name: Install axe-cli
         run: npm install -g @axe-core/cli
+        # Belt-and-suspenders: make the bundled `chromedriver` npm package reuse
+        # the matched binary instead of downloading a mismatched one, in case
+        # --chromedriver-path is not honored (dequelabs/axe-core-npm#370).
+        env:
+          CHROMEDRIVER_FILEPATH: /usr/local/bin/chromedriver
 
       - name: Run axe-core (critical + serious)
-        # Tags: wcag2a, wcag2aa, wcag21a, wcag21aa, wcag22aa
-        # --exit: exit non-zero on violation
-        # --tags: enforce up to WCAG 2.2 AA
+        # --chromedriver-path: use the runner-matched driver, not axe's bundled one.
+        # --chrome-options: CI-stable headless Chrome flags (no-sandbox + small /dev/shm).
+        # --tags: enforce up to WCAG 2.2 AA · --exit: exit non-zero on violation.
         # @axe-core/cli prints results to stdout by default; there is no
         # --reporter flag (it errors "unknown option '--reporter'").
         run: |
           axe http://localhost:3042 \
             --tags wcag2a,wcag2aa,wcag21a,wcag21aa,wcag22aa \
-            --exit \
-            --include "main, nav, [role='main']"
+            --chromedriver-path /usr/local/bin/chromedriver \
+            --chrome-options="no-sandbox,disable-setuid-sandbox,disable-dev-shm-usage" \
+            --exit
           axe http://localhost:3042/chat \
             --tags wcag2a,wcag2aa,wcag21a,wcag21aa,wcag22aa \
+            --chromedriver-path /usr/local/bin/chromedriver \
+            --chrome-options="no-sandbox,disable-setuid-sandbox,disable-dev-shm-usage" \
             --exit
