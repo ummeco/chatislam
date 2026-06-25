@@ -20,6 +20,10 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   site: 'https://chatislam.org',
   output: 'server',
+  // Dev-only overlay injects unlabeled <button>/<input> controls that leak into
+  // a11y scans (settings-a11y e2e) and has no production analogue. Disable it so
+  // the dev server (used as the e2e webServer) matches production markup.
+  devToolbar: { enabled: false },
   adapter: vercel({
     webAnalytics: { enabled: false }, // Umami handles analytics (D-P3-21)
     imageService: true,

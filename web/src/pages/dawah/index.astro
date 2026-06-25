@@ -13,6 +13,9 @@ import DisclaimerBanner from '../../components/DisclaimerBanner.astro'
 
 const title       = 'Dawah — ChatIslam'
 const description = 'AI-assisted dawah conversations — gentle, bridge-building, and grounded in authentic Islamic scholarship.'
+
+// Static content with no SSR/backend deps — prerender to static HTML. REF: T-P7-Q-PERF-01
+export const prerender = true
 ---
 
 <BaseLayout title={title} description={description}>

@@ -9,6 +9,9 @@ import SiteNav from '../../components/SiteNav.astro'
 
 const title       = 'Sharia Disclaimer — ChatIslam'
 const description = 'ChatIslam AI responses are not fatwas. Learn about our Islamic content guidelines.'
+
+// Static content with no SSR/backend deps — prerender to static HTML. REF: T-P7-Q-PERF-01
+export const prerender = true
 ---
 
 <BaseLayout title={title} description={description}>

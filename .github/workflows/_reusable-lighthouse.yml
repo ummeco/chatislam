@@ -10,7 +10,7 @@ on:
       project_path:
         required: true
         type: string
-        description: 'Path to the Next.js project (relative to repo root)'
+        description: 'Path to the Astro project (relative to repo root)'
 
 jobs:
   lighthouse:
@@ -36,10 +36,10 @@ jobs:
         run: npm install -g @lhci/cli@0.13.x
       - name: Run Lighthouse CI
         working-directory: ${{ inputs.project_path }}
-        # Non-blocking: chatislam/web is an SSR app (output: 'server', Vercel
-        # adapter) with no static dist for LHCI's staticDistDir to serve.
-        # Tracked as follow-up to rewire LHCI to build + serve the SSR app.
-        continue-on-error: true
+        # Blocking gate. The app is SSR (output: 'server', Vercel adapter); the
+        # landing pages audited by lighthouserc.cjs are `export const prerender =
+        # true`, so `pnpm build` emits their static HTML into
+        # .vercel/output/static, which LHCI serves via staticDistDir.
         run: lhci autorun
       - name: Upload Lighthouse report
         if: always()

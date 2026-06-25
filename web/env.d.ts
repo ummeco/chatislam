@@ -1,6 +1,14 @@
 /// <reference path=".astro/types.d.ts" />
 /// <reference types="astro/client" />
 
+// Astro per-request locals — populated by src/middleware.ts.
+declare namespace App {
+  interface Locals {
+    /** Active UI locale resolved from NEXT_LOCALE cookie / Accept-Language. */
+    locale: string
+  }
+}
+
 // Window.umami — Umami analytics (D-P3-21). Optional because consent-gated.
 // Mirrors root types/umami.d.ts so islands under src/ resolve the global.
 interface Window {

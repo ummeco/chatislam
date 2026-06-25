@@ -73,11 +73,6 @@ jobs:
     name: E2E Tests
     runs-on: ubuntu-latest
     needs: build
-    # Non-blocking: the Astro migration left pre-existing e2e failures (RTL
-    # dir/lang not applied in ar/ur locales, empty-state assertion, missing
-    # platform snapshot baselines). These are tracked as follow-up app/test
-    # work; the blocking gates are lint, type-check, unit tests, and build.
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4

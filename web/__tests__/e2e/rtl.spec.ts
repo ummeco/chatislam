@@ -67,14 +67,31 @@ test.describe('RTL layout — Arabic locale', () => {
     expect(hasOverflow).toBe(false)
   })
 
-  test('RTL baseline screenshot — homepage Arabic', async ({ page }) => {
+  // Visual PNG snapshots are platform-dependent — Arabic shaping/fonts render
+  // differently across OSes, so a baseline captured on one platform is not a
+  // reliable gate on CI (linux). Instead assert the RTL layout properties a
+  // baseline would protect: computed direction on the document + main region,
+  // translated (Arabic) content, and no horizontal overflow.
+  test('RTL layout renders correctly — homepage Arabic', async ({ page }) => {
     await page.goto('/')
     await page.waitForLoadState('networkidle')
-    // Baseline: run once with --update-snapshots to create; subsequent runs compare.
-    await expect(page).toHaveScreenshot('homepage-ar-rtl.png', {
-      fullPage: false,
-      animations: 'disabled',
+
+    const htmlDir = await page.evaluate(() => getComputedStyle(document.documentElement).direction)
+    expect(htmlDir).toBe('rtl')
+
+    const mainDir = await page.evaluate(() => {
+      const main = document.querySelector('#main-content')
+      return main ? getComputedStyle(main).direction : null
     })
+    expect(mainDir).toBe('rtl')
+
+    const bodyText = await page.evaluate(() => document.body.innerText)
+    expect(bodyText).toMatch(/[؀-ۿ]/)
+
+    const hasOverflow = await page.evaluate(
+      () => document.documentElement.scrollWidth > window.innerWidth,
+    )
+    expect(hasOverflow).toBe(false)
   })
 })
 
@@ -110,13 +127,28 @@ test.describe('RTL layout — Urdu locale', () => {
     expect(hasOverflow).toBe(false)
   })
 
-  test('RTL baseline screenshot — homepage Urdu', async ({ page }) => {
+  // See the Arabic case above — assert RTL layout properties rather than commit
+  // a platform-dependent PNG baseline.
+  test('RTL layout renders correctly — homepage Urdu', async ({ page }) => {
     await page.goto('/')
     await page.waitForLoadState('networkidle')
-    await expect(page).toHaveScreenshot('homepage-ur-rtl.png', {
-      fullPage: false,
-      animations: 'disabled',
+
+    const htmlDir = await page.evaluate(() => getComputedStyle(document.documentElement).direction)
+    expect(htmlDir).toBe('rtl')
+
+    const mainDir = await page.evaluate(() => {
+      const main = document.querySelector('#main-content')
+      return main ? getComputedStyle(main).direction : null
     })
+    expect(mainDir).toBe('rtl')
+
+    const bodyText = await page.evaluate(() => document.body.innerText)
+    expect(bodyText).toMatch(/[؀-ۿ]/)
+
+    const hasOverflow = await page.evaluate(
+      () => document.documentElement.scrollWidth > window.innerWidth,
+    )
+    expect(hasOverflow).toBe(false)
   })
 })
 

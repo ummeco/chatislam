@@ -11,6 +11,9 @@ import SiteNav from '../../components/SiteNav.astro'
 
 const title       = 'Donate — ChatIslam'
 const description = 'Support ChatIslam to keep free Islamic AI guidance available to the world.'
+
+// Static content with no SSR/backend deps — prerender to static HTML. REF: T-P7-Q-PERF-01
+export const prerender = true
 ---
 
 <BaseLayout title={title} description={description}>
