@@ -12,6 +12,7 @@ on:
     paths:
       - 'web/src/layouts/BaseLayout.astro'
       - 'web/src/islands/PreferencesIsland.tsx'
+  workflow_dispatch: {}
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
