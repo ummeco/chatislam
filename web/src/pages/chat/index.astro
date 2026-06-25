@@ -20,9 +20,8 @@ import SiteNav from '../../components/SiteNav.astro'
 import DisclaimerBanner from '../../components/DisclaimerBanner.astro'
 import ChatIsland from '../../islands/ChatIsland'
 
-// Read locale from cookie / Accept-Language header (simplified for Astro hybrid)
-const acceptLanguage = Astro.request.headers.get('accept-language') ?? 'en'
-const locale         = acceptLanguage.split(',')[0]?.split(';')[0]?.trim().split('-')[0] ?? 'en'
+// Locale resolved by middleware (NEXT_LOCALE cookie → Accept-Language → default).
+const locale = Astro.locals.locale ?? 'en'
 
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? ''
 // CF Worker chat proxy — rate limiting + Turnstile verify + AI (infra repo)

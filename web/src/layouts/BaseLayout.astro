@@ -15,6 +15,7 @@
  */
 
 import '../styles/global.css'
+import { isRtlLocale } from '../lib/i18n'
 
 export interface Props {
   title: string
@@ -29,13 +30,15 @@ export interface Props {
 const {
   title,
   description = 'AI-powered Islamic guidance — accurate, sourced, always available.',
-  locale       = 'en',
+  locale: localeProp,
   canonical,
   ogImage,
 } = Astro.props
 
-const RTL_LOCALES = new Set(['ar', 'ur', 'fa'])
-const isRtl       = RTL_LOCALES.has(locale.split('-')[0] ?? 'en')
+// Locale precedence: explicit prop → middleware-resolved (NEXT_LOCALE cookie /
+// Accept-Language) → default. The cookie drives RTL locale switching in tests + UI.
+const locale = localeProp ?? Astro.locals.locale ?? 'en'
+const isRtl   = isRtlLocale(locale)
 
 const siteUrl     = import.meta.env.PUBLIC_BASE_URL ?? 'https://chatislam.org'
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).href
@@ -50,6 +53,29 @@ const umamiId     = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID ?? ''
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#1E5E2F" />
+
+    {/*
+      Locale bootstrap (before paint). Prerendered pages (/, dawah, donate, legal)
+      are built as static English HTML and cannot read the per-request NEXT_LOCALE
+      cookie on the server, so apply the user's locale to <html lang/dir> here.
+      Cookie-only: when no cookie is set we leave the server-rendered value intact
+      so SSR pages keep their Accept-Language-resolved locale.
+    */}
+    <script is:inline>
+      (function () {
+        try {
+          var m = document.cookie.match(/(?:^|;\s*)NEXT_LOCALE=([^;]+)/)
+          if (!m) return
+          var loc = decodeURIComponent(m[1]).split('-')[0].toLowerCase()
+          if (['en', 'ar', 'ur', 'fa', 'fr', 'id', 'ms', 'tr', 'bn'].indexOf(loc) === -1) return
+          document.documentElement.lang = loc
+          document.documentElement.setAttribute(
+            'dir',
+            ['ar', 'ur', 'fa', 'he', 'ckb'].indexOf(loc) !== -1 ? 'rtl' : 'ltr',
+          )
+        } catch (e) { /* no-op */ }
+      })()
+    </script>
 
     <title>{title}</title>
     <meta name="description" content={description} />

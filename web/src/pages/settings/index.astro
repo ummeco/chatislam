@@ -16,8 +16,8 @@ import BaseLayout from '../../layouts/BaseLayout.astro'
 import SiteNav from '../../components/SiteNav.astro'
 import SettingsIsland from '../../islands/SettingsIsland'
 
-const acceptLanguage = Astro.request.headers.get('accept-language') ?? 'en'
-const locale         = acceptLanguage.split(',')[0]?.split(';')[0]?.trim().split('-')[0] ?? 'en'
+// Locale resolved by middleware (NEXT_LOCALE cookie → Accept-Language → default).
+const locale = Astro.locals.locale ?? 'en'
 
 const title       = 'Settings — ChatIslam'
 const description = 'Manage your ChatIslam preferences: madhhab, audience mode, conversation history, and API key.'

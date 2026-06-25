@@ -1,4 +1,13 @@
 {
+  "home": {
+    "tagline": "AI-assisted Islamic Q&A — grounded in the Quran and authentic Sunnah.",
+    "cta": "Start Asking",
+    "featuresLabel": "Features",
+    "feature1": "Audience modes: General Q&A, Dawah (outreach), Learning (tutoring)",
+    "feature2": "Ahl us-Sunnah wal-Jamaa'ah theology guidelines — authentic scholarship only",
+    "feature3": "Multi-language support including Arabic (RTL), Urdu, Farsi, French",
+    "feature4": "Free to use — no account required"
+  },
   "nav": {
     "home": "Home",
     "newChat": "New Chat",

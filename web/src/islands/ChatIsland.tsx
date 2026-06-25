@@ -154,6 +154,8 @@ function EmptyState() {
     <div
       role="status"
       aria-label="Chat is ready"
+      data-testid="empty-state"
+      data-state="empty"
       style={{ textAlign: 'center', padding: '2rem', color: 'var(--brand-green-mid)' }}
     >
       <p style={{ fontSize: '1rem' }}>

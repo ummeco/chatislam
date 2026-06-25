@@ -1,19 +1,37 @@
 ---
 /**
- * index.astro — ChatIslam landing page (static)
+ * index.astro — ChatIslam landing page (static, locale-aware on the client)
  *
  * PURPOSE: SEO-optimised static homepage. AI fatwa disclaimer (SCI-11).
  *          CTA to /chat.
- * CONSTRAINTS: No Next.js. Astro static page. No hCaptcha.
+ * CONSTRAINTS:
+ *   - No Next.js. Astro static page (prerender=true) — required by lighthouserc
+ *     (LHCI serves `/` from .vercel/output/static). REF: T-P7-Q-PERF-01.
+ *   - Because the page is prerendered it ships English HTML; the NEXT_LOCALE
+ *     cookie is applied on the client (BaseLayout sets lang/dir; the inline
+ *     script below swaps the hero copy for RTL/translated locales).
  * REF: P2-E3-W02-S02-T02
  */
 
 import BaseLayout from '../layouts/BaseLayout.astro'
 import SiteNav from '../components/SiteNav.astro'
 import DisclaimerBanner from '../components/DisclaimerBanner.astro'
+import { SUPPORTED_LOCALES, getMessages } from '../lib/i18n'
 
 const title       = 'ChatIslam — Ask Anything About Islam'
 const description = 'AI-powered Islamic guidance — accurate, sourced, always available. Ask questions about Islam, get answers grounded in authentic scholarship.'
+
+// English copy is rendered into the static HTML (no-JS + SEO baseline).
+const t = getMessages('en').home
+
+// All locales' hero strings, embedded for the client-side swap keyed by cookie.
+const homeStrings = Object.fromEntries(
+  SUPPORTED_LOCALES.map((l) => [l, getMessages(l).home]),
+)
+
+// Static content with no SSR/backend deps — prerender to static HTML so it is
+// CDN-cached in production and servable to Lighthouse CI (staticDistDir). REF: T-P7-Q-PERF-01
+export const prerender = true
 ---
 
 <BaseLayout title={title} description={description}>
@@ -24,8 +42,8 @@ const description = 'AI-powered Islamic guidance — accurate, sourced, always a
     <h1 style="font-size: 3rem; font-weight: 700; color: var(--brand-green-light); margin-bottom: 1rem; line-height: 1.15;">
       ChatIslam
     </h1>
-    <p style="font-size: 1.25rem; color: var(--brand-green-mid); margin-bottom: 0.5rem; max-width: 560px; margin-inline: auto;">
-      AI-assisted Islamic Q&amp;A — grounded in the Quran and authentic Sunnah.
+    <p data-i18n="tagline" style="font-size: 1.25rem; color: var(--brand-green-mid); margin-bottom: 0.5rem; max-width: 560px; margin-inline: auto;">
+      {t.tagline}
     </p>
 
     <!-- Legal disclaimer (SCI-11) -->
@@ -33,7 +51,8 @@ const description = 'AI-powered Islamic guidance — accurate, sourced, always a
 
     <!-- Features summary -->
     <ul
-      aria-label="Features"
+      aria-label={t.featuresLabel}
+      data-i18n-aria="featuresLabel"
       style="
         list-style: none;
         padding: 0;
@@ -46,25 +65,26 @@ const description = 'AI-powered Islamic guidance — accurate, sourced, always a
     >
       <li style="display: flex; gap: 0.5rem; align-items: flex-start; font-size: 0.9rem; color: var(--brand-green-light);">
         <span aria-hidden="true" style="color: var(--brand-green-mid); flex-shrink: 0;">✓</span>
-        Audience modes: General Q&amp;A, Dawah (outreach), Learning (tutoring)
+        <span data-i18n="feature1">{t.feature1}</span>
       </li>
       <li style="display: flex; gap: 0.5rem; align-items: flex-start; font-size: 0.9rem; color: var(--brand-green-light);">
         <span aria-hidden="true" style="color: var(--brand-green-mid); flex-shrink: 0;">✓</span>
-        Ahl us-Sunnah wal-Jamaa&apos;ah theology guidelines — authentic scholarship only
+        <span data-i18n="feature2">{t.feature2}</span>
       </li>
       <li style="display: flex; gap: 0.5rem; align-items: flex-start; font-size: 0.9rem; color: var(--brand-green-light);">
         <span aria-hidden="true" style="color: var(--brand-green-mid); flex-shrink: 0;">✓</span>
-        Multi-language support including Arabic (RTL), Urdu, Farsi, French
+        <span data-i18n="feature3">{t.feature3}</span>
       </li>
       <li style="display: flex; gap: 0.5rem; align-items: flex-start; font-size: 0.9rem; color: var(--brand-green-light);">
         <span aria-hidden="true" style="color: var(--brand-green-mid); flex-shrink: 0;">✓</span>
-        Free to use — no account required
+        <span data-i18n="feature4">{t.feature4}</span>
       </li>
     </ul>
 
     <!-- CTA -->
     <a
       href="/chat"
+      data-i18n="cta"
       style="
         display: inline-block;
         background-color: var(--brand-green-mid);
@@ -79,7 +99,7 @@ const description = 'AI-powered Islamic guidance — accurate, sourced, always a
       onmouseover="this.style.backgroundColor='var(--brand-green-light)'"
       onmouseout="this.style.backgroundColor='var(--brand-green-mid)'"
     >
-      Start Asking
+      {t.cta}
     </a>
   </main>
 
@@ -96,4 +116,28 @@ const description = 'AI-powered Islamic guidance — accurate, sourced, always a
       © {new Date().getFullYear()} ChatIslam · Powered by Anthropic
     </p>
   </footer>
+
+  {/*
+    Client-side locale swap: prerendered HTML is English, so when a NEXT_LOCALE
+    cookie selects a translated locale, replace the hero copy (and the features
+    aria-label) with that locale's strings. Runs after the body has parsed.
+  */}
+  <script is:inline define:vars={{ homeStrings }}>
+    (function () {
+      try {
+        var m = document.cookie.match(/(?:^|;\s*)NEXT_LOCALE=([^;]+)/)
+        var loc = m ? decodeURIComponent(m[1]).split('-')[0].toLowerCase() : 'en'
+        var dict = homeStrings[loc] || homeStrings.en
+        if (!dict) return
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n')
+          if (dict[key]) el.textContent = dict[key]
+        })
+        document.querySelectorAll('[data-i18n-aria]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n-aria')
+          if (dict[key]) el.setAttribute('aria-label', dict[key])
+        })
+      } catch (e) { /* no-op */ }
+    })()
+  </script>
 </BaseLayout>
