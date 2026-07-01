@@ -123,6 +123,10 @@ regexes = [
   # `const HASURA_ADMIN_SECRET = process.env.HASURA_GRAPHQL_ADMIN_SECRET`,
   # which is a variable reference, not a literal secret value.
   '''(?i)^(process|import\.meta)\.env[.\[_]''',
+  # README .env template block: HASURA_GRAPHQL_ADMIN_SECRET= is left blank
+  # (no value), and the multi-line regex spills into the next line's
+  # HASURA_ADMIN_URL=https://... — that's a URL, not a secret literal.
+  '''(?i)^HASURA_ADMIN_URL=https?://''',
 ]
 # NOTE: gitleaks `commits` must be a flat array key inside [allowlist], not a
 # nested [allowlist.commits] table — a nested table crashes gitleaks 8.30 config
