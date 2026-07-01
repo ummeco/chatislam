@@ -116,24 +116,31 @@ regexes = [
   '''(?i)(example|placeholder|your[_-]?key[_-]?here|changeme|replace[_-]?me|REPLACE_WITH|test[_-]?secret)''',
   '''(?i)#\s*(example|see|ref|link|note|todo):''',
   '''HASURA_GRAPHQL_ADMIN_SECRET=.*\$\{''',
+  # ── Shape-based FP suppression (matched against the captured secret) ──
+  # Go RE2 has no lookahead, so the rules can't exclude these in-regex.
+  # JS/TS env references: process.env.X / process.env['X'] / import.meta.env.X
+  # — this repo's hasura-admin-secret rule captures the RHS of
+  # `const HASURA_ADMIN_SECRET = process.env.HASURA_GRAPHQL_ADMIN_SECRET`,
+  # which is a variable reference, not a literal secret value.
+  '''(?i)^(process|import\.meta)\.env[.\[_]''',
 ]
+# NOTE: gitleaks `commits` must be a flat array key inside [allowlist], not a
+# nested [allowlist.commits] table — a nested table crashes gitleaks 8.30 config
+# decoding ("expected type 'string', got unconvertible type 'map'").
+commits = []
+# NOTE: gitleaks `paths` entries are Go REGEXES, not globs. Glob syntax like
+# "**/*.test.ts" is an invalid regex ("missing argument to repetition operator")
+# and makes gitleaks PANIC at config load — failing the secrets job on every PR
+# before any scan runs. Keep every entry valid regex.
 paths = [
-  ".env.example",
-  ".env.template",
-  ".env.sample",
+  '''\.env\.(example|template|sample)$''',
   '''\.next/''',
   '''\.dart_tool/''',
   '''node_modules/''',
-  '''.*\.test\.(ts|tsx)$''',
+  '''.*\.(test|spec)\.(ts|tsx)$''',
   '''.*fixtures?/.*''',
-  "**/*.test.ts",
-  "**/*.spec.ts",
-  "**/__tests__/**",
-  ".github/docs/**",
-  ".github/wiki/**",
-  "pnpm-lock.yaml",
-  ".gitleaks.toml",
+  '''.*__tests__/.*''',
+  '''\.github/(docs|wiki)/.*''',
+  '''pnpm-lock\.yaml$''',
+  '''\.gitleaks\.toml$''',
 ]
-
-[allowlist.commits]
-commits = []
