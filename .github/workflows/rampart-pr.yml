@@ -31,8 +31,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: google/osv-scanner-action/osv-scanner-action@v2.3.8
+        continue-on-error: ${{ env.RAMPART_ENFORCE == 'warn' }}
         with: { scan-args: "--recursive --format json --output osv-report.json ." }
       - name: Gate on CVSS>=7
+        continue-on-error: ${{ env.RAMPART_ENFORCE == 'warn' }}
         run: node .github/scripts/rampart-gate.js osv-report.json --tool osv
       - uses: actions/upload-artifact@v4
         if: always()
@@ -50,7 +52,9 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
       - run: pnpm audit --prod --json > pnpm-audit.json || true
-      - run: node ../.github/scripts/rampart-gate.js pnpm-audit.json --tool pnpm --baseline ../.github/rampart-baseline.json
+      - name: Gate on CVSS>=7
+        continue-on-error: ${{ env.RAMPART_ENFORCE == 'warn' }}
+        run: node ../.github/scripts/rampart-gate.js pnpm-audit.json --tool pnpm --baseline ../.github/rampart-baseline.json
       - uses: actions/upload-artifact@v4
         if: always()
         with: { name: pnpm-audit-report, path: pnpm-audit.json }
@@ -59,11 +63,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: pipx install semgrep==1.154.0
-      - run: |
+      - name: Scan
+        continue-on-error: ${{ env.RAMPART_ENFORCE == 'warn' }}
+        run: |
           semgrep --config p/typescript --config p/react --config p/owasp-top-ten \
                   --config p/secrets --config rules/rampart/ \
                   --json --output semgrep-report.json --error .
-      - run: node .github/scripts/rampart-gate.js semgrep-report.json --tool semgrep
+      - name: Gate on CVSS>=7
+        continue-on-error: ${{ env.RAMPART_ENFORCE == 'warn' }}
+        run: node .github/scripts/rampart-gate.js semgrep-report.json --tool semgrep
       - uses: actions/upload-artifact@v4
         if: always()
         with: { name: semgrep-report, path: semgrep-report.json }
