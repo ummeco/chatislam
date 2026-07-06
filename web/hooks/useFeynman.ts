@@ -8,6 +8,11 @@
  * - Pre-checks GET /api/research/cached before calling research
  * - Tracks phase for FeynmanProgressBar
  * - Abort on component unmount
+ *
+ * Auth: no longer reads a raw bearer token from localStorage. /api/research
+ * authenticates via the httpOnly ci_access_token cookie (sent automatically
+ * with credentials: 'same-origin') when the caller is signed in; anonymous
+ * research is still allowed (no-localstorage-token fix).
  */
 
 import { useState, useCallback, useRef } from 'react'
@@ -82,18 +87,12 @@ export function useFeynman(defaultOpts: UseFeynmanOptions = {}): UseFeynmanRetur
       const body: Record<string, unknown> = { query, depth, language }
       if (madhhab) body.madhhab = madhhab
 
-      const authToken = typeof window !== 'undefined'
-        ? localStorage.getItem('chatislam_token')
-        : null
-
-      const headers: Record<string, string> = { 'Content-Type': 'application/json' }
-      if (authToken) headers['Authorization'] = `Bearer ${authToken}`
-
       const res = await fetch('/api/research', {
-        method:  'POST',
-        headers,
-        body:    JSON.stringify(body),
-        signal:  controller.signal,
+        method:      'POST',
+        headers:     { 'Content-Type': 'application/json' },
+        credentials: 'same-origin',
+        body:        JSON.stringify(body),
+        signal:      controller.signal,
       })
 
       if (!res.ok) {

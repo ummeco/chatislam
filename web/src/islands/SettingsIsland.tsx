@@ -107,11 +107,11 @@ export default function SettingsIsland() {
     setByoKeyBusy(true)
     setByoKeyMsg(null)
     try {
-      const token = localStorage.getItem('chatislam_token') ?? ''
-      const res   = await fetch('/api/settings/byo-key', {
-        method:  'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
-        body:    JSON.stringify({ api_key: byoKeyInput.trim() }),
+      const res = await fetch('/api/settings/byo-key', {
+        method:      'POST',
+        headers:     { 'Content-Type': 'application/json' },
+        credentials: 'same-origin',
+        body:        JSON.stringify({ api_key: byoKeyInput.trim() }),
       })
       if (res.ok) {
         setByoKeyMsg('API key saved.')
@@ -133,10 +133,9 @@ export default function SettingsIsland() {
     setByoKeyBusy(true)
     setByoKeyMsg(null)
     try {
-      const token = localStorage.getItem('chatislam_token') ?? ''
-      const res   = await fetch('/api/settings/byo-key', {
-        method:  'DELETE',
-        headers: { Authorization: `Bearer ${token}` },
+      const res = await fetch('/api/settings/byo-key', {
+        method:      'DELETE',
+        credentials: 'same-origin',
       })
       if (res.ok) {
         setByoKeyMsg('API key removed.')

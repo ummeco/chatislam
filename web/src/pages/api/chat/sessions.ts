@@ -1,10 +1,13 @@
 /**
- * ChatIslam — GET /api/tutor/progress (CB-03 T21)
+ * ChatIslam — GET /api/chat/sessions
  *
- * Returns tutor progress for the authenticated user across all active sessions.
- * Requires auth. Returns per-path progress with mastery breakdown.
- * Feature flag: FF_AI_TUTOR
+ * Returns the authenticated user's saved chat sessions (for ChatSidebar).
+ * Requires auth. Feature flag: FF_CONVERSATION_HISTORY
  * Rate limit: 30/min per user
+ *
+ * Same-origin proxy so ChatSidebar never talks to Hasura directly with a
+ * client-held token — it reads the httpOnly ci_access_token cookie
+ * server-side instead (no-localstorage-token fix, ported from praycalc/web).
  */
 
 import type { APIRoute } from 'astro'
@@ -71,29 +74,19 @@ function parseUserId(cookies: AstroCookies): string | null {
 const HASURA_ENDPOINT     = process.env.HASURA_ADMIN_URL ?? process.env.NEXT_PUBLIC_HASURA_URL ?? ''
 const HASURA_ADMIN_SECRET = process.env.HASURA_GRAPHQL_ADMIN_SECRET ?? ''
 
-interface TutorSessionWithPath {
-  id:                string
-  path_id:           string
-  current_lesson_id: string | null
-  level:             string
-  mastery_scores:    Record<string, number>
-  streak_days:       number
-  last_active_at:    string | null
-  completed_at:      string | null
-  created_at:        string
-  tutor_path: {
-    id:             string
-    slug:           string
-    title:          string
-    lessons_aggregate: { aggregate: { count: number } }
-  }
+interface ChatSessionRow {
+  id:              string
+  title:           string | null
+  last_message_at: string | null
+  audience_mode:   string | null
+  messages_aggregate: { aggregate: { count: number } }
 }
 
 // ─── GET handler ──────────────────────────────────────────────────────────────
 
 export const GET: APIRoute = async ({ cookies }) => {
   // Feature flag
-  if (process.env.FF_AI_TUTOR === 'false') {
+  if (process.env.FF_CONVERSATION_HISTORY === 'false') {
     return new Response(JSON.stringify({ error: 'feature_disabled' }), { status: 403, headers: { 'Content-Type': 'application/json' } })
   }
 
@@ -104,7 +97,7 @@ export const GET: APIRoute = async ({ cookies }) => {
   }
 
   // Rate limit
-  const rlKey = `ci:rl:tutor:progress:${userId}`
+  const rlKey = `ci:rl:chat:sessions:${userId}`
   const rl    = await checkRateLimit(rlKey)
   if (!rl.allowed) {
     return new Response(JSON.stringify({ error: 'rate_limited' }), { status: 429, headers: { 'Content-Type': 'application/json', 'Retry-After': '60' } })
@@ -124,25 +117,13 @@ export const GET: APIRoute = async ({ cookies }) => {
       body: JSON.stringify({
         query: `
           query($user_id: uuid!) {
-            ci_tutor_sessions(
-              where: { user_id: { _eq: $user_id } }
-              order_by: { last_active_at: desc_nulls_last }
+            ci_sessions(
+              where:    { user_id: { _eq: $user_id } }
+              order_by: { last_message_at: desc_nulls_last }
+              limit:    50
             ) {
-              id
-              path_id
-              current_lesson_id
-              level
-              mastery_scores
-              streak_days
-              last_active_at
-              completed_at
-              created_at
-              tutor_path {
-                id
-                slug
-                title
-                lessons_aggregate { aggregate { count } }
-              }
+              id title last_message_at audience_mode
+              messages_aggregate { aggregate { count } }
             }
           }`,
         variables: { user_id: userId },
@@ -151,44 +132,24 @@ export const GET: APIRoute = async ({ cookies }) => {
     })
 
     const data = await res.json() as {
-      data?: { ci_tutor_sessions: TutorSessionWithPath[] }
+      data?: { ci_sessions: ChatSessionRow[] }
       errors?: Array<{ message: string }>
     }
 
     if (data.errors?.length) throw new Error(data.errors[0].message)
 
-    const sessions = data.data?.ci_tutor_sessions ?? []
+    const sessions = (data.data?.ci_sessions ?? []).map((s) => ({
+      id:              s.id,
+      title:           s.title,
+      last_message_at: s.last_message_at,
+      message_count:   s.messages_aggregate.aggregate.count,
+      audience_mode:   s.audience_mode,
+    }))
 
-    const progress = sessions.map((s) => {
-      const scores       = Object.values(s.mastery_scores)
-      const avgMastery   = scores.length
-        ? Math.round(scores.reduce((a, b) => a + b, 0) / scores.length)
-        : 0
-      const totalLessons = s.tutor_path.lessons_aggregate.aggregate.count
-      const doneLessons  = scores.length
-
-      return {
-        session_id:         s.id,
-        path_id:            s.path_id,
-        path_slug:          s.tutor_path.slug,
-        path_title:         s.tutor_path.title,
-        current_lesson_id:  s.current_lesson_id,
-        level:              s.level,
-        avg_mastery:        avgMastery,
-        lessons_completed:  doneLessons,
-        total_lessons:      totalLessons,
-        completion_pct:     totalLessons > 0 ? Math.round((doneLessons / totalLessons) * 100) : 0,
-        streak_days:        s.streak_days,
-        last_active_at:     s.last_active_at,
-        completed_at:       s.completed_at,
-        started_at:         s.created_at,
-      }
-    })
-
-    return new Response(JSON.stringify({ progress }), { status: 200, headers: { 'Content-Type': 'application/json' } })
+    return new Response(JSON.stringify({ sessions }), { status: 200, headers: { 'Content-Type': 'application/json' } })
 
   } catch (err) {
-    console.error('[tutor/progress] error', err)
-    return new Response(JSON.stringify({ error: 'progress_fetch_failed' }), { status: 500, headers: { 'Content-Type': 'application/json' } })
+    console.error('[chat/sessions] error', err)
+    return new Response(JSON.stringify({ error: 'sessions_fetch_failed' }), { status: 500, headers: { 'Content-Type': 'application/json' } })
   }
 }

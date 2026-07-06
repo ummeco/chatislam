@@ -7,6 +7,11 @@
  *   - Exposes session state for tutor pages
  *
  * Migrated from app/hooks/useTutor.ts (Next.js) — logic identical, no next/* imports.
+ *
+ * Auth: no longer takes a raw bearer token — /api/tutor/progress and
+ * /api/tutor/session authenticate via the httpOnly ci_access_token cookie,
+ * sent automatically with credentials: 'same-origin' (no-localstorage-token
+ * fix, ported from praycalc/web).
  */
 
 import { useState, useCallback } from 'react'
@@ -47,8 +52,8 @@ interface UseTutorReturn {
   activeSession:   TutorSession | null
   isStarting:      boolean
   sessionError:    string | null
-  fetchProgress:   (token: string) => Promise<void>
-  startSession:    (pathId: string, token: string) => Promise<void>
+  fetchProgress:   () => Promise<void>
+  startSession:    (pathId: string) => Promise<void>
   clearSession:    () => void
 }
 
@@ -59,11 +64,11 @@ export function useTutor(): UseTutorReturn {
   const [isStarting,        setIsStarting]        = useState(false)
   const [sessionError,      setSessionError]      = useState<string | null>(null)
 
-  const fetchProgress = useCallback(async (token: string) => {
+  const fetchProgress = useCallback(async () => {
     setIsLoadingProgress(true)
     try {
       const res = await fetch('/api/tutor/progress', {
-        headers: { Authorization: `Bearer ${token}` },
+        credentials: 'same-origin',
       })
       if (!res.ok) return
       const data = await res.json() as { progress: TutorProgress[] }
@@ -73,17 +78,15 @@ export function useTutor(): UseTutorReturn {
     }
   }, [])
 
-  const startSession = useCallback(async (pathId: string, token: string) => {
+  const startSession = useCallback(async (pathId: string) => {
     setIsStarting(true)
     setSessionError(null)
     try {
       const res = await fetch('/api/tutor/session', {
-        method:  'POST',
-        headers: {
-          'Content-Type':  'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify({ path_id: pathId }),
+        method:      'POST',
+        headers:     { 'Content-Type': 'application/json' },
+        credentials: 'same-origin',
+        body:        JSON.stringify({ path_id: pathId }),
       })
 
       if (!res.ok) {

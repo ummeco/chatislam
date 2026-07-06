@@ -8,9 +8,15 @@
  * - "New chat" button
  * - Active session highlighted
  * - Sign in prompt for unauthenticated users
+ *
+ * Auth: no longer reads a raw bearer token from localStorage. GET
+ * /api/chat/sessions authenticates via the httpOnly ci_access_token cookie
+ * (sent automatically with credentials: 'same-origin'); sign-in gating uses
+ * getSession() from @/lib/session (no-localstorage-token fix).
  */
 
 import { useCallback, useEffect, useState } from 'react'
+import { getSession } from '@/lib/session'
 
 interface ConversationSummary {
   id:               string
@@ -31,57 +37,21 @@ export function ChatSidebar({ isOpen = true, onClose }: ChatSidebarProps) {
 
   const [sessions,   setSessions]   = useState<ConversationSummary[]>([])
   const [isLoading,  setIsLoading]  = useState(false)
-  // Lazy initializer reads localStorage on first client render — avoids setState-in-effect.
-  const [authToken]  = useState<string | null>(() =>
-    typeof window !== 'undefined' ? localStorage.getItem('chatislam_token') : null
-  )
+  // Lazy initializer reads the cached profile on first render (client-only).
+  // Presence of a profile means "was signed in last we checked" — the actual
+  // credential is the httpOnly cookie, sent automatically by fetch().
+  const [isSignedIn] = useState<boolean>(() => getSession() !== null)
 
-  const fetchSessions = useCallback(async (token: string) => {
+  const fetchSessions = useCallback(async () => {
     setIsLoading(true)
     try {
-      const HASURA_URL = import.meta.env.PUBLIC_HASURA_URL
-      if (!HASURA_URL) return
-
-      const res = await fetch(HASURA_URL, {
-        method:  'POST',
-        headers: {
-          'Content-Type':  'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          query: `
-            query {
-              ci_sessions(
-                order_by: { last_message_at: desc_nulls_last }
-                limit:    50
-              ) {
-                id title last_message_at audience_mode
-                messages_aggregate { aggregate { count } }
-              }
-            }`,
-        }),
+      const res = await fetch('/api/chat/sessions', {
+        credentials: 'same-origin',
       })
+      if (!res.ok) return
 
-      const data = await res.json() as {
-        data?: {
-          ci_sessions: Array<{
-            id:              string
-            title:           string | null
-            last_message_at: string | null
-            audience_mode:   string | null
-            messages_aggregate: { aggregate: { count: number } }
-          }>
-        }
-      }
-
-      const raw = data.data?.ci_sessions ?? []
-      setSessions(raw.map((s) => ({
-        id:              s.id,
-        title:           s.title,
-        last_message_at: s.last_message_at,
-        message_count:   s.messages_aggregate.aggregate.count,
-        audience_mode:   s.audience_mode,
-      })))
+      const data = await res.json() as { sessions: ConversationSummary[] }
+      setSessions(data.sessions ?? [])
     } catch { /* silently ignore */ } finally {
       setIsLoading(false)
     }
@@ -89,8 +59,8 @@ export function ChatSidebar({ isOpen = true, onClose }: ChatSidebarProps) {
 
   useEffect(() => {
     // fetchSessions is async — setState runs in callbacks, not synchronously in the effect body.
-    if (authToken) void fetchSessions(authToken)
-  }, [authToken, fetchSessions])
+    if (isSignedIn) void fetchSessions()
+  }, [isSignedIn, fetchSessions])
 
   function formatDate(iso: string | null): string {
     if (!iso) return ''
@@ -142,7 +112,7 @@ export function ChatSidebar({ isOpen = true, onClose }: ChatSidebarProps) {
 
       {/* Session list */}
       <div className="flex-1 overflow-y-auto px-2 pb-4">
-        {!authToken && (
+        {!isSignedIn && (
           <div className="px-2 py-4 text-center">
             <p className="mb-2 text-xs text-gray-500 dark:text-gray-400">
               Sign in to save conversations
@@ -156,7 +126,7 @@ export function ChatSidebar({ isOpen = true, onClose }: ChatSidebarProps) {
           </div>
         )}
 
-        {authToken && isLoading && (
+        {isSignedIn && isLoading && (
           <div className="space-y-2 px-1 pt-2">
             {[1, 2, 3].map((i) => (
               <div key={i} className="h-10 motion-safe:animate-pulse rounded-lg bg-gray-100 dark:bg-gray-800" />
@@ -164,7 +134,7 @@ export function ChatSidebar({ isOpen = true, onClose }: ChatSidebarProps) {
           </div>
         )}
 
-        {authToken && !isLoading && sessions.length === 0 && (
+        {isSignedIn && !isLoading && sessions.length === 0 && (
           <p className="px-2 py-4 text-center text-xs text-gray-400 dark:text-gray-600">
             No conversations yet
           </p>

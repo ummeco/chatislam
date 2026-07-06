@@ -7,30 +7,36 @@
  * Next-isms replaced:
  *   - next/navigation useRouter().push(href) → window.location.assign(href)
  * All hooks, fetches, and lib imports unchanged (now resolved under src/).
+ *
+ * Auth: no longer reads a raw bearer token from localStorage. The
+ * /api/tutor/* routes authenticate via the httpOnly ci_access_token cookie
+ * (sent automatically with credentials: 'same-origin'); sign-in gating uses
+ * getSession() from @/lib/session (no-localstorage-token fix).
  */
 
 import { useState, useEffect } from 'react'
 import { TutorPathSelector } from './tutor/TutorPathSelector'
 import { TutorProgressCard } from './tutor/TutorProgressCard'
 import { useTutor } from '../hooks/useTutor'
+import { getSession } from '@/lib/session'
 
 export function TutorIsland() {
   const { progress, isLoadingProgress, startSession, isStarting, sessionError, fetchProgress, activeSession } = useTutor()
-  // Lazy initializer reads from localStorage on first render (client-only).
-  const [authToken] = useState<string | null>(() =>
-    typeof window !== 'undefined' ? localStorage.getItem('chatislam_token') : null
-  )
+  // Lazy initializer reads the cached profile on first render (client-only).
+  // Presence of a profile means "was signed in last we checked" — the actual
+  // credential is the httpOnly cookie, sent automatically by fetch().
+  const [isSignedIn] = useState<boolean>(() => getSession() !== null)
 
   useEffect(() => {
-    if (authToken) void fetchProgress(authToken)
-  }, [authToken, fetchProgress])
+    if (isSignedIn) void fetchProgress()
+  }, [isSignedIn, fetchProgress])
 
   async function handlePathSelect(path: { id: string; slug: string }) {
-    if (!authToken) {
+    if (!isSignedIn) {
       window.location.assign('/auth/signin?next=/tutor')
       return
     }
-    await startSession(path.id, authToken)
+    await startSession(path.id)
   }
 
   useEffect(() => {
@@ -49,7 +55,7 @@ export function TutorIsland() {
       </div>
 
       {/* Progress section (authenticated) */}
-      {authToken && progress.length > 0 && (
+      {isSignedIn && progress.length > 0 && (
         <section className="mb-8" aria-label="Your progress">
           <h2 className="mb-3 text-sm font-semibold text-gray-700 dark:text-gray-300">Continue learning</h2>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
