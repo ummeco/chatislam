@@ -10,10 +10,12 @@
  */
 
 import type { APIRoute } from 'astro'
+import type { AstroCookies } from 'astro'
 import crypto from 'crypto'
 import { z } from 'zod'
 import { researchQuery, researchCacheKey, type FeynmanDepth, type ResearchResponse } from '../../../lib/feynman-agent'
 import type { MadhabTag } from '../../../lib/madhhab'
+import { readAccessToken } from '@/lib/auth/cookies.server'
 
 export const prerender = false
 
@@ -74,11 +76,15 @@ async function checkRateLimit(key: string, limit: number): Promise<{ allowed: bo
 
 // ─── Session parsing ──────────────────────────────────────────────────────────
 
-function parseUserId(request: Request): string | null {
-  const auth = request.headers.get('authorization') ?? ''
-  if (!auth.startsWith('Bearer ')) return null
+// Reads the access token from the httpOnly ci_access_token cookie (set by
+// /api/auth/signin|signup|refresh) instead of an Authorization header — the
+// client never holds the raw token (no-localstorage-token fix). Decode logic
+// is unchanged: base64url-decode the JWT payload and pull the Hasura claim.
+// NOTE: no signature verification here — tracked as a separate follow-up.
+function parseUserId(cookies: AstroCookies): string | null {
+  const token = readAccessToken(cookies)
+  if (!token) return null
   try {
-    const token   = auth.slice(7)
     const payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64url').toString())
     const claims  = payload['https://hasura.io/jwt/claims'] ?? {}
     return claims['x-hasura-user-id'] ?? null
@@ -139,7 +145,7 @@ async function persistResearchQuery(args: {
 
 // ─── POST handler ─────────────────────────────────────────────────────────────
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, cookies }) => {
   // Feature flag gate
   if (process.env.FF_FEYNMAN_AGENT === 'false') {
     return new Response(JSON.stringify({ error: 'feature_disabled', redirect: '/chat' }), {
@@ -168,7 +174,7 @@ export const POST: APIRoute = async ({ request }) => {
   }
   const body: ResearchRequest = parsedBody.data as ResearchRequest
 
-  const userId = parseUserId(request)
+  const userId = parseUserId(cookies)
 
   // Rate limiting — namespace ci:rl:research:* (does not collide with ci:rl:chat:*)
   const rlKey   = `ci:rl:research:${userId ?? request.headers.get('x-forwarded-for') ?? 'anon'}`
