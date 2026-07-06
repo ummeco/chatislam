@@ -1,18 +1,20 @@
 // src/pages/api/auth/signin.ts — Astro SSR port of app/api/auth/signin/route.ts
 // T09 (SEC-HARDENING) + T03 (P2-E5 Zod validation)
 // Server-side proxy for Hasura Auth signin with Cloudflare Turnstile verification.
-// Replaces the direct client→Hasura Auth call in SignInClient.tsx.
+//
+// Tokens are set as httpOnly cookies server-side and never returned in the
+// response body (no-localstorage-token fix, ported from praycalc/web).
 //
 // Accepts:  POST { email, password, turnstileToken }
-// Returns:  { session: { accessToken, refreshToken, accessTokenExpiresIn } } | { error }
+// Returns:  { user: { id, email, displayName }, accessTokenExpiresAt } | { error }
 
 import type { APIRoute } from 'astro'
 import { z } from 'zod'
 import { verifyTurnstileToken } from '@/lib/turnstile'
+import { signInEmailPassword } from '@/lib/auth/hasura.server'
+import { setAuthCookies } from '@/lib/auth/cookies.server'
 
 export const prerender = false
-
-const AUTH_URL = process.env.NEXT_PUBLIC_AUTH_URL ?? 'https://auth.ummat.dev'
 
 const SigninSchema = z.object({
   email: z.string().email(),
@@ -20,14 +22,18 @@ const SigninSchema = z.object({
   turnstileToken: z.string().optional(),
 })
 
-export const POST: APIRoute = async ({ request }) => {
+function json(body: unknown, status: number): Response {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { 'Content-Type': 'application/json' },
+  })
+}
+
+export const POST: APIRoute = async ({ request, cookies }) => {
   const rawBody = await request.json().catch(() => null)
   const parsed = SigninSchema.safeParse(rawBody)
   if (!parsed.success) {
-    return new Response(
-      JSON.stringify({ error: 'invalid_input', details: parsed.error.flatten() }),
-      { status: 400, headers: { 'Content-Type': 'application/json' } },
-    )
+    return json({ error: 'invalid_input', details: parsed.error.flatten() }, 400)
   }
   const body = parsed.data
 
@@ -35,39 +41,28 @@ export const POST: APIRoute = async ({ request }) => {
   const isProd = process.env.NODE_ENV === 'production'
   const turnstileOk = await verifyTurnstileToken(body.turnstileToken ?? '')
   if (!turnstileOk && isProd) {
-    return new Response(JSON.stringify({ error: 'Bot check failed' }), {
-      status: 400,
-      headers: { 'Content-Type': 'application/json' },
-    })
+    return json({ error: 'Bot check failed' }, 400)
   }
 
-  // Proxy to Hasura Auth
-  const authRes = await fetch(`${AUTH_URL}/v1/auth/signin/email-password`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: body.email, password: body.password }),
-  }).catch(() => null)
-
-  if (!authRes) {
-    return new Response(JSON.stringify({ error: 'Auth service unavailable' }), {
-      status: 503,
-      headers: { 'Content-Type': 'application/json' },
-    })
+  const result = await signInEmailPassword(body.email, body.password)
+  if (!result.ok) {
+    return json({ error: result.message }, result.status)
   }
 
-  const data = (await authRes.json().catch(() => ({}))) as Record<string, unknown>
-
-  if (!authRes.ok) {
-    return new Response(
-      JSON.stringify({
-        error: (data.message as string) ?? (data.error as string) ?? 'Sign in failed',
-      }),
-      { status: authRes.status, headers: { 'Content-Type': 'application/json' } },
-    )
-  }
-
-  return new Response(JSON.stringify(data), {
-    status: 200,
-    headers: { 'Content-Type': 'application/json' },
-  })
+  setAuthCookies(cookies, result.session)
+  const expiresIn = result.session.accessTokenExpiresIn ?? 900
+  return json(
+    {
+      user: {
+        id: result.session.user.id ?? '',
+        email: result.session.user.email || body.email,
+        // Leave blank when Hasura has no displayName on file — buildSession()
+        // client-side derives a nicely-formatted one from the email local-part
+        // (dots/underscores -> spaces). Don't duplicate that logic here.
+        displayName: result.session.user.displayName ?? '',
+      },
+      accessTokenExpiresAt: Date.now() + expiresIn * 1000,
+    },
+    200,
+  )
 }

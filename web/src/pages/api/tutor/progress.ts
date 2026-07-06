@@ -8,6 +8,8 @@
  */
 
 import type { APIRoute } from 'astro'
+import type { AstroCookies } from 'astro'
+import { readAccessToken } from '@/lib/auth/cookies.server'
 
 export const prerender = false
 
@@ -47,11 +49,15 @@ async function checkRateLimit(key: string): Promise<{ allowed: boolean }> {
 
 // ─── Auth ─────────────────────────────────────────────────────────────────────
 
-function parseUserId(request: Request): string | null {
-  const auth = request.headers.get('authorization') ?? ''
-  if (!auth.startsWith('Bearer ')) return null
+// Reads the access token from the httpOnly ci_access_token cookie (set by
+// /api/auth/signin|signup|refresh) instead of an Authorization header — the
+// client never holds the raw token (no-localstorage-token fix). Decode logic
+// is unchanged: base64url-decode the JWT payload and pull the Hasura claim.
+// NOTE: no signature verification here — tracked as a separate follow-up.
+function parseUserId(cookies: AstroCookies): string | null {
+  const token = readAccessToken(cookies)
+  if (!token) return null
   try {
-    const token   = auth.slice(7)
     const payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64url').toString())
     const claims  = payload['https://hasura.io/jwt/claims'] ?? {}
     return claims['x-hasura-user-id'] ?? null
@@ -85,14 +91,14 @@ interface TutorSessionWithPath {
 
 // ─── GET handler ──────────────────────────────────────────────────────────────
 
-export const GET: APIRoute = async ({ request }) => {
+export const GET: APIRoute = async ({ cookies }) => {
   // Feature flag
   if (process.env.FF_AI_TUTOR === 'false') {
     return new Response(JSON.stringify({ error: 'feature_disabled' }), { status: 403, headers: { 'Content-Type': 'application/json' } })
   }
 
   // Auth required
-  const userId = parseUserId(request)
+  const userId = parseUserId(cookies)
   if (!userId) {
     return new Response(JSON.stringify({ error: 'auth_required' }), { status: 401, headers: { 'Content-Type': 'application/json' } })
   }

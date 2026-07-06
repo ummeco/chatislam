@@ -16,6 +16,7 @@
  */
 
 import type { APIRoute } from 'astro'
+import type { AstroCookies } from 'astro'
 import crypto from 'crypto'
 import Anthropic from '@anthropic-ai/sdk'
 import { z } from 'zod'
@@ -28,6 +29,7 @@ import {
   type CiTutorLesson,
 } from '../../../../lib/tutor-engine'
 import { storePartialContent } from '../../../../lib/ai-provider'
+import { readAccessToken } from '@/lib/auth/cookies.server'
 
 export const prerender = false
 
@@ -108,11 +110,14 @@ async function recordTokenUsage(tokens: number): Promise<void> {
 
 // ─── Auth ─────────────────────────────────────────────────────────────────────
 
-function parseUserId(request: Request): string | null {
-  const auth = request.headers.get('authorization') ?? ''
-  if (!auth.startsWith('Bearer ')) return null
+// Reads the access token from the httpOnly ci_access_token cookie instead of
+// an Authorization header — the client never holds the raw token
+// (no-localstorage-token fix). NOTE: no signature verification here —
+// tracked as a separate follow-up.
+function parseUserId(cookies: AstroCookies): string | null {
+  const token = readAccessToken(cookies)
+  if (!token) return null
   try {
-    const token   = auth.slice(7)
     const payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64url').toString())
     const claims  = payload['https://hasura.io/jwt/claims'] ?? {}
     return claims['x-hasura-user-id'] ?? null
@@ -160,7 +165,7 @@ function detectTutorInjection(text: string): boolean {
 
 // ─── POST handler ─────────────────────────────────────────────────────────────
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, cookies }) => {
   // Feature flag
   if (process.env.FF_AI_TUTOR === 'false') {
     return new Response(JSON.stringify({ error: 'feature_disabled' }), {
@@ -169,7 +174,7 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   // Auth required
-  const userId = parseUserId(request)
+  const userId = parseUserId(cookies)
   if (!userId) {
     return new Response(JSON.stringify({ error: 'auth_required' }), {
       status: 401, headers: { 'Content-Type': 'application/json' },
