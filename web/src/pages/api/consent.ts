@@ -11,6 +11,7 @@
 import type { APIRoute } from 'astro'
 import { z } from 'zod'
 import { handleConsentRequest, type ConsentHandlerInput } from '@ummat/consent/server'
+import { verifyHasuraUserId } from '../../lib/auth/verify-jwt'
 
 export const prerender = false
 
@@ -27,29 +28,19 @@ const HASURA_ENDPOINT =
   'https://api.ummat.dev/v1/graphql'
 const HASURA_ADMIN_SECRET = process.env.HASURA_GRAPHQL_ADMIN_SECRET ?? ''
 
-function userIdFromJwt(authHeader: string | null): string | null {
+// Signature-verified. Previously this base64-decoded the JWT payload and
+// trusted the Hasura claim without calling jwtVerify(), so a forged bearer
+// token could claim any x-hasura-user-id.
+async function userIdFromJwt(authHeader: string | null): Promise<string | null> {
   if (!authHeader || !authHeader.startsWith('Bearer ')) return null
-  try {
-    const token = authHeader.slice(7)
-    const payload = token.split('.')[1]
-    if (!payload) return null
-    const b64 = payload.replace(/-/g, '+').replace(/_/g, '/')
-    const decoded = JSON.parse(Buffer.from(b64, 'base64').toString('utf-8')) as {
-      sub?: string
-      'https://hasura.io/jwt/claims'?: { 'x-hasura-user-id'?: string }
-    }
-    const hasuraUid = decoded['https://hasura.io/jwt/claims']?.['x-hasura-user-id']
-    return hasuraUid ?? decoded.sub ?? null
-  } catch {
-    return null
-  }
+  return verifyHasuraUserId(authHeader.slice(7))
 }
 
 async function buildInput(
   request: Request,
   method: ConsentHandlerInput['method']
 ): Promise<ConsentHandlerInput> {
-  const userId = userIdFromJwt(request.headers.get('authorization'))
+  const userId = await userIdFromJwt(request.headers.get('authorization'))
   const countryCode = request.headers.get('cf-ipcountry') ?? null
   let body: unknown = undefined
   if (method === 'POST') {

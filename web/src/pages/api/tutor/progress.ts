@@ -10,6 +10,7 @@
 import type { APIRoute } from 'astro'
 import type { AstroCookies } from 'astro'
 import { readAccessToken } from '@/lib/auth/cookies.server'
+import { verifyHasuraUserId } from '../../../lib/auth/verify-jwt'
 
 export const prerender = false
 
@@ -54,16 +55,12 @@ async function checkRateLimit(key: string): Promise<{ allowed: boolean }> {
 // client never holds the raw token (no-localstorage-token fix). Decode logic
 // is unchanged: base64url-decode the JWT payload and pull the Hasura claim.
 // NOTE: no signature verification here — tracked as a separate follow-up.
-function parseUserId(cookies: AstroCookies): string | null {
-  const token = readAccessToken(cookies)
-  if (!token) return null
-  try {
-    const payload = JSON.parse(Buffer.from(token.split('.')[1], 'base64url').toString())
-    const claims  = payload['https://hasura.io/jwt/claims'] ?? {}
-    return claims['x-hasura-user-id'] ?? null
-  } catch {
-    return null
-  }
+// Signature-verified. Previously this base64url-decoded the JWT payload and
+// trusted the Hasura claim without calling jwtVerify(), so a forged token in
+// the access-token cookie could claim any x-hasura-user-id. Decoding now goes
+// through the shared helper instead of being reimplemented per route.
+async function parseUserId(cookies: AstroCookies): Promise<string | null> {
+  return verifyHasuraUserId(readAccessToken(cookies))
 }
 
 // ─── Hasura admin client ──────────────────────────────────────────────────────
@@ -98,7 +95,7 @@ export const GET: APIRoute = async ({ cookies }) => {
   }
 
   // Auth required
-  const userId = parseUserId(cookies)
+  const userId = await parseUserId(cookies)
   if (!userId) {
     return new Response(JSON.stringify({ error: 'auth_required' }), { status: 401, headers: { 'Content-Type': 'application/json' } })
   }
