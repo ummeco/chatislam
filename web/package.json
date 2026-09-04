@@ -31,13 +31,13 @@
     "@anthropic-ai/sdk": "^0.91.1",
     "@astrojs/check": "^0.9.9",
     "@astrojs/react": "^5.0.7",
-    "@astrojs/vercel": "^7.8.0",
-    "@sentry/astro": "^9.0.0",
+    "@astrojs/vercel": "^10.0.8",
+    "@sentry/astro": "^10.61.0",
     "@ummat/astro-preset": "file:./vendor/astro-preset",
     "@ummat/consent": "file:./vendor/consent",
     "@ummat/errors": "file:./vendor/errors",
     "@ummat/ui": "file:./vendor/ui",
-    "astro": "^5.0.0",
+    "astro": "^6.4.6",
     "jose": "^6.2.3",
     "react": "19.1.0",
     "react-dom": "19.1.0",
@@ -60,6 +60,7 @@
     "lighthouse": "^12.0.0",
     "tailwindcss": "^4.3.0",
     "typescript": "^5.7.0",
+    "vite": "^7.3.6",
     "vitest": "^3.2.6"
   },
   "pnpm": {
@@ -81,12 +82,10 @@
       "shell-quote": ">=1.9.0 <2",
       "svgo": ">=4.0.2 <5",
       "tar": ">=7.5.21 <8",
-      "vite": "^6.4.3"
+      "vite": ">=7.3.5 <8"
     },
     "auditConfig": {
       "ignoreGhsas": [
-        "GHSA-8hv8-536x-4wqp",
-        "GHSA-2pvr-wf23-7pc7",
         "GHSA-jmr9-qjv8-65gv"
       ]
     }

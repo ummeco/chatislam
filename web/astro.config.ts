@@ -13,7 +13,9 @@
 
 import { defineConfig } from 'astro/config'
 import react from '@astrojs/react'
-import vercel from '@astrojs/vercel/serverless'
+// @astrojs/vercel v8 collapsed the /serverless and /static entrypoints into a
+// single root export; the subpath no longer exists in the package's exports map.
+import vercel from '@astrojs/vercel'
 import { astroUmmat } from '@ummat/astro-preset'
 import tailwindcss from '@tailwindcss/vite'
 
