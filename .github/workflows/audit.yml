@@ -52,4 +52,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Security audit
-        run: pnpm audit --audit-level=high
+        # Retries only on npm transport errors; advisories still fail at once.
+        # See .github/scripts/pnpm-audit-gate.sh for why this is not a bare
+        # `pnpm audit` call.
+        run: ../.github/scripts/pnpm-audit-gate.sh --audit-level=high
