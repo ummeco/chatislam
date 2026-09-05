@@ -10,60 +10,46 @@
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Frame-Options",        "value": "SAMEORIGIN" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy",        "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy",     "value": "camera=(), microphone=(), geolocation=()" }
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
       ]
     },
     {
-      "_comment": [
-        "P13-E03-T10. A live probe on 2026-09-05 found chatislam.org serving NO",
-        "Content-Security-Policy on ordinary pages -- so the only clickjacking",
-        "control was X-Frame-Options: SAMEORIGIN above, and frame-ancestors, the",
-        "modern control the org's own security-headers SOT calls 'primary', was",
-        "absent. The edge Transform Rules that were supposed to supply it are in",
-        "effect on none of the eight zones, so the origin is the only layer we",
-        "actually control.",
-        "",
-        "WHY THIS IS NOT SIMPLY ADDED TO THE /(.*) RULE ABOVE:",
-        "the /widget(.*) rule below deliberately allows framing by ummat.app. When",
-        "two CSP headers both apply, browsers INTERSECT them -- and",
-        "'none' intersected with https://ummat.app is nothing. Putting",
-        "frame-ancestors 'none' on the catch-all would therefore silently kill the",
-        "widget's embed policy. The negative lookahead keeps /widget* on exactly",
-        "the behaviour it has today.",
-        "",
-        "The source pattern was verified locally against path-to-regexp 6.3.0",
-        "before being committed: it matches /, /about, /chat, /api/health and",
-        "/api/widget/send, and does NOT match /widget, /widget/embed.js or",
-        "/widget/foo/bar.",
-        "",
-        "Two observations recorded but deliberately NOT acted on here, because",
-        "each needs its own verification rather than a drive-by edit:",
-        "  1. /widget(.*) is ALSO permanently redirected to /chat further down",
-        "     this file, so no widget document is currently served at all and that",
-        "     header block may be vestigial. Left alone -- if the redirect is ever",
-        "     removed the embed policy must still be correct.",
-        "  2. X-Frame-Options: ALLOW-FROM (in that block) is obsolete and honoured",
-        "     by no current browser; the widget's protection rests entirely on its",
-        "     CSP frame-ancestors, which is correct and present."
-      ],
       "source": "/:path((?!widget).*)",
       "headers": [
-        { "key": "Content-Security-Policy", "value": "frame-ancestors 'none'" },
-        { "key": "X-Frame-Options",         "value": "DENY" }
+        {
+          "key": "Content-Security-Policy",
+          "value": "frame-ancestors 'none'"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        }
       ]
     },
     {
       "source": "/widget(.*)",
       "headers": [
         {
-          "key":   "Content-Security-Policy",
+          "key": "Content-Security-Policy",
           "value": "frame-ancestors https://ummat.app https://*.ummat.app"
         },
         {
-          "key":   "X-Frame-Options",
+          "key": "X-Frame-Options",
           "value": "ALLOW-FROM https://ummat.app"
         }
       ]
@@ -71,81 +57,87 @@
     {
       "source": "/api/widget/(.*)",
       "headers": [
-        { "key": "Access-Control-Allow-Origin",  "value": "https://ummat.app" },
-        { "key": "Access-Control-Allow-Methods", "value": "POST, OPTIONS" }
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "https://ummat.app"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "POST, OPTIONS"
+        }
       ]
     }
   ],
   "redirects": [
     {
-      "source":      "/chat/:sessionId",
+      "source": "/chat/:sessionId",
       "destination": "/chat",
-      "permanent":   true
+      "permanent": true
     },
     {
-      "source":      "/admin(.*)",
+      "source": "/admin(.*)",
       "destination": "/",
-      "permanent":   true
+      "permanent": true
     },
     {
-      "source":      "/auth(.*)",
+      "source": "/auth(.*)",
       "destination": "/",
-      "permanent":   true
+      "permanent": true
     },
     {
-      "source":      "/preferences(.*)",
+      "source": "/preferences(.*)",
       "destination": "/",
-      "permanent":   true
+      "permanent": true
     },
     {
-      "source":      "/settings(.*)",
+      "source": "/settings(.*)",
       "destination": "/",
-      "permanent":   true
+      "permanent": true
     },
     {
-      "source":      "/ramadan(.*)",
+      "source": "/ramadan(.*)",
       "destination": "/",
-      "permanent":   true
+      "permanent": true
     },
     {
-      "source":      "/seasonal(.*)",
+      "source": "/seasonal(.*)",
       "destination": "/",
-      "permanent":   true
+      "permanent": true
     },
     {
-      "source":      "/tutor(.*)",
+      "source": "/tutor(.*)",
       "destination": "/chat",
-      "permanent":   true
+      "permanent": true
     },
     {
-      "source":      "/research(.*)",
+      "source": "/research(.*)",
       "destination": "/chat",
-      "permanent":   true
+      "permanent": true
     },
     {
-      "source":      "/widget(.*)",
+      "source": "/widget(.*)",
       "destination": "/chat",
-      "permanent":   true
+      "permanent": true
     },
     {
-      "source":      "/legal/accessibility(.*)",
+      "source": "/legal/accessibility(.*)",
       "destination": "/legal/sharia-disclaimer",
-      "permanent":   true
+      "permanent": true
     },
     {
-      "source":      "/legal/attribution(.*)",
+      "source": "/legal/attribution(.*)",
       "destination": "/legal/sharia-disclaimer",
-      "permanent":   true
+      "permanent": true
     },
     {
-      "source":      "/legal/california(.*)",
+      "source": "/legal/california(.*)",
       "destination": "/privacy",
-      "permanent":   true
+      "permanent": true
     },
     {
-      "source":      "/legal/dsr(.*)",
+      "source": "/legal/dsr(.*)",
       "destination": "/privacy",
-      "permanent":   true
+      "permanent": true
     }
   ]
 }
