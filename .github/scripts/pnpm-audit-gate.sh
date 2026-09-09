@@ -65,7 +65,10 @@ for attempt in $(seq 1 "$ATTEMPTS"); do
   # Not a transport error => pnpm has something to say about the tree.
   echo "$out"
   echo "pnpm-audit-gate: FAILED — advisories at or above the configured level."
-  echo "Fix the dependency, or add a justified entry to the audit ignore list."
+  echo "Fix the dependency, or add a justified entry to the audit ignore list:"
+  echo "  the list      web/package.json -> pnpm.auditConfig.ignoreGhsas"
+  echo "  the reason    .github/docs/audit-ignores.md  <- REQUIRED. An entry"
+  echo "                with no section there is a bug, not an ignore."
   exit 1
 done
 
