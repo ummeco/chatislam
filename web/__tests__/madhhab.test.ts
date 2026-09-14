@@ -8,6 +8,22 @@
 import { describe, it, expect, vi, afterEach } from 'vitest'
 import { extractMadhabStances, buildMadhabSystemPromptAddendum } from '../lib/madhhab'
 
+// Mocks the Anthropic SDK so detectFiqhQuestion never makes a real API call.
+// This sat inside the 'returns a Promise<boolean>' test until 2026-09-13. vi.mock
+// is hoisted to the top of the module whatever its apparent position, so it was
+// always in force for the whole file, including the test above it — the nesting
+// described an ordering that never happened. vitest 5 rejects this outright
+// rather than warning, which is how it surfaced.
+vi.mock('@anthropic-ai/sdk', () => ({
+  default: class {
+    messages = {
+      create: vi.fn().mockResolvedValue({
+        content: [{ type: 'text', text: 'true' }],
+      }),
+    }
+  },
+}))
+
 // ─── extractMadhabStances ─────────────────────────────────────────────────────
 
 describe('extractMadhabStances', () => {
@@ -112,17 +128,6 @@ describe('detectFiqhQuestion', () => {
   })
 
   it('returns a Promise<boolean>', async () => {
-    // Mock the Anthropic module to avoid real API calls
-    vi.mock('@anthropic-ai/sdk', () => ({
-      default: class {
-        messages = {
-          create: vi.fn().mockResolvedValue({
-            content: [{ type: 'text', text: 'true' }],
-          }),
-        }
-      },
-    }))
-
     const { detectFiqhQuestion } = await import('../lib/madhhab')
     const result = await detectFiqhQuestion('Is it halal to eat shrimp?')
     expect(typeof result).toBe('boolean')
